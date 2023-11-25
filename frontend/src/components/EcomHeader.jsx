@@ -6,7 +6,7 @@ const EcomHeader = () => {
   return (
     <>
       <Navbar expand="lg" bg="primary" collapseOnSelect>
-        <Container className="justify-content-between">
+        
           <LinkContainer to='/ecommerce'>
             <Navbar.Brand>Products</Navbar.Brand>
           </LinkContainer>
@@ -22,7 +22,7 @@ const EcomHeader = () => {
           <LinkContainer to='/whyshophere'>
             <Nav.Link>Why Shop at EaseFlow?</Nav.Link>
           </LinkContainer>
-        </Container>
+       
       </Navbar>
     </>
   );
