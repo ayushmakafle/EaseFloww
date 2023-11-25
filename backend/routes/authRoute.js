@@ -14,7 +14,14 @@ router.post('/register', authController.registerController);
 //LOGIN || POST
 router.post("/login", authController.loginController);
 
+//forgot password
+router.post('/forgot-password',authController.forgotPasswordController)
 //test routes
 router.get("/test",requireSignIn, isAdmin, authController.testController);
+
+//protected route auth
+router.get('/user-auth',requireSignIn, (req,res) => {
+    res.status(200).send({ok:true})
+})
 
 export default router;

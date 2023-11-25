@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import styles from '../../src/styles/styles';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import './Login.css';
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -15,6 +15,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
 
   const navigate = useNavigate();
+  const location = useLocation(); //to redirect to the page before login
 
   //form function
   const handleSubmit = async (e) => {
@@ -32,7 +33,7 @@ const Login = () => {
         });
 
         localStorage.setItem('auth', JSON.stringify(res.data));
-        navigate('/');
+        navigate(location.state || '/');
       } else {
         toast.error(res.data.message);
       }
@@ -103,11 +104,13 @@ const Login = () => {
               >
                 Login
               </button>
-            </div>
-            <div className='text-sm'>
-              <Link to='/ForgetPassword' className='font-medium text-pink-600 hover:text-pink-500' style={{ marginLeft: '175px' }}>
+              <button
+                type='submit'
+                className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-center text-sm font-medium rounded-md text-blackauthc bg-pink-600 hover:bg-pink-700'
+                onClick={() => navigate('/forgot-password')}
+              >
                 Forgot Password?
-              </Link>
+              </button>
             </div>
             <div className='text-center mt-6'>
               <div className='flex items-center'>
