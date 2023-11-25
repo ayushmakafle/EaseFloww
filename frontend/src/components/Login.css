@@ -1,0 +1,188 @@
+/* login.css */
+
+
+  
+  .form-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #d1d5db;
+    margin-bottom: 1rem;
+  }
+  
+  .form-group {
+    position: relative;
+  }
+  
+  .absolute {
+    position: absolute;
+  }
+  
+  .right-2 {
+    right: 0.5rem;
+  }
+  
+  .top-2 {
+    top: 0.5rem;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  #remember-me {
+    margin-right: 0.25rem;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  /* Customize button styling */
+  button {
+    background-color: #ec4899; /* Adjust the button background color */
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #d94684; /* Adjust the button hover color */
+  }
+  
+  /* Customize link styling */
+  a {
+    color: #ec4899; /* Adjust the link color */
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #d94684; /* Adjust the link hover color */
+  }
+/* login.css */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fce8f3; /* Adjust the background color as needed */
+  }
+  
+  .sm\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .sm\:w-full {
+    width: 100%;
+  }
+  
+  .sm\:max-w-md {
+    max-width: 28rem; /* Adjust the max-width as needed */
+  }
+  
+  .text-center {
+    text-align: center;
+    padding: 0.75rem 1rem;
+  }
+  
+  .py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* ... (Other styles remain unchanged) */
+  
+  @media (min-width: 640px) {
+    /* Apply styles for screens larger than 640px wide */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    /* Apply styles for screens larger than 768px wide */
+    .sm\:px-18 {
+      padding-left: 2.25rem;
+      padding-right: 2.25rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    /* Apply styles for screens larger than 1024px wide */
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fce8f3; /* Adjust the background color as needed */
+  }
+  
+  .sm\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .sm\:w-full {
+    width: 100%;
+  }
+  
+  .sm\:max-w-md {
+    max-width: 28rem; /* Adjust the max-width as needed */
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* ... (Other styles remain unchanged) */
+  
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Add this line */
+  }
+  
+  #remember-me {
+    margin-right: 0.25rem;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  } 
+  .custom-footer {
+    padding: 1rem; /* Adjust the padding as needed */
+}   
