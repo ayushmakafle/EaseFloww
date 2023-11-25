@@ -17,9 +17,13 @@ import SignUpPage from './screens/Auth/SignUpPage';
 import GynecologistLoginPage from './screens/GynecologistLoginPage';
 import GynecologistSignUpPage from './screens/GynecologistSignUpPage';
 //import Cart from './screens/Cart'; 
-import ForgetPasswordPage from './screens/ForgetPasswordPage';
+//import ForgtPasswordPage from './screens/ForgetPasswordPage';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Dashboard from './user/Dashboard';
+import PrivateRoute from './components/Routes/Private';
+import ForgotPassword from './screens/ForgotPassword';
+
 
 function App() {
   <LogSymptoms/>
@@ -29,13 +33,18 @@ function App() {
           <Routes>
              <Route path="/" Component={HomepageScreen} exact/>
              <Route path="/log-symptoms" Component={LogSymptoms}exact/>
+             <Route path ='/dashboard' Component={PrivateRoute}>
+                <Route path='' Component={Dashboard} />
+             </Route>
 
               <Route path="/ecommerce" Component={EcomHomeScreen} exact/>
               <Route path="/login" Component={LoginPage} exact/>
+              <Route path="/forgot-password" Component={ForgotPassword} exact/>
+
               <Route path="/signup" Component={SignUpPage} exact/>
               <Route path="/GynecologistLogin" Component={GynecologistLoginPage} exact/>
               <Route path="/GynecologistSignUp" Component={GynecologistSignUpPage} exact/>
-              <Route path="/ForgetPassword" Component={ForgetPasswordPage} exact/>
+              {/*<Route path="/ForgetPassword" Component={ForgetPasswordPage} exact/>*/}
              <Route path='/product/:id' Component={ProductDetails}/>
               {/* <Route path='/cart' Component={Cart} exact/> */}
           </Routes>

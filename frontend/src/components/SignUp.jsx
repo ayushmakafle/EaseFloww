@@ -12,6 +12,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [phonenumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
+  const [answer, setAnswer] = useState('')
 
   const navigate = useNavigate();
   //form function
@@ -19,7 +20,7 @@ const SignUp = () => {
     e.preventDefault()
     try {
       const res = await axios.post(`/api/v1/auth/register`,
-        { username, email, password, phonenumber, address })
+        { username, email, password, phonenumber, address, answer })
       if (res.data.success) {
         toast.success(res.data.message)
         navigate('/login')
@@ -132,6 +133,22 @@ const SignUp = () => {
                 required
                 value={phonenumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor='answer' className='form-label mt-4'>
+                For account recovery
+              </label>
+              <input
+                type='text'
+                name='answer'
+                className='form-control focus:border-pink-500 bg-pink-100'
+                id='answer'
+                aria-describedby='emailHelp'
+                placeholder='what is the name of your first pet'
+                required
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
               />
             </div>
 
