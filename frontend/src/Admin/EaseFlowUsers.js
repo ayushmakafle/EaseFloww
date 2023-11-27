@@ -1,5 +1,5 @@
 import React from 'react'
-import MainNavbar from '../Navbar'
+import MainNavbar from '../components/Navbar'
 import AdminMenu from './AdminMenu'
 
 const EaseFlowUsers = () => {

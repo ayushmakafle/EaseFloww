@@ -1,7 +1,7 @@
 import React from 'react'
-import MainNavbar from '../Navbar'
+import MainNavbar from '../components/Navbar'
 import AdminMenu from './AdminMenu'
-import { useAuth } from '../../context/auth'
+import { useAuth } from '../context/auth'
 
 const AdminDashboard = () => {
   const[auth] = useAuth()

@@ -1,6 +1,6 @@
 import React from 'react'
 import AdminMenu from './AdminMenu'
-import MainNavbar from '../Navbar'
+import MainNavbar from '../components/Navbar'
 
 const EaseFlowDoctors = () => {
   return (
