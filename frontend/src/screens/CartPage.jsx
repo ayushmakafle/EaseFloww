@@ -10,18 +10,18 @@ const CartPage = () => {
   }, []);
 
   const removeItem = (id) => {
-    const updatedCart = cartItems.filter((item) => item.id !== id);
+    const updatedCart = cartItems.filter((item) => item._id !== id);
     setCartItems(updatedCart);
     localStorage.setItem('cartItems', JSON.stringify(updatedCart));
   };
-
+  
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
   };
 
   const updateQuantity = (id, action) => {
     const updatedCart = cartItems.map((item) => {
-      if (item.id === id) {
+      if (item._id === id) {
         if (action === 'increment') {
           return { ...item, quantity: item.quantity + 1 };
         } else if (action === 'decrement' && item.quantity > 1) {
@@ -49,16 +49,16 @@ const CartPage = () => {
           </thead>
           <tbody>
             {cartItems.map((item) => (
-              <tr key={item.id}>
+              <tr key={item._id}>
                 <td>{item.name}</td>
                 <td>${item.price}</td>
                 <td>
-                  <button onClick={() => updateQuantity(item.id, 'decrement')}>-</button>
+                  <button onClick={() => updateQuantity(item._id, 'decrement')}>-</button>
                   {item.quantity}
-                  <button onClick={() => updateQuantity(item.id, 'increment')}>+</button>
+                  <button onClick={() => updateQuantity(item._id, 'increment')}>+</button>
                 </td>
                 <td>
-                  <button onClick={() => removeItem(item.id)}>Remove</button>
+                  <button onClick={() => removeItem(item._id)}>Remove</button>
                 </td>
               </tr>
             ))}
