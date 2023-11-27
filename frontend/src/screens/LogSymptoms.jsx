@@ -39,22 +39,22 @@ const LogSymptoms = () => {
     {
       name: 'Menstrual Flow',
       icon: menstrualFlowIcon,
-      subSymptoms: ['Light Flow', 'Heavy Flow','Gushing Flow', 'Moderate Flow','Spotty Flow','Clotting Flow','Irregular Flow',],
+      subSymptoms: ['Light Flow', 'Heavy Flow', 'Gushing Flow', 'Moderate Flow', 'Spotty Flow', 'Clotting Flow', 'Irregular Flow',],
     },
-      {
-        name: 'Sex and sex drive',
-        icon: sexIcon,
-        subSymptoms: ['No Sex', 'Protected Sex','Unprotected Sex', 'Oral Sex','Anal Sex', 'Masturbation','Sensual Touch','Orgasm'],
-      },
+    {
+      name: 'Sex and sex drive',
+      icon: sexIcon,
+      subSymptoms: ['No Sex', 'Protected Sex', 'Unprotected Sex'],
+    },
     {
       name: 'Mood',
       icon: moodIcon,
-      subSymptoms: ['Euphoric', 'Frisky','Confuse','Depressed', 'Irritable', 'Anxious', 'Sad', 'Stressed'],
+      subSymptoms: ['Euphoric', 'Frisky', 'Confuse', 'Depressed', 'Irritable', 'Anxious', 'Sad', 'Stressed'],
     },
     {
       name: 'Pain',
       icon: painIcon,
-      subSymptoms: ['Dull Ache','Tender Breasts','Acne', 'Sharp Pain', 'Cramping', 'Throbbing', 'Fatigue','Insomnia','Localized Pain'],
+      subSymptoms: ['Dull Ache', 'Tender Breasts', 'Acne', 'Sharp Pain', 'Cramping', 'Throbbing', 'Fatigue', 'Insomnia', 'Localized Pain'],
     },
   ];
 
@@ -63,30 +63,30 @@ const LogSymptoms = () => {
       <Navbar />
       <div className="home-pagee">
 
-      <div className="log-symptoms-container">
-        <h2>Select Symptoms</h2>
-        <div className="category-grid">
-          {categoryOptions.map((category, index) => (
-            <div className="category-card" key={index}>
-              <img src={category.icon} alt={category.name} />
-              <p>{category.name}</p>
-              <div className="sub-symptom-grid">
-                {category.subSymptoms.map((subSymptom, subIndex) => (
-                  <div
-                    key={subIndex}
-                    className={`sub-symptom-card ${selectedSubSymptoms.includes(subSymptom) ? 'selected' : ''}`}
-                    onClick={() => handleSubSymptomSelect(subSymptom)}
-                  >
-                    <p>{subSymptom}</p>
-                  </div>
-                ))}
+        <div className="log-symptoms-container">
+          <h2>Select Symptoms</h2>
+          <div className="category-grid">
+            {categoryOptions.map((category, index) => (
+              <div className="category-card" key={index}>
+                <img src={category.icon} alt={category.name} />
+                <p>{category.name}</p>
+                <div className="sub-symptom-grid">
+                  {category.subSymptoms.map((subSymptom, subIndex) => (
+                    <div
+                      key={subIndex}
+                      className={`sub-symptom-card ${selectedSubSymptoms.includes(subSymptom) ? 'selected' : ''}`}
+                      onClick={() => handleSubSymptomSelect(subSymptom)}
+                    >
+                      <p>{subSymptom}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <button className="submit-button" onClick={handleSubmit}>Submit</button>
         </div>
-        <button className="submit-button" onClick={handleSubmit}>Submit</button>
       </div>
-    </div>
     </div>
   );
 };
