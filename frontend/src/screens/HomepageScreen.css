@@ -1,5 +1,5 @@
 .home-page {
-  background-image: url("C:\Users\acer\OneDrive\Documents\EaseFlow\EaseFloww\frontend\src\components\d.png");
+  background-image: url("C:\Users\acer\OneDrive\Documents\EaseFlow\EaseFloww\frontend\src\components\e.png");
   background-size: cover;
   height: 100vh;
   justify-content: center;
@@ -56,3 +56,4 @@
 .log-button:hover {
   transform: translateX(-50%) scale(1.1);
 }
+

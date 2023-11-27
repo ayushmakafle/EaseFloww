@@ -3,12 +3,13 @@ import {Card} from 'react-bootstrap'
 import Rating from '../components/Rating'
 import {Link} from 'react-router-dom'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 
 const ProductScreen = ({product}) => {
   return (
     <>
-        <Card className='my-3 p-3 rounded'>
+    <Card className='my-3 p-3 rounded'>
             <a href={`/product/${product._id}`}> 
                 <Card.Img src={product.image} variant='top'/>
             </a>
@@ -26,6 +27,7 @@ const ProductScreen = ({product}) => {
             </Card.Text>
         </Card.Body>
         </Card> 
+
     </>
   )
 }
