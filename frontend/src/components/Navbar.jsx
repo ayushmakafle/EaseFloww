@@ -15,7 +15,7 @@ const MainNavbar = () => {
         });
         localStorage.removeItem('auth');
         toast.success('Logout Successful');
-        navigate('/login')
+        navigate('/login');
     };
 
     return (
@@ -33,10 +33,15 @@ const MainNavbar = () => {
                             <i className="fa-solid fa-user"></i> Profile
                         </Nav.Link>
                     ) : (
-                        <NavDropdown title={<i className="fa-solid fa-user"></i>} id="navbarDropdown">
-                            <NavDropdown.Item as={Link} to='/dashboard'>Dashboard</NavDropdown.Item>
-                            <NavDropdown.Item onClick={handleLogout} as={Link} to="/logout">Logout</NavDropdown.Item>
-                        </NavDropdown>
+                        <>
+                            <NavDropdown title={<i className="fa-solid fa-user"></i>} id="navbarDropdown">
+                                <NavDropdown.Item as={Link}
+                                    to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`}>
+                                    Dashboard</NavDropdown.Item>
+                                <NavDropdown.Item onClick={handleLogout} as={Link} to="/logout">Logout</NavDropdown.Item>
+                            </NavDropdown>
+
+                        </>
                     )}
 
                     <Nav.Link href="#" style={{ marginLeft: '375px' }}>

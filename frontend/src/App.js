@@ -68,8 +68,7 @@ import 'react-calendar/dist/Calendar.css';
 // import Navbar from './components/Navbar';
 import HomepageScreen from './screens/HomepageScreen';
 import LogSymptoms from './screens/LogSymptoms';
-import CartPage from './screens/CartPage'; // Import your CartPage component
-
+import CartPage from './screens/CartPage'; 
 import EcomHeader from './components/EcomHeader'; 
 import EcomHomeScreen from './screens/EcomHomeScreen';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -80,34 +79,57 @@ import SignUpPage from './screens/Auth/SignUpPage';
 import GynecologistLoginPage from './screens/GynecologistLoginPage';
 import GynecologistSignUpPage from './screens/GynecologistSignUpPage';
 //import Cart from './screens/Cart'; 
-//import ForgtPasswordPage from './screens/ForgetPasswordPage';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import Dashboard from './user/Dashboard';
 import PrivateRoute from './components/Routes/Private';
 import ForgotPassword from './screens/ForgotPassword';
-<Route path='/dashboard/cart' element={<CartPage />} />
-
-
+import UserDashboard from './user/UserDashboard';
+import AdminRoute from './components/Routes/AdminRoute';
+import AdminDashboard from './components/Admin/AdminDashboard';
+import CreateCategory from './components/Admin/CreateCategory';
+import CreateProduct from './components/Admin/CreateProduct';
+import EaseFlowUsers from './components/Admin/EaseFlowUsers';
+import EaseFlowDoctors from './components/Admin/EaseFlowDoctors';
+import Orders from './user/Orders';
+import Profile from './user/Profile';
+import Appointments from './user/Appointments';
 
 function App() {
+
   return (
     <Router>
       <main className='m-0 w-100' style={{ height: "95vh" }}>
         <Routes>
-        <Route path="/" element={<HomepageScreen />} />
-  <Route path="/log-symptoms" element={<LogSymptoms />} />
-  <Route path='/dashboard/cart' element={<CartPage />} />
+          <Route path="/" element={<HomepageScreen />} />
+          <Route path="/log-symptoms" element={<LogSymptoms />} />
 
-  <Route path="/product/:id" element={<ProductDetails />} />
-
+          <Route path='/dashboard/cart' element={<CartPage />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/ecommerce" element={<EcomHomeScreen />} />
+
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/signup" element={<SignUpPage />} />
+          
+          <Route path ='/dashboard' element={<PrivateRoute />}>
+            <Route path ='user' element={<UserDashboard/>}/>
+            <Route path ='user/orders' element={<Orders/>}/>
+            <Route path ='user/profile' element={<Profile/>}/>
+            <Route path ='user/appointments' element={<Appointments/>}/>
+          </Route>
+
+          <Route path='/dashboard' element={<AdminRoute />}>
+            <Route path ='admin' element={<AdminDashboard/>}/>
+            <Route path ='admin/create-category' element={<CreateCategory/>}/>
+            <Route path ='admin/create-product' element={<CreateProduct/>}/>
+            <Route path ='admin/users' element={<EaseFlowUsers/>}/>
+            <Route path ='admin/doctors' element={<EaseFlowDoctors/>}/>
+          </Route>
+
+
           <Route path="/GynecologistLogin" element={<GynecologistLoginPage />} />
           <Route path="/GynecologistSignUp" element={<GynecologistSignUpPage />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
+          
         </Routes>
         <ToastContainer />
       </main>
