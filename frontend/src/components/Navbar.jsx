@@ -44,7 +44,7 @@ const MainNavbar = () => {
                         </>
                     )}
 
-                    <Nav.Link href="#" style={{ marginLeft: '375px' }}>
+                    <Nav.Link href='/cart' style={{ marginLeft: '375px' }}>
                         <i className="fa-solid fa-cart-shopping"></i> Cart
                     </Nav.Link>
                 </Nav>
