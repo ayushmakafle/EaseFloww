@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Nav } from 'react-bootstrap';
 
 const AdminMenu = () => {
   return (
@@ -12,6 +11,9 @@ const AdminMenu = () => {
         </NavLink>
         <NavLink to="/dashboard/admin/create-product" className="list-group-item list-group-item-action" activeClassName="active">
           Insert Products
+        </NavLink>
+        <NavLink to="/dashboard/admin/products" className="list-group-item list-group-item-action" activeClassName="active">
+          Products
         </NavLink>
         <NavLink to="/dashboard/admin/users" className="list-group-item list-group-item-action" activeClassName="active">
           EaseFlow Users
