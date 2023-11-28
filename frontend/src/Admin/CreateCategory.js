@@ -50,42 +50,44 @@ const CreateCategory = () => {
      <>
     <MainNavbar />
 
-     <div className='container-fluid m-3 p-3'>
-
-    <div className='row'>
-        <div className='col-md-3'>
+      <div className='container-fluid m-3 p-3'>
+        <div className='row'>
+          <div className='col-md-3'>
             <AdminMenu />
-        </div>
-        <div className='col-md-9'>
+          </div>
+          <div className='col-md-9'>
             <h1>Manage Categories</h1>
             <div className="p-3 w-50">
-              <CategoryForm handleSubmit={handleSubmit} value={name} setValue={setName}/>
+              <CategoryForm handleSubmit={handleSubmit} value={name} setValue={setName} />
             </div>
             <div className='w-75'>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {categories.map((c) => (
-                  <>
+              <table className="table" style={{ border: '1px solid #ccc', background: '#ffe6e6' }}>
+                <thead>
                   <tr>
-                    <td key={c._id}>{c.name}</td>                
-                    <td><button className='btn btn-primary'>Edit</button></td>
-                </tr>
-                </>
-                ))}    
-              </tbody>
-            </table>
+                    <th scope="col" style={{ textAlign: 'center', color:'#FF0093' }}>S.No.</th>
+                    <th scope="col" style={{ textAlign: 'left',  color:'#FF0093' }}>Name</th>
+                    <th scope="col" style={{ textAlign: 'left', color:'#FF0093' }}>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {categories.map((c, index) => (
+                    <tr key={c._id}>
+                      <td style={{ textAlign: 'center' }}>{index + 1}</td>
+                      <td style={{ textAlign: 'left' }}>{c.name}</td>
+                      <td>
+                        <button className='btn btn-dark ms-2' style={{ background: '#FF5FA3' }}>Edit</button>
+                        <button className='btn btn-dark ms-2' style={{ background: '#FF06BF ' }}>Delete</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </>
-  )
-}
+  );
+};
 
 export default CreateCategory
