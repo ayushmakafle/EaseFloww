@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import { Link } from 'react-router-dom';
@@ -42,3 +42,4 @@ const ProductScreen = ({ product }) => {
 }
 
 export default ProductScreen;
+ */
