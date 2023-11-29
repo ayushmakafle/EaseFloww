@@ -193,7 +193,6 @@ const EcomHomeScreen = () => {
 
         </div>
         <div className="col-md-9">
-          {JSON.stringify(radio, null, 4)}
           <h1 className="text-center"> All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
