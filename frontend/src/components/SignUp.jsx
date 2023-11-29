@@ -113,7 +113,7 @@ const SignUp = () => {
                 className='form-control focus:border-pink-500 bg-pink-100'
                 id='address'
                 aria-describedby='emailHelp'
-                placeholder='Enter your adddress'
+                placeholder='Enter your address'
                 required
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}

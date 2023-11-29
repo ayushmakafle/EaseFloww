@@ -9,6 +9,7 @@
   "type": "module",
   "dependencies": {
     "ansi-styles": "^3.2.1",
+    "antd": "^5.11.5",
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
@@ -28,6 +29,8 @@
     "escape-string-regexp": "^1.0.5",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
+    "express-formidable": "^1.2.0",
+    "formidable": "^3.5.1",
     "framer-motion": "^10.16.5",
     "gensync": "^1.0.0-beta.2",
     "globals": "^11.12.0",

@@ -44,7 +44,7 @@ const registerController = async (req, res) => {
       phonenumber,
       address,
       password: hashedPassword,
-      answer
+      answer,
     }).save();
 
     res.status(201).send({
@@ -97,10 +97,11 @@ export const loginController = async (req, res) => {
        message: "login successfully",
        user: {
          _id: user._id,
-         name: user.name,
+         username: user.username,
          email: user.email,
          phonenumber: user.phonenumber,
-         adddress: user.address,
+         address: user.address,
+         role:user.role
        },
        token,
      });
