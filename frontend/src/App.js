@@ -107,7 +107,7 @@ function App() {
           <Route path="/log-symptoms" element={<LogSymptoms />} />
 
           <Route path='/cart' element={<CartPage />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/ecommerce" element={<EcomHomeScreen />} />
           <Route path ='/search' element={<Search />} />
 

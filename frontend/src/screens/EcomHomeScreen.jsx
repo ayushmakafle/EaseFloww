@@ -46,6 +46,7 @@ import EcomHeader from '../components/EcomHeader';
 import MainNavbar from '../components/Navbar';
 import { Checkbox, Radio } from 'antd'
 import { Prices } from '../components/Prices';
+import { useNavigate } from 'react-router-dom'
 
 const EcomHomeScreen = () => {
   const [products, setProducts] = useState([]);
@@ -55,6 +56,8 @@ const EcomHomeScreen = () => {
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
+
+  const navigate = useNavigate()
 
 
   //get all categories
@@ -210,7 +213,9 @@ const EcomHomeScreen = () => {
                   <p className="card-text">
                     NRs.{p.price}/-
                   </p>
-                  <button className='btn btn-primary ms-1'>More Details</button>
+                  <button className='btn btn-primary ms-1'
+                    onClick={() => navigate(`/product/${p.slug}`)}>
+                    More Details</button>
                   <button className='btn btn-secondary'>
                     <i className="fas fa-cart-shopping"></i>
                   </button>
@@ -231,7 +236,7 @@ const EcomHomeScreen = () => {
           </div>
         </div>
 
-      </div>
+      </div >
     </>
   );
 };
