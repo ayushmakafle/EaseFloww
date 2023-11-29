@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import styles from '../styles/styles';
 import { useNavigate, Link } from 'react-router-dom';
-import { toast } from 'react-toastify'
-import axios from 'axios'
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -12,26 +12,53 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [phonenumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
-  const [answer, setAnswer] = useState('')
+  const [answer, setAnswer] = useState('');
 
   const navigate = useNavigate();
+
   //form function
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    // Validation checks
+    const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{10}$/;
+
+    if (!password.match(passwordRegex)) {
+      return toast.error('Password must be at least 8 characters, including one special character.');
+    }
+
+    if (!email.match(emailRegex)) {
+      return toast.error('Please enter a valid email address.');
+    }
+
+    if (!phonenumber.match(phoneRegex)) {
+      return toast.error('Phone number should be 10 digits.');
+    }
+
     try {
-      const res = await axios.post(`/api/v1/auth/register`,
-        { username, email, password, phonenumber, address, answer })
+      const res = await axios.post(`/api/v1/auth/register`, {
+        username,
+        email,
+        password,
+        phonenumber,
+        address,
+        answer,
+      });
+
       if (res.data.success) {
-        toast.success(res.data.message)
-        navigate('/login')
+        toast.success(res.data.message);
+        navigate('/login');
       } else {
-        toast.error(res.data.message)
+        toast.error(res.data.message);
       }
     } catch (error) {
-      console.log(error)
-      toast.error('something went wrong')
+      console.log(error);
+      toast.error('Something went wrong');
     }
-  }
+  };
+
   return (
     <div>
       <div className='sm:mx-auto sm:w-full sm:max-w-md'>
