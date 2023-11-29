@@ -95,6 +95,7 @@ import Profile from './user/Profile';
 import Appointments from './user/Appointments';
 import Products from './Admin/Products';
 import UpdateProduct from './Admin/UpdateProduct';
+import Search from './screens/Search';
 
 function App() {
 
@@ -108,6 +109,7 @@ function App() {
           <Route path='/cart' element={<CartPage />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/ecommerce" element={<EcomHomeScreen />} />
+          <Route path ='/search' element={<Search />} />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />

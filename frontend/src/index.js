@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './bootstrap.min.css';
 import { AuthProvider } from './context/auth';
+import { SearchProvider } from './context/search';
 import 'antd/dist/reset.css';
 //import { CartProvider } from './context/cart';
 
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
-    <App />
+      <SearchProvider>
+        <App />
+      </SearchProvider>
     </AuthProvider>
   </React.StrictMode>
 );
