@@ -69,7 +69,7 @@ const CartPage = () => {
       )}
       {cartItems.length > 0 && (
         <div className='total'>
-          <p>Total: ${calculateTotal()}</p>
+          <p>Total: ${calculateTotal().toFixed(2)}</p>
         </div>
       )}
     </div>
