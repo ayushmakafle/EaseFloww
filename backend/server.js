@@ -33,5 +33,5 @@ app.use('/api',productRoutes)
 
 const PORT = process.env.PORT || 8080; // Use the port from environment variables or default to 8080
     app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`.underline.green);
+    console.log(`Server running on port ${PORT}/SignUpPage`.underline.green);
     });
