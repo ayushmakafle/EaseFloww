@@ -3,7 +3,7 @@
 // import 'react-calendar/dist/Calendar.css';
 
 // // import Footer from './components/Footer';
-// // import Navbar from './components/Navbar';
+import Navbar from './components/Navbar';
 // import HomepageScreen from './screens/HomepageScreen';
 // import LogSymptoms from './screens/LogSymptoms';
 
@@ -65,7 +65,7 @@ import { Container } from 'react-bootstrap';
 import 'react-calendar/dist/Calendar.css';
 
 // import Footer from './components/Footer';
-// import Navbar from './components/Navbar';
+//import Navbar from './components/Navbar';
 import HomepageScreen from './screens/HomepageScreen';
 import LogSymptoms from './screens/LogSymptoms';
 import CartPage from './screens/CartPage'; 
@@ -96,9 +96,13 @@ import Appointments from './user/Appointments';
 import Products from './Admin/Products';
 import UpdateProduct from './Admin/UpdateProduct';
 import Search from './screens/Search';
+<<<<<<< HEAD
 import Categories from './screens/Categories';
 import CategoryProduct from './screens/CategoryProduct';
 import CheckoutPage from './screens/CheckoutPage';
+=======
+import HomeScreenPage from './screens/HomeScreenPage';
+>>>>>>> 978b33d057010f5d0de267454aabaf1557947891
 
 function App() {
 
@@ -106,10 +110,15 @@ function App() {
     <Router>
       <main className='m-0 w-100' style={{ height: "95vh" }}>
         <Routes>
+<<<<<<< HEAD
         <Route path="/home" element={<HomepageScreen />} />
 
 
           <Route path="/" element={<LoginPage />} />
+=======
+          <Route path="/" element={<Navbar />} />
+          <Route path="/HomepageScreen" element={<HomeScreenPage/>} />
+>>>>>>> 978b33d057010f5d0de267454aabaf1557947891
           <Route path="/log-symptoms" element={<LogSymptoms />} />
 
           <Route path='/cart' element={<CartPage />} />
