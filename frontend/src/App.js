@@ -106,7 +106,10 @@ function App() {
     <Router>
       <main className='m-0 w-100' style={{ height: "95vh" }}>
         <Routes>
-          <Route path="/" element={<HomepageScreen />} />
+        <Route path="/home" element={<HomepageScreen />} />
+
+
+          <Route path="/" element={<LoginPage />} />
           <Route path="/log-symptoms" element={<LogSymptoms />} />
 
           <Route path='/cart' element={<CartPage />} />
