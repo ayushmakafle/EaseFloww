@@ -43,7 +43,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 //import ProductScreen from './ProductScreen';
 import EcomHeader from '../components/EcomHeader';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import { Checkbox, Radio } from 'antd'
 import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom'
@@ -159,7 +159,7 @@ const EcomHomeScreen = () => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <EcomHeader />
 
       <div className="container-fluid row mt-3">

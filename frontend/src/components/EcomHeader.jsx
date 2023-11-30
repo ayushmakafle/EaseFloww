@@ -7,15 +7,15 @@ const EcomHeader = () => {
   return (
     <>
       <Navbar expand="lg" bg="primary" collapseOnSelect>
-
-        <LinkContainer to='/ecommerce'>
-          <Navbar.Brand>Products</Navbar.Brand>
-        </LinkContainer>
-        <SearchInput />
-        <LinkContainer to='/whyshophere'>
-          <Nav.Link>Why Shop at EaseFlow?</Nav.Link>
-        </LinkContainer>
-
+        <ul>
+                    <li>
+                        <a href="/ecommerce">Our Products</a>
+                        <SearchInput />
+                    </li>
+                    <li>
+                        <Nav.Link href="/whyshophere">Why Shop at EaseFlow?</Nav.Link>
+                    </li>
+                    </ul>
       </Navbar>
     </>
   );

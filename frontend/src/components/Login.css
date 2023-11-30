@@ -42,11 +42,12 @@
   
   .text-sm {
     font-size: 0.875rem;
+    color: #fff;
   }
   
-  /* Customize button styling */
+  /*  button styling */
   button {
-    background-color: #ec4899; /* Adjust the button background color */
+    background-color: #f01482; 
     color: #fff;
     border: none;
     padding: 0.75rem 1rem;
@@ -55,17 +56,17 @@
   }
   
   button:hover {
-    background-color: #d94684; /* Adjust the button hover color */
+    background-color: rgb(248, 46, 150); 
   }
   
-  /* Customize link styling */
+ /* link section */
   a {
-    color: #ec4899; /* Adjust the link color */
+    color: #ec4899; 
     text-decoration: none;
   }
   
   a:hover {
-    color: #d94684; /* Adjust the link hover color */
+    color: #d94684; 
   }
 /* login.css */
 
@@ -74,7 +75,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #fce8f3; /* Adjust the background color as needed */
+    background-color: #fce8f3; 
   }
   
   .sm\:mx-auto {
@@ -87,7 +88,7 @@
   }
   
   .sm\:max-w-md {
-    max-width: 28rem; /* Adjust the max-width as needed */
+    max-width: 28rem; 
   }
   
   .text-center {
@@ -105,10 +106,10 @@
     padding-right: 1rem;
   }
   
-  /* ... (Other styles remain unchanged) */
+  
   
   @media (min-width: 640px) {
-    /* Apply styles for screens larger than 640px wide */
+  
     .container {
       padding-left: 1rem;
       padding-right: 1rem;
@@ -116,7 +117,7 @@
   }
   
   @media (min-width: 768px) {
-    /* Apply styles for screens larger than 768px wide */
+ 
     .sm\:px-18 {
       padding-left: 2.25rem;
       padding-right: 2.25rem;
@@ -124,7 +125,6 @@
   }
   
   @media (min-width: 1024px) {
-    /* Apply styles for screens larger than 1024px wide */
     .container {
       padding-left: 2rem;
       padding-right: 2rem;
@@ -135,7 +135,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #fce8f3; /* Adjust the background color as needed */
+    background-color: #fce8f3; 
   }
   
   .sm\:mx-auto {
@@ -148,7 +148,7 @@
   }
   
   .sm\:max-w-md {
-    max-width: 28rem; /* Adjust the max-width as needed */
+    max-width: 28rem; 
   }
   
   .text-center {
@@ -165,12 +165,12 @@
     padding-right: 1rem;
   }
   
-  /* ... (Other styles remain unchanged) */
+
   
   .checkbox-group {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Add this line */
+    justify-content: space-between; 
   }
   
   #remember-me {
@@ -181,7 +181,7 @@
     font-size: 0.875rem;
   } 
   .custom-footer {
-    padding: 1rem; /* Adjust the padding as needed */
+    padding: 1rem; 
 }   
 .navbar-container {
   padding: 20px;

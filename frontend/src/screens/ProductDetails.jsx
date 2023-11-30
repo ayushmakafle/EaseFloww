@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import MainNavbar from '../components/Navbar';
+//import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
 import { Link, useParams } from 'react-router-dom';
 
@@ -37,7 +37,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <EcomHeader />
 
       <Link to='/ecommerce' className='btn-light' style={{ textDecoration: 'none' }}>

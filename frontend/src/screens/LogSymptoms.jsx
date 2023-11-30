@@ -60,7 +60,7 @@ const LogSymptoms = () => {
 
   return (
     <div>
-      <Navbar />
+     
       <div className="home-pagee">
 
         <div className="log-symptoms-container">

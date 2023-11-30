@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
+//import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import './HomepageScreen.css';
@@ -49,7 +49,6 @@ const HomepageScreen = () => {
 
   return (
     <div className="home-page">
-      <Navbar />
       <div className="calendar-container">
         <Calendar tileClassName={tileClassName} />
         <button className="log-button" onClick={handleLogSymptoms}>
