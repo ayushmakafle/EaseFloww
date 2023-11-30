@@ -98,6 +98,7 @@ import UpdateProduct from './Admin/UpdateProduct';
 import Search from './screens/Search';
 import Categories from './screens/Categories';
 import CategoryProduct from './screens/CategoryProduct';
+import CheckoutPage from './screens/CheckoutPage';
 
 function App() {
 
@@ -109,6 +110,8 @@ function App() {
           <Route path="/log-symptoms" element={<LogSymptoms />} />
 
           <Route path='/cart' element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/ecommerce" element={<EcomHomeScreen />} />
           <Route path ='/search' element={<Search />} />
