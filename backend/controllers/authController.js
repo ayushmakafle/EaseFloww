@@ -47,14 +47,14 @@ const registerController = async (req, res) => {
       answer,
     }).save();
 
-    res.status(201).send({
+    return res.status(201).send({
       success: true,
       message: "User Register Successfully",
       user,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in Registeration",
       error,
@@ -83,7 +83,7 @@ export const loginController = async (req, res) => {
      }
       const match = await comparePassword (password,user.password)
       if(!match){
-        res.status(200).send({
+        return res.status(200).send({
           success:false,
           message:'Invalid Password'
         })
@@ -92,7 +92,7 @@ export const loginController = async (req, res) => {
      const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
        expiresIn: "7d", //7days ma exipre
      });
-     res.status(200).send({
+     return res.status(200).send({
        success: true,
        message: "login successfully",
        user: {
@@ -106,7 +106,7 @@ export const loginController = async (req, res) => {
        token,
      });
     } catch(error) {
-    res.status(500).send({
+      return res.status(500).send({
       success:false,
       message:'Error in login',
       error
@@ -119,32 +119,32 @@ export const forgotPasswordController = async (req, res) => {
   try {
     const { email, answer, newPassword } = req.body;
     if (!email) {
-      res.status(400).send({ message: "email is required" });
+      return res.status(400).send({ message: "email is required" });
     }
     if (!answer) {
-      res.status(400).send({ message: "answer is required" });
+      return res.status(400).send({ message: "answer is required" });
     }
     if (!newPassword) {
-      res.status(400).send({ message: "new password is required" });
+      return res.status(400).send({ message: "new password is required" });
     }
     //check
     const user = await UserModel.findOne({ email, answer });
     //validation
     if (!user) {
-      return res.status(404).send({
+     return res.status(404).send({
         success: false,
         message: 'wrong email or answer'
       });
     }
     const hashed = await hashPassword(newPassword);
     await userModel.findByIdAndUpdate(user._id, { password: hashed });
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       message: 'password reset successful'
     });
   } catch (error) {
     console.log(error);
-    res.status(400).send({
+    return res.status(400).send({
       success: false,
       message: 'something went wrong',
       error
@@ -172,14 +172,14 @@ export const updateProfileController = async (req, res) => {
       },
       { new: true }
     );
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       message: "Profile Updated Successfully",
       updatedUser,
     });
   } catch (error) {
     console.log(error);
-    res.status(400).send({
+    return res.status(400).send({
       success: false,
       message: "Error While Updating profile",
       error,
