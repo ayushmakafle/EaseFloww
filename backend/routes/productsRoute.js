@@ -36,6 +36,7 @@ import express from 'express';
 import { isAdmin, requireSignIn } from '../middleware/authMiddleware.js';
 import { createProductController, 
   deleteProductController, getProductController, getSingleProductController, 
+  productCategoryController, 
   productCountController, 
   productFiltersController, 
   productListController, 
@@ -118,5 +119,8 @@ router.get('/search/:keyword',searchProductController)
 
 //similar product
 router.get('/related-product/:pid/:cid',relatedProductController)
+
+//categort wise product
+router.get('/product-category/:slug',productCategoryController)
 
 export default router;

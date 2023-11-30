@@ -96,6 +96,8 @@ import Appointments from './user/Appointments';
 import Products from './Admin/Products';
 import UpdateProduct from './Admin/UpdateProduct';
 import Search from './screens/Search';
+import Categories from './screens/Categories';
+import CategoryProduct from './screens/CategoryProduct';
 
 function App() {
 
@@ -110,6 +112,8 @@ function App() {
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/ecommerce" element={<EcomHomeScreen />} />
           <Route path ='/search' element={<Search />} />
+          <Route path ='/categories' element={<Categories/>}/>
+          <Route path ='/category/:slug' element={<CategoryProduct/>}/>
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
