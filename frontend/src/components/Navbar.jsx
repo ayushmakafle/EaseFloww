@@ -14,6 +14,8 @@ const MainNavbar = () => {
             ...auth, user: null, token: ''
         });
         localStorage.removeItem('auth');
+        localStorage.removeItem('cart');
+
         toast.success('Logout Successful');
         navigate('/login');
     };

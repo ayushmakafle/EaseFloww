@@ -207,19 +207,25 @@ const EcomHomeScreen = () => {
                     onClick={() => navigate(`/product/${p.slug}`)}>
                     More Details</button>
 
-                  <button
-                    className="btn btn-secondary ms-1"
-                    onClick={() => {
-                      setCart([...cart, p]);
-                      localStorage.setItem(
-                        "cart",
-                        JSON.stringify([...cart, p])
-                      );
-                      toast.success("Item Added to cart");
-                    }}
-                  >
-                    <i className="fas fa-cart-shopping"></i>
-                  </button>
+                    <button
+    className="btn btn-secondary ms-1"
+    onClick={() => {
+        const updatedCart = [...cart];
+        const existingProduct = updatedCart.find(item => item._id === p._id);
+
+        if (existingProduct) {
+            existingProduct.numberOfItems += 1;
+        } else {
+            updatedCart.push({ ...p, numberOfItems: 1 });
+        }
+
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        toast.success("Item Added to cart");
+    }}
+>
+    <i className="fas fa-cart-shopping"></i>
+</button>
 
                 </div>
               </div>
