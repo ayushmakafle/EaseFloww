@@ -16,8 +16,6 @@ router.post("/login", authController.loginController);
 
 //forgot password
 router.post('/forgot-password',authController.forgotPasswordController)
-//test routes
-router.get("/test",requireSignIn, isAdmin, authController.testController);
 
 //protected route user auth
 router.get('/user-auth',requireSignIn, (req,res) => {
@@ -29,4 +27,6 @@ router.get('/admin-auth',requireSignIn,isAdmin, (req,res) => {
     res.status(200).send({ok:true})
 })
 
+//update profie
+router.put('/profile',requireSignIn,authController.updateProfileController)
 export default router;

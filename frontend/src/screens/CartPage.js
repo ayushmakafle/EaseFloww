@@ -115,50 +115,50 @@ const CartPage = () => {
           </table>
         </div>
 
-        <div className="col-md-4 text-center">
-          <h2>Cart Summary</h2>
-          <p>Total | Checkout | Payment</p>
-          <hr />
-          <h4>Total : {totalPrice()} </h4>
+       <div className="col-md-4 text-center">
+  <h2 className="mb-4">Cart Summary</h2>
+  <p className="mb-3">Total | Checkout | Payment</p>
+  <hr className="mb-4" />
+   <h4 className="mb-2">Total: <span className="text-info font-weight-bold">{totalPrice()} /-</span></h4>
 
+  {auth?.user?.address ? (
+    <>
+      <div className="mb-4">
+        <h5 className="mb-2">Current Address :</h5>
+        <h2 className="text-info">{auth?.user?.address}</h2>
+        <button
+          className="btn btn-primary"
+          onClick={() => navigate("/dashboard/user/profile")}
+        >
+          Update Address
+        </button>
+      </div>
+    </>
+  ) : (
+    <div className="mb-4">
+      {auth?.token ? (
+        <button
+          className="btn btn-primary"
+          onClick={() => navigate("/dashboard/user/profile")}
+        >
+          Update Address
+        </button>
+      ) : (
+        <button
+          className="btn btn-primary"
+          onClick={() =>
+            navigate("/login", {
+              state: "/cart",
+            })
+          }
+        >
+          Please Login to Checkout
+        </button>
+      )}
+    </div>
+  )}
+</div>
 
-           {/*  {auth?.user?.address ? (
-              <>
-                <div className="mb-3">
-                  <h4>Current Address</h4>
-                  <h5>{auth?.user?.address}</h5>
-                  <button
-                    className="btn btn-outline-warning"
-                    onClick={() => navigate("/dashboard/user/profile")}
-                  >
-                    Update Address
-                  </button>
-                </div>
-              </>
-            ) : (
-              <div className="mb-3">
-                {auth?.token ? (
-                  <button
-                    className="btn btn-outline-warning"
-                    onClick={() => navigate("/dashboard/user/profile")}
-                  >
-                    Update Address
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn-outline-warning"
-                    onClick={() =>
-                      navigate("/login", {
-                        state: "/cart",
-                      })
-                    }
-                  >
-                    Please Login to checkout
-                  </button>
-                )}
-              </div>
-            )} */}
-          </div>
         </div>
     </>
   );
