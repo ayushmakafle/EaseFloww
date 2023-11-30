@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import './bootstrap.min.css';
 import { AuthProvider } from './context/auth';
 import { SearchProvider } from './context/search';
+import { CartProvider } from './context/cart';
 import 'antd/dist/reset.css';
 //import { CartProvider } from './context/cart';
 
@@ -14,7 +15,9 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <SearchProvider>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </SearchProvider>
     </AuthProvider>
   </React.StrictMode>
