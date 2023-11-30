@@ -52,9 +52,9 @@ const MainNavbar = () => {
                            
                 {!auth.user ? (
                   <li>
-                        <Nav.Link as={Link} to="/login" className="active">
+                        <a as={Link} to="/login" className="active" style={{ marginLeft: '17px' }}>
                             <i className="fa-solid fa-user"></i> Profile
-                        </Nav.Link>
+                        </a>
                         </li>
                 
                     ) : (
@@ -69,9 +69,9 @@ const MainNavbar = () => {
                         </>
                     )}
 <li>
-                    <Nav.Link href='/cart' style={{ marginLeft: '375px' }}>
+                    <a href='/cart' style={{ marginLeft: '7px' }}>
                         <i className="fa-solid fa-cart-shopping"></i> Cart
-                    </Nav.Link>
+                    </a>
                     </li>
                     </ul>
             </nav>
