@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useAuth } from '../context/auth';
 import { toast } from 'react-toastify';
+import '../styles/MainNavbar.css';
 
 const MainNavbar = () => {
   const [auth, setAuth] = useAuth();
@@ -66,6 +67,8 @@ const MainNavbar = () => {
         </nav>
       </div>
     </header>
+    
   );
 };
+{/* <script src ="main.js"></script> */}
 export default MainNavbar;
