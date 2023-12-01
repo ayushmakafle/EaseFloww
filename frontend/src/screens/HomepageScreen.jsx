@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import './HomepageScreen.css';
+import MainNavbar from '../components/Navbar';
+import Footer from '../components/Footer';
 //import { useAuth } from '../context/auth';
 
 const HomepageScreen = () => {
@@ -46,8 +48,9 @@ const HomepageScreen = () => {
   const handleLogSymptoms = () => {
     navigate('/log-symptoms'); // Use navigate directly here
   };
-
   return (
+    <>
+    <MainNavbar />
     <div className="home-page">
       <div className="calendar-container">
         <Calendar tileClassName={tileClassName} />
@@ -58,6 +61,8 @@ const HomepageScreen = () => {
       </div>
 
     </div>
+    <Footer />
+    </>
   );
 };
 

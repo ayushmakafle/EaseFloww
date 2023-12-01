@@ -9,7 +9,7 @@ const EcomHeader = () => {
       <Navbar expand="lg" bg="primary" collapseOnSelect>
         <ul>
                     <li>
-                        <a href="/ecommerce">Our Products</a>
+                        <Nav.Link href="/ecommerce">Our Products</Nav.Link>
                         <SearchInput />
                     </li>
                     <li>

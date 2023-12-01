@@ -97,6 +97,7 @@ import Products from './Admin/Products';
 import UpdateProduct from './Admin/UpdateProduct';
 import Search from './screens/Search';
 import HomeScreenPage from './screens/HomeScreenPage';
+import LandingPage from './screens/LandingPage';
 
 function App() {
 
@@ -104,8 +105,8 @@ function App() {
     <Router>
       <main className='m-0 w-100' style={{ height: "95vh" }}>
         <Routes>
-          <Route path="/" element={<Navbar />} />
-          <Route path="/HomepageScreen" element={<HomeScreenPage/>} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/homepage" element={<HomeScreenPage/>} />
           <Route path="/log-symptoms" element={<LogSymptoms />} />
 
           <Route path='/cart' element={<CartPage />} />

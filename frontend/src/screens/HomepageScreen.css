@@ -1,6 +1,6 @@
 .home-page {
-  background-image: url("../components/images/logo_right.png");
   background-size: cover;
+  background-color: #eb6864;
   height: 100vh;
   justify-content: center;
   align-items: center;
@@ -9,8 +9,9 @@
 }
 
 .calendar-container {
-  margin-top: 150px;
-  width: 500px;
+  margin-top: 100px;
+  width: 40%;
+  height: 55%;
   background-color: pink;
 }
 

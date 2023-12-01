@@ -47,6 +47,8 @@ import EcomHeader from '../components/EcomHeader';
 import { Checkbox, Radio } from 'antd'
 import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom'
+import MainNavbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const EcomHomeScreen = () => {
   const [products, setProducts] = useState([]);
@@ -159,7 +161,7 @@ const EcomHomeScreen = () => {
 
   return (
     <>
-      {/* <MainNavbar /> */}
+      <MainNavbar />
       <EcomHeader />
 
       <div className="container-fluid row mt-3">
@@ -236,6 +238,7 @@ const EcomHomeScreen = () => {
         </div>
 
       </div >
+      <Footer />
     </>
   );
 };

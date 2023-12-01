@@ -59,6 +59,7 @@ const LogSymptoms = () => {
   ];
 
   return (
+    
     <div>
      
       <div className="home-pagee">

@@ -7,5 +7,4 @@ const HomeScreenPage = () => {
     </div>
   )
 }
-
 export default HomeScreenPage;

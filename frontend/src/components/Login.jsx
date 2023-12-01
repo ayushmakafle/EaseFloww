@@ -98,13 +98,12 @@ const Login = () => {
               )}
             </div>
             <div>
-              {/* <button
+              <button
                 type='submit'
                 className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-center text-sm font-medium rounded-md text-blackauthc bg-pink-600 hover:bg-pink-700'
               >
                 Login
-              </button> */}
-              <a href="/HomepageScreen" class = "btn dark">Login</a>
+              </button>
               <button
                 type='submit'
                 className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-center text-sm font-medium rounded-md text-blackauthc bg-pink-600 hover:bg-pink-700'
@@ -143,5 +142,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
