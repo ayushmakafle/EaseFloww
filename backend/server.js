@@ -1,5 +1,7 @@
 import express, { json } from 'express';
 //import { errorHandler } from './middlewares/errorMiddleware';
+import { json } from 'express'; // Ensure you import 'json' separately
+
 import products from './data/products.js';
 import { config } from 'dotenv'; 
 import mongoose from 'mongoose';
@@ -9,6 +11,8 @@ import productRoutes from './routes/productsRoute.js';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
+import symptomsRoutes from './routes/SymptomsRoutes.js'; // Import your SymptomsRoute
+
 import cors from 'cors';
 
 
@@ -25,6 +29,7 @@ app.use(morgan('dev'));
 app.use('/api/v1/auth',authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product",productRoutes)
+app.use("/api/v1/symptoms",symptomsRoutes)
 
 app.get('/', (req, res) => { 
     res.send('<h1>Welcome to node server of Easeflow</h1>')
