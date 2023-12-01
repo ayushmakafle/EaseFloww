@@ -96,11 +96,9 @@ import Appointments from './user/Appointments';
 import Products from './Admin/Products';
 import UpdateProduct from './Admin/UpdateProduct';
 import Search from './screens/Search';
-<<<<<<< HEAD
 import Categories from './screens/Categories';
 import CategoryProduct from './screens/CategoryProduct';
 import CheckoutPage from './screens/CheckoutPage';
-=======
 import HomeScreenPage from './screens/HomeScreenPage';
 import LandingPage from './screens/LandingPage';
 

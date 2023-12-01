@@ -48,7 +48,7 @@ import { Checkbox, Radio } from 'antd'
 import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom'
 import MainNavbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Footer from '../components/footer';
 import { useCart } from '../context/cart';
 import { toast } from 'react-toastify'
 
