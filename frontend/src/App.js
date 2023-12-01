@@ -102,7 +102,7 @@ import CategoryProduct from './screens/CategoryProduct';
 import CheckoutPage from './screens/CheckoutPage';
 =======
 import HomeScreenPage from './screens/HomeScreenPage';
->>>>>>> 978b33d057010f5d0de267454aabaf1557947891
+import LandingPage from './screens/LandingPage';
 
 function App() {
 
@@ -110,15 +110,8 @@ function App() {
     <Router>
       <main className='m-0 w-100' style={{ height: "95vh" }}>
         <Routes>
-<<<<<<< HEAD
-        <Route path="/home" element={<HomepageScreen />} />
-
-
-          <Route path="/" element={<LoginPage />} />
-=======
-          <Route path="/" element={<Navbar />} />
-          <Route path="/HomepageScreen" element={<HomeScreenPage/>} />
->>>>>>> 978b33d057010f5d0de267454aabaf1557947891
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/homepage" element={<HomeScreenPage/>} />
           <Route path="/log-symptoms" element={<LogSymptoms />} />
 
           <Route path='/cart' element={<CartPage />} />

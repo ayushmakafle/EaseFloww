@@ -47,6 +47,8 @@ import EcomHeader from '../components/EcomHeader';
 import { Checkbox, Radio } from 'antd'
 import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom'
+import MainNavbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import { useCart } from '../context/cart';
 import { toast } from 'react-toastify'
 
@@ -149,7 +151,7 @@ const EcomHomeScreen = () => {
 
   return (
     <>
-      {/* <MainNavbar /> */}
+      <MainNavbar />
       <EcomHeader />
 
       <div className="container-fluid row mt-3">
@@ -207,25 +209,25 @@ const EcomHomeScreen = () => {
                     onClick={() => navigate(`/product/${p.slug}`)}>
                     More Details</button>
 
-                    <button
-    className="btn btn-secondary ms-1"
-    onClick={() => {
-        const updatedCart = [...cart];
-        const existingProduct = updatedCart.find(item => item._id === p._id);
+                  <button
+                    className="btn btn-secondary ms-1"
+                    onClick={() => {
+                      const updatedCart = [...cart];
+                      const existingProduct = updatedCart.find(item => item._id === p._id);
 
-        if (existingProduct) {
-            existingProduct.numberOfItems += 1;
-        } else {
-            updatedCart.push({ ...p, numberOfItems: 1 });
-        }
+                      if (existingProduct) {
+                        existingProduct.numberOfItems += 1;
+                      } else {
+                        updatedCart.push({ ...p, numberOfItems: 1 });
+                      }
 
-        setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-        toast.success("Item Added to cart");
-    }}
->
-    <i className="fas fa-cart-shopping"></i>
-</button>
+                      setCart(updatedCart);
+                      localStorage.setItem("cart", JSON.stringify(updatedCart));
+                      toast.success("Item Added to cart");
+                    }}
+                  >
+                    <i className="fas fa-cart-shopping"></i>
+                  </button>
 
                 </div>
               </div>
@@ -245,6 +247,7 @@ const EcomHomeScreen = () => {
         </div>
 
       </div >
+      <Footer />
     </>
   );
 };

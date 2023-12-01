@@ -49,7 +49,7 @@ const EcomHeader = () => {
 =======
         <ul>
                     <li>
-                        <a href="/ecommerce">Our Products</a>
+                        <Nav.Link href="/ecommerce">Our Products</Nav.Link>
                         <SearchInput />
                     </li>
                     <li>
