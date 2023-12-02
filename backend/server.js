@@ -1,7 +1,10 @@
 import express, { json } from 'express';
 //import { errorHandler } from './middlewares/errorMiddleware';
+<<<<<<< HEAD
 // import { json } from 'express'; // Ensure you import 'json' separately
 
+=======
+>>>>>>> eac363049d43446b4ca750e16515e890e1478641
 import products from './data/products.js';
 import { config } from 'dotenv'; 
 import mongoose from 'mongoose';
@@ -11,7 +14,12 @@ import productRoutes from './routes/productsRoute.js';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
+<<<<<<< HEAD
 import symptomsRoutes from './routes/SymptomsRoutes.js'; // Check if the file name and path are exact
+=======
+import symptomsRoutes from './routes/SymptomsRoutes.js'; 
+import axios from 'axios';
+>>>>>>> eac363049d43446b4ca750e16515e890e1478641
 
 import cors from 'cors';
 
@@ -30,6 +38,47 @@ app.use('/api/v1/auth',authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product",productRoutes)
 app.use("/api/v1/symptoms",symptomsRoutes)
+
+//khalti
+app.post('/khalti-payment', async (req, res) => {
+  try {
+    console.log('Received JSON:', req.body);
+    const response = await axios.post('https://a.khalti.com/api/v2/epayment/initiate/', {
+      ...req.body,
+    }, {
+      headers: {
+        'Authorization': `key ${process.env.KHALTI_SECRET_KEY}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log('Sent JSON:', response.data);
+    res.status(response.status).json(response.data);
+  } catch (error) {
+    console.error('Error sending payment data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+//khalti verify
+app.post('/khalti-verify',async(req,res) => {
+  try{
+   console.log('Received JSON:', req.body);
+    const response = await axios.post('https://a.khalti.com/api/v2/epayment/lookup/', {
+      ...req.body,
+    }, {
+      headers: {
+        'Authorization': `key ${process.env.KHALTI_PUBLIC_KEY}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log('Sent JSON:', response.data);
+    console.log('Received JSON:', req.body);
+    res.status(response.status).json(response.data); 
+  }catch(error){
+    console.error('Error approving payment data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });  }
+})
+
 
 app.get('/', (req, res) => { 
     res.send('<h1>Welcome to node server of Easeflow</h1>')
