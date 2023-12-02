@@ -1,9 +1,11 @@
 //const registerController = () => {};
 //export default registerController
 import userModel from "../models/UserModel.js";
+import DoctorModel from "../models/DoctorModel.js";
 import { comparePassword, hashPassword } from "../helpers/authHelpers.js";
 import JWT from "jsonwebtoken";
 import UserModel from "../models/UserModel.js";
+import fs from "fs"
 
 const registerController = async (req, res) => {
   try {
@@ -187,4 +189,48 @@ export const updateProfileController = async (req, res) => {
   }
 };
 
-export default { registerController, loginController,forgotPasswordController,updateProfileController };
+
+//register doctor
+export const registerDoctorController = async (req, res) => {
+  try {
+    console.log(req.fields);
+
+    const { name, email, password, phonenumber, specialization, 
+      address, hospitalOrClinic } = req.fields
+    const { certificatePhoto } = req.files 
+
+    // Validations
+    if (!name || !email || !password || !phonenumber || !specialization || !address || !hospitalOrClinic) {
+      return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
+    if (!certificatePhoto) {
+      return res.status(400).json({ success: false, message: 'Certificate photo is required' });
+    }
+    if (certificatePhoto.size > 1000000) {
+      return res.status(400).json({ success: false, message: 'Certificate photo size should be less than 1MB' });
+    }
+
+    const newDoctor = new DoctorModel({...req.fields});
+    if (certificatePhoto) {
+      newDoctor.certificatePhoto.data = fs.readFileSync(certificatePhoto.path);
+      newDoctor.certificatePhoto.contentType = certificatePhoto.type
+    }
+    await newDoctor.save()
+
+    res.status(201).json({
+      success: true,
+      message: 'Doctor registration pending approval',
+      doctor: newDoctor,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Error in doctor registration', error });
+  }
+  
+};
+
+
+
+
+export default { registerController, loginController,forgotPasswordController,updateProfileController,registerDoctorController };
+  

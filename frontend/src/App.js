@@ -14,8 +14,8 @@ import Navbar from './components/Navbar';
 // import ProductDetails from './screens/ProductDetails';
 // import LoginPage from './screens/Auth/LoginPage';
 // import SignUpPage from './screens/Auth/SignUpPage';
-// import GynecologistLoginPage from './screens/GynecologistLoginPage';
-// import GynecologistSignUpPage from './screens/GynecologistSignUpPage';
+// import DoctorLoginPage from './screens/DoctorLoginPage';
+// import DoctorSignUpPage from './screens/DoctorSignUpPage';
 // //import Cart from './screens/Cart'; 
 // //import ForgtPasswordPage from './screens/ForgetPasswordPage';
 // import { ToastContainer } from 'react-toastify';
@@ -42,8 +42,8 @@ import Navbar from './components/Navbar';
 //               <Route path="/forgot-password" Component={ForgotPassword} exact/>
 
 //               <Route path="/signup" Component={SignUpPage} exact/>
-//               <Route path="/GynecologistLogin" Component={GynecologistLoginPage} exact/>
-//               <Route path="/GynecologistSignUp" Component={GynecologistSignUpPage} exact/>
+//               <Route path="/DoctorLogin" Component={DoctorLoginPage} exact/>
+//               <Route path="/DoctorSignUp" Component={DoctorSignUpPage} exact/>
 //               {/*<Route path="/ForgetPassword" Component={ForgetPasswordPage} exact/>*/}
 //              <Route path='/product/:id' Component={ProductDetails}/>
 //               {/* <Route path='/cart' Component={Cart} exact/> */}
@@ -76,8 +76,8 @@ import ProductScreen from './screens/ProductScreen';
 import ProductDetails from './screens/ProductDetails';
 import LoginPage from './screens/Auth/LoginPage';
 import SignUpPage from './screens/Auth/SignUpPage';
-import GynecologistLoginPage from './screens/GynecologistLoginPage';
-import GynecologistSignUpPage from './screens/GynecologistSignUpPage';
+import DoctorLoginPage from './screens/DoctorLoginPage';
+import DoctorSignUpPage from './screens/DoctorSignUpPage';
 //import Cart from './screens/Cart'; 
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -143,8 +143,8 @@ function App() {
           </Route>
 
 
-          <Route path="/GynecologistLogin" element={<GynecologistLoginPage />} />
-          <Route path="/GynecologistSignUp" element={<GynecologistSignUpPage />} />
+          <Route path="/doctorlogin" element={<DoctorLoginPage />} />
+          <Route path="/doctorsignup" element={<DoctorSignUpPage />} />
           
         </Routes>
         <ToastContainer />

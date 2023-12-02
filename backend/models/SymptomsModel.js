@@ -8,7 +8,7 @@ const SymptomsSchema = new mongoose.Schema({
         unique:true
     },
     username:{
-        type:string,
+        type:String,
         required:true,
         unique:true
     },
