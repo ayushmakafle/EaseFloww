@@ -21,21 +21,21 @@ const SignUp = () => {
     e.preventDefault();
 
     // Validation checks
-    const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\d{10}$/;
-
-    if (!password.match(passwordRegex)) {
-      return toast.error('Password must be at least 8 characters, including one special character.');
-    }
-
-    if (!email.match(emailRegex)) {
-      return toast.error('Please enter a valid email address.');
-    }
-
-    if (!phonenumber.match(phoneRegex)) {
-      return toast.error('Phone number should be 10 digits.');
-    }
+    /*  const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
+     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     const phoneRegex = /^\d{10}$/;
+ 
+     if (!password.match(passwordRegex)) {
+       return toast.error('Password must be at least 8 characters, including one special character.');
+     }
+ 
+     if (!email.match(emailRegex)) {
+       return toast.error('Please enter a valid email address.');
+     }
+ 
+     if (!phonenumber.match(phoneRegex)) {
+       return toast.error('Phone number should be 10 digits.');
+     } */
 
     try {
       const res = await axios.post(`/api/v1/auth/register`, {
