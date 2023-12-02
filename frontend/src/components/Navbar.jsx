@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -18,10 +18,28 @@ const MainNavbar = () => {
 
     toast.success('Logout Successful');
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbar = document.querySelector(".navbar");
+
+      if (window.pageYOffset > 60) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      // Cleanup the event listener when the component is unmounted
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <header>
-      <div className="wrapper">
+      <div className="wrapper" >
         <Navbar expand="lg">
           <div className="logo">
             <Nav.Link href='/'>EASEFLOW</Nav.Link>
@@ -70,5 +88,5 @@ const MainNavbar = () => {
     
   );
 };
-{/* <script src ="main.js"></script> */}
+
 export default MainNavbar;
