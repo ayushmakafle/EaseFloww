@@ -3,7 +3,7 @@
 // import 'react-calendar/dist/Calendar.css';
 
 // // import Footer from './components/Footer';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 // import HomepageScreen from './screens/HomepageScreen';
 // import LogSymptoms from './screens/LogSymptoms';
 
