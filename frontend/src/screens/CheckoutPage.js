@@ -25,12 +25,12 @@ const CheckoutPage = () => {
     return_url: 'http://localhost:3000/payment/',
     website_url: 'http://localhost:3000/',
     amount: 1100,
-    purchase_order_id: '', // No initial purchase order ID
+    purchase_order_id: 'asdfgh', // No initial purchase order ID
     purchase_order_name: 'test',
     customer_info: {
-      name: '',
-      email: '',
-      phone: '',
+      name: 'Ayushma Kafle',
+      email: 'ayushmaakafle@gmail.com',
+      phone: '9841420234',
     },
   });
 

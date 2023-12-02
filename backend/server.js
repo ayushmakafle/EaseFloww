@@ -10,6 +10,7 @@ import morgan from 'morgan';
 import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import symptomsRoutes from './routes/SymptomsRoutes.js'; 
+import axios from 'axios';
 
 import cors from 'cors';
 
@@ -48,6 +49,26 @@ app.post('/khalti-payment', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+//khalti verify
+app.post('/khalti-verify',async(req,res) => {
+  try{
+   console.log('Received JSON:', req.body);
+    const response = await axios.post('https://a.khalti.com/api/v2/epayment/lookup/', {
+      ...req.body,
+    }, {
+      headers: {
+        'Authorization': `key ${process.env.KHALTI_PUBLIC_KEY}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log('Sent JSON:', response.data);
+    console.log('Received JSON:', req.body);
+    res.status(response.status).json(response.data); 
+  }catch(error){
+    console.error('Error approving payment data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });  }
+})
 
 
 app.get('/', (req, res) => { 
