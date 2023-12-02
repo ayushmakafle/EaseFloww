@@ -1,5 +1,10 @@
 import express, { json } from 'express';
 //import { errorHandler } from './middlewares/errorMiddleware';
+<<<<<<< HEAD
+// import { json } from 'express'; // Ensure you import 'json' separately
+
+=======
+>>>>>>> eac363049d43446b4ca750e16515e890e1478641
 import products from './data/products.js';
 import { config } from 'dotenv'; 
 import mongoose from 'mongoose';
@@ -9,8 +14,12 @@ import productRoutes from './routes/productsRoute.js';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
+<<<<<<< HEAD
+import symptomsRoutes from './routes/SymptomsRoutes.js'; // Check if the file name and path are exact
+=======
 import symptomsRoutes from './routes/SymptomsRoutes.js'; 
 import axios from 'axios';
+>>>>>>> eac363049d43446b4ca750e16515e890e1478641
 
 import cors from 'cors';
 

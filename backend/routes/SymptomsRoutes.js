@@ -1,28 +1,35 @@
+// import express from 'express';
+// import { requireSignIn } from '../middleware/authMiddleware.js';
+// import {
+//     createSymptoms,
+//     updateSymptoms,
+//     getAllSymptoms,
+//     getSymptomsByUserId,
+//     deleteSymptoms,
+// } from '../controllers/SymptomsController.js';
+// import SymptomsController from '../controllers/SymptomsController.js'; // Import the entire controller object
+
+
+// const router = express.Router();
+
+// router.post('/:user_id/create', requireSignIn, SymptomsController.createSymptoms);
+// router.put('/:user_id/update', requireSignIn, SymptomsController.updateSymptoms);
+// router.get('/all', SymptomsController.getAllSymptoms); // Access the named export directly
+// router.get('/:user_id', requireSignIn, SymptomsController.getSymptomsByUserId);
+// router.delete('/:user_id/delete', requireSignIn, SymptomsController.deleteSymptoms);
+
+
+// export default router;
 import express from 'express';
 import { requireSignIn } from '../middleware/authMiddleware.js';
-import {
-    createSymptoms,
-    updateSymptoms,
-    getAllSymptoms,
-    getSymptomsByUserId,
-    deleteSymptoms,
-} from '../controllers/symptomsController.js';
+import * as SymptomsController from '../controllers/SymptomsController.js'; // Import the entire controller object
 
 const router = express.Router();
 
-// Create symptoms
-router.post('/create-symptoms', requireSignIn, createSymptoms);
-
-// Update symptoms
-router.put('/update-symptoms/:user_id', requireSignIn, updateSymptoms);
-
-// Get all symptoms
-router.get('/get-all-symptoms', getAllSymptoms);
-
-// Get symptoms by user ID
-router.get('/get-symptoms/:user_id', requireSignIn, getSymptomsByUserId);
-
-// Delete symptoms
-router.delete('/delete-symptoms/:user_id', requireSignIn, deleteSymptoms);
+router.post('/:user_id/create', requireSignIn, SymptomsController.createSymptoms);
+router.put('/:user_id/update', requireSignIn, SymptomsController.updateSymptoms);
+router.get('/all', SymptomsController.getAllSymptoms);
+router.get('/:user_id', requireSignIn, SymptomsController.getSymptomsByUserId);
+router.delete('/:user_id/delete', requireSignIn, SymptomsController.deleteSymptoms);
 
 export default router;
