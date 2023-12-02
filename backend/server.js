@@ -1,7 +1,5 @@
 import express, { json } from 'express';
 //import { errorHandler } from './middlewares/errorMiddleware';
-//import { json } from 'express'; // Ensure you import 'json' separately
-
 import products from './data/products.js';
 import { config } from 'dotenv'; 
 import mongoose from 'mongoose';
@@ -11,7 +9,7 @@ import productRoutes from './routes/productsRoute.js';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
-import symptomsRoutes from './routes/SymptomsRoutes.js'; // Import your SymptomsRoute
+import symptomsRoutes from './routes/SymptomsRoutes.js'; 
 
 import cors from 'cors';
 
@@ -39,7 +37,7 @@ app.post('/khalti-payment', async (req, res) => {
       ...req.body,
     }, {
       headers: {
-        'Authorization': 'key 805eb6763170463489be3ba2b735cde0',
+        'Authorization': `key ${process.env.KHALTI_SECRET_KEY}`,
         'Content-Type': 'application/json',
       },
     });

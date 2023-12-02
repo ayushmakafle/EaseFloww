@@ -89,7 +89,6 @@ import AdminDashboard from './Admin/AdminDashboard';
 import CreateCategory from './Admin/CreateCategory';
 import CreateProduct from './Admin/CreateProduct';
 import EaseFlowUsers from './Admin/EaseFlowUsers';
-import EaseFlowDoctors from './Admin/EaseFlowDoctors';
 import Orders from './user/Orders';
 import Profile from './user/Profile';
 import Appointments from './user/Appointments';
@@ -101,6 +100,9 @@ import CategoryProduct from './screens/CategoryProduct';
 import CheckoutPage from './screens/CheckoutPage';
 import HomeScreenPage from './screens/HomeScreenPage';
 import LandingPage from './screens/LandingPage';
+import SuccessPage from './components/Success';
+import PaymentComponent from './components/Payment';
+import ApproveDoctors from './Admin/ApproveDoctor';
 
 function App() {
 
@@ -114,6 +116,8 @@ function App() {
 
           <Route path='/cart' element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path ='/payment' element={<PaymentComponent/>} />
+          <Route path ='/paysuccess' element={<SuccessPage />}/>
 
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/ecommerce" element={<EcomHomeScreen />} />
@@ -139,7 +143,7 @@ function App() {
             <Route path ='admin/product/:slug' element={<UpdateProduct/>}/>
             <Route path ='admin/products' element={<Products/>}/>
             <Route path ='admin/users' element={<EaseFlowUsers/>}/>
-            <Route path ='admin/doctors' element={<EaseFlowDoctors/>}/>
+            <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
           </Route>
 
 

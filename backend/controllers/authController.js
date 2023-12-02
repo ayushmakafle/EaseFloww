@@ -230,7 +230,98 @@ export const registerDoctorController = async (req, res) => {
 };
 
 
+//fetch doctors for approval
+export const getUnapprovedDoctorsController = async (req, res) => {
+  try {
+    const unapprovedDoctors = await DoctorModel.find({ isApproved: false });
+
+    res.status(200).json({
+      success: true,
+      doctors: unapprovedDoctors,
+    });
+  } catch (error) {
+    console.error('Error fetching unapproved doctors:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+};
+
+// get photo
+export const certificatePhotoController = async (req, res) => {
+  try {
+    const unapprovedDoctors = await DoctorModel.findById(req.params.did).select("certificatePhoto");
+    if (unapprovedDoctors.certificatePhoto.data) {
+      res.set("Content-type", unapprovedDoctors.certificatePhoto.contentType);
+      return res.status(200).send(unapprovedDoctors.certificatePhoto.data);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Erorr while getting certificate photo",
+      error,
+    });
+  }
+};
+
+// Approve Doctor
+export const approveDoctorController = async (req, res) => {
+  try {
+    const { did } = req.params;
+
+    // Find the doctor by ID and update isApproved to true
+    const updatedDoctor = await DoctorModel.findByIdAndUpdate(
+      did,
+      { $set: { isApproved: true } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: 'Doctor approved successfully',
+      doctor: updatedDoctor,
+    });
+  } catch (error) {
+    console.error('Error approving doctor:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+};
+
+//deny doctor
+export const denyDoctorController = async (req, res) => {
+  try {
+    const { did } = req.params;
+    console.log('Denying doctor with ID:', did);
+    // Find the doctor by ID and remove from the database
+    const removedDoctor = await DoctorModel.findByIdAndDelete(did);
+    if (!removedDoctor) {
+      console.log('Doctor not found');
+      return res.status(404).json({
+        success: false,
+        message: 'Doctor not found',
+      });
+    }
+    console.log('Doctor denied and removed successfully');
+    res.status(200).json({
+      success: true,
+      message: 'Doctor denied and removed successfully',
+    });
+  } catch (error) {
+    console.error('Error denying doctor:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+};
 
 
-export default { registerController, loginController,forgotPasswordController,updateProfileController,registerDoctorController };
+export default { registerController, loginController,forgotPasswordController,updateProfileController,
+  registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
+denyDoctorController };
   
