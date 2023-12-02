@@ -1,5 +1,3 @@
-//const registerController = () => {};
-//export default registerController
 import userModel from "../models/UserModel.js";
 import DoctorModel from "../models/DoctorModel.js";
 import { comparePassword, hashPassword } from "../helpers/authHelpers.js";
@@ -64,7 +62,7 @@ const registerController = async (req, res) => {
   }
 };
 
-//POST LOGIN
+//LOGIN
 export const loginController = async (req, res) => {
   try {
     const {email,password} = req.body
@@ -190,7 +188,10 @@ export const updateProfileController = async (req, res) => {
 };
 
 
-//register doctor
+//register doctorimport { hashPassword } from '../path-to-your-authHelpers';
+
+// ...
+
 export const registerDoctorController = async (req, res) => {
   try {
     console.log(req.fields);
@@ -210,12 +211,20 @@ export const registerDoctorController = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Certificate photo size should be less than 1MB' });
     }
 
-    const newDoctor = new DoctorModel({...req.fields});
+    // Hash the password before saving
+    const hashedPassword = await hashPassword(password);
+
+    const newDoctor = new DoctorModel({
+      ...req.fields,
+      password: hashedPassword,
+    });
+
     if (certificatePhoto) {
       newDoctor.certificatePhoto.data = fs.readFileSync(certificatePhoto.path);
-      newDoctor.certificatePhoto.contentType = certificatePhoto.type
+      newDoctor.certificatePhoto.contentType = certificatePhoto.type;
     }
-    await newDoctor.save()
+
+    await newDoctor.save();
 
     res.status(201).json({
       success: true,
@@ -226,7 +235,6 @@ export const registerDoctorController = async (req, res) => {
     console.error(error);
     res.status(500).json({ success: false, message: 'Error in doctor registration', error });
   }
-  
 };
 
 
@@ -320,8 +328,98 @@ export const denyDoctorController = async (req, res) => {
   }
 };
 
+/* //check if the doctor is approved
+export const checkDoctorApprovalController = async (req, res) => {
+  try {
+    // Find the doctor by email
+    const doctor = await DoctorModel.findOne({ email: req.body.email });
+
+    if (doctor && doctor.isApproved) {
+      // If the doctor is found and is approved, send the response
+      res.status(200).json({ isApproved: true });
+    } else {
+      // If the doctor is not found or is not approved, send the response
+      res.status(200).json({ isApproved: false });
+    }
+  } catch (error) {
+    console.error('Error checking doctor approval:', error);
+    // Handle error or send an error response
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}; */
+
+// DOCTOR LOGIN
+export const doctorLoginController = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Validation
+    if (!email || !password) {
+      return res.status(400).send({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
+
+    // Check if the user is a doctor
+    const doctor = await DoctorModel.findOne({ email });
+
+    if (!doctor) {
+      return res.status(404).send({
+        success: false,
+        message: "Email is not registered",
+      });
+    }
+
+    // Doctor login logic
+    if (doctor.isApproved) {
+      const isPasswordMatch = await comparePassword(password, doctor.password);
+
+      if (isPasswordMatch) {
+        const token = await JWT.sign({ _id: doctor._id }, process.env.JWT_SECRET, {
+          expiresIn: "7d",
+        });
+
+        return res.status(200).send({
+          success: true,
+          message: "Doctor login successful",
+          doctor: {
+            _id: doctor._id,
+            name: doctor.name,
+            email: doctor.email,
+            phonenumber: doctor.phonenumber,
+            specialization: doctor.specialization,
+            address: doctor.address,
+            hospitalOrClinic: doctor.hospitalOrClinic,
+          },
+          token,
+        });
+      } else {
+        console.log('Invalid password');
+        return res.status(401).send({
+          success: false,
+          message: "Invalid password",
+        });
+      }
+    } else {
+      console.log("Your doctor account hasn't been approved yet");
+      return res.status(403).send({
+        success: false,
+        message: "Your doctor account hasn't been approved yet",
+      });
+    }
+  } catch (error) {
+    console.error('Error in doctor login:', error);
+    return res.status(500).send({
+      success: false,
+      message: "Error in doctor login",
+      error: error.message,
+    });
+  }
+};
+
 
 export default { registerController, loginController,forgotPasswordController,updateProfileController,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
-denyDoctorController };
+denyDoctorController,doctorLoginController };
   

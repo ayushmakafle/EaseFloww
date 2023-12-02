@@ -147,7 +147,7 @@ function App() {
           </Route>
 
 
-          <Route path="/doctorlogin" element={<DoctorLoginPage />} />
+          <Route path="/doctor-login" element={<DoctorLoginPage />} />
           <Route path="/doctorsignup" element={<DoctorSignUpPage />} />
           
         </Routes>

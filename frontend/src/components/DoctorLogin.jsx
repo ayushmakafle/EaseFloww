@@ -1,12 +1,48 @@
 import React, { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../styles/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import './Gyno.css';
+import { toast } from 'react-toastify'
+import { useAuth } from '../context/auth'
+import axios from 'axios';
+
 const DoctorLogin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [visible, SetVisible] = useState("");//for password viisibility
+  const [auth, setAuth] = useAuth();
+
+  const [password, setPassword] = useState('');
+  const [visible, setVisible] = useState(''); // for password visibility
+  const [email, setEmail] = useState('');
+
+  const navigate = useNavigate();
+  const location = useLocation(); //to redirect to the page before login
+
+  //form function
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(`/api/v1/auth/doctor-login`, { email, password });
+
+      if (res.data && res.data.success) {
+        toast.success(res.data.message);
+
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+
+        localStorage.setItem('auth', JSON.stringify(res.data));
+        navigate(location.state || '/');
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Something went wrong');
+    }
+  };
+
 
   return (
     <div className='min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
@@ -17,7 +53,7 @@ const DoctorLogin = () => {
       </div>
       <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
         <div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-18'>
-          <form className='space-y-6'>
+          <form className='space-y-6' onSubmit={handleSubmit}>
             <div>
               <label for="exampleInputEmail1" class="form-label mt-4">Email</label>
               <input type="text" name="email" class="form-control focus:border-pink-500 bg-pink-100" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email" required value={email} onChange={(e) => setEmail(e.target.value)}></input>
@@ -37,9 +73,11 @@ const DoctorLogin = () => {
                 value={password} onChange={(e) => setPassword(e.target.value)} />
               {
                 visible ? (
-                  <AiOutlineEye className='absolute right-2 top-2 cursor-pointer' size={25} onClick={() => SetVisible(false)} />
+                  <AiOutlineEye className='absolute right-2 top-2 cursor-pointer' size={25}
+                    onClick={() => setVisible(false)} />
                 ) : (
-                  <AiOutlineEyeInvisible className='absolute right-2 top-2 cursor-pointer' size={25} onClick={() => SetVisible(true)} />
+                  <AiOutlineEyeInvisible className='absolute right-2 top-2 cursor-pointer' size={25}
+                    onClick={() => setVisible(true)} />
                 )
               }
             </div>
@@ -56,8 +94,11 @@ const DoctorLogin = () => {
               </div>
             </div>
             <div>
-              <button type="submit" className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700'>
-                Login to your site
+              <button
+                type="submit"
+                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700"
+              >
+                Login
               </button>
             </div>
             <div className={`${styles.noramlFlex} w-full`} >

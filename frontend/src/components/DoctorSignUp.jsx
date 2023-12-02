@@ -217,7 +217,7 @@ const DoctorSignUp = () => {
         <div className='text-center mt-6'>
           <div className='flex items-center'>
             <h3 className='inline-block mr-2 px-4'>Already a doctor?</h3>
-            <Link to='/DoctorLogin' className='text-pink-600 inline-block'>
+            <Link to='/doctor-login' className='text-pink-600 inline-block'>
               <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
                 Login
               </button>

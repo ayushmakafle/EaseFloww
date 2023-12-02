@@ -13,7 +13,7 @@ const router = express.Router();
 //REGISTER || METHOD POST
 router.post('/register', authController.registerController);
 
-//LOGIN || POST
+//LOGIN
 router.post("/login", authController.loginController);
 
 //forgot password
@@ -46,6 +46,12 @@ router.put('/approve-doctor/:did', authController.approveDoctorController);
 
 // Route for denying and removing a doctor
 router.delete('/deny-doctor/:did', authController.denyDoctorController);
+
+// Route for checking doctor approval
+//router.post('/check-doctor-approval', authController.checkDoctorApprovalController);
+
+//doctor login route
+router.post('/doctor-login',authController.doctorLoginController);
 
 
 export default router;
