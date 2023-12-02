@@ -154,7 +154,7 @@ export const forgotPasswordController = async (req, res) => {
   }
 };
 
-//update prfole
+//update profile
 export const updateProfileController = async (req, res) => {
   try {
     const { username, email, password, address, phonenumber } = req.body;

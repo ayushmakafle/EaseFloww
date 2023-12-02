@@ -14,23 +14,19 @@ const CheckoutPage = () => {
     cart?.forEach((item) => {
       total += item.price * item.numberOfItems;
     });
-    return total.toLocaleString('ne-NP', {
-      style: 'currency',
-      currency: 'NPR',
-    });
+    return total;
   };
 
-//khalti
   const [paymentData, setPaymentData] = useState({
     return_url: 'http://localhost:3000/payment/',
     website_url: 'http://localhost:3000/',
-    amount: 1100,
-    purchase_order_id: 'asdfgh', // No initial purchase order ID
+    amount: calculateTotal(),
+    purchase_order_id: Math.random().toString(36).substring(2, 9),
     purchase_order_name: 'test',
     customer_info: {
-      name: 'Ayushma Kafle',
-      email: 'ayushmaakafle@gmail.com',
-      phone: '9841420234',
+      name: '',
+      email: '',
+      phone: '',
     },
   });
 
@@ -87,48 +83,41 @@ const CheckoutPage = () => {
     <MainNavbar />
     <EcomHeader />
     <div className='text-center border p-4 mt-4'>
-      <h2 className='mb-4'>Your Bill</h2>
+      <h2 className='mb-4'>Please enter your details to proceed with payment</h2>
       <form>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={paymentData.customer_info.name}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Phone:
-          <input
-            type="tel"
-            name="phone"
-            value={paymentData.customer_info.phone}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={paymentData.customer_info.email}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Amount:
-          <input
-            type="number"
-            name="amount"
-            value={paymentData.amount}
-            onChange={handleInputChange}
-          />
-        </label>
-      </form>
+  <label>
+    Name:
+    <input
+      type="text"
+      name="name"
+      value={paymentData.customer_info.name}
+      onChange={handleInputChange}
+    />
+  </label>
+  <br />
+  <label>
+    Phone:
+    <input
+      type="tel"
+      name="phone"
+      value={paymentData.customer_info.phone}
+      onChange={handleInputChange}
+    />
+  </label>
+  <br />
+  <label>
+    Email:
+    <input
+      type="email"
+      name="email"
+      value={paymentData.customer_info.email}
+      onChange={handleInputChange}
+    />
+  </label>
+  <br />
+  
+</form>
+
        <table className='table'>
         <thead>
           <tr>
@@ -152,7 +141,6 @@ const CheckoutPage = () => {
       <h3 className='mt-4'>Grand Total: <span className='font-weight-bold'>{calculateTotal()}</span></h3>
       <div className='payment-options mt-4'>
         <button className='btn btn-primary mr-2'  onClick={handleKhaltiButtonClick}>Pay with Khalti</button>
-        <button className='btn btn-primary'>Cash on Delivery</button>
       </div>
     </div>
 
