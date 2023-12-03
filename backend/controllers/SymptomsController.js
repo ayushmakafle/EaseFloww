@@ -8,12 +8,6 @@ export const createSymptoms = async (req, res) => {
       return res.status(400).send({ message: 'All fields are required' });
     }
 
-    const existingSymptoms = await SymptomsModel.findOne({ user_id });
-
-    if (existingSymptoms) {
-      return res.status(400).send({ message: 'Symptoms already exist for this user' });
-    }
-
     const newSymptoms = await SymptomsModel.create({ user_id, username, symptomsdate, symptoms });
     res.status(201).send({ success: true, message: 'Symptoms created successfully', symptoms: newSymptoms });
   } catch (error) {
@@ -37,7 +31,7 @@ export const updateSymptoms = async (req, res) => {
     }
 
     existingSymptoms.username = username;
-    existingSymptoms.symptomsdate = symptomsdate;
+    existingSymptoms.symptomsdate = symptomsdate; // Assuming you want to update symptomsdate
     existingSymptoms.symptoms = symptoms;
 
     await existingSymptoms.save();
