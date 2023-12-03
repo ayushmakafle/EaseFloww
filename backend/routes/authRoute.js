@@ -9,9 +9,11 @@ import { requireSignIn,isAdmin } from "../middleware/authMiddleware.js";
 //router object
 const router = express.Router();
 
-//routing
 //REGISTER || METHOD POST
 router.post('/register', authController.registerController);
+
+//verify user mail
+router.get('/verify',authController.userVerifyMail)
 
 //LOGIN
 router.post("/login", authController.loginController);
@@ -29,7 +31,7 @@ router.get('/admin-auth',requireSignIn,isAdmin, (req,res) => {
     res.status(200).send({ok:true})
 })
 
-//update profie
+//update profile
 router.put('/profile',requireSignIn,authController.updateProfileController)
 
 //doctor signup route

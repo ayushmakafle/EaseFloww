@@ -4,7 +4,53 @@ import { comparePassword, hashPassword } from "../helpers/authHelpers.js";
 import JWT from "jsonwebtoken";
 import UserModel from "../models/UserModel.js";
 import fs from "fs"
+import nodemailer from 'nodemailer'
 
+//user email verification
+const sendUserVerifyEmail = async(username,email,user_id) => {
+  try{
+    const transporter = nodemailer.createTransport({
+      host:'smtp.gmail.com',
+      port:587,
+      secure:false,
+      requireTLS:true,
+      auth:{
+        user:'easeflow2023@gmail.com',
+        pass:`${process.env.SMTP_PASSWORD}`
+      }
+    })
+    const mailOptions = {
+      from:'easeflow2023@gmail.com',
+      to:email,
+      subject:"Verify your EaseFlow account",
+      html:`<p> Hi ${username},Please click here to <a href="http://localhost:3000/verify?id=${user_id}">Verify</a>Your mail.</p>` 
+    }
+    transporter.sendMail(mailOptions, function(error,info){
+      if(error){
+        console.log(error)
+      }
+      else{
+        console.log('email has been sent ',info.response)
+      }
+    })
+  }catch(error){
+    console.log(error)
+  }
+}
+
+const userVerifyMail = async(req,res) => {
+  try{
+    const updateVerifiedUser = await userModel.updateOne({_id:req.query.id},{$set:{
+      isEmailVerified:1
+    }})
+    console.log(updateVerifiedUser)
+     res.redirect('/verified-email')
+  }catch(error){
+    console.error(error.message)
+  }
+}
+
+//user register
 const registerController = async (req, res) => {
   try {
     const { username, email, password, phonenumber, address,answer } = req.body;
@@ -28,16 +74,15 @@ const registerController = async (req, res) => {
       return res.send({ message: "Answer is Required" });
     }
     //check if user exists
-    const exisitingUser = await userModel.findOne({ email });
-    if (exisitingUser) {
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
       return res.status(200).send({
         success: true,
-        message: "Already Register please login",
+        message: "Already registered. Please login.",
       });
     }
-    //register user
+
     const hashedPassword = await hashPassword(password);
-    //save
     const user = await new userModel({
       username,
       email,
@@ -47,20 +92,24 @@ const registerController = async (req, res) => {
       answer,
     }).save();
 
+    // Wait for the email to be sent before responding
+    await sendUserVerifyEmail(username, email, user._id);
+
     return res.status(201).send({
       success: true,
-      message: "User Register Successfully",
+      message: "User registered successfully. Email has been sent for verification.",
       user,
     });
   } catch (error) {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error in Registration",
+      message: "Error in registration",
       error,
     });
   }
 };
+
 
 //LOGIN
 export const loginController = async (req, res) => {
@@ -90,7 +139,7 @@ export const loginController = async (req, res) => {
       }
       //token
      const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
-       expiresIn: "7d", //7days ma exipre
+       expiresIn: "7d", //7days ma expire
      });
      return res.status(200).send({
        success: true,
@@ -421,5 +470,5 @@ export const doctorLoginController = async (req, res) => {
 
 export default { registerController, loginController,forgotPasswordController,updateProfileController,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
-denyDoctorController,doctorLoginController };
+denyDoctorController,doctorLoginController, userVerifyMail };
   

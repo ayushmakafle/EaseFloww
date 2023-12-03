@@ -103,6 +103,7 @@ import LandingPage from './screens/LandingPage';
 import SuccessPage from './components/Success';
 import PaymentComponent from './components/Payment';
 import ApproveDoctors from './Admin/ApproveDoctor';
+import EmailVerified from './user/EmailVerified';
 
 function App() {
 
@@ -146,6 +147,7 @@ function App() {
             <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
           </Route>
 
+          <Route path = '/verified-email' element={<EmailVerified/>}/>
 
           <Route path="/doctor-login" element={<DoctorLoginPage />} />
           <Route path="/doctorsignup" element={<DoctorSignUpPage />} />
