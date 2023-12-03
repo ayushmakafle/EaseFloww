@@ -1,5 +1,4 @@
 import productModel from "../models/productModel.js";
-import categoryModel from '../models/CategoryModel.js'
 import fs from "fs";
 import slugify from "slugify";
 
@@ -42,7 +41,7 @@ export const createProductController = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Error in creating product",
+      message: "Error in crearing product",
     });
   }
 };
@@ -135,7 +134,7 @@ export const updateProductController = async (req, res) => {
     const { name, description, price, category, quantity, shipping } =
       req.fields;
     const { photo } = req.files;
-    //validation
+    //alidation
     switch (true) {
       case !name:
         return res.status(500).send({ error: "Name is Required" });
@@ -286,25 +285,5 @@ export const relatedProductController= async(req,res)=>{
       message: "Error while getting related products",
       error,
     });  
-  }
-}
-
-//get product by catehory
-export const productCategoryController = async(req,res) => {
-  try{
-    const category = await categoryModel.findOne({slug:req.params.slug})
-    const products = await productModel.find({category}).populate('category')
-    res.status(200).send({
-      success:true,
-      category,
-      products
-    })
-  }catch(error){
-    console.log(error)
-    res.status(400).send({
-      success:false,
-      error,
-      message:'Error while getting products'
-    })
   }
 }

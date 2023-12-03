@@ -1,7 +1,5 @@
 import express from "express";
 import authController from "../controllers/authController.js";
-import formidable from 'express-formidable';
-
 
 //import {registerController, loginController} from "../controllers/authController.js";
 import { requireSignIn,isAdmin } from "../middleware/authMiddleware.js";
@@ -20,6 +18,8 @@ router.post("/login", authController.loginController);
 
 //forgot password
 router.post('/forgot-password',authController.forgotPasswordController)
+//test routes
+router.get("/test",requireSignIn, isAdmin, authController.testController);
 
 //protected route user auth
 router.get('/user-auth',requireSignIn, (req,res) => {
