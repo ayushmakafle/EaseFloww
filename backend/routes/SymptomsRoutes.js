@@ -26,7 +26,7 @@ import * as SymptomsController from '../controllers/SymptomsController.js'; // I
 
 const router = express.Router();
 
-router.post('/:user_id/create', requireSignIn, SymptomsController.createSymptoms);
+router.post('create-symptoms/:user_id', requireSignIn, SymptomsController.createSymptoms);
 router.put('/:user_id/update', requireSignIn, SymptomsController.updateSymptoms);
 router.get('/all', SymptomsController.getAllSymptoms);
 router.get('/:user_id', requireSignIn, SymptomsController.getSymptomsByUserId);

@@ -11,8 +11,7 @@ import productRoutes from './routes/productsRoute.js';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
-import symptomsRoutes from './routes/SymptomsRoutes.js'; 
-import axios from 'axios';
+import symptomsRoutes from './routes/SymptomsRoutes.js'; // Check if the file name and path are exact
 
 import cors from 'cors';
 

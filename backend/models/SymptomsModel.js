@@ -1,38 +1,18 @@
 
-// // import { Timestamp } from 'mongodb';
-// // import mongoose, { Schema, model } from 'mongoose';
-// // const SymptomsSchema = new mongoose.Schema({
-// //   user_id: {
-// //       type: String,
-// //       required: true,
-// //       unique: true
-// //   },
-// //   username: {
-// //       type: String,
-// //       required: true,
-// //       unique: true
-// //   },
-// //   symptoms: [
-// //       {
-// //           category: String,
-// //           selectedSubSymptoms: [String]
-// //       }
-// //   ],
-// // }, { timestamps: true });
-
-// // export default mongoose.model("symptoms", SymptomsSchema);
-
 // import mongoose from 'mongoose';
+
+// const SubSymptomSchema = new mongoose.Schema({
+//   subSymptom: {
+//     type: String,
+//   },
+// });
 
 // const SymptomCategorySchema = new mongoose.Schema({
 //   category: {
 //     type: String,
 //     required: true,
-//     unique: true,
 //   },
-//   selectedSubSymptoms: [{
-//     type: String,
-//   }],
+//   selectedSubSymptoms: [SubSymptomSchema],
 // });
 
 // const SymptomsSchema = new mongoose.Schema({
@@ -44,7 +24,6 @@
 //   username: {
 //     type: String,
 //     required: true,
-//     unique: true,
 //   },
 //   symptomsdate: {
 //     type: Date,
@@ -74,7 +53,7 @@ const SymptomsSchema = new mongoose.Schema({
   user_id: {
     type: String,
     required: true,
-    unique: true,
+    unique: true, // Make sure 'user_id' is unique
   },
   username: {
     type: String,
@@ -83,6 +62,7 @@ const SymptomsSchema = new mongoose.Schema({
   symptomsdate: {
     type: Date,
     required: true,
+    // unique: true, // Remove unique index on 'symptomsdate' to allow duplicates
   },
   symptoms: [SymptomCategorySchema],
 }, { timestamps: true });

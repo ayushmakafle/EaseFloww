@@ -36,7 +36,9 @@ body{
 }
 
 .btn.light {
+
   background: var(--pink-color);
+ 
 }
 
 /* header */

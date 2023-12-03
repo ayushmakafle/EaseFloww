@@ -1,3 +1,4 @@
+
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import Products from '../products';
@@ -48,9 +49,7 @@ import { Checkbox, Radio } from 'antd'
 import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom'
 import MainNavbar from '../components/Navbar';
-import Footer from '../components/footer';
-import { useCart } from '../context/cart';
-import { toast } from 'react-toastify'
+import footer from '../components/footer';
 
 const EcomHomeScreen = () => {
   const [products, setProducts] = useState([]);
@@ -60,8 +59,8 @@ const EcomHomeScreen = () => {
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate();
-  const [cart, setCart] = useCart();
+
+  const navigate = useNavigate()
 
 
   //get all categories
@@ -137,6 +136,18 @@ const EcomHomeScreen = () => {
   useEffect(() => {
     if (checked.length || radio.length) filterProduct();
   }, [checked, radio]);
+  /* useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data } = await axios.get('/api/products');
+        setProducts(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []); */
 
   //get filtered rpoduct
   const filterProduct = async () => {
@@ -204,31 +215,12 @@ const EcomHomeScreen = () => {
                   <p className="card-text">
                     NRs.{p.price}/-
                   </p>
-
                   <button className='btn btn-primary ms-1'
                     onClick={() => navigate(`/product/${p.slug}`)}>
                     More Details</button>
-
-                  <button
-                    className="btn btn-secondary ms-1"
-                    onClick={() => {
-                      const updatedCart = [...cart];
-                      const existingProduct = updatedCart.find(item => item._id === p._id);
-
-                      if (existingProduct) {
-                        existingProduct.numberOfItems += 1;
-                      } else {
-                        updatedCart.push({ ...p, numberOfItems: 1 });
-                      }
-
-                      setCart(updatedCart);
-                      localStorage.setItem("cart", JSON.stringify(updatedCart));
-                      toast.success("Item Added to cart");
-                    }}
-                  >
+                  <button className='btn btn-secondary'>
                     <i className="fas fa-cart-shopping"></i>
                   </button>
-
                 </div>
               </div>
             ))}
@@ -247,7 +239,7 @@ const EcomHomeScreen = () => {
         </div>
 
       </div >
-      <Footer />
+      <footer />
     </>
   );
 };

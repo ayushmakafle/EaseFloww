@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 //import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
@@ -50,21 +49,20 @@ const HomepageScreen = () => {
   };
   return (
     <>
-      <MainNavbar />
-      <div className="home-page">
-        <div className="calendar-container">
-          <Calendar tileClassName={tileClassName} />
-          <button className="log-button" onClick={handleLogSymptoms}>
-            Log symptoms
-          </button>
-
-        </div>
+    <MainNavbar />
+    <div className="home-page">
+      <div className="calendar-container">
+        <Calendar tileClassName={tileClassName} />
+        <button className="log-button" onClick={handleLogSymptoms}>
+          Log symptoms
+        </button>
 
       </div>
-      <Footer />
+
+    </div>
+    <Footer />
     </>
   );
 };
 
 export default HomepageScreen;
-
