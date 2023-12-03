@@ -127,9 +127,16 @@ export const loginController = async (req, res) => {
       if (!user) {
        return res.status(404).send({
          success: false,
-         message: "Email is not registerd",
+         message: "Email is not registered",
        });
      }
+      // Check if the user's email is verified
+    if (user.isEmailVerified !== 1) {
+      return res.status(200).send({
+        success: false,
+        message: "Your email isn't verified",
+      });
+    }
       const match = await comparePassword (password,user.password)
       if(!match){
         return res.status(200).send({
@@ -236,10 +243,50 @@ export const updateProfileController = async (req, res) => {
   }
 };
 
+//user email verification
+const sendDoctorVerifyEmail = async(name,email,user_id) => {
+  try{
+    const transporter = nodemailer.createTransport({
+      host:'smtp.gmail.com',
+      port:587,
+      secure:false,
+      requireTLS:true,
+      auth:{
+        user:'easeflow2023@gmail.com',
+        pass:`${process.env.SMTP_PASSWORD}`
+      }
+    })
+    const mailOptions = {
+      from:'easeflow2023@gmail.com',
+      to:email,
+      subject:"Verify your EaseFlow account",
+      html:`<p> Hi ${name},Please click here to <a href="http://localhost:3000/verify-doctor-email?id=${user_id}">Verify</a>Your mail.</p>` 
+    }
+    transporter.sendMail(mailOptions, function(error,info){
+      if(error){
+        console.log(error)
+      }
+      else{
+        console.log('email has been sent ',info.response)
+      }
+    })
+  }catch(error){
+    console.log(error)
+  }
+}
 
-//register doctorimport { hashPassword } from '../path-to-your-authHelpers';
+const doctorVerifyMail = async(req,res) => {
+  try{
+    const updateVerifiedUser = await DoctorModel.updateOne({_id:req.query.id},{$set:{
+      isEmailVerified:1
+    }})
+    console.log(updateVerifiedUser)
+     res.redirect('/verified-email')
+  }catch(error){
+    console.error(error.message)
+  }
+}
 
-// ...
 
 export const registerDoctorController = async (req, res) => {
   try {
@@ -274,6 +321,7 @@ export const registerDoctorController = async (req, res) => {
     }
 
     await newDoctor.save();
+     await sendDoctorVerifyEmail(name, email, newDoctor._id);
 
     res.status(201).json({
       success: true,
@@ -396,7 +444,6 @@ export const checkDoctorApprovalController = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }; */
-
 // DOCTOR LOGIN
 export const doctorLoginController = async (req, res) => {
   try {
@@ -422,10 +469,20 @@ export const doctorLoginController = async (req, res) => {
 
     // Doctor login logic
     if (doctor.isApproved) {
+      // Check if the doctor's email is verified
+      if (doctor.isEmailVerified !== 1) {
+        return res.status(403).send({
+          success: false,
+          message: doctor.isApproved
+            ? "Your doctor account hasn't been verified yet"
+            : "Your doctor account hasn't been approved by our admins",
+        });
+      }
+
       const isPasswordMatch = await comparePassword(password, doctor.password);
 
       if (isPasswordMatch) {
-        const token = await JWT.sign({ _id: doctor._id }, process.env.JWT_SECRET, {
+        const token = await JWT.sign({ _id: doctor.__id }, process.env.JWT_SECRET, {
           expiresIn: "7d",
         });
 
@@ -454,7 +511,7 @@ export const doctorLoginController = async (req, res) => {
       console.log("Your doctor account hasn't been approved yet");
       return res.status(403).send({
         success: false,
-        message: "Your doctor account hasn't been approved yet",
+        message: "Your doctor account hasn't been approved by our admins",
       });
     }
   } catch (error) {
@@ -468,7 +525,8 @@ export const doctorLoginController = async (req, res) => {
 };
 
 
+
 export default { registerController, loginController,forgotPasswordController,updateProfileController,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
-denyDoctorController,doctorLoginController, userVerifyMail };
+denyDoctorController,doctorLoginController, userVerifyMail ,doctorVerifyMail};
   
