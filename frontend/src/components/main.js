@@ -1,8 +1,8 @@
-const nav =document.querySelector("nav");
+const Navbar =document.querySelector("Navbar");
 window.addEventListener("scroll",() => {
     if(window.pageYOffset>60){
-        nav.classList.add("scrolled");
+        Navbar.classList.add("scrolled");
     }else{
-        nav.classList.remove("scrolled");
+        Navbar.classList.remove("scrolled");
     }
 })
