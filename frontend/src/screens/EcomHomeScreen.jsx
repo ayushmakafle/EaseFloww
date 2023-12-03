@@ -48,7 +48,7 @@ import { Checkbox, Radio } from 'antd'
 import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom'
 import MainNavbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import footer from '../components/footer';
 
 const EcomHomeScreen = () => {
   const [products, setProducts] = useState([]);
@@ -238,7 +238,7 @@ const EcomHomeScreen = () => {
         </div>
 
       </div >
-      <Footer />
+      <footer />
     </>
   );
 };

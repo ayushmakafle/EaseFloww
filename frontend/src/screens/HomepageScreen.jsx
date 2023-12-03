@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import './HomepageScreen.css';
 import MainNavbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Footer from '../components/footer';
 //import { useAuth } from '../context/auth';
 
 const HomepageScreen = () => {
