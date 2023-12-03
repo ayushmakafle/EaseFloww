@@ -19,6 +19,7 @@ const sendUserVerifyEmail = async(username,email,user_id) => {
         pass:`${process.env.SMTP_PASSWORD}`
       }
     })
+    
     const mailOptions = {
       from:'easeflow2023@gmail.com',
       to:email,
@@ -371,6 +372,46 @@ export const certificatePhotoController = async (req, res) => {
   }
 };
 
+//doctor approval denial
+export const sendDoctorApprovalEmail = async (username, email, user_id, isApproved) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      host:'smtp.gmail.com',
+      port:587,
+      secure:false,
+      requireTLS:true,
+      auth:{
+        user:'easeflow2023@gmail.com',
+        pass:`${process.env.SMTP_PASSWORD}`
+      }
+    })
+    
+    let subject, message;
+    if (isApproved) {
+      subject = 'Your EaseFlow Doctor Account has been Approved';
+      message = `<p> Hi ${username}, your EaseFlow Doctor account has been approved.</p>`;
+    } else {
+      subject = 'Your EaseFlow Doctor Account has been Denied';
+      message = `<p> Hi ${username}, your EaseFlow Doctor account has been denied.</p>`;
+    }
+    const mailOptions = {
+      from: 'easeflow2023@gmail.com',
+      to: email,
+      subject,
+      html: message,
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email has been sent ', info.response);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Approve Doctor
 export const approveDoctorController = async (req, res) => {
   try {
@@ -382,6 +423,10 @@ export const approveDoctorController = async (req, res) => {
       { $set: { isApproved: true } },
       { new: true }
     );
+
+     // Send approval email to the doctor
+    await sendDoctorApprovalEmail(updatedDoctor.name, updatedDoctor.email, updatedDoctor._id, true);
+
 
     res.status(200).json({
       success: true,
@@ -411,6 +456,9 @@ export const denyDoctorController = async (req, res) => {
         message: 'Doctor not found',
       });
     }
+    // Send denial email to the doctor
+    await sendDoctorApprovalEmail(removedDoctor.name, removedDoctor.email, removedDoctor._id, false);
+
     console.log('Doctor denied and removed successfully');
     res.status(200).json({
       success: true,

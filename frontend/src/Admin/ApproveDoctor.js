@@ -131,7 +131,7 @@ const ApproveDoctors = () => {
             <AdminMenu />
           </div>
           <div className='col-md-9'>
-            <h1>All EaseFlow Doctors</h1>
+            <h1>Approve EaseFlow Doctor Requests</h1>
             <Table dataSource={unapprovedDoctors} columns={columns} />
 
             <Modal
