@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,9 +12,11 @@ const LandingPage = () => {
       <div>
         <div className="hero-section">
           <div className="left">
-            <h1>Track, <br /> Learn, <br />Flourish.</h1>
-        
-            
+            <h1>Track, <br /> Learn, <br />Flourish</h1>
+            <p>
+              Learn more about your cycle with us.
+            </p>
+            <Nav.Link as={Link} to="/homepage" className="btn light">Track Now</Nav.Link>
           </div>
           <div className="right">
             <img src="images/calenderbg.jpg" alt="" />
