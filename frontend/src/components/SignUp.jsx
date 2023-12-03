@@ -21,21 +21,21 @@ const SignUp = () => {
     e.preventDefault();
 
     // Validation checks
-    const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\d{10}$/;
-
-    if (!password.match(passwordRegex)) {
-      return toast.error('Password must be at least 8 characters, including one special character.');
-    }
-
-    if (!email.match(emailRegex)) {
-      return toast.error('Please enter a valid email address.');
-    }
-
-    if (!phonenumber.match(phoneRegex)) {
-      return toast.error('Phone number should be 10 digits.');
-    }
+    /*  const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
+     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     const phoneRegex = /^\d{10}$/;
+ 
+     if (!password.match(passwordRegex)) {
+       return toast.error('Password must be at least 8 characters, including one special character.');
+     }
+ 
+     if (!email.match(emailRegex)) {
+       return toast.error('Please enter a valid email address.');
+     }
+ 
+     if (!phonenumber.match(phoneRegex)) {
+       return toast.error('Phone number should be 10 digits.');
+     } */
 
     try {
       const res = await axios.post(`/api/v1/auth/register`, {
@@ -202,7 +202,7 @@ const SignUp = () => {
         <div className='text-center mt-6'>
           <div className='flex items-center'>
             <h3 className='inline-block mr-2 px-4'> An EaseFlow Doctor?</h3>
-            <Link to='/GynecologistSignUp' className='text-pink-600'>
+            <Link to='/doctor-login' className='text-pink-600'>
               <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
                 Doctor Login
               </button>

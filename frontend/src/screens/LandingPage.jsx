@@ -8,7 +8,7 @@ import '../styles/MainNavbar.css';
 const LandingPage = () => {
   return (
     <>
-    <MainNavbar />
+      <MainNavbar />
       <div>
         <div className="hero-section">
           <div className="left">

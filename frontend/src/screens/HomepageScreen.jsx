@@ -50,18 +50,18 @@ const HomepageScreen = () => {
   };
   return (
     <>
-    <MainNavbar />
-    <div className="home-page">
-      <div className="calendar-container">
-        <Calendar tileClassName={tileClassName} />
-        <button className="log-button" onClick={handleLogSymptoms}>
-          Log symptoms
-        </button>
+      <MainNavbar />
+      <div className="home-page">
+        <div className="calendar-container">
+          <Calendar tileClassName={tileClassName} />
+          <button className="log-button" onClick={handleLogSymptoms}>
+            Log symptoms
+          </button>
+
+        </div>
 
       </div>
-
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 };

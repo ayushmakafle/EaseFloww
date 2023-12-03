@@ -68,4 +68,3 @@ const SymptomsSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 export default mongoose.model('symptoms', SymptomsSchema);
-
