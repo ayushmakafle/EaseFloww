@@ -1,8 +1,6 @@
 import express from "express";
 import authController from "../controllers/authController.js";
 import formidable from 'express-formidable';
-
-
 //import {registerController, loginController} from "../controllers/authController.js";
 import { requireSignIn,isAdmin } from "../middleware/authMiddleware.js";
 
@@ -14,6 +12,9 @@ router.post('/register', authController.registerController);
 
 //verify user mail
 router.get('/verify',authController.userVerifyMail)
+
+//verify doctor mail
+router.get('/verify-doctor-email',authController.doctorVerifyMail)
 
 //LOGIN
 router.post("/login", authController.loginController);
