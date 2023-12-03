@@ -18,8 +18,8 @@ const AdminMenu = () => {
         <NavLink to="/dashboard/admin/users" className="list-group-item list-group-item-action" activeClassName="active">
           EaseFlow Users
         </NavLink>
-        <NavLink to="/dashboard/admin/doctorapproval" className="list-group-item list-group-item-action" activeClassName="active">
-          Approve New Doctors
+        <NavLink to="/dashboard/admin/doctors" className="list-group-item list-group-item-action" activeClassName="active">
+          EaseFlow Doctors
         </NavLink>
       </div>
     </div>

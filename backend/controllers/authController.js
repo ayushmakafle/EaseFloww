@@ -1,11 +1,9 @@
 //const registerController = () => {};
 //export default registerController
 import userModel from "../models/UserModel.js";
-import DoctorModel from "../models/DoctorModel.js";
 import { comparePassword, hashPassword } from "../helpers/authHelpers.js";
 import JWT from "jsonwebtoken";
 import UserModel from "../models/UserModel.js";
-import fs from "fs"
 
 const registerController = async (req, res) => {
   try {
@@ -49,14 +47,14 @@ const registerController = async (req, res) => {
       answer,
     }).save();
 
-    return res.status(201).send({
+    res.status(201).send({
       success: true,
       message: "User Register Successfully",
       user,
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({
+    res.status(500).send({
       success: false,
       message: "Error in Registeration",
       error,
@@ -85,7 +83,7 @@ export const loginController = async (req, res) => {
      }
       const match = await comparePassword (password,user.password)
       if(!match){
-        return res.status(200).send({
+        res.status(200).send({
           success:false,
           message:'Invalid Password'
         })
@@ -94,7 +92,7 @@ export const loginController = async (req, res) => {
      const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
        expiresIn: "7d", //7days ma exipre
      });
-     return res.status(200).send({
+     res.status(200).send({
        success: true,
        message: "login successfully",
        user: {
@@ -108,7 +106,7 @@ export const loginController = async (req, res) => {
        token,
      });
     } catch(error) {
-      return res.status(500).send({
+    res.status(500).send({
       success:false,
       message:'Error in login',
       error
@@ -121,32 +119,32 @@ export const forgotPasswordController = async (req, res) => {
   try {
     const { email, answer, newPassword } = req.body;
     if (!email) {
-      return res.status(400).send({ message: "email is required" });
+      res.status(400).send({ message: "email is required" });
     }
     if (!answer) {
-      return res.status(400).send({ message: "answer is required" });
+      res.status(400).send({ message: "answer is required" });
     }
     if (!newPassword) {
-      return res.status(400).send({ message: "new password is required" });
+      res.status(400).send({ message: "new password is required" });
     }
     //check
     const user = await UserModel.findOne({ email, answer });
     //validation
     if (!user) {
-     return res.status(404).send({
+      return res.status(404).send({
         success: false,
         message: 'wrong email or answer'
       });
     }
     const hashed = await hashPassword(newPassword);
     await userModel.findByIdAndUpdate(user._id, { password: hashed });
-    return res.status(200).send({
+    res.status(200).send({
       success: true,
       message: 'password reset successful'
     });
   } catch (error) {
     console.log(error);
-    return res.status(400).send({
+    res.status(400).send({
       success: false,
       message: 'something went wrong',
       error
@@ -154,174 +152,15 @@ export const forgotPasswordController = async (req, res) => {
   }
 };
 
-//update profile
-export const updateProfileController = async (req, res) => {
-  try {
-    const { username, email, password, address, phonenumber } = req.body;
-    const user = await userModel.findById(req.user._id);
-    //password
-    if (password && password.length < 6) {
-      return res.json({ error: "Passsword is required and 6 character long" });
-    }
-    const hashedPassword = password ? await hashPassword(password) : undefined;
-    const updatedUser = await userModel.findByIdAndUpdate(
-      req.user._id,
-      {
-        username: username || user.username,
-        password: hashedPassword || user.password,
-        phonenumber: phonenumber || user.phonenumber,
-        address: address || user.address,
-      },
-      { new: true }
-    );
-    return res.status(200).send({
-      success: true,
-      message: "Profile Updated Successfully",
-      updatedUser,
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(400).send({
-      success: false,
-      message: "Error While Updating profile",
-      error,
-    });
-  }
-};
 
-
-//register doctor
-export const registerDoctorController = async (req, res) => {
-  try {
-    console.log(req.fields);
-
-    const { name, email, password, phonenumber, specialization, 
-      address, hospitalOrClinic } = req.fields
-    const { certificatePhoto } = req.files 
-
-    // Validations
-    if (!name || !email || !password || !phonenumber || !specialization || !address || !hospitalOrClinic) {
-      return res.status(400).json({ success: false, message: 'All fields are required' });
-    }
-    if (!certificatePhoto) {
-      return res.status(400).json({ success: false, message: 'Certificate photo is required' });
-    }
-    if (certificatePhoto.size > 1000000) {
-      return res.status(400).json({ success: false, message: 'Certificate photo size should be less than 1MB' });
-    }
-
-    const newDoctor = new DoctorModel({...req.fields});
-    if (certificatePhoto) {
-      newDoctor.certificatePhoto.data = fs.readFileSync(certificatePhoto.path);
-      newDoctor.certificatePhoto.contentType = certificatePhoto.type
-    }
-    await newDoctor.save()
-
-    res.status(201).json({
-      success: true,
-      message: 'Doctor registration pending approval',
-      doctor: newDoctor,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: 'Error in doctor registration', error });
-  }
-  
-};
-
-
-//fetch doctors for approval
-export const getUnapprovedDoctorsController = async (req, res) => {
-  try {
-    const unapprovedDoctors = await DoctorModel.find({ isApproved: false });
-
-    res.status(200).json({
-      success: true,
-      doctors: unapprovedDoctors,
-    });
-  } catch (error) {
-    console.error('Error fetching unapproved doctors:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal Server Error',
-    });
-  }
-};
-
-// get photo
-export const certificatePhotoController = async (req, res) => {
-  try {
-    const unapprovedDoctors = await DoctorModel.findById(req.params.did).select("certificatePhoto");
-    if (unapprovedDoctors.certificatePhoto.data) {
-      res.set("Content-type", unapprovedDoctors.certificatePhoto.contentType);
-      return res.status(200).send(unapprovedDoctors.certificatePhoto.data);
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Erorr while getting certificate photo",
-      error,
-    });
-  }
-};
-
-// Approve Doctor
-export const approveDoctorController = async (req, res) => {
-  try {
-    const { did } = req.params;
-
-    // Find the doctor by ID and update isApproved to true
-    const updatedDoctor = await DoctorModel.findByIdAndUpdate(
-      did,
-      { $set: { isApproved: true } },
-      { new: true }
-    );
-
-    res.status(200).json({
-      success: true,
-      message: 'Doctor approved successfully',
-      doctor: updatedDoctor,
-    });
-  } catch (error) {
-    console.error('Error approving doctor:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal Server Error',
-    });
-  }
-};
-
-//deny doctor
-export const denyDoctorController = async (req, res) => {
-  try {
-    const { did } = req.params;
-    console.log('Denying doctor with ID:', did);
-    // Find the doctor by ID and remove from the database
-    const removedDoctor = await DoctorModel.findByIdAndDelete(did);
-    if (!removedDoctor) {
-      console.log('Doctor not found');
-      return res.status(404).json({
-        success: false,
-        message: 'Doctor not found',
-      });
-    }
-    console.log('Doctor denied and removed successfully');
-    res.status(200).json({
-      success: true,
-      message: 'Doctor denied and removed successfully',
-    });
-  } catch (error) {
-    console.error('Error denying doctor:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal Server Error',
-    });
-  }
-};
-
-
-export default { registerController, loginController,forgotPasswordController,updateProfileController,
-  registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
-denyDoctorController };
-  
+//test controller
+export const testController = (req, res) => { 
+  res.send('protected route'); }
+//   try {
+//     res.send("Protected Routes");
+//   } catch (error) {
+//     console.log(error);
+//     res.send({ error });
+//   }
+// };
+export default { registerController, loginController,testController,forgotPasswordController };

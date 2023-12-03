@@ -202,7 +202,7 @@ const SignUp = () => {
         <div className='text-center mt-6'>
           <div className='flex items-center'>
             <h3 className='inline-block mr-2 px-4'> An EaseFlow Doctor?</h3>
-            <Link to='/doctorlogin' className='text-pink-600'>
+            <Link to='/GynecologistSignUp' className='text-pink-600'>
               <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
                 Doctor Login
               </button>

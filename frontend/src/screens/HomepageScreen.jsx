@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import './HomepageScreen.css';
 import MainNavbar from '../components/Navbar';
-import Footer from '../components/footer';
+import Footer from '../components/Footer';
 //import { useAuth } from '../context/auth';
 
 const HomepageScreen = () => {
@@ -50,18 +50,18 @@ const HomepageScreen = () => {
   };
   return (
     <>
-      <MainNavbar />
-      <div className="home-page">
-        <div className="calendar-container">
-          <Calendar tileClassName={tileClassName} />
-          <button className="log-button" onClick={handleLogSymptoms}>
-            Log symptoms
-          </button>
-
-        </div>
+    <MainNavbar />
+    <div className="home-page">
+      <div className="calendar-container">
+        <Calendar tileClassName={tileClassName} />
+        <button className="log-button" onClick={handleLogSymptoms}>
+          Log symptoms
+        </button>
 
       </div>
-      <Footer />
+
+    </div>
+    <Footer />
     </>
   );
 };
