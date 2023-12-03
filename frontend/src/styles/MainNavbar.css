@@ -1,0 +1,566 @@
+:root {
+  --pink-color: #ffc0cb;
+  --pinkone-color: #f38dbc;
+  --pinktwo-color: #ef5e99;
+  --orange-color : #ec6f71;
+  --dark-color : #23395d;
+  --pinkthree-color: #de5d83;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+.wrapper {
+  max-width: 1134px;
+  margin: 0 auto;
+}
+/* buttons */
+.btn {
+  padding: 16px 32px;
+  border-radius: 24px;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px; 
+  text-decoration: none;
+  position: relative;
+}
+
+.btn.dark {
+  background:var(--pinkthree-color);
+}
+
+.btn.light {
+  background: var(--pink-color);
+}
+
+/* header */
+header{
+  background: linear-gradient(180deg, #ec6f71 0%, #f38dbc 100% );
+  height: 15vh;
+  width:100%;
+  
+}
+
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+position: absolute;
+width: 1134px;
+top: 0;
+padding: 36px 0;
+z-index: 100;
+transition: all 500ms ease;
+}
+nav.scrolled {
+  background: var(--pinkone-color);
+  box-shadow: 0 16px 14px -8px rgba(0, 0, 0, 0.3);
+  border-radius: 0 0 8px 8px;
+  top: 0;
+  padding: 12px;
+}
+
+nav .logo{
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  color: #ffffff;
+}
+
+nav ul{
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  list-style: none;
+  margin: 9;
+}
+
+nav ul li Nav.Link{
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+}
+/* Custom styles for Navbar */
+.custom-navbar {
+  background-color: #eb6864; 
+  height: 75px;
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+  color: #151515; /* Text color */
+  margin:0 20px 0 20px; /* Adjust spacing between links */
+  font-weight: bold; /* Bold text */
+  transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.custom-navbar .nav-link:hover {
+  color:white; /* Text color on hover */
+}
+/* Custom styles for Navbar */
+.custom-navbar {
+background-color: #eb6864;
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+/* Custom styles for Navbar */
+.custom-navbar {
+background-color: #eb6864;
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.custom-navbar .navbar-brand {
+font-size: 24px; /* Adjust the font size as needed */
+color: #151515;
+margin-right: 15px;
+font-weight: bold;
+transition: color 0.3s ease-in-out;
+text-transform: uppercase; /* Uppercase text */
+}
+
+.custom-navbar .nav-link {
+color: #151515;
+margin: 0 15px;
+font-weight: bold;
+transition: color 0.3s ease-in-out;
+text-transform: uppercase; /* Uppercase text */
+}
+
+.custom-navbar .nav-link:hover {
+color: white;
+}
+
+/* Add styles for the icons */
+.custom-navbar .nav-link i {
+margin-right: 5px;
+}
+
+/* Add styles for active link */
+.custom-navbar .nav-link.active {
+color: white;
+border-bottom: 2px solid white; /* Underline active link */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+.custom-navbar .nav-link {
+    margin: 0;
+}
+}
+
+
+/* Add styles for the icons */
+.custom-navbar .nav-link i {
+margin-right: 5px;
+}
+
+/* Add styles for active link */
+.custom-navbar .nav-link.active {
+color: white;
+border-bottom: 2px solid white; /* Underline active link */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+.custom-navbar .nav-link {
+    margin: 0;
+}
+}
+/* hero section */
+.hero-section{
+  margin-left: 55px;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+.hero-section .left h1{
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  font-size: 50px;
+  line-height: 125%;
+  color: #f38dbc;
+  margin-bottom:0 ;
+}
+
+.hero-section .left p{
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 125%;
+  color: #f38dbc;
+  margin-bottom: 30px;
+}
+
+.hero-section .left{
+  width: 457px;
+}
+
+.hero-section .right img{
+  height:512px;
+  vertical-align: middle;
+}
+
+/* test section */
+section{
+  margin-top: 100px;
+}
+
+h2{
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 120%;
+  color: #000000;
+  margin-bottom: 30px;
+}
+h2.light{
+  color: #ffffff;
+}
+
+section p{
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 200%;
+  color: var(--dark-color);
+  margin: 12px;
+}
+
+.testimonials-section{
+  
+  display: flex;
+  gap: 100px;
+  align-items: center;
+}
+
+.testimonials-section .mobile-btn{
+  display: none;
+}
+.testimonials-section .testimonial-card{
+  width: 442px;
+  background: #ffffff;
+  box-shadow: 0px 9px 36px rgba(0, 0, 0, 0.2);
+  border-radius: 24px;
+  margin-bottom: 50px;
+  position: relative;
+}
+.testimonials-section .testimonial-card::before{
+  content: "";
+  width:28px;
+  position: absolute;
+  height: 40px;
+  top: -40px;
+  left: 60px;
+  background: var(--orange-color);
+  border-radius:24px 24px 0 0 ;
+}
+
+.testimonials-section .testimonial-card:last-child::before{
+  left:40px;
+  top: -50px;
+  border-radius:0 0 24px 24px;
+  height: calc(100% + 90px);
+  z-index: -1;
+}
+.testimonials-section .testimonial-card .content{
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 150%;
+  color:#ffffff;
+  border-radius: 24px;
+  padding: 24px 32px;
+  background: var(--dark-color);
+}
+
+.testimonials-section .testimonial-card:last-child .content{
+  background: var(--orange-color);
+}
+
+.testimonials-section .testimonial-card .info h4{
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 120%;
+  margin: 0;
+  color: var(--pink-color);
+
+}
+
+.testimonials-section .testimonial-card .info{
+  padding: 24px 32px;
+  background: #ffffff;
+  border-radius: 24px;
+}
+
+.testimonials-section .testimonial-card .info p.company{
+  font-family: "Raleway", sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 120%;
+  color: var(--dark-color);
+}
+
+.testimonials-section .testimonial-card img{
+  width:200px;
+  height:200px;
+  position: absolute;
+  right: 32px;
+  bottom: 1px;
+}
+
+.testimonials-section .testimonial-card:last-child{
+  transform: translateX(20px);
+}
+.testimonials-section .features{
+  margin-bottom: 30px;
+}
+
+
+
+/* courses section */
+.courses-section{
+  background: linear-gradient(180deg, #ef5e99 0%, #f38dbc 100% );
+  padding: 70px 0;
+  padding-bottom: 120px;
+}
+
+.courses-section h2{
+  text-align: center;
+}
+.courses-section .course-cards{
+  display: flex;
+  gap: 70px;
+}
+.courses-section .course-cards img{
+  width:100%;
+  filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.25));
+  border-radius: 24px;
+}
+
+.courses-section .course-card{
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 0px 32px;
+  margin: 40px 0;
+  position: relative;
+
+}
+.courses-section .course-card::after{
+  content: "";
+  height: 8px;
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  bottom: 0;
+  background: var(--pinktwo-color);
+  border-radius: 24px;
+}
+
+.courses-section .course-card h3{
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 150%;
+  color: var(--dark-color);
+}
+.courses-section .course-card .info{
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+.courses-section .course-card .duration{
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--dark-color);
+}
+.courses-section .wrapper{
+  position: relative;
+}
+.courses-section .wrapper .btn{
+  position: absolute;
+  right: 0;
+}
+
+
+/* app section */
+.app-section{
+  text-align: center;
+  padding-top: 160px;    
+  padding-bottom: 210px;
+}
+.app-section h2{
+  color: #ec6f71;
+}
+
+
+/* footer section */
+footer{
+  background: #1f1f1e;
+  color: #ffffff;
+  margin-top: 100px;
+  padding: 70px 0;
+}
+
+footer a{
+  text-decoration: none;
+  color: #ffffff;
+
+}
+
+footer h3{
+  color: var(--pinktwo-color);
+}
+footer ul{
+  list-style: none;
+  padding-left: 20px;
+}
+footer ul li{
+  margin:16px 0;
+}
+
+footer .links-container{
+  display: grid;
+  grid-template-columns: 2fr 2fr 3fr;
+}
+
+footer form{
+  margin-left: 20px;
+  margin-top: 16px;
+  position: relative;
+}
+footer form input{
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 200%;
+  color: var(--dark-color);
+  border-radius: 8px;
+  border: none;
+  padding: 8px 32px;
+  width: 100%;
+}
+footer form .submit-btn{
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--pinkone-color);
+  border-radius: 8px;
+  padding: 8px 32px;
+  border: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  color: #ffffff;
+  cursor: pointer;
+}
+footer .copyright{
+  margin-top: 36px;
+}
+nav.mobile-nav{
+  display: none;
+}
+
+@media(max-width:1100px){
+  .btn{
+      padding: 12px 32px;
+  }
+  .wrapper{
+      padding: 0 100px;
+  }
+  nav{
+      width: 100%;
+      left: 0;
+      right: 0;
+      padding: 36px 100px;
+  }
+  nav.scrolled{
+      padding: 16px 100px;
+  }
+  header,
+  .hero-section,
+  header .wrapper{
+      max-width: 1100px;
+  }
+  .hero-section{
+      flex-direction: column;
+  }
+
+  .hero-section .left{
+      width: 100%;
+      /* padding-top: 120px; */
+      /* text-align: center; */
+  }
+  .hero-section .left h1{
+      line-height: 125%;
+      font-size: 60px;
+  }
+
+  .hero-section .right{
+      position: absolute;
+      bottom: 0;
+  }
+  .hero-section .right img{
+      height:432px;
+      vertical-align: middle;
+      
+  }
+  h2{
+      font-size: 40px;
+  }
+
+  .courses-section .course-cards{
+      flex-direction: column;
+      gap: 80px;
+  }
+  .courses-section .course-card{
+      margin: 0;
+  }
+  .courses-section h2{
+      margin-bottom: 40px;
+  }
+  /* .courses-section .course-card img{
+      height: 260px;
+      object-fit: cover;
+  } */
+  .courses-section .course-card h3{
+      font-size: 24px;
+  }
+  .courses-section .wrapper .btn{
+      right: 100px;
+
+  }
+  .courses-section .course-card:last-child{
+      margin-bottom: 50px;
+  }
+  footer .links-container{
+      grid-template-columns: 1fr 1fr;
+  }
+  footer .links-container .links-container:last-child{
+      grid-column: 1 / 3;
+  }
+}
+
+@media(max-width: 800px){
+  nav{
+      display: none;
+
+  }
+  nav.mobile-nav{
+      display: flex;
+  }
+}

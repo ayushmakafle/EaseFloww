@@ -1,0 +1,60 @@
+.home-page {
+  background-size: cover;
+  background-color: #eb6864;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.calendar-container {
+  margin-top: 100px;
+  width: 40%;
+  height: 55%;
+  background-color: pink;
+}
+
+/* Calendar styles */
+.react-calendar {
+  border: 7px;
+  color: rgb(5, 5, 5);
+  background-color: pink;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: rgb(300, 213, 255);
+  width: 100%;
+}
+
+
+.period-date {
+  background-color:#eb6864!important;
+  color: rgb(13, 12, 12) !important;
+  border-radius: 50%;
+}
+
+/* Styles for predicted dates of next month */
+.predicted-date-next-month {
+  background-color: rgb(233, 147, 213) !important;
+  border-radius: 50%;
+  /* Add any specific styles for predicted dates of next month */
+}
+.log-button {
+  position: absolute;
+  left: 50%;
+  margin-top: 30px;
+  transform: translateX(-50%);
+  background-color:#eb6864;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.log-button:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+
