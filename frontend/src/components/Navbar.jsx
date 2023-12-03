@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+
 import { Link } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
 import { useAuth } from '../context/auth';
 import { toast } from 'react-toastify';
 import '../styles/MainNavbar.css';
@@ -18,6 +18,7 @@ const MainNavbar = () => {
 
     toast.success('Logout Successful');
   };
+
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.querySelector(".navbar");
@@ -32,60 +33,55 @@ const MainNavbar = () => {
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-      // Cleanup the event listener when the component is unmounted
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <header>
-      <div className="wrapper" >
+      <div className="wrapper">
         <Navbar expand="lg">
-          <div className="logo">
-            <Nav.Link href='/'>EASEFLOW</Nav.Link>
+          <div className='logo'>
+          <Nav.Link href='/'>EASEFLOW</Nav.Link>
+          <Navbar.Toggle aria-controls="navbarNav" />
           </div>
-          <ul>
-            <li>
-              <Nav.Link href="#">Gynecologist Appointment</Nav.Link>
-            </li>
-            <li>
+          <Navbar.Collapse id="navbarNav">
+            <Nav className="ml-auto">
+              <ul>
+              <li>
+              <Nav.Link href="#"> Appointment</Nav.Link>
+              </li>
+              <li>
               <Nav.Link href="#">Queries!</Nav.Link>
-            </li>
-            <li>
+              </li>
+              <li>
               <Nav.Link as={Link} to="/ecommerce">Our Products</Nav.Link>
-            </li>
-            {!auth.user ? (
-              <Nav.Link as={Link} to="/login" className="active">
-                <i className="fa-solid fa-user"></i> Profile
-              </Nav.Link>
-            ) : (
-              <NavDropdown title={<i className="fa-solid fa-user"></i>} id="navbarDropdown">
-                <LinkContainer to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`}>
-                  <NavDropdown.Item>Dashboard</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/logout">
-                  <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-                </LinkContainer>
-              </NavDropdown>
-            )}
-            <li>
-              <Nav.Link as={Link} to='/cart' style={{ marginLeft: '7px' }}>
+              </li>
+              {!auth.user ? (
+              <li>
+                <Nav.Link as={Link} to="/login" className="active">
+                  <i className="fa-solid fa-user"></i> Profile
+                </Nav.Link>
+                </li>
+              ) : (
+                <li>
+                <NavDropdown title={<i className="fa-solid fa-user"></i>} id="navbarDropdown">
+                  <NavDropdown.Item as={Link} to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`}>Dashboard</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/logout" onClick={handleLogout}>Logout</NavDropdown.Item>
+                </NavDropdown>
+                </li>
+              )}
+              <li>
+              <Nav.Link as={Link} to='/cart'>
                 <i className="fa-solid fa-cart-shopping"></i> Cart
               </Nav.Link>
-            </li>
-          </ul>
+              </li>
+              </ul>
+            </Nav>
+          </Navbar.Collapse>
         </Navbar>
-
-        {/* <!-- end of desktop navigation menu --> */}
-        <nav className="mobile-nav">
-          <div className="logo">EASEFLOW</div>
-          <div className="menu-icon">
-            <img src="images/icons8-menu-bar-64.png" alt="" />
-          </div>
-        </nav>
       </div>
     </header>
-    
   );
 };
 
