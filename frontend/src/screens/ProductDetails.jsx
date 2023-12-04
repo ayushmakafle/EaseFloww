@@ -64,7 +64,7 @@ const ProductDetails = () => {
                   </p>
                 )}
                 <p className="card-text">
-                  <span style={{ color: '#28A745' }}>Price:</span> ${product.price}
+                  <span style={{ color: '#28A745' }}>Price:</span> NRs.{product.price}/-
                 </p>
                 <p className="card-text">{product.description}</p>
                 <button className="btn btn-primary btn-lg">

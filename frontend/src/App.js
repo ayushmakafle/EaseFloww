@@ -104,6 +104,8 @@ import SuccessPage from './components/Success';
 import PaymentComponent from './components/Payment';
 import ApproveDoctors from './Admin/ApproveDoctor';
 import EmailVerified from './user/EmailVerified';
+import DoctorRoute from './components/Routes/DoctorRoute';
+import DoctorDashboard from './Doctor/DoctorDashboard';
 
 function App() {
 
@@ -147,7 +149,10 @@ function App() {
             <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
           </Route>
 
-          <Route path = '/verified-email' element={<EmailVerified/>}/>
+          <Route path='/dashboard' element={<DoctorRoute />}>
+            <Route path='doctor' element={<DoctorDashboard />} />
+          </Route>
+
 
           <Route path="/doctor-login" element={<DoctorLoginPage />} />
           <Route path="/doctorsignup" element={<DoctorSignUpPage />} />

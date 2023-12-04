@@ -50,8 +50,13 @@ import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom'
 import MainNavbar from '../components/Navbar';
 import footer from '../components/footer';
+import { useCart } from '../context/cart';
+import { toast } from 'react-toastify'
 
 const EcomHomeScreen = () => {
+
+  const [cart, setCart] = useCart()
+
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([])
   const [checked, setChecked] = useState([])
@@ -68,7 +73,7 @@ const EcomHomeScreen = () => {
     try {
       const { data } = await axios.get('/api/v1/category/get-category')
       if (data.success) {
-        setCategories(data?.category); //optional chaining to prevent error messeasges while loading
+        setCategories(data?.category); //optional chaining to prevent error messages while loading
       }
     } catch (error) {
       console.log(error)
@@ -149,7 +154,7 @@ const EcomHomeScreen = () => {
     fetchProducts();
   }, []); */
 
-  //get filtered rpoduct
+  //get filtered product
   const filterProduct = async () => {
     try {
       const { data } = await axios.post('/api/v1/product/product-filters', { checked, radio })
@@ -218,7 +223,11 @@ const EcomHomeScreen = () => {
                   <button className='btn btn-primary ms-1'
                     onClick={() => navigate(`/product/${p.slug}`)}>
                     More Details</button>
-                  <button className='btn btn-secondary'>
+                  <button className='btn btn-secondary'
+                    onClick={() => {
+                      setCart([...cart, p])
+                      toast.success('Item added to cart')
+                    }}>
                     <i className="fas fa-cart-shopping"></i>
                   </button>
                 </div>
