@@ -8,7 +8,11 @@ import EcomHeader from '../components/EcomHeader';
 import Footer from '../components/Footer';
 import '../styles/MainNavbar.css';
 import styles from './../styles/styles';
+import { useCart } from '../context/cart';
 const EcomHomeScreen = () => {
+
+  const [cart, setCart] = useCart()
+
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -106,7 +110,7 @@ const EcomHomeScreen = () => {
     fetchProducts();
   }, []); */
 
-  //get filtered rpoduct
+  //get filtered product
   const filterProduct = async () => {
     try {
       const { data } = await axios.post('/api/v1/product/product-filters', { checked, radio })

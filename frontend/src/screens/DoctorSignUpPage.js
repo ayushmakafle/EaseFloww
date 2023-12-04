@@ -1,5 +1,5 @@
 import React from 'react'
-import DoctorSignUp from '../components/DoctorSignUp.jsx';
+import DoctorSignUp from '../components/DoctorSignUp';
 
 const DoctorSignUpPage = () => {
   return (

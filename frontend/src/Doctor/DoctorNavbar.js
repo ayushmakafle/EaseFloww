@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav} from 'react-bootstrap';
 
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useAuth } from '../context/auth';
 import { toast } from 'react-toastify';
 import '../styles/MainNavbar.css';
 
-const MainNavbar = () => {
+const DoctorNavbar = () => {
   const [auth, setAuth] = useAuth();
 
   const handleLogout = () => {
@@ -49,36 +49,18 @@ const MainNavbar = () => {
             <Nav className="ml-auto">
               <ul>
                 <li>
-                  <Nav.Link href="#"> Appointment</Nav.Link>
+                  <Nav.Link href="#"> Your Profile</Nav.Link>
                 </li>
                 <li>
-                  <Nav.Link href="#">Queries!</Nav.Link>
+                  <Nav.Link href="#"> Your Appointments</Nav.Link>
                 </li>
                 <li>
-                  <Nav.Link as={Link} to="/ecommerce">Our Products</Nav.Link>
+                  <Nav.Link as={Link} to="/ecommerce">Rate Products</Nav.Link>
                 </li>
-                {!auth.user ? (
-                  <li>
-                    <Nav.Link as={Link} to="/login" className="active">
-                      <i className="fa-solid fa-user"></i> Profile
-                    </Nav.Link>
-                  </li>
-                ) : (
-                  <li>
-                    <NavDropdown title={<i className="fa-solid fa-user"></i>} id="navbarDropdown">
-                      <NavDropdown.Item as={Link} to={`/dashboard/${auth?.user?.role === 1 ? 'admin' :
-                        (auth?.user?.role === 2 ? 'doctor' : 'user')
-                        }`}>
-                      </NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to="/logout" onClick={handleLogout}>Logout</NavDropdown.Item>
-                    </NavDropdown>
-                  </li>
-                )}
                 <li>
-                  <Nav.Link as={Link} to='/cart'>
-                    <i className="fa-solid fa-cart-shopping"></i> Cart
-                  </Nav.Link>
+                  <Nav.Link as={Link} to="/login" onClick={handleLogout}>Logout</Nav.Link>
                 </li>
+
               </ul>
             </Nav>
           </Navbar.Collapse>
@@ -88,4 +70,4 @@ const MainNavbar = () => {
   );
 };
 
-export default MainNavbar;
+export default DoctorNavbar;

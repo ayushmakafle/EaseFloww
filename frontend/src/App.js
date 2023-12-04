@@ -61,7 +61,6 @@
 
 
 import './App.css';
-import { Container } from 'react-bootstrap';
 import 'react-calendar/dist/Calendar.css';
 
 // import Footer from './components/Footer';
@@ -104,6 +103,10 @@ import SuccessPage from './components/Success';
 import PaymentComponent from './components/Payment';
 import ApproveDoctors from './Admin/ApproveDoctor';
 import EmailVerified from './user/EmailVerified';
+import DoctorRoute from './components/Routes/DoctorRoute';
+import DoctorDashboard from './Doctor/DoctorDashboard';
+import DoctorProfile from './Doctor/DoctorProfile';
+import EaseFlowDoctors from './Admin/EaseFlowDoctors';
 
 function App() {
 
@@ -144,10 +147,15 @@ function App() {
             <Route path ='admin/product/:slug' element={<UpdateProduct/>}/>
             <Route path ='admin/products' element={<Products/>}/>
             <Route path ='admin/users' element={<EaseFlowUsers/>}/>
+            <Route path ='admin/doctors' element={<EaseFlowDoctors/>}/>
             <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
           </Route>
 
-          <Route path = '/verified-email' element={<EmailVerified/>}/>
+          <Route path = '/dashboard' element={<DoctorRoute />}>
+            <Route path='doctor' element={<DoctorDashboard/>} />
+            <Route path = 'doctor/doctor-profile' element={<DoctorProfile />} />
+          </Route>
+
 
           <Route path="/doctor-login" element={<DoctorLoginPage />} />
           <Route path="/doctorsignup" element={<DoctorSignUpPage />} />

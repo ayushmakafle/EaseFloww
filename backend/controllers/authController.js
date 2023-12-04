@@ -545,6 +545,7 @@ export const doctorLoginController = async (req, res) => {
             specialization: doctor.specialization,
             address: doctor.address,
             hospitalOrClinic: doctor.hospitalOrClinic,
+            role:doctor.role
           },
           token,
         });
@@ -572,9 +573,31 @@ export const doctorLoginController = async (req, res) => {
   }
 };
 
+//fetch approved doctors
+export const getDoctorsController = async (req, res) => {
+  try {
+    const approvedDoctors = await DoctorModel.find({ isApproved: true });
+
+    res.status(200).json({
+      success: true,
+      doctors: approvedDoctors,
+    });
+  } catch (error) {
+    console.error('Error fetching all approved doctors:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+};
+//test controller
+/* export const testController = (req,res) => {
+  res.send('protected route')
+} */
+
 
 
 export default { registerController, loginController,forgotPasswordController,updateProfileController,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
-denyDoctorController,doctorLoginController, userVerifyMail ,doctorVerifyMail};
+denyDoctorController,doctorLoginController, userVerifyMail ,doctorVerifyMail, getDoctorsController};
   
