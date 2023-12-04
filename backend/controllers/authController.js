@@ -545,6 +545,7 @@ export const doctorLoginController = async (req, res) => {
             specialization: doctor.specialization,
             address: doctor.address,
             hospitalOrClinic: doctor.hospitalOrClinic,
+            role:doctor.role
           },
           token,
         });
@@ -571,6 +572,11 @@ export const doctorLoginController = async (req, res) => {
     });
   }
 };
+
+//test controller
+/* export const testController = (req,res) => {
+  res.send('protected route')
+} */
 
 
 

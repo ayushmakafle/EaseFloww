@@ -1,36 +1,27 @@
-import React from 'react'
-import MainNavbar from '../components/Navbar'
-import {useAuth} from '../context/auth'
-import DoctorMenu from './DoctorMenu'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
+import MainNavbar from '../components/Navbar';
 
 const DoctorDashboard = () => {
-  const [auth] = useAuth()
   return (
     <>
     <MainNavbar />
-    <div className='container-fluid mt-3 mb-3'>
-  <div className='row'>
-    <div className='col-md-3'>
-      <DoctorMenu />
-    </div>
-    <div className='col-md-9'>
-      <div className='card p-3'>
-        <h3 className='mb-3'>Doctor Information</h3>
-        <div className='mb-3'>
-          <strong>Username:</strong> {auth?.user?.username}
-        </div>
-        <div className='mb-3'>
-          <strong>Email:</strong> {auth?.user?.email}
-        </div>
-        <div>
-          <strong>Address:</strong> {auth?.user?.address}
-        </div>
+    
+    <div className="hero-section" style={{ background: '#ff69b4', color: '#fff', padding: '50px' }}>
+      <div className="left">
+        <h2>Welcome to the doctor portal of EaseFlow</h2>
+        <p>You are one of our trusted doctors. Thank you for working with us.</p>
+        <Nav.Link as={Link} to="/doctor-dashboard" className="btn light">
+          Update your profile and 
+        </Nav.Link>
+      </div>
+      <div className="right">
+        <img src="../../public/images/calenderbg.jpg" alt="" style={{ width: '100%' }} />
       </div>
     </div>
-  </div>
-</div>
     </>
-  )
-}
+  );
+};
 
-export default DoctorDashboard
+export default DoctorDashboard;

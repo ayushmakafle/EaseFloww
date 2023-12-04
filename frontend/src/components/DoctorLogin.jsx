@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../styles/styles";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './Gyno.css';
 import { toast } from 'react-toastify'
 import { useAuth } from '../context/auth'
@@ -15,7 +15,6 @@ const DoctorLogin = () => {
   const [email, setEmail] = useState('');
 
   const navigate = useNavigate();
-  const location = useLocation(); //to redirect to the page before login
 
   //form function
   const handleSubmit = async (e) => {
@@ -33,7 +32,7 @@ const DoctorLogin = () => {
         });
 
         localStorage.setItem('auth', JSON.stringify(res.data));
-        navigate(location.state || '/');
+        navigate('/dashboard/doctor');
       } else {
         toast.error(res.data.message);
       }

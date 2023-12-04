@@ -61,7 +61,6 @@
 
 
 import './App.css';
-import { Container } from 'react-bootstrap';
 import 'react-calendar/dist/Calendar.css';
 
 // import Footer from './components/Footer';
@@ -149,8 +148,8 @@ function App() {
             <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
           </Route>
 
-          <Route path='/dashboard' element={<DoctorRoute />}>
-            <Route path='doctor' element={<DoctorDashboard />} />
+          <Route path = '/dashboard' element={<DoctorRoute />}>
+            <Route path='doctor' element={<DoctorDashboard/>} />
           </Route>
 
 

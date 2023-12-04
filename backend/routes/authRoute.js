@@ -2,7 +2,7 @@ import express from "express";
 import authController from "../controllers/authController.js";
 import formidable from 'express-formidable';
 //import {registerController, loginController} from "../controllers/authController.js";
-import { requireSignIn,isAdmin } from "../middleware/authMiddleware.js";
+import { requireSignIn,isAdmin, isDoctor } from "../middleware/authMiddleware.js";
 
 //router object
 const router = express.Router();
@@ -33,7 +33,7 @@ router.get('/admin-auth',requireSignIn,isAdmin, (req,res) => {
 })
 
 //protected route doctor auth
-router.get('/doctor-auth',requireSignIn, (req,res) => {
+router.get('/doctor-auth',requireSignIn, isDoctor, (req,res) => {
     res.status(200).send({ok:true})
 })
 
@@ -61,5 +61,7 @@ router.delete('/deny-doctor/:did', authController.denyDoctorController);
 //doctor login route
 router.post('/doctor-login',authController.doctorLoginController);
 
+//test
+//router.get('/test',requireSignIn,isDoctor,authController.testController)
 
 export default router;
