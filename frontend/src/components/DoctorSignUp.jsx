@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import styles from '../styles/styles';
+import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -15,7 +16,34 @@ const DoctorSignUp = () => {
   const [certificatePhoto, setCertificatePhoto] = useState('')
   const [address, setAddress] = useState('');
   const [hospitalOrClinic, setHospitalOrClinic] = useState('');
+  const [experience, setExperience] = useState('')
+  const [feesPerConsultation, setFeesPerConsultation] = useState('')
+  const [officeHoursStart, setOfficeHoursStart] = useState('');
+  const [officeHoursEnd, setOfficeHoursEnd] = useState('');
+  const [officeDays, setOfficeDays] = useState([]);
 
+  const handleOfficeHoursStartChange = (e) => {
+    setOfficeHoursStart(e.target.value);
+  };
+
+  const handleOfficeHoursEndChange = (e) => {
+    setOfficeHoursEnd(e.target.value);
+  };
+
+  const daysOfWeek = [
+    { value: 'Sunday', label: 'Sunday' },
+    { value: 'Monday', label: 'Monday' },
+    { value: 'Tuesday', label: 'Tuesday' },
+    { value: 'Wednesday', label: 'Wednesday' },
+    { value: 'Thursday', label: 'Thursday' },
+    { value: 'Friday', label: 'Friday' },
+    { value: 'Saturday', label: 'Saturday' },
+  ];
+
+  const handleOfficeDaysChange = (selectedOptions) => {
+    // Handle the selected office days
+    setOfficeDays(selectedOptions);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,9 +58,11 @@ const DoctorSignUp = () => {
     formData.append('address', address);
     formData.append('hospitalOrClinic', hospitalOrClinic);
     formData.append('certificatePhoto', certificatePhoto);
-
-
-    // Append other form data as needed
+    formData.append('experience', experience);
+    formData.append('feesPerConsultation', feesPerConsultation);
+    formData.append('officeHoursStart', officeHoursStart);
+    formData.append('officeHoursEnd', officeHoursEnd);
+    formData.append('officeDays', JSON.stringify(officeDays));
 
     try {
       console.log([...formData.entries()]);
@@ -205,11 +235,81 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
+              <label htmlFor='experience' className='form-label'>
+                Number of years of experience in the field of specialization
+              </label>
+              <input
+                type='number'
+                name='experience'
+                className='form-control'
+                required
+                value={experience}
+                onChange={(e) => setExperience(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label className='form-label'>Office Days</label>
+              <Select
+                name='officeDays'
+                options={daysOfWeek}
+                isMulti
+                value={officeDays}
+                onChange={handleOfficeDaysChange}
+              />
+            </div>
+
+
+            <div>
+              <label htmlFor='officeHours' className='form-label'>
+                Office Hours Start
+              </label>
+              <input
+                type='time'
+                name='officeHoursStart'
+                className='form-control'
+                required
+                value={officeHoursStart}
+                onChange={handleOfficeHoursStartChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor='officeHours' className='form-label'>
+                Office Hours End
+              </label>
+              <input
+                type='time'
+                name='officeHoursEnd'
+                className='form-control'
+                required
+                value={officeHoursEnd}
+                onChange={handleOfficeHoursEndChange}
+              />
+            </div>
+
+
+            <div>
+              <label htmlFor='feesPerConsultation' className='form-label'>
+                Fees Per Consultation
+              </label>
+              <input
+                type='number'
+                name='feesPerConsultation'
+                className='form-control'
+                required
+                value={feesPerConsultation}
+                onChange={(e) => setFeesPerConsultation(e.target.value)}
+              />
+            </div>
+
+
+            <div>
               <button
                 type='submit'
                 className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-center text-sm font-medium rounded-md text-blackauthc bg-pink-600 hover:bg-pink-700'
               >
-                Signup
+                Sign Up
               </button>
             </div>
           </form>
@@ -218,6 +318,14 @@ const DoctorSignUp = () => {
           <div className='flex items-center'>
             <h3 className='inline-block mr-2 px-4'>Already a doctor?</h3>
             <Link to='/doctor-login' className='text-pink-600 inline-block'>
+              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
+                Doctor Login
+              </button>
+            </Link>
+          </div>
+          <div className='flex items-center'>
+            <h3 className='inline-block mr-2 px-4'>Regular User?</h3>
+            <Link to='/login' className='text-pink-600 inline-block'>
               <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
                 Login
               </button>
