@@ -13,7 +13,7 @@ import sexIcon from '../icons/sexIcon.png';
 import painIcon from '../icons/painIcon.png';
 
 const LogSymptoms = () => {
-  const [selectedSubSymptoms, setSelectedSubSymptoms] = useState([]); // Add this line
+  const [selectedSubSymptoms, setSelectedSubSymptoms] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const navigate = useNavigate();
 
@@ -29,7 +29,6 @@ const LogSymptoms = () => {
   };
 
   const handleSubmit = () => {
-    // Logic to handle submitting selected symptoms
     console.log('Selected Symptoms:', selectedSubSymptoms);
     // Redirect to a different page after submission
     navigate('/symptoms-summary', {
@@ -66,7 +65,7 @@ const LogSymptoms = () => {
   return (
     <div>
       <div className="home-pagee">
-        <div className="log-symptoms-container">
+  <div className="log-symptoms-container">
           <h2>Select Symptoms</h2>
           <div className="category-grid">
             {categoryOptions.map((category, index) => (
@@ -95,3 +94,4 @@ const LogSymptoms = () => {
 };
 
 export default LogSymptoms;
+

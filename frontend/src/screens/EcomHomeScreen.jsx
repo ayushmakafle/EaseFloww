@@ -5,7 +5,7 @@ import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom';
 import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
-import Footer from '../components/Footer';
+import Footer from '../components/footer';
 import '../styles/MainNavbar.css';
 import styles from './../styles/styles';
 import { useCart } from '../context/cart';

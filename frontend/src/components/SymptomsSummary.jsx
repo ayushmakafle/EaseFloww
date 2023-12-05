@@ -1,6 +1,7 @@
 // SymptomsSummary.jsx
 
 import React from 'react';
+import './SymptomsSummary.css'; // Import the CSS file
 
 const SymptomsSummary = ({ selectedSymptoms, selectedDate }) => {
   const dateToDisplay = selectedDate ? selectedDate.toDateString() : 'No date selected';
@@ -8,7 +9,7 @@ const SymptomsSummary = ({ selectedSymptoms, selectedDate }) => {
   const suggestions = getSymptomSuggestions(selectedSymptoms);
 
   return (
-    <div>
+    <div className="symptoms-summary-container"> {/* Add the container class */}
       <h2>Symptoms Summary</h2>
       <p>Date: {dateToDisplay}</p>
       <h3>Selected Symptoms:</h3>
