@@ -10,7 +10,7 @@ const CartPage = () => {
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
 
-  // Total price
+    // Total price
   const totalPrice = () => {
     try {
       let total = 0;
@@ -26,7 +26,7 @@ const CartPage = () => {
     }
   };
 
-  // Delete item
+// Delete item
   const removeCartItem = (productId) => {
     try {
       let updatedCart = cart.filter((item) => item._id !== productId);
@@ -37,7 +37,7 @@ const CartPage = () => {
     }
   };
 
-  // Update quantity
+// Update quantity
   const updateQuantity = (productId, action) => {
     const updatedCart = cart.map((item) => {
       if (item._id === productId) {
@@ -58,113 +58,131 @@ const CartPage = () => {
       <MainNavbar />
       <EcomHeader />
 
-      <div className="row">
-        <div className="col-md-12">
-          <h1 className="text-center bg-light p-2 mb-1">
-            {`Hello ${auth?.token && auth?.user?.username}`}
-          </h1>
-          <h4 className="text-center">
-            {cart?.length
-              ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout"
-              }`
-              : " Your Cart Is Empty"}
-          </h4>
+      <div className="container mt-1">
+        <div className="row">
+          <div className="col-md-12">
+            <h1 className="text-center bg-light p-2 mb-1">
+              {`Hello ${auth?.token && auth?.user?.username}`}
+            </h1>
+            <h4 className="text-center">
+              {cart?.length
+                ? `You Have ${
+                    cart.length
+                  } items in your cart ${auth?.token ? "" : "please login to checkout"}`
+                : " Your Cart Is Empty"}
+            </h4>
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-md-8">
-          <table className="table table-bordered m-3">
-            <thead>
-              <tr>
-                <th scope="col">Image</th>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart?.map((p) => (
-                <tr key={p._id}>
-                  <td>
-                    <img
-                      src={`/api/v1/product/product-photo/${p._id}`}
-                      alt={p.name}
-                      width="100px"
-                      height="100px"
-                    />
-                  </td>
-                  <td>{p.name}</td>
-                  <td>NPR {p.price} /-</td>
-                  <td>
-                    <button onClick={() => updateQuantity(p._id, 'decrement')}>-</button>
-                    {p.numberOfItems}
-                    <button onClick={() => updateQuantity(p._id, 'increment')}>+</button>
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => removeCartItem(p._id)}
-                    >
-                      Remove
-                    </button>
-                  </td>
+        <div className="row">
+          <div className="col-md-8">
+            <table className="table table-bordered m-3">
+              <thead>
+                <tr>
+                  <th scope="col">Image</th>
+                  <th scope="col">Product</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {cart?.map((p) => (
+                  <tr key={p._id}>
+                    <td>
+                      <img
+                        src={`/api/v1/product/product-photo/${p._id}`}
+                        alt={p.name}
+                        width="100px"
+                        height="100px"
+                        className="img-fluid"
+                      />
+                    </td>
+                    <td>{p.name}</td>
+                    <td>NPR {p.price} /-</td>
+                    <td>
+                      <div className="d-flex align-items-center">
+                        <button
+                          className="btn btn-outline-secondary"
+                          onClick={() => updateQuantity(p._id, "decrement")}
+                        >
+                          -
+                        </button>
+                        <span className="mx-2">{p.numberOfItems}</span>
+                        <button
+                          className="btn btn-outline-secondary"
+                          onClick={() => updateQuantity(p._id, "increment")}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => removeCartItem(p._id)}
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-        <div className="col-md-4 text-center">
-          <h2 className="mb-4">Cart Summary</h2>
-          <p className="mb-3">Total | Checkout | Payment</p>
-          <hr className="mb-4" />
-          <h4 className="mb-2">Total: <span className="text-info font-weight-bold">{totalPrice()} /-</span></h4>
+          <div className="col-md-4 text-center">
+            <h2 className="mb-4">Cart Summary</h2>
+            <p className="mb-3">Total | Checkout | Payment</p>
+            <hr className="mb-4" />
+            <h4 className="mb-2">
+              Total:{" "}
+              <span className="text-info font-weight-bold">{totalPrice()} /-</span>
+            </h4>
 
-          {auth?.user?.address ? (
-            <>
+            {auth?.user?.address ? (
+              <>
+                <div className="mb-4">
+                  <h5 className="mb-2">Current Address :</h5>
+                  <h2 className="text-info">{auth?.user?.address}</h2>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => navigate("/dashboard/user/profile")}
+                  >
+                    Update Address
+                  </button>
+                  <button
+                    className="btn btn-primary mt-2"
+                    onClick={() => navigate("/checkout")}
+                  >
+                    Checkout
+                  </button>
+                </div>
+              </>
+            ) : (
               <div className="mb-4">
-                <h5 className="mb-2">Current Address :</h5>
-                <h2 className="text-info">{auth?.user?.address}</h2>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => navigate("/dashboard/user/profile")}
-                >
-                  Update Address
-                </button>
-                 <button
-                  className="btn btn-primary"
-                  onClick={() => navigate('/checkout')}
-                >
-                  Checkout
-                </button>
+                {auth?.token ? (
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => navigate("/dashboard/user/profile")}
+                  >
+                    Update Address
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-primary"
+                    onClick={() =>
+                      navigate("/login", {
+                        state: "/cart",
+                      })
+                    }
+                  >
+                    Please Login to Checkout
+                  </button>
+                )}
               </div>
-            </>
-          ) : (
-            <div className="mb-4">
-              {auth?.token ? (
-                <button
-                  className="btn btn-primary"
-                  onClick={() => navigate("/dashboard/user/profile")}
-                >
-                  Update Address
-                </button>
-              ) : (
-                <button
-                  className="btn btn-primary"
-                  onClick={() =>
-                    navigate("/login", {
-                      state: "/cart",
-                    })
-                  }
-                >
-                  Please Login to Checkout
-                </button>
-              )}
-            </div>
-          )}
+            )}
+          </div>
         </div>
-
       </div>
     </>
   );
