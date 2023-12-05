@@ -169,29 +169,43 @@ const EcomHomeScreen = () => {
             {products?.map((p) => (
               <Col key={p._id} xs={24} sm={12} md={8} lg={6}>
                 <div className="card" style={{ padding: '15px' }}>
-                <img
-                  src={`/api/v1/product/product-photo/${p._id}`}
-                  className="card-img-top"
-                  alt={p.name}
-                  style={{ height: '200px', objectFit: 'cover' }}
-                />
-                <div className="card-body">
-                  <h5 className="card-title" style={{ color: '#FF06BF' }}>
-                    {p.name.substring(0, 40)}</h5>
-                  <p className="card-text">
-                    {p.description.substring(0, 30)}...
-                  </p>
-                  <p className="card-text">
-                    NRs.{p.price}/-
-                  </p>
-                  <button className='btn btn-primary ms-1'
-                    onClick={() => navigate(`/product/${p.slug}`)}>
-                    More Details</button>
-                  <button className='btn btn-secondary' >
-                    <i className="fas fa-cart-shopping" ></i>
-                  </button>
+                  <img
+                    src={`/api/v1/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                    style={{ height: '200px', objectFit: 'cover' }}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title" style={{ color: '#FF06BF' }}>
+                      {p.name.substring(0, 40)}</h5>
+                    <p className="card-text">
+                      {p.description.substring(0, 30)}...
+                    </p>
+                    <p className="card-text">
+                      NRs.{p.price}/-
+                    </p>
+                    <button className='btn btn-primary ms-1'
+                      onClick={() => navigate(`/product/${p.slug}`)}>
+                      More Details</button>
+                    <button
+                      className="btn btn-secondary ms-1"
+                      onClick={() => {
+                        const updatedCart = [...cart];
+                        const existingProduct = updatedCart.find(item => item._id === p._id);
+                        if (existingProduct) {
+                          existingProduct.numberOfItems += 1;
+                        } else {
+                          updatedCart.push({ ...p, numberOfItems: 1 });
+                        }
+                        setCart(updatedCart);
+                        localStorage.setItem("cart", JSON.stringify(updatedCart));
+                        toast.success("Item Added to cart");
+                      }}
+                    >
+                      <i className="fas fa-cart-shopping"></i>
+                    </button>
+                  </div>
                 </div>
-              </div>
               </Col>
             ))}
           </Row>

@@ -36,6 +36,26 @@ const doctorSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    experience: {
+      type: Number,
+      required: true
+    },
+    feesPerConsultation: {
+      type: Number,
+      required: true,
+    }, 
+    officeHoursStart: {
+      type: String,
+      required: true,
+    },
+    officeHoursEnd: {
+      type: String,
+      required: true,
+    },
+    officeDays: {
+      type: [String], 
+      required: true,
+    },
     isApproved: {
       type: Boolean,
       default: false,

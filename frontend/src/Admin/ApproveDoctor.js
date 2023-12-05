@@ -9,6 +9,16 @@ const ApproveDoctors = () => {
   const [visible, setVisible] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
+  useEffect(() => {
+  // Fetch unapproved doctors from the server
+  fetchUnapprovedDoctors();
+}, []);
+
+useEffect(() => {
+  console.log('Unapproved Doctors:', unapprovedDoctors);
+}, [unapprovedDoctors]);
+
+
   const columns = [
     {
       title: 'Name',
@@ -50,6 +60,32 @@ const ApproveDoctors = () => {
         </Button>
       ),
     },
+   {
+    title: 'Experience',
+    dataIndex: 'experience',
+    key: 'experience',
+  },
+ {
+  title: 'Office Days',
+  dataIndex: 'officeDays',
+  key: 'officeDays',
+  render: (text, record) => (
+    <span>{record.officeDays.map(day => day.label).join(', ')}</span>
+  ),
+},
+  {
+    title: 'Office Hours',
+    dataIndex: 'officeHours',
+    key: 'officeHours',
+    render: (text, record) => (
+      <span>{`${record.officeHoursStart} - ${record.officeHoursEnd}`}</span>
+    ),
+  },
+  {
+    title: 'Fees Per Consultation',
+    dataIndex: 'feesPerConsultation',
+    key: 'feesPerConsultation',
+  },
     {
       title: 'Actions',
       key: 'actions',
@@ -132,7 +168,9 @@ const ApproveDoctors = () => {
           </div>
           <div className='col-md-9'>
             <h1>Approve EaseFlow Doctor Requests</h1>
+               <div style={{ overflowX: 'auto' }}>
             <Table dataSource={unapprovedDoctors} columns={columns} />
+            </div>
 
             <Modal
               title="Certificate"

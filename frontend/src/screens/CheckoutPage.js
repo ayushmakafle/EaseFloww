@@ -4,7 +4,7 @@ import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
 import axios from 'axios';
 
-const CheckoutPage = () => { 
+const CheckoutPage = () => {
 
   const [cart] = useCart();
 
@@ -17,25 +17,25 @@ const CheckoutPage = () => {
     return total;
   };
 
+  //khalti
   const [paymentData, setPaymentData] = useState({
     return_url: 'http://localhost:3000/payment/',
     website_url: 'http://localhost:3000/',
-    amount: calculateTotal(),
-    purchase_order_id: Math.random().toString(36).substring(2, 9),
+    amount: 1100,
+    purchase_order_id: 'asdfgh', // No initial purchase order ID
     purchase_order_name: 'test',
     customer_info: {
-      name: '',
-      email: '',
-      phone: '',
+      name: 'Ayushma Kafle',
+      email: 'ayushmaakafle@gmail.com',
+      phone: '9841420234',
     },
   });
 
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     // If the field is 'amount', parse the value to a number
     const newValue = name === 'amount' ? parseFloat(value) : value;
-
     setPaymentData((prevData) => ({
       ...prevData,
       customer_info: {
@@ -45,7 +45,7 @@ const CheckoutPage = () => {
     }));
   };
 
-  const handleKhaltiButtonClick = () => {
+   const handleKhaltiButtonClick = () => {
     // Generate a random purchase order ID
     const randomOrderId = Math.floor(Math.random() * 100).toString();
     
@@ -54,8 +54,8 @@ const CheckoutPage = () => {
       ...prevData,
       purchase_order_id: randomOrderId,
     }));
-
-    const backendEndpoint = 'http://localhost:3000/khalti-payment';
+    
+    const backendEndpoint = 'http://localhost:8080/khalti-payment';
 
     axios.post(backendEndpoint, paymentData, {
       headers: {
@@ -67,7 +67,6 @@ const CheckoutPage = () => {
         
         // Extract the payment URL from the response
         const paymentUrl = response.data.payment_url;
-
         // Redirect the user to the payment URL
         window.location.href = paymentUrl;
       })
@@ -77,7 +76,6 @@ const CheckoutPage = () => {
       });
   };
 
-
   return (
     <>
     <MainNavbar />
@@ -85,38 +83,39 @@ const CheckoutPage = () => {
     <div className='text-center border p-4 mt-4'>
       <h2 className='mb-4'>Please enter your details to proceed with payment</h2>
       <form>
-  <label>
+   <label>
     Name:
-    <input
-      type="text"
-      name="name"
-      value={paymentData.customer_info.name}
-      onChange={handleInputChange}
-    />
+   <input
+  type="text"
+  name="name"
+   value={paymentData.customer_info.name}
+            onChange={handleInputChange}
+/>
   </label>
   <br />
   <label>
     Phone:
     <input
-      type="tel"
-      name="phone"
-      value={paymentData.customer_info.phone}
-      onChange={handleInputChange}
-    />
+  type="tel"
+  name="phone"
+  value={paymentData.customer_info.phone}
+  onChange={handleInputChange}
+/>
   </label>
   <br />
   <label>
     Email:
-    <input
-      type="email"
-      name="email"
-      value={paymentData.customer_info.email}
-      onChange={handleInputChange}
-    />
+   <input
+  type="email"
+  name="email"
+  value={paymentData.customer_info.email}
+  onChange={handleInputChange}
+/>
   </label>
   <br />
   
 </form>
+
 
        <table className='table'>
         <thead>
