@@ -45,6 +45,7 @@ header{
   background: linear-gradient(109.6deg, #ef5e99 11.2%, #f38dbc 100.2% );
    height: 15vh;
   width:100%;
+ padding-bottom: 133px;
   
 }
 nav {
@@ -71,7 +72,7 @@ nav .logo{
   font-weight: 900;
   font-size: 40px;
   color: #ffffff;
-  margin-top: 20px;
+  margin-bottom: 32px;
 }
 
 nav ul{
@@ -79,6 +80,7 @@ nav ul{
   align-items: center;
   gap: 60px;
   list-style: none;
+  
   
 }
 
@@ -89,6 +91,7 @@ nav ul li {
   margin-top: 28px;
   color: #ffffff;
   text-decoration: none;
+  
  
 }
 
@@ -573,13 +576,4 @@ nav.mobile-nav{
       display: flex;
   }
 }
-
-
-
-
-
-
-
-
-
 

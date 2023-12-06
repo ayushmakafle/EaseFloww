@@ -25,7 +25,7 @@ const CheckoutPage = () => {
   const [paymentData, setPaymentData] = useState({
     return_url: 'http://localhost:3000/payment/',
     website_url: 'http://localhost:3000/',
-   amount: calculateTotal()*100,
+    amount: calculateTotal()*100,
     purchase_order_id: Math.random().toString(36).substring(2, 9),
     purchase_order_name: 'test',
     customer_info: {

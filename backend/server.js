@@ -12,7 +12,9 @@ import productRoutes from './routes/productsRoute.js';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
-import symptomsRoutes from './routes/SymptomsRoutes.js'; // Check if the file name and path are exact
+import symptomsRoutes from './routes/SymptomsRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import bodyParser from 'body-parser';
 
 import cors from 'cors';
 
@@ -23,14 +25,17 @@ const app = express(); //rest object
 
 //middlewares
 app.use(cors());
+app.use(bodyParser.json({ limit: '10mb' })); 
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(json());
 app.use(morgan('dev'));
 
 //routes
 app.use('/api/v1/auth',authRoutes);
-app.use("/api/v1/category", categoryRoutes);
+app.use("/api/v1/category", categoryRoutes)
 app.use("/api/v1/product",productRoutes)
 app.use("/api/v1/symptoms",symptomsRoutes)
+app.use("/api/v1/order",orderRoutes)
 
 app.post('/khalti-payment', async (req, res) => {
   try {

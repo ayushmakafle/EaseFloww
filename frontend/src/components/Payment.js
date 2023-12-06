@@ -1,4 +1,3 @@
-// PaymentComponent.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -20,7 +19,7 @@ const PaymentComponent = () => {
     };
 
     // Get data from URL
-    const amount = getUrlParameter('amount')/100;
+    const amount = getUrlParameter('amount') / 100;
     const purchaseOrderId = getUrlParameter('purchase_order_id');
     const transactionId = getUrlParameter('transaction_id');
     const pidx = getUrlParameter('pidx');
@@ -32,12 +31,52 @@ const PaymentComponent = () => {
       transactionId,
       pidx,
     });
+  }, []); // Empty dependency array means this effect runs once when the component mounts
 
+  // Function to send order details to the backend
+  const sendOrderDetails = () => {
+    // Retrieve user details from local storage
+    const storedUser = JSON.parse(localStorage.getItem('auth'))?.user;
+
+    // Retrieve order items from local storage
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Prepare order details
+    const orderDetails = {
+      User: storedUser?._id,
+      orderItems: storedCart,
+      paymentResult: {
+        id: paymentData.transactionId,
+        status: 'Completed',
+        update_time: new Date().toISOString(),
+        email_address: storedUser?.email,
+      },
+      totalPrice: paymentData.amount,
+      isPaid: true,
+      paidAt: new Date().toISOString(),
+      isDelivered: false,
+      DeliveredAt: null,
+      // ... other order details
+    };
+
+    // Make a POST request to send order details to the backend
+    axios.post('/api/v1/order/create-orders', orderDetails)
+      .then(response => {
+        console.log('Order details sent successfully:', response.data);
+        // Handle success if needed
+      })
+      .catch(error => {
+        console.error('Error sending order details:', error);
+        // Handle error if needed
+      });
+  };
+
+  useEffect(() => {
     // Make a POST request to Khalti API using pidx
-    if (pidx) {
+    if (paymentData.pidx) {
       const khaltiLookupEndpoint = '/khalti-verify';
 
-      axios.post(khaltiLookupEndpoint, { pidx }, {
+      axios.post(khaltiLookupEndpoint, { pidx: paymentData.pidx }, {
         headers: {
           'Authorization': `key 805eb6763170463489be3ba2b735cde0`,
           'Content-Type': 'application/json',
@@ -45,7 +84,13 @@ const PaymentComponent = () => {
       })
         .then(response => {
           console.log('Khalti Lookup Response:', response.data);
-          console.log(response.data.status)
+          console.log(response.data.status);
+
+          if (response.data.status === 'Completed') {
+            // Automatically send order details when status is 'Completed'
+            sendOrderDetails();
+          }
+
           // Handle the Khalti API response here
         })
         .catch(error => {
@@ -53,7 +98,7 @@ const PaymentComponent = () => {
           // Handle the error here
         });
     }
-  }, []); // Empty dependency array means this effect runs once when the component mounts
+  }, [paymentData.pidx]);
 
   return (
     <div>

@@ -43,9 +43,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 //import ProductScreen from './ProductScreen';
 import EcomHeader from '../components/EcomHeader';
-import Footer from '../components/footer';
-import '../styles/MainNavbar.css';
-import styles from './../styles/styles';
+// import MainNavbar from '../components/Navbar';
+import { Checkbox, Radio, Col } from 'antd'
+import { Prices } from '../components/Prices';
+import { useNavigate } from 'react-router-dom'
+import MainNavbar from '../components/Navbar';
+//import footer from '../components/footer';
 import { useCart } from '../context/cart';
 import { toast } from 'react-toastify'
 import MainFooter from '../components/footer';

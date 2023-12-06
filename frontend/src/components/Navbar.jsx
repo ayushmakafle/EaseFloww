@@ -43,49 +43,49 @@ const MainNavbar = () => {
       <div className="wrapper">
         <Navbar expand="lg">
           <div className='logo'>
-            <Nav.Link href='/'>EASEFLOW</Nav.Link>
+            <Nav.Link href="/">EASEFLOW</Nav.Link>
             <Navbar.Toggle aria-controls="navbarNav" />
           </div>
           {/* <Navbar.Collapse id="navbarNav"> */}
-            <Nav className="ml-auto">
-              <ul>
+          <Nav className="ml-auto">
+            <ul>
+              <li>
+                <Nav.Link href="#"> Appointment</Nav.Link>
+              </li>
+              <li>
+                <Nav.Link href="#">Queries!</Nav.Link>
+              </li>
+              <li>
+                <Nav.Link as={Link} to="/ecommerce">Our Products</Nav.Link>
+              </li>
+              {!auth.user ? (
                 <li>
-                  <Nav.Link href="#"> Appointment</Nav.Link>
+                  <Nav.Link as={Link} to="/login" className="active">
+                    <i className="fa-solid fa-user"></i> Profile
+                  </Nav.Link>
                 </li>
+              ) : (
                 <li>
-                  <Nav.Link href="#">Queries!</Nav.Link>
+                  <NavDropdown title={<i className="fa-solid fa-user"></i>} id="navbarDropdown">
+                    <NavDropdown.Item as={Link} to={`/dashboard/${auth?.user?.role === 1 ? 'admin' :
+                      (auth?.user?.role === 2 ? 'doctor' : 'user')
+                      }`}>DashBoard
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/logout" onClick={handleLogout}>Logout</NavDropdown.Item>
+                  </NavDropdown>
                 </li>
-                <li>
-                  <Nav.Link as={Link} to="/ecommerce">Our Products</Nav.Link>
-                </li>
-                {!auth.user ? (
-                  <li>
-                    <Nav.Link as={Link} to="/login" className="active">
-                      <i className="fa-solid fa-user"></i> Profile
-                    </Nav.Link>
-                  </li>
-                ) : (
-                  <li>
-                    <NavDropdown title={<i className="fa-solid fa-user"></i>} id="navbarDropdown">
-                      <NavDropdown.Item as={Link} to={`/dashboard/${auth?.user?.role === 1 ? 'admin' :
-                        (auth?.user?.role === 2 ? 'doctor' : 'user')
-                        }`}>DashBoard
-                      </NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to="/logout" onClick={handleLogout}>Logout</NavDropdown.Item>
-                    </NavDropdown>
-                  </li>
-                )}
-                <li>
+              )}
+              <li>
                 <LinkContainer to='/cart' className='p-4 m-4'>
-              <Badge count={cart?.length} showZero>
-                <Nav.Link as={Link} to='/cart'>
-                  <i className="fa-solid fa-cart-shopping"></i> </Nav.Link>
-              </Badge>
-            </LinkContainer>
-                 
-                </li>
-              </ul>
-            </Nav>
+                  <Badge count={cart?.length} showZero>
+                    <Nav.Link as={Link} to='/cart'>
+                      <i className="fa-solid fa-cart-shopping"></i> </Nav.Link>
+                  </Badge>
+                </LinkContainer>
+
+              </li>
+            </ul>
+          </Nav>
           {/* </Navbar.Collapse> */}
         </Navbar>
       </div>
