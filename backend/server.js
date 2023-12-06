@@ -32,7 +32,6 @@ app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product",productRoutes)
 app.use("/api/v1/symptoms",symptomsRoutes)
 
-//khalti
 app.post('/khalti-payment', async (req, res) => {
   try {
     console.log('Received JSON:', req.body);
@@ -40,7 +39,7 @@ app.post('/khalti-payment', async (req, res) => {
       ...req.body,
     }, {
       headers: {
-        'Authorization': `key ${process.env.KHALTI_SECRET_KEY}`,
+        'Authorization': 'key 805eb6763170463489be3ba2b735cde0',
         'Content-Type': 'application/json',
       },
     });

@@ -14,6 +14,9 @@ const CheckoutPage = () => {
     cart?.forEach((item) => {
       total += item.price * item.numberOfItems;
     });
+        console.log(total)
+        console.log(typeof total)
+
     return total;
   };
 
@@ -21,13 +24,13 @@ const CheckoutPage = () => {
   const [paymentData, setPaymentData] = useState({
     return_url: 'http://localhost:3000/payment/',
     website_url: 'http://localhost:3000/',
-    amount: 1100,
-    purchase_order_id: 'asdfgh', // No initial purchase order ID
+   amount: calculateTotal()*100,
+    purchase_order_id: Math.random().toString(36).substring(2, 9),
     purchase_order_name: 'test',
     customer_info: {
-      name: 'Ayushma Kafle',
-      email: 'ayushmaakafle@gmail.com',
-      phone: '9841420234',
+     name: '',
+      email: '',
+      phone: '',
     },
   });
 

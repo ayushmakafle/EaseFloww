@@ -9,6 +9,9 @@ import Footer from '../components/footer';
 import '../styles/MainNavbar.css';
 import styles from './../styles/styles';
 import { useCart } from '../context/cart';
+import { toast } from 'react-toastify'
+
+
 const EcomHomeScreen = () => {
 
   const [cart, setCart] = useCart()
@@ -123,7 +126,7 @@ const EcomHomeScreen = () => {
 
   return (
     <>
-      {/* <MainNavbar /> */}
+      <MainNavbar />
       <EcomHeader />
 
       <div className="container-fluid row mt-3">
