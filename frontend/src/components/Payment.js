@@ -20,7 +20,7 @@ const PaymentComponent = () => {
     };
 
     // Get data from URL
-    const amount = getUrlParameter('amount');
+    const amount = getUrlParameter('amount')/100;
     const purchaseOrderId = getUrlParameter('purchase_order_id');
     const transactionId = getUrlParameter('transaction_id');
     const pidx = getUrlParameter('pidx');
@@ -35,16 +35,17 @@ const PaymentComponent = () => {
 
     // Make a POST request to Khalti API using pidx
     if (pidx) {
-      const khaltiLookupEndpoint = 'https://a.khalti.com/api/v2/epayment/lookup/';
+      const khaltiLookupEndpoint = '/khalti-verify';
 
       axios.post(khaltiLookupEndpoint, { pidx }, {
         headers: {
-          'Authorization': `key ${process.env.KHALTI_PUBLIC_KEY}`,
+          'Authorization': `key 805eb6763170463489be3ba2b735cde0`,
           'Content-Type': 'application/json',
         },
       })
         .then(response => {
           console.log('Khalti Lookup Response:', response.data);
+          console.log(response.data.status)
           // Handle the Khalti API response here
         })
         .catch(error => {

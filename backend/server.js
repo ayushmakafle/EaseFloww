@@ -59,7 +59,7 @@ app.post('/khalti-verify',async(req,res) => {
       ...req.body,
     }, {
       headers: {
-        'Authorization': `key ${process.env.KHALTI_PUBLIC_KEY}`,
+        'Authorization': `key 805eb6763170463489be3ba2b735cde0`,
         'Content-Type': 'application/json',
       },
     });
