@@ -59,7 +59,7 @@ import SearchInput from './Form/SearchInput';
 import useCategory from '../hooks/useCategory';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/cart';
-import { Avatar, Badge } from 'antd'
+import { Avatar, Badge } from 'antd';
 
 const EcomHeader = () => {
   const categories = useCategory()
@@ -75,7 +75,8 @@ const EcomHeader = () => {
             <li>
               <SearchInput />
             </li>
-            <NavDropdown title="Categories" id="basic-nav-dropdown">
+            <li>
+              <NavDropdown title="Categories" id="basic-nav-dropdown">
               <>
                 <LinkContainer to='/categories'>
                   <NavDropdown.Item>All Categories</NavDropdown.Item>
@@ -87,13 +88,15 @@ const EcomHeader = () => {
                 ))}
               </>
             </NavDropdown>
-
+            </li>
+            
+{/* 
             <LinkContainer to='/cart' className='p-4 m-4'>
               <Badge count={cart?.length} showZero>
                 <Nav.Link to='/cart'>
                   <i className="fa-solid fa-cart-shopping"></i> </Nav.Link>
               </Badge>
-            </LinkContainer>
+            </LinkContainer> */}
             <li>
               <Nav.Link href="/whyshophere">Why Shop at EaseFlow?</Nav.Link>
             </li>

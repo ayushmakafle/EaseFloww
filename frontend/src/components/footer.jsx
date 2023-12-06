@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import '../styles/MainNavbar.css';
-const Footer = () => {
+const MainFooter = () => {
     return (
         <>
     <footer>
@@ -59,4 +59,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default MainFooter;
