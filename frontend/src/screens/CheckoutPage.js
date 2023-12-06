@@ -3,6 +3,7 @@ import { useCart } from '../context/cart';
 import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
 import axios from 'axios';
+import '../styles/CheckoutPage.css';
 
 const CheckoutPage = () => { 
 
