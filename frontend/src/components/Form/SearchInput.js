@@ -18,19 +18,26 @@ const SearchInput = () => {
       console.log(error);
     }
   };
-
   return (
     <>
       <form className="d-flex mx-auto" role="search" onSubmit={handleSubmit}>
         <input
-          className="form-control me-2"
+          className="form-control me-1"
           type="search"
           placeholder="Search"
           aria-label="Search"
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
-        <button className="btn btn-primary" type="submit">
+        <button
+          className="btn btn-primary"
+          type="submit"
+          style={{
+            padding: '0 10px',
+            backgroundColor: '#ef5e99',
+            fontSize: '18px', // Adjust the font size as needed
+          }}
+        >
           Search
         </button>
       </form>
