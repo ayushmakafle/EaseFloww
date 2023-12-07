@@ -80,8 +80,11 @@ const BookingPage = () => {
                         moment(values[1]).format('HH:mm')
                     ])} 
                 />
-                <button className="check-availability-btn">
+                <button className="check-availability-btn m-1">
                     Check Availability
+                </button>
+                 <button className="check-availability-btn">
+                    Book Now
                 </button>
             </div>
         </div>
