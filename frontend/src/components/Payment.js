@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import MainNavbar from './Navbar';
+import EcomHeader from './EcomHeader';
+import MainFooter from './footer';
+import {useNavigate} from 'react-router-dom'
 
 const PaymentComponent = () => {
+
+  const navigate= useNavigate();
+
   const [paymentData, setPaymentData] = useState({
     amount: 0,
     purchaseOrderId: '',
@@ -89,6 +96,7 @@ const PaymentComponent = () => {
           if (response.data.status === 'Completed') {
             // Automatically send order details when status is 'Completed'
             sendOrderDetails();
+            navigate('/paysuccess')
           }
 
           // Handle the Khalti API response here
@@ -101,6 +109,9 @@ const PaymentComponent = () => {
   }, [paymentData.pidx]);
 
   return (
+    <>
+    <MainNavbar />
+    <EcomHeader />
     <div>
       <h2>Payment Details</h2>
       <p>Amount: {paymentData.amount}</p>
@@ -108,6 +119,8 @@ const PaymentComponent = () => {
       <p>Transaction ID: {paymentData.transactionId}</p>
       <p>Pidx: {paymentData.pidx}</p>
     </div>
+    <MainFooter />
+    </>
   );
 };
 
