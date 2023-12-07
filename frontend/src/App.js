@@ -110,6 +110,9 @@ import DoctorRoute from './components/Routes/DoctorRoute';
 import DoctorDashboard from './Doctor/DoctorDashboard';
 import DoctorProfile from './Doctor/DoctorProfile';
 import EaseFlowDoctors from './Admin/EaseFlowDoctors';
+import AppointmentHomePage from './screens/AppointmentHomePage';
+import AllDoctors from './screens/AllDoctors';
+import BookingPage from './screens/BookingPage';
 
 function App() {
 
@@ -165,6 +168,10 @@ function App() {
           <Route path="/doctor-login" element={<DoctorLoginPage />} />
           <Route path="/doctorsignup" element={<DoctorSignUpPage />} />
           
+          <Route path="/appointment-homepage" element={<AppointmentHomePage />} />
+          <Route path='/all-doctors' element={<AllDoctors />}/>
+          <Route path = "/book-appointment/:doctorId" element={<BookingPage />} />
+
         </Routes>
         <ToastContainer />
       </main>
