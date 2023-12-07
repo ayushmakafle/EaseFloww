@@ -64,6 +64,12 @@ router.post('/doctor-login',authController.doctorLoginController);
 //get doctor
 router.get('/get-doctor',authController.getDoctorsController)
 
+//get users
+router.get('/get-user',authController.getUsersController)
+
+//update profile
+router.put('/update-doctor-profile',requireSignIn,authController.updateDoctorProfileController)
+
 //test
 //router.get('/test',requireSignIn,isDoctor,authController.testController)
 

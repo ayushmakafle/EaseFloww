@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import MainNavbar from './Navbar';
+import EcomHeader from './EcomHeader';
+import MainFooter from './footer';
+import {useNavigate} from 'react-router-dom'
 
 const PaymentComponent = () => {
+
+  const navigate= useNavigate();
+
   const [paymentData, setPaymentData] = useState({
     amount: 0,
     purchaseOrderId: '',
@@ -38,8 +45,8 @@ const PaymentComponent = () => {
     // Retrieve user details from local storage
     const storedUser = JSON.parse(localStorage.getItem('auth'))?.user;
 
-    // Retrieve order items from local storage
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+     // Retrieve order items from local storage
+  const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Prepare order details
     const orderDetails = {
@@ -63,8 +70,9 @@ const PaymentComponent = () => {
     axios.post('/api/v1/order/create-orders', orderDetails)
       .then(response => {
         console.log('Order details sent successfully:', response.data);
-        // Handle success if needed
-      })
+ // Remove cart details from local storage after successful order creation
+      localStorage.removeItem('cart');      
+    })
       .catch(error => {
         console.error('Error sending order details:', error);
         // Handle error if needed
@@ -89,6 +97,7 @@ const PaymentComponent = () => {
           if (response.data.status === 'Completed') {
             // Automatically send order details when status is 'Completed'
             sendOrderDetails();
+            navigate('/paysuccess')
           }
 
           // Handle the Khalti API response here
@@ -101,6 +110,9 @@ const PaymentComponent = () => {
   }, [paymentData.pidx]);
 
   return (
+    <>
+    <MainNavbar />
+    <EcomHeader />
     <div>
       <h2>Payment Details</h2>
       <p>Amount: {paymentData.amount}</p>
@@ -108,6 +120,8 @@ const PaymentComponent = () => {
       <p>Transaction ID: {paymentData.transactionId}</p>
       <p>Pidx: {paymentData.pidx}</p>
     </div>
+    <MainFooter />
+    </>
   );
 };
 
