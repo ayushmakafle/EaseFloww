@@ -12,7 +12,7 @@ import productRoutes from './routes/productsRoute.js';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
-import symptomsRoutes from './routes/SymptomsRoutes.js';
+// import symptomsRoutes from './routes/SymptomsRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import bodyParser from 'body-parser';
 
@@ -34,7 +34,7 @@ app.use(morgan('dev'));
 app.use('/api/v1/auth',authRoutes);
 app.use("/api/v1/category", categoryRoutes)
 app.use("/api/v1/product",productRoutes)
-app.use("/api/v1/symptoms",symptomsRoutes)
+// app.use("/api/v1/symptoms",symptomsRoutes)
 app.use("/api/v1/order",orderRoutes)
 
 app.post('/khalti-payment', async (req, res) => {
