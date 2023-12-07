@@ -1,3 +1,4 @@
+import axios from 'axios';
 import express, { json } from 'express';
 //import { errorHandler } from './middlewares/errorMiddleware';
 // import { json } from 'express'; // Ensure you import 'json' separately
@@ -11,7 +12,9 @@ import productRoutes from './routes/productsRoute.js';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
-import symptomsRoutes from './routes/SymptomsRoutes.js'; // Check if the file name and path are exact
+import symptomsRoutes from './routes/SymptomsRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import bodyParser from 'body-parser';
 
 import cors from 'cors';
 
@@ -22,16 +25,18 @@ const app = express(); //rest object
 
 //middlewares
 app.use(cors());
+app.use(bodyParser.json({ limit: '10mb' })); 
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(json());
 app.use(morgan('dev'));
 
 //routes
 app.use('/api/v1/auth',authRoutes);
-app.use("/api/v1/category", categoryRoutes);
+app.use("/api/v1/category", categoryRoutes)
 app.use("/api/v1/product",productRoutes)
 app.use("/api/v1/symptoms",symptomsRoutes)
+app.use("/api/v1/order",orderRoutes)
 
-//khalti
 app.post('/khalti-payment', async (req, res) => {
   try {
     console.log('Received JSON:', req.body);
@@ -39,7 +44,7 @@ app.post('/khalti-payment', async (req, res) => {
       ...req.body,
     }, {
       headers: {
-        'Authorization': `key ${process.env.KHALTI_SECRET_KEY}`,
+        'Authorization': 'key 805eb6763170463489be3ba2b735cde0',
         'Content-Type': 'application/json',
       },
     });
@@ -59,7 +64,7 @@ app.post('/khalti-verify',async(req,res) => {
       ...req.body,
     }, {
       headers: {
-        'Authorization': `key ${process.env.KHALTI_PUBLIC_KEY}`,
+        'Authorization': `key 805eb6763170463489be3ba2b735cde0`,
         'Content-Type': 'application/json',
       },
     });

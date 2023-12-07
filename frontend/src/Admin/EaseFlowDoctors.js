@@ -66,7 +66,7 @@ const EaseFlowDoctors = () => {
             <AdminMenu />
         </div>
         <div className='col-md-9'>
-            <h1>Approve EaseFlow Doctor Requests</h1>
+            <h1>EaseFlow Doctors</h1>
             <Table dataSource={doctors} columns={columns} />
         </div>
     </div>

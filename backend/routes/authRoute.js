@@ -61,8 +61,14 @@ router.delete('/deny-doctor/:did', authController.denyDoctorController);
 //doctor login route
 router.post('/doctor-login',authController.doctorLoginController);
 
-//get products
+//get doctor
 router.get('/get-doctor',authController.getDoctorsController)
+
+//get users
+router.get('/get-user',authController.getUsersController)
+
+//update profile
+router.put('/update-doctor-profile',requireSignIn,authController.updateDoctorProfileController)
 
 //test
 //router.get('/test',requireSignIn,isDoctor,authController.testController)

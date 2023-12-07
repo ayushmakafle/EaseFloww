@@ -67,6 +67,8 @@ import 'react-calendar/dist/Calendar.css';
 //import Navbar from './components/Navbar';
 import HomepageScreen from './screens/HomepageScreen';
 import LogSymptoms from './screens/LogSymptoms';
+import SymptomsSummary from './components/SymptomsSummary';
+
 import CartPage from './screens/CartPage'; 
 import EcomHeader from './components/EcomHeader'; 
 import EcomHomeScreen from './screens/EcomHomeScreen';
@@ -77,6 +79,7 @@ import LoginPage from './screens/Auth/LoginPage';
 import SignUpPage from './screens/Auth/SignUpPage';
 import DoctorLoginPage from './screens/DoctorLoginPage';
 import DoctorSignUpPage from './screens/DoctorSignUpPage';
+
 //import Cart from './screens/Cart'; 
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -102,7 +105,7 @@ import LandingPage from './screens/LandingPage';
 import SuccessPage from './components/Success';
 import PaymentComponent from './components/Payment';
 import ApproveDoctors from './Admin/ApproveDoctor';
-import EmailVerified from './user/EmailVerified';
+// import EmailVerified from './user/EmailVerified';
 import DoctorRoute from './components/Routes/DoctorRoute';
 import DoctorDashboard from './Doctor/DoctorDashboard';
 import DoctorProfile from './Doctor/DoctorProfile';
@@ -117,9 +120,11 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/homepage" element={<HomeScreenPage/>} />
           <Route path="/log-symptoms" element={<LogSymptoms />} />
+        <Route path="/symptoms-summary" element={<SymptomsSummary />} />
 
           <Route path='/cart' element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+
           <Route path ='/payment' element={<PaymentComponent/>} />
           <Route path ='/paysuccess' element={<SuccessPage />}/>
 

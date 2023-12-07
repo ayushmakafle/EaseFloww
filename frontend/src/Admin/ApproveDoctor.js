@@ -9,6 +9,16 @@ const ApproveDoctors = () => {
   const [visible, setVisible] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
+  useEffect(() => {
+  // Fetch unapproved doctors from the server
+  fetchUnapprovedDoctors();
+}, []);
+
+useEffect(() => {
+  console.log('Unapproved Doctors:', unapprovedDoctors);
+}, [unapprovedDoctors]);
+
+
   const columns = [
     {
       title: 'Name',
@@ -50,6 +60,34 @@ const ApproveDoctors = () => {
         </Button>
       ),
     },
+   {
+    title: 'Experience',
+    dataIndex: 'experience',
+    key: 'experience',
+  },
+   {
+    title: 'Office Days',
+    dataIndex: 'officeDays',
+    key: 'officeDays',
+    render: (text, record) => (
+      <span>
+        {JSON.parse(record.officeDays).map(day => day.label).join(', ')}
+      </span>
+    ),
+  },
+  {
+    title: 'Office Hours',
+    dataIndex: 'officeHours',
+    key: 'officeHours',
+    render: (text, record) => (
+      <span>{`${record.officeHoursStart} - ${record.officeHoursEnd}`}</span>
+    ),
+  },
+  {
+    title: 'Fees Per Consultation',
+    dataIndex: 'feesPerConsultation',
+    key: 'feesPerConsultation',
+  },
     {
       title: 'Actions',
       key: 'actions',
@@ -66,10 +104,35 @@ const ApproveDoctors = () => {
     },
   ];
 
-  const handleViewCertificate = (doctor) => {
-    setSelectedDoctor(doctor);
-    setVisible(true);
-  };
+const handleViewCertificate = async (doctor) => {
+  try {
+    // Fetch the certificate photo using the doctor's ID
+    const response = await axios.get(`/api/v1/auth/unapproved-photo/${doctor._id}`, {
+      responseType: 'arraybuffer',
+    });
+
+    console.log('Response:', response); // Log the entire response object
+
+    if (response.status === 200) {
+      // Convert the image data to a base64 string using Uint8Array
+      const imageData = btoa(
+        new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
+      );
+      
+      // Show the modal and update the state of selectedDoctor with the certificate photo data
+      setVisible(true);
+      setSelectedDoctor({
+        ...doctor,
+        certificatePhoto: {
+          ...doctor.certificatePhoto,
+          data: imageData,
+        },
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching certificate photo:', error.message);
+  }
+};
 
   const handleApproveDoctor = async (doctor) => {
     try {
@@ -132,7 +195,9 @@ const ApproveDoctors = () => {
           </div>
           <div className='col-md-9'>
             <h1>Approve EaseFlow Doctor Requests</h1>
+               <div style={{ overflowX: 'auto' }}>
             <Table dataSource={unapprovedDoctors} columns={columns} />
+            </div>
 
             <Modal
               title="Certificate"
@@ -152,7 +217,7 @@ const ApproveDoctors = () => {
                   style={{ width: '100%' }}
                 />
               )}
-            </Modal>
+              </Modal>
           </div>
         </div>
       </div>

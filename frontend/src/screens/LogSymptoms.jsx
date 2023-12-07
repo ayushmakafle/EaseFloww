@@ -1,27 +1,27 @@
 // LogSymptoms.jsx
 
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
+// import Navbar from '../components/Navbar';
 
 import './LogSymptoms.css';
-import { useNavigate } from 'react-router-dom';
 
 // Import your icons for each sub-symptom
 import menstrualFlowIcon from '../icons/menstrualFlowIcon.png';
 import moodIcon from '../icons/moodIcon.png';
 import sexIcon from '../icons/sexIcon.png';
-
 import painIcon from '../icons/painIcon.png';
 
 const LogSymptoms = () => {
   const [selectedSubSymptoms, setSelectedSubSymptoms] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const navigate = useNavigate();
 
   const handleSubSymptomSelect = (subSymptom) => {
-    setSelectedSubSymptoms(prevSelected => {
+    setSelectedSubSymptoms((prevSelected) => {
       const isSelected = prevSelected.includes(subSymptom);
       if (isSelected) {
-        return prevSelected.filter(item => item !== subSymptom);
+        return prevSelected.filter((item) => item !== subSymptom);
       } else {
         return [...prevSelected, subSymptom];
       }
@@ -29,17 +29,21 @@ const LogSymptoms = () => {
   };
 
   const handleSubmit = () => {
-    // Logic to handle submitting selected symptoms
     console.log('Selected Symptoms:', selectedSubSymptoms);
     // Redirect to a different page after submission
-    navigate('/success'); // Replace '/success' with your desired route
+    navigate('/symptoms-summary', {
+      state: {
+        selectedSymptoms: selectedSubSymptoms,
+        selectedDate: selectedDate,
+      },
+    });
   };
 
   const categoryOptions = [
     {
       name: 'Menstrual Flow',
       icon: menstrualFlowIcon,
-      subSymptoms: ['Light Flow', 'Heavy Flow', 'Gushing Flow', 'Moderate Flow', 'Spotty Flow', 'Clotting Flow', 'Irregular Flow',],
+      subSymptoms: ['Light Flow', 'Heavy Flow', 'Gushing Flow', 'Moderate Flow', 'Spotty Flow', 'Clotting Flow', 'Irregular Flow'],
     },
     {
       name: 'Sex and sex drive',
@@ -59,12 +63,9 @@ const LogSymptoms = () => {
   ];
 
   return (
-    
     <div>
-     
       <div className="home-pagee">
-
-        <div className="log-symptoms-container">
+  <div className="log-symptoms-container">
           <h2>Select Symptoms</h2>
           <div className="category-grid">
             {categoryOptions.map((category, index) => (
@@ -93,3 +94,4 @@ const LogSymptoms = () => {
 };
 
 export default LogSymptoms;
+
