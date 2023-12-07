@@ -216,7 +216,7 @@ export const updateProfileController = async (req, res) => {
     const user = await userModel.findById(req.user._id);
     //password
     if (password && password.length < 6) {
-      return res.json({ error: "Passsword is required and 6 character long" });
+      return res.json({ error: "Password is required and 6 character long" });
     }
     const hashedPassword = password ? await hashPassword(password) : undefined;
     const updatedUser = await userModel.findByIdAndUpdate(
@@ -366,7 +366,7 @@ export const certificatePhotoController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Erorr while getting certificate photo",
+      message: "Error while getting certificate photo",
       error,
     });
   }
@@ -426,7 +426,6 @@ export const approveDoctorController = async (req, res) => {
 
      // Send approval email to the doctor
     await sendDoctorApprovalEmail(updatedDoctor.name, updatedDoctor.email, updatedDoctor._id, true);
-
 
     res.status(200).json({
       success: true,
@@ -590,14 +589,75 @@ export const getDoctorsController = async (req, res) => {
     });
   }
 };
+
+//fetch all users
+export const getUsersController = async (req, res) => {
+  try {
+  const users = await userModel.find({ role: 0, isEmailVerified: 1 });
+
+    res.status(200).json({
+      success: true,
+      user: users,
+    });
+  } catch (error) {
+    console.error('Error fetching all users:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+};
 //test controller
 /* export const testController = (req,res) => {
   res.send('protected route')
 } */
 
+//update profile
+export const updateDoctorProfileController = async (req, res) => {
+  try {
+    const { username, email, password, address, phonenumber,specialization,hospitalOrClinic,experience,feesPerConsultation,
+    officeHoursStart,officeHoursEnd,officeDays } = req.body;
+    const user = await DoctorModel.findById(req.user._id);
+    //password
+    if (password && password.length < 6) {
+      return res.json({ error: "Password is required and 6 character long" });
+    }
+    const hashedPassword = password ? await hashPassword(password) : undefined;
+    const updatedUser = await userModel.findByIdAndUpdate(
+      req.user._id,
+      {
+        username: username || user.username,
+        password: hashedPassword || user.password,
+        phonenumber: phonenumber || user.phonenumber,
+        address: address || user.address,
+        specialization:specialization || user.specialization,
+        hospitalOrClinic:hospitalOrClinic || user.hospitalOrClinic,
+        experience:experience || user.experience,
+        feesPerConsultation:feesPerConsultation||user.feesPerConsultation,
+        officeHoursStart:officeHoursStart||user.officeHoursStart,
+        officeHoursEnd:officeHoursEnd||user.officeHoursEnd,
+        officeDays:officeDays||user.officeDays
+      },
+      { new: true }
+    );
+    return res.status(200).send({
+      success: true,
+      message: "Profile Updated Successfully",
+      updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).send({
+      success: false,
+      message: "Error While Updating profile",
+      error,
+    });
+  }
+};
 
 
 export default { registerController, loginController,forgotPasswordController,updateProfileController,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
-denyDoctorController,doctorLoginController, userVerifyMail ,doctorVerifyMail, getDoctorsController};
+denyDoctorController,doctorLoginController, userVerifyMail ,doctorVerifyMail, getDoctorsController,getUsersController
+ ,updateDoctorProfileController};
   
