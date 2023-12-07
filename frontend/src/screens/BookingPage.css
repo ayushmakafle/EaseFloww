@@ -1,0 +1,56 @@
+/* Add this style to your CSS file or in a style tag if using inline styles */
+.doctor-details {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.doctor-details h1 {
+  margin-bottom: 10px;
+}
+
+.doctor-specialization {
+  margin-bottom: 20px;
+}
+
+.hospital-info {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.office-info {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.fees {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.date-time-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.date-picker,
+.time-picker {
+  margin-bottom: 10px;
+}
+
+.check-availability-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

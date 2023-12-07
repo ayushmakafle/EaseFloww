@@ -32,7 +32,7 @@ const DoctorCard = ({ doctor }) => {
         <div className="office-hours">
           Office Hours: {officeHoursStart} - {officeHoursEnd}
         </div>
-        <div className="fees">{`Fees per Consultation: $${feesPerConsultation}`}</div>
+        <div className="fees">{`Fees per Consultation: NRs. ${feesPerConsultation}/-`}</div>
         <div className="office-days">
           {extractedOfficeDays.length > 0 ? `Office Days: ${extractedOfficeDays.join(', ')}` : 'No Office Days'}
         </div>
