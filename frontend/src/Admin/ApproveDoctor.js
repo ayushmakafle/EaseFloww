@@ -65,14 +65,16 @@ useEffect(() => {
     dataIndex: 'experience',
     key: 'experience',
   },
- {
-  title: 'Office Days',
-  dataIndex: 'officeDays',
-  key: 'officeDays',
-  render: (text, record) => (
-    <span>{record.officeDays.map(day => day.label).join(', ')}</span>
-  ),
-},
+   {
+    title: 'Office Days',
+    dataIndex: 'officeDays',
+    key: 'officeDays',
+    render: (text, record) => (
+      <span>
+        {JSON.parse(record.officeDays).map(day => day.label).join(', ')}
+      </span>
+    ),
+  },
   {
     title: 'Office Hours',
     dataIndex: 'officeHours',
