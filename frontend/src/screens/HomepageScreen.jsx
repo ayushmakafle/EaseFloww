@@ -45,18 +45,18 @@ const HomepageScreen = () => {
     calculatePeriodDates(value);
   }, [value]);
 
-  const handleLogSymptoms = () => {
-    navigate('/log-symptoms'); // Use navigate directly here
-  };
+  // const handleLogSymptoms = () => {
+  //   navigate('/log-symptoms'); // Use navigate directly here
+  // };
   return (
     <>
     <MainNavbar />
     <div className="home-page">
       <div className="calendar-container">
         <Calendar tileClassName={tileClassName} />
-        <button className="log-button" onClick={handleLogSymptoms}>
+        {/* <button className="log-button" onClick={handleLogSymptoms}>
           Log symptoms
-        </button>
+        </button> */}
 
       </div>
 
