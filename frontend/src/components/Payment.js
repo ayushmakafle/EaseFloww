@@ -45,8 +45,8 @@ const PaymentComponent = () => {
     // Retrieve user details from local storage
     const storedUser = JSON.parse(localStorage.getItem('auth'))?.user;
 
-    // Retrieve order items from local storage
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+     // Retrieve order items from local storage
+  const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Prepare order details
     const orderDetails = {
@@ -70,8 +70,9 @@ const PaymentComponent = () => {
     axios.post('/api/v1/order/create-orders', orderDetails)
       .then(response => {
         console.log('Order details sent successfully:', response.data);
-        // Handle success if needed
-      })
+ // Remove cart details from local storage after successful order creation
+      localStorage.removeItem('cart');      
+    })
       .catch(error => {
         console.error('Error sending order details:', error);
         // Handle error if needed
