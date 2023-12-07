@@ -156,10 +156,8 @@ function App() {
             <Route path = 'doctor/doctor-profile' element={<DoctorProfile />} />
           </Route>
 
-
-          <Route path="/doctor-login" element={<DoctorLoginPage />} />
+          <Route path="/doctorlogin" element={<DoctorLoginPage />} />
           <Route path="/doctorsignup" element={<DoctorSignUpPage />} />
-          
         </Routes>
         <ToastContainer />
       </main>
