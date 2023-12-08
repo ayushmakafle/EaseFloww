@@ -50,7 +50,7 @@ const MainNavbar = () => {
           <Nav className="ml-auto">
             <ul>
               <li>
-                <Nav.Link href="#"> Appointment</Nav.Link>
+                <Nav.Link as={Link} to='/appointment-homepage'> Appointment</Nav.Link>
               </li>
               <li>
                 <Nav.Link href="#">Queries!</Nav.Link>

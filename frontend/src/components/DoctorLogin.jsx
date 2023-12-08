@@ -161,78 +161,37 @@ const DoctorLogin = () => {
               <label htmlFor='exampleInputEmail1' className='form-label mt-4'>
                 Email
               </label>
-              <input
-                type='text'
-                name='email'
-                className='form-control focus:border-pink-500 bg-pink-100'
-                id='exampleInputEmail1'
-                aria-describedby='emailHelp'
-                placeholder='Enter your email'
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className='form-group'>
-              <label htmlFor='exampleInputPassword1' className='form-label mt-4'>
-                Password
-              </label>
-              <input
-                className='form-control focus:border-pink-500 bg-pink-100'
-                id='exampleInputPassword1'
-                placeholder='Password'
-                type={visible ? 'text' : 'password'}
-                name='password'
-                autoComplete='current-password'
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {visible ? (
-                <AiOutlineEye
-                  className='absolute right-2 top-2 cursor-pointer'
-                  size={25}
-                  onClick={() => setVisible(false)}
-                />
-              ) : (
-                <AiOutlineEyeInvisible
-                  className='absolute right-2 top-2 cursor-pointer'
-                  size={25}
-                  onClick={() => setVisible(true)}
-                />
-              )}
+            </div> 
+            <div class="form-group">
+              <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+              <input class="form-control focus:border-pink-500 bg-pink-100" id="exampleInputPassword1" placeholder="Password" type={visible ? "text" : "password"} name="password" autoComplete='current-password' required
+                value={password} onChange={(e) => setPassword(e.target.value)} />
+              {
+                visible ? (
+                  <AiOutlineEye className='absolute right-2 top-2 cursor-pointer' size={25} onClick={() => setVisible(false)} />
+                ) : (
+                  <AiOutlineEyeInvisible className='absolute right-2 top-2 cursor-pointer' size={25} onClick={() => setVisible(true)} />
+                )
+              }
             </div>
             <div className={`${styles.noramlFlex} justify-between`}>
               <div className={`${styles.noramlFlex}`}>
-                <input
-                  type='checkbox'
-                  name='remember-me'
-                  id='remember-me'
-                  className='h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded'
-                />
-                <label htmlFor='remember-me' className='ml-2 block text-sm text-gray-900'>
-                  Remember me
-                </label>
+                <input type="checkbox" name="remember-me" id="remember-me"
+                  className='h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded' />
+                <label htmlFor='remember-me' className='ml-2 block text-sm text-gray-900'>Remember me</label>
               </div>
-              <div className='text-sm' style={{ marginLeft: '175px' }}>
-                <a href='.' className='font-medium text-pink-600 hover:text-pink-500'>
-                  Forgot your password?
-                </a>
+              <div className="text-sm" style={{ marginLeft: '175px' }}>
+                <a href=".forget-password" className='font-medium text-pink-600 hover:text-pink-500' />
+                <div>
+                  <button type="submit" className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700'>
+                    Login to your site
+                  </button>
+                </div>
+                <div className={`${styles.noramlFlex} w-full`} >
+                  <h4>New to EaseFlow? </h4>
+                  <Link to="/doctorsignup" className="text-pink-600 pl-2" style={{ marginLeft: '145px' }}>Sign Up</Link>
+                </div>
               </div>
-            </div>
-            <div>
-              <button
-                type='submit'
-                className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700'
-              >
-                Login to your site
-              </button>
-            </div>
-            <div className={`${styles.noramlFlex} w-full`}>
-              <h4>New to EaseFlow? </h4>
-              <Link to='/doctorsignup' className='text-pink-600 pl-2' style={{ marginLeft: '145px' }}>
-                Sign Up
-              </Link>
             </div>
           </form>
         </div>

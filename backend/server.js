@@ -14,6 +14,7 @@ import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 // import symptomsRoutes from './routes/SymptomsRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
+import appointmentRoute from './routes/appointmentRoute.js'
 import bodyParser from 'body-parser';
 
 import cors from 'cors';
@@ -36,6 +37,7 @@ app.use("/api/v1/category", categoryRoutes)
 app.use("/api/v1/product",productRoutes)
 // app.use("/api/v1/symptoms",symptomsRoutes)
 app.use("/api/v1/order",orderRoutes)
+app.use("/api/v1/appointment",appointmentRoute)
 
 app.post('/khalti-payment', async (req, res) => {
   try {
