@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import MainNavbar from '../components/Navbar';
 import AdminMenu from './AdminMenu';
-import { Table, Space } from 'antd';
+import axios from 'axios';
+import { Table } from 'antd';
 
-const EaseFlowCustomers = () => {
-  const [order, setOrders] = useState([]);
+const EaseFlowOrders = () => {
+  const [orders, setOrders] = useState([]);
 
   const columns = [
     {
@@ -13,11 +13,11 @@ const EaseFlowCustomers = () => {
       dataIndex: 'user',
       key: 'user',
       render: user => (
-        <Space size="middle">
-          <span>{user.username}</span>
-          <span>{user.email}</span>
+        <div>
+          <p>{user.username}</p>
+          <p>{user.email}</p>
           {/* Add more user details if needed */}
-        </Space>
+        </div>
       ),
     },
     {
@@ -25,7 +25,7 @@ const EaseFlowCustomers = () => {
       dataIndex: 'orderItems',
       key: 'orderItems',
       render: orderItems => (
-        <Space size="middle">
+        <div>
           {orderItems.map(item => (
             <div key={item._id}>
               <p>Name: {item.name}</p>
@@ -34,7 +34,7 @@ const EaseFlowCustomers = () => {
               <p>Product: {item.Product.name}</p>
             </div>
           ))}
-        </Space>
+        </div>
       ),
     },
     {
@@ -42,11 +42,11 @@ const EaseFlowCustomers = () => {
       dataIndex: 'paymentResult',
       key: 'paymentResult',
       render: paymentResult => (
-        <Space size="middle">
+        <div>
           <p>ID: {paymentResult.id}</p>
           <p>Status: {paymentResult.status}</p>
           {/* Add more payment result details if needed */}
-        </Space>
+        </div>
       ),
     },
     {
@@ -76,26 +76,40 @@ const EaseFlowCustomers = () => {
     },
   ];
 
-  // EaseFlowOrders Component
-const fetchEaseFlowOrders = async () => {
-  try {
-    const response = await axios.get('/api/v1/order/get-easeflow-orders');
-    console.log('Backend Response:', response);
-
-    if (response.data.success) {
-      setOrders(response.data.orders);
-    } else {
-      console.error('Error fetching EaseFlow orders:', response.data.message);
+  const fetchEaseFlowOrders = async () => {
+    try {
+      // Use the correct endpoint to fetch all orders with successful payments
+      const response = await axios.get('/api/v1/order/all-orders');
+      
+      if (response.data.success) {
+        const ordersWithUsers = response.data.orders.map(order => ({
+          key: order._id,
+          user: {
+            username: order.User.username,
+            email: order.User.email,
+          },
+          orderItems: order.orderItems,
+          paymentResult: order.paymentResult,
+          totalPrice: order.totalPrice,
+          isPaid: order.isPaid,
+          paidAt: order.paidAt,
+          isDelivered: order.isDelivered,
+          deliveredAt: order.deliveredAt,
+        }));
+  
+        setOrders(ordersWithUsers);
+      } else {
+        console.error('Error fetching EaseFlow orders:', response.data.message);
+      }
+    } catch (error) {
+      console.error('Error fetching EaseFlow orders:', error.message);
     }
-  } catch (error) {
-    console.error('Error fetching EaseFlow orders:', error.message);
-  }
-};
+  };
+  
 
-useEffect(() => {
-  fetchEaseFlowOrders();
-}, []);
-
+  useEffect(() => {
+    fetchEaseFlowOrders();
+  }, []);
 
   return (
     <>
@@ -107,8 +121,8 @@ useEffect(() => {
             <AdminMenu />
           </div>
           <div className='col-md-9'>
-            <h1>All EaseFlow Customers</h1>
-            <Table dataSource={order} columns={columns} />
+            <h1>All EaseFlow Orders</h1>
+            <Table dataSource={orders} columns={columns} />
           </div>
         </div>
       </div>
@@ -116,4 +130,4 @@ useEffect(() => {
   );
 };
 
-export default EaseFlowCustomers
+export default EaseFlowOrders;
