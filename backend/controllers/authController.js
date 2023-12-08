@@ -171,43 +171,43 @@ export const loginController = async (req, res) => {
   }
 }
 
-//forgot password
-export const forgotPasswordController = async (req, res) => {
-  try {
-    const { email, answer, newPassword } = req.body;
-    if (!email) {
-      return res.status(400).send({ message: "email is required" });
-    }
-    if (!answer) {
-      return res.status(400).send({ message: "answer is required" });
-    }
-    if (!newPassword) {
-      return res.status(400).send({ message: "new password is required" });
-    }
-    //check
-    const user = await UserModel.findOne({ email, answer });
-    //validation
-    if (!user) {
-     return res.status(404).send({
-        success: false,
-        message: 'wrong email or answer'
-      });
-    }
-    const hashed = await hashPassword(newPassword);
-    await userModel.findByIdAndUpdate(user._id, { password: hashed });
-    return res.status(200).send({
-      success: true,
-      message: 'password reset successful'
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(400).send({
-      success: false,
-      message: 'something went wrong',
-      error
-    });
-  }
-};
+// //forgot password
+// export const forgotPasswordController = async (req, res) => {
+//   try {
+//     const { email, answer, newPassword } = req.body;
+//     if (!email) {
+//       return res.status(400).send({ message: "email is required" });
+//     }
+//     if (!answer) {
+//       return res.status(400).send({ message: "answer is required" });
+//     }
+//     if (!newPassword) {
+//       return res.status(400).send({ message: "new password is required" });
+//     }
+//     //check
+//     const user = await UserModel.findOne({ email, answer });
+//     //validation
+//     if (!user) {
+//      return res.status(404).send({
+//         success: false,
+//         message: 'wrong email or answer'
+//       });
+//     }
+//     const hashed = await hashPassword(newPassword);
+//     await userModel.findByIdAndUpdate(user._id, { password: hashed });
+//     return res.status(200).send({
+//       success: true,
+//       message: 'password reset successful'
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(400).send({
+//       success: false,
+//       message: 'something went wrong',
+//       error
+//     });
+//   }
+// };
 
 //update profile
 export const updateProfileController = async (req, res) => {
@@ -682,7 +682,7 @@ export const updateDoctorProfileController = async (req, res) => {
 };
 
 
-export default { registerController, loginController,forgotPasswordController,updateProfileController,
+export default { registerController, loginController,updateProfileController,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
 denyDoctorController,doctorLoginController, userVerifyMail ,doctorVerifyMail, getDoctorsController,getUsersController
  ,updateDoctorProfileController,getSingleDoctorController};

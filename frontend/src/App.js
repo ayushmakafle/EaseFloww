@@ -81,7 +81,7 @@ import DoctorSignUpPage from './screens/DoctorSignUpPage';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from './components/Routes/Private';
-import ForgotPassword from './screens/ForgotPassword';
+// import ForgotPassword from './screens/ForgotPassword';
 import UserDashboard from './user/UserDashboard';
 import AdminRoute from './components/Routes/AdminRoute';
 import AdminDashboard from './Admin/AdminDashboard';
@@ -89,6 +89,7 @@ import CreateCategory from './Admin/CreateCategory';
 import CreateProduct from './Admin/CreateProduct';
 import EaseFlowUsers from './Admin/EaseFlowUsers';
 import Orders from './user/Orders';
+
 import Profile from './user/Profile';
 import Appointments from './user/Appointments';
 import Products from './Admin/Products';
@@ -124,6 +125,7 @@ function App() {
 
           <Route path ='/payment' element={<PaymentComponent/>} />
           <Route path ='/paysuccess' element={<SuccessPage />}/>
+        <Route path="/dashboard/user/orders" component={Orders} />
 
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/ecommerce" element={<EcomHomeScreen />} />
@@ -132,7 +134,7 @@ function App() {
           <Route path ='/category/:slug' element={<CategoryProduct/>}/>
 
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+          {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
           <Route path="/signup" element={<SignUpPage />} />
           
           <Route path ='/dashboard' element={<PrivateRoute />}>

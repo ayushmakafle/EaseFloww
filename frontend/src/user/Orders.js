@@ -94,93 +94,86 @@
 
 // export default OrderConfirmation;
 import React, { useState, useEffect } from 'react';
-import MainNavbar from '../components/Navbar';
 import axios from 'axios';
 
-const MyOrders = () => {
+const OrderHistory = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    // Fetch orders from the server when the component mounts
-    fetchOrders();
+    // Fetch user orders when the component mounts
+    fetchUserOrders();
   }, []);
 
-  const fetchOrders = async () => {
+  const fetchUserOrders = async () => {
     try {
-      // Fetch orders specific to the logged-in user
-      const response = await axios.get('/api/v1/orders/user-orders'); // Use the correct API endpoint
+      // Make a GET request to fetch user orders
+      const response = await axios.get('/user/orders');
+
+      // Set the retrieved orders in the state
       setOrders(response.data.orders);
     } catch (error) {
-      console.error('Error fetching orders:', error);
+      console.error('Error fetching user orders:', error);
     }
   };
 
   return (
-    <>
-      <MainNavbar />
-      <div className="container mt-5">
-        <div className="card">
-          <div className="card-header bg-primary text-white text-center">
-            <h2 className="mb-0">My Orders</h2>
-          </div>
-          <div className="card-body">
-            {orders.length === 0 ? (
-              <p>No orders found.</p>
-            ) : (
-              orders.map((order) => (
-                <div key={order._id} className="mb-4">
-                  <h4>Order Details</h4>
-                  <div className="mb-3">
-                    <strong>User:</strong> {order.User}
-                  </div>
-                  <div className="mb-3">
-                    <strong>Order Items:</strong>
-                    <table className="table table-bordered table-hover">
-                      <thead className="thead-dark">
-                        <tr>
-                          <th>Product Name</th>
-                          <th>Quantity</th>
-                          <th>Price</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {order.orderItems.map((item) => (
-                          <tr key={item.Product}>
-                            <td>{item.name}</td>
-                            <td>{item.qyt}</td>
-                            <td>NPR {item.price.toFixed(2)} /-</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                  <div className="mb-3">
-                    <strong>Total Price:</strong> NPR {order.totalPrice.toFixed(2)} /-
-                  </div>
-                  <div className="mb-3">
-                    <strong>Is Paid:</strong> {order.isPaid ? 'Yes' : 'No'}
-                  </div>
-                  {order.isPaid && (
-                    <div className="mb-3">
-                      <strong>Paid At:</strong> {new Date(order.paidAt).toLocaleString()}
-                    </div>
-                  )}
-                  <div className="mb-3">
-                    <strong>Is Delivered:</strong> {order.isDelivered ? 'Yes' : 'No'}
-                  </div>
-                  {order.isDelivered && (
-                    <div className="mb-3">
-                      <strong>Delivered At:</strong> {new Date(order.DeliveredAt).toLocaleString()}
-                    </div>
-                  )}
-                </div>
-              ))
+    <div>
+      <h2>Your Order History</h2>
+      {orders.length === 0 ? (
+        <p>No orders found.</p>
+      ) : (
+        orders.map((order) => (
+          <div key={order._id}>
+            <h3>Order Details</h3>
+            <p>
+              <strong>Order ID:</strong> {order._id}
+            </p>
+            <p>
+              <strong>Total Price:</strong> {order.totalPrice.toFixed(2)} /-
+            </p>
+            <p>
+              <strong>Is Paid:</strong> {order.isPaid ? 'Yes' : 'No'}
+            </p>
+            {order.isPaid && (
+              <p>
+                <strong>Paid At:</strong> {new Date(order.paidAt).toLocaleString()}
+              </p>
             )}
+            <p>
+              <strong>Is Delivered:</strong> {order.isDelivered ? 'Yes' : 'No'}
+            </p>
+            {order.isDelivered && (
+              <p>
+                <strong>Delivered At:</strong> {new Date(order.DeliveredAt).toLocaleString()}
+              </p>
+            )}
+
+            <h4>Product Details</h4>
+            <table className="table table-bordered table-hover">
+              <thead className="thead-dark">
+                <tr>
+                  <th>Product Name</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {order.orderItems.map((item) => (
+                  <tr key={item.Product._id}>
+                    <td>{item.Product.name}</td>
+                    <td>{item.qyt}</td>
+                    <td>NPR {item.price} /-</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </div>
-      </div>
-    </>
+        ))
+      )}
+    </div>
   );
 };
 
-export default MyOrders;
+export default OrderHistory;
+
+
