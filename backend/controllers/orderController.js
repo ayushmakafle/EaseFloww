@@ -93,6 +93,8 @@ export async function createOrder(req, res) {
   }
 }
 
+// Import necessary modules and dependencies
+
 export async function getUserOrders(req, res) {
   try {
     const userId = req.user._id; // Assuming you have middleware to extract the user ID from the request
@@ -100,10 +102,10 @@ export async function getUserOrders(req, res) {
     // Fetch orders for the logged-in user
     const orders = await OrderModel.find({ User: userId }).populate('orderItems.Product', 'name price');
 
-    res.status(200).json({ orders });
+    res.status(200).json({ success: true, orders });
   } catch (error) {
     console.error('Error fetching user orders:', error);
-    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+    res.status(500).json({ success: false, error: 'Internal Server Error', details: error.message });
   }
 }
 

@@ -17,6 +17,7 @@
 // Import necessary modules and dependencies
 import express from 'express';
 import { createOrder, getUserOrders } from '../controllers/orderController.js';
+import { requireSignIn } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -26,11 +27,10 @@ router.use((req, res, next) => {
 });
 
 // Order creation
-router.post('/create-orders', createOrder);
+router.post('/create-orders', requireSignIn, createOrder);
 
 // User route to get their order details
-router.get('/orders/:userId', getUserOrders);
+router.get('/orders', requireSignIn, getUserOrders);
 
 // Export the router
 export default router;
-

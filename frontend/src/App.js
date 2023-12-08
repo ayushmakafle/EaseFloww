@@ -89,6 +89,7 @@ import CreateCategory from './Admin/CreateCategory';
 import CreateProduct from './Admin/CreateProduct';
 import EaseFlowUsers from './Admin/EaseFlowUsers';
 import Orders from './user/Orders';
+import EaseFlowOrders from './Admin/EaseFlowOrders';
 
 import Profile from './user/Profile';
 import Appointments from './user/Appointments';
@@ -151,6 +152,8 @@ function App() {
             <Route path ='admin/product/:slug' element={<UpdateProduct/>}/>
             <Route path ='admin/products' element={<Products/>}/>
             <Route path ='admin/users' element={<EaseFlowUsers/>}/>
+            <Route path ='admin/orders' element={<EaseFlowOrders/>}/>
+
             <Route path ='admin/doctors' element={<EaseFlowDoctors/>}/>
             <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
           </Route>
