@@ -205,34 +205,29 @@ const EcomHomeScreen = () => {
           <h3 className="text-center"> All Products</h3>
           <div className="d-flex flex-wrap">
           {products?.map((p) => (
-  <div className="card m-2" style={{ position: 'relative', width: '450px', height: '400px', padding: '15px' }}>
-    <img 
-      src={`/api/v1/product/product-photo/${p._id}`}
-      className="card-img-top"
-      alt={p.name}
-      style={{ width: '50%', objectFit: 'cover' }}
-    />
-    <div className="card-body">
-      <h5 className="card-title" style={{ color: '#FF06BF' }}>
-        {p.name.substring(0, 40)}
-      </h5>
-      <p className="card-text">
-        {p.description.substring(0, 30)}...
-      </p>
-    </div>
-    <div style={{ position: 'absolute', bottom: '15px', left: '15px', right: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <button className='btn btn-primary' onClick={() => navigate(`/product/${p.slug}`)}>
-        More Details
-      </button>
-      <button className='btn btn-secondary' onClick={() => { setCart([...cart, p]); toast.success('Item added to cart'); }}>
-        <i className="fas fa-cart-shopping"></i>
-      </button>
-    </div>
-  </div>
+              <div className="card m-2" style={{ width: '450px', height: '450px', padding: '15px' }}>
+              <img
+                src={`/api/v1/product/product-photo/${p._id}`}
+                className="card-img-top"
+                alt={p.name}
+                style={{ height: '200px', objectFit: 'cover' }}
+              />
+              <div className="card-body">
+                <h5 className="card-title" style={{ color: '#FF06BF' }}>
+                  {p.name.substring(0, 40)}</h5>
+                <p className="card-text">
+                  {p.description.substring(0, 30)}...
+                </p>
+                <p className="card-text">
+                  NRs.{p.price}/-
+                </p>
+                <button className='btn btn-primary ms-1'onClick={() => navigate(`/product/${p.slug}`)}>More Details</button>
+                <button className='btn btn-secondary' onClick={() => { setCart([...cart, p]); toast.success('Item added to cart'); }}>
+                  <i className="fas fa-cart-shopping"></i>
+                </button>
+              </div>
+            </div>
 ))}
-
-
-            
           </div>
           <div className='m-2 p-3'>
             {products && products.length < total && (

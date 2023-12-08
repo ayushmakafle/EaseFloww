@@ -31,6 +31,7 @@ const Search = () => {
                   <p className="card-text">
                     NRs.{p.price}/-
                   </p>
+                  
                   <button className='btn btn-primary ms-1'>More Details</button>
                   <button className='btn btn-secondary'>
                     <i className="fas fa-cart-shopping"></i>

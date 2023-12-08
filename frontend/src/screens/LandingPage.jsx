@@ -16,7 +16,7 @@ const LandingPage = () => {
             <p>
               Learn more about your cycle with us.
             </p>
-            <Nav.Link as={Link} to="/homepage" className="btn light">Learn More about Us</Nav.Link>
+            <Nav.Link as={Link} to="/homepage" className="btn light">Learn More about Your Cycle</Nav.Link>
           </div>
           <div className="right">
             <img src="images/calenderbg.jpg" alt="" />
