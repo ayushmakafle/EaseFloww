@@ -44,10 +44,10 @@ const PaymentComponent = () => {
   const sendOrderDetails = () => {
     // Retrieve user details from local storage
     const storedUser = JSON.parse(localStorage.getItem('auth'))?.user;
-
-     // Retrieve order items from local storage
-  const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-
+  
+    // Retrieve order items from local storage
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+  
     // Prepare order details
     const orderDetails = {
       User: storedUser?._id,
@@ -63,7 +63,6 @@ const PaymentComponent = () => {
       paidAt: new Date().toISOString(),
       isDelivered: false,
       DeliveredAt: null,
-      // ... other order details
     };
 
     // Make a POST request to send order details to the backend
