@@ -64,6 +64,9 @@ router.post('/doctor-login',authController.doctorLoginController);
 //get doctor
 router.get('/get-doctor',authController.getDoctorsController)
 
+//get single doctor
+router.get('/get-doctor/:doctorId',authController.getSingleDoctorController)
+
 //get users
 router.get('/get-user',authController.getUsersController)
 

@@ -66,9 +66,6 @@ import 'react-calendar/dist/Calendar.css';
 // import Footer from './components/Footer';
 //import Navbar from './components/Navbar';
 import HomepageScreen from './screens/HomepageScreen';
-import LogSymptoms from './screens/LogSymptoms';
-import SymptomsSummary from './components/SymptomsSummary';
-
 import CartPage from './screens/CartPage'; 
 import EcomHeader from './components/EcomHeader'; 
 import EcomHomeScreen from './screens/EcomHomeScreen';
@@ -110,6 +107,9 @@ import DoctorRoute from './components/Routes/DoctorRoute';
 import DoctorDashboard from './Doctor/DoctorDashboard';
 import DoctorProfile from './Doctor/DoctorProfile';
 import EaseFlowDoctors from './Admin/EaseFlowDoctors';
+import AppointmentHomePage from './screens/AppointmentHomePage';
+import AllDoctors from './screens/AllDoctors';
+import BookingPage from './screens/BookingPage';
 
 function App() {
 
@@ -119,9 +119,6 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/homepage" element={<HomeScreenPage/>} />
-          <Route path="/log-symptoms" element={<LogSymptoms />} />
-        <Route path="/symptoms-summary" element={<SymptomsSummary />} />
-
           <Route path='/cart' element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
 
@@ -163,6 +160,11 @@ function App() {
 
           <Route path="/doctorlogin" element={<DoctorLoginPage />} />
           <Route path="/doctorsignup" element={<DoctorSignUpPage />} />
+          
+          <Route path="/appointment-homepage" element={<AppointmentHomePage />} />
+          <Route path='/all-doctors' element={<AllDoctors />}/>
+          <Route path = "/book-appointment/:doctorId" element={<BookingPage />} />
+
         </Routes>
         <ToastContainer />
       </main>

@@ -590,6 +590,32 @@ export const getDoctorsController = async (req, res) => {
   }
 };
 
+//fetch single doctor
+export const getSingleDoctorController = async (req, res) => {
+  try {
+    const doctorId = req.params.doctorId;
+    const doctor = await DoctorModel.findById(doctorId);
+    if (!doctor) {
+      return res.status(404).json({
+        success: false,
+        message: 'Doctor not found',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Single doctor fetched',
+      data: doctor,
+    });
+  } catch (error) {
+    console.error('Error fetching one doctor', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+};
+
 //fetch all users
 export const getUsersController = async (req, res) => {
   try {
@@ -659,5 +685,5 @@ export const updateDoctorProfileController = async (req, res) => {
 export default { registerController, loginController,forgotPasswordController,updateProfileController,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
 denyDoctorController,doctorLoginController, userVerifyMail ,doctorVerifyMail, getDoctorsController,getUsersController
- ,updateDoctorProfileController};
+ ,updateDoctorProfileController,getSingleDoctorController};
   

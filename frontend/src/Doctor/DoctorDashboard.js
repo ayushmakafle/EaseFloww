@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import DoctorNavbar from './DoctorNavbar';
+import '../styles/MainNavbar.css';
 
 const DoctorDashboard = () => {
   return (
@@ -14,6 +15,9 @@ const DoctorDashboard = () => {
         <NavLink to="/dashboard/doctor/doctor-profile" className="btn light">
           View your profile
         </NavLink>
+        {/* <div className="right">
+            <img src="images/calenderbg.jpg" alt="" />
+          </div> */}
       </div>
     </div>
     </>

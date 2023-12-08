@@ -12,7 +12,7 @@ const orderSchema = Schema({
                 type:String,
                 required:true
             },
-            qyt:{
+            qty:{
                 type:Number,
                 required: true
             },

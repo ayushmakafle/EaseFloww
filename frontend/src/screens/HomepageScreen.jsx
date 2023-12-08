@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import MainNavbar from '../components/Navbar';
 import Footer from '../components/footer';
-import './HomepageScreen.css'; 
+import './HomepageScreen.css';
 
 const HomepageScreen = () => {
   const contentData = [
