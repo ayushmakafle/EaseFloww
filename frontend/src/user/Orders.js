@@ -24,12 +24,14 @@ const OrderConfirmation = () => {
       <div className="container mt-5">
         <div className="card">
           <div className="card-header bg-primary text-white text-center">
-            <h2 className="mb-0">Order Confirmation</h2>
+          <h2 className="mb-0" style={{ color: '#ffc0cb', fontSize: '36px', fontWeight: 'bold' }}>
+  Order Confirmation
+</h2>
           </div>
           <div className="card-body">
             <div className="row">
               <div className="col-md-12">
-                <h4 className="mb-3">Order Details</h4>
+                <h1 className="mb-3">Order Details</h1>
                 <div className="mb-3">
                   <strong>Order Number/ID:</strong> {orderDetails.orderId}
                 </div>
