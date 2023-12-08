@@ -54,7 +54,7 @@ const userVerifyMail = async(req,res) => {
 //user register
 const registerController = async (req, res) => {
   try {
-    const { username, email, password, phonenumber, address,answer } = req.body;
+    const { username, email, password, phonenumber, address} = req.body;
     //validations
     if (!username) {
       return res.send({ message: "Name is Required" });
@@ -71,9 +71,6 @@ const registerController = async (req, res) => {
     if (!address) {
       return res.send({ message: "Address is Required" });
     }    
-    if (!answer) {
-      return res.send({ message: "Answer is Required" });
-    }
     //check if user exists
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
@@ -90,7 +87,6 @@ const registerController = async (req, res) => {
       phonenumber,
       address,
       password: hashedPassword,
-      answer,
     }).save();
 
     // Wait for the email to be sent before responding

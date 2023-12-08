@@ -12,7 +12,6 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [phonenumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
-  const [answer, setAnswer] = useState('');
 
   const navigate = useNavigate();
   //form function
@@ -43,7 +42,6 @@ const SignUp = () => {
         password,
         phonenumber,
         address,
-        answer,
       });
 
       if (res.data.success) {
