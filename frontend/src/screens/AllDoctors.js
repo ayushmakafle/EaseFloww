@@ -32,7 +32,7 @@ const AllDoctors = () => {
 
       <div className="doctor-cards-container" style={{cursor:'pointer'}}>
         {doctors.map((doctor) => (
-          <Link key={doctor._id} to={`/book-appointment/${doctor._id}`}>
+          <Link key={doctor._id} to={`/book-appointment/${doctor._id}`} style={{textDecoration:'none'}}>
             <DoctorCard doctor={doctor} />
           </Link>
         ))}

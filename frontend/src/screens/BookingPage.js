@@ -5,13 +5,18 @@ import { useParams } from 'react-router-dom';
 import { DatePicker, TimePicker } from 'antd';
 import moment from 'moment'; //js library to parse,validate,manipulate date object
 import './BookingPage.css';
+import { useAuth } from '../context/auth';
+import {toast} from 'react-toastify';
 
 const BookingPage = () => {
+
+    const params = useParams()
+    const [auth] = useAuth()
 
   const [doctor, setDoctor] = useState(null);
   const { doctorId } = useParams();
   const [date,setDate] = useState()
-  const [timings,setTimings] = useState()
+  const [time,setTime] = useState()
   const [isAvailable,setIsAvailable] = useState()
 
 
@@ -28,9 +33,28 @@ const BookingPage = () => {
         console.error('Error fetching doctor:', error.message);
       }
     };
-
     fetchDoctor();
   }, [doctorId]);
+
+  const handleBooking = async () => {
+  try {
+    const res = await axios.post(`/api/v1/appointment/book-appointment`, {
+      doctorID: params.doctorId, // Ensure it's "doctorID" instead of "doctorId"
+      userID: auth.user._id,
+      doctorInfo: doctor,
+      userInfo: auth.user,
+      date: date,
+      time: time && time.join(' - ') // Check if time is defined before calling join
+    });
+
+    if (res.data.success) {
+      toast.success(res.data.message);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
   // Render loading state
   if (!doctor) {
@@ -75,7 +99,7 @@ const BookingPage = () => {
                 />
                 <TimePicker.RangePicker className="time-picker" 
                     format="HH:mm" 
-                    onChange={(values) => setTimings([
+                    onChange={(values) => setTime([
                         moment(values[0]).format('HH:mm'), 
                         moment(values[1]).format('HH:mm')
                     ])} 
@@ -83,13 +107,13 @@ const BookingPage = () => {
                 <button className="check-availability-btn m-1">
                     Check Availability
                 </button>
-                 <button className="check-availability-btn">
+                 <button className="check-availability-btn" onClick={handleBooking}>
                     Book Now
                 </button>
             </div>
         </div>
     </>
-  );
+ );
 };
 
 export default BookingPage;
