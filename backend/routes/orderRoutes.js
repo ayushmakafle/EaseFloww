@@ -48,6 +48,25 @@ router.get('/all-orders', async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 });
+router.put('/update-delivery/:orderId', async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { isDelivered } = req.body;
+
+    // Update the delivery status and set deliveredAt if isDelivered is true
+    const update = {
+      isDelivered,
+      deliveredAt: isDelivered ? new Date() : null,
+    };
+
+    const updatedOrder = await OrderModel.findByIdAndUpdate(orderId, update, { new: true });
+
+res.json({ success: true, updatedOrder, deliveredAt: update.deliveredAt });
+  } catch (error) {
+    console.error('Error updating delivery status:', error);
+    res.status(500).json({ success: false, error: 'Internal Server Error', details: error.message });
+  }
+});
 
 // Export the router
 export default router;
