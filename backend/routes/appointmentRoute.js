@@ -12,6 +12,7 @@ router.post('/book-appointment',requireSignIn,appointmentController.bookAppointm
 //booking availability
 router.post('/booking-availability',requireSignIn,appointmentController.bookingAvailabilityController)
 
-
+//appointment list
+router.get('/user-appointments',requireSignIn,appointmentController.userAppointmentsController)
 
 export default router;

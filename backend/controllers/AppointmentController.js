@@ -67,5 +67,24 @@ const bookingAvailabilityController = async(req,res) => {
 }
 
 
+//appointment
+const userAppointmentsController = async(req,res) =>{
+    try{
+        const appointments = await AppointmentModel.find({userID:req.body.userId})
+        res.status(200).send({
+            success:true,
+            message:'User appointments fetched successfully',
+            data:appointments
+        })
+    }catch(error){
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            error,
+            message:'Error in user appointment'
+        })
+    }
+}
 
-export default {bookAppointmentController,bookingAvailabilityController}
+
+export default {bookAppointmentController,bookingAvailabilityController,userAppointmentsController}
