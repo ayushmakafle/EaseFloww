@@ -88,6 +88,7 @@ import AdminDashboard from './Admin/AdminDashboard';
 import CreateCategory from './Admin/CreateCategory';
 import CreateProduct from './Admin/CreateProduct';
 import EaseFlowUsers from './Admin/EaseFlowUsers';
+import AdminAppointments from './Admin/Appointments';
 import Orders from './user/Orders';
 import Profile from './user/Profile';
 import Appointments from './user/Appointments';
@@ -156,6 +157,7 @@ function App() {
             <Route path ='admin/users' element={<EaseFlowUsers/>}/>
             <Route path ='admin/doctors' element={<EaseFlowDoctors/>}/>
             <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
+            <Route path ='admin/appointments' element={<AdminAppointments />}/>
           </Route>
 
           <Route path='/dashboard' element={<DoctorRoute />}>

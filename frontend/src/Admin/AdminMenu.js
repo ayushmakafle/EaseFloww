@@ -24,6 +24,9 @@ const AdminMenu = () => {
         <NavLink to="/dashboard/admin/doctorapproval" className="list-group-item list-group-item-action" activeClassName="active">
           Approve New Doctors
         </NavLink>
+        <NavLink to="/dashboard/admin/appointments" className="list-group-item list-group-item-action" activeClassName="active">
+          Appointments
+        </NavLink>
       </div>
     </div>
   );
