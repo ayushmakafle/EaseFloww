@@ -36,7 +36,7 @@ const MainNavbar = () => {
             <Nav className="ml-auto">
               <ul className="navbar-nav">
               <li className="nav-item">
-  <LinkContainer to="/appointment">
+  <LinkContainer to="/appointment-homepage">
     <Nav.Link className="pb-3 text-white">Appointment</Nav.Link>
   </LinkContainer>
 </li>

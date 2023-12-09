@@ -1,44 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import Products from '../products';
-// import { Row, Col, Navbar } from 'react-bootstrap';
-// import ProductScreen from './ProductScreen';
-// import EcomHeader from '../components/EcomHeader';
-// import Navbarr from '../components/Navbar';
-
-// const EcomHomeScreen = () => {
-//   const [products, setProducts] = useState([]);
-
-//   useEffect(() => {
-//     const fetchProducts = async () => {
-//       try {
-//         const { data } = await axios.get('/api/products');
-//         setProducts(data);
-//       } catch (error) {
-//         console.error('Error fetching products:', error);
-//       }
-//     };
-
-//     fetchProducts();
-//   }, []);
-
-//   return (
-//     <>
-//       <Navbarr />
-//       <EcomHeader />
-//       <Row>
-
-//         {products.map((product) => (
-//           <Col key={product._id} md={3}>
-//             <ProductScreen product={product} />
-//           </Col>
-//         ))}
-//       </Row>
-//     </>
-//   );
-// };
-
-// export default EcomHomeScreen;
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 //import ProductScreen from './ProductScreen';
@@ -171,9 +130,9 @@ const EcomHomeScreen = () => {
       <MainNavbar />
       <EcomHeader />
 
-      <div className="container-fluid row mt-3">
+      <div className="container-fluid row mt-2">
         <div className="col-md-2">
-          <h6 className="text-center-box">Filter by Category</h6>
+          <h6 className="text-center-box " style={{ color: '#000080' }}>Filter by Category</h6>
           <div className="d-flex flex-column">
             {categories?.map((c) => (
               <Checkbox key={c._id}
@@ -183,7 +142,7 @@ const EcomHomeScreen = () => {
             ))}
           </div>
 
-          <h6 className="text-center-box">Filter by Price</h6>
+          <h6 className="text-center-box" style={{ color: '#000080' }}>Filter by Price</h6>
           <div className="d-flex flex-column">
             <Radio.Group onChange={e => setRadio(e.target.value)}>
               {Prices?.map(p => (
@@ -202,7 +161,7 @@ const EcomHomeScreen = () => {
 
         </div>
         <div className="col-md-9">
-          <h3 className="text-center"> All Products</h3>
+          <h3 className="text-center" style={{ color: '#000080' }}> All Products</h3>
           <div className="d-flex flex-wrap">
           {products?.map((p) => (
               <div className="card m-2" style={{ width: '450px', height: '450px', padding: '15px' }}>
@@ -213,12 +172,12 @@ const EcomHomeScreen = () => {
                 style={{ height: '200px', objectFit: 'cover' }}
               />
               <div className="card-body">
-                <h5 className="card-title" style={{ color: '#FF06BF' }}>
+                <h5 className="card-title" style={{ color: '#4f9d69' }}>
                   {p.name.substring(0, 40)}</h5>
                 <p className="card-text">
                   {p.description.substring(0, 30)}...
                 </p>
-                <p className="card-text">
+                <p className="card-text" style={{ color: '#000080' }}>
                   NRs.{p.price}/-
                 </p>
                 <button className='btn btn-primary ms-1'onClick={() => navigate(`/product/${p.slug}`)}>More Details</button>
