@@ -9,26 +9,59 @@ import moment from 'moment'
 
 const bookAppointmentController = async (req, res) => {
     try {
-        req.body.date = moment(req.body.date,'DD-MM-YYYY').toISOString()
-        req.body.time = moment(req.body.time,'HH:mm').toISOString()
-        req.body.status = "pending";
-        const newAppointment = new AppointmentModel(req.body);
+        // Convert input date and time to ISO format
+        const inputDate = moment(req.body.date, 'DD-MM-YYYY').toISOString();
+        const inputTime = moment(req.body.time, 'HH:mm').toISOString();
+
+        // Check availability
+        const isAvailable = await checkAvailability(req.body.doctorID, inputDate, inputTime);
+
+        if (!isAvailable) {
+            return res.status(200).send({
+                success: false,
+                message: 'Appointments not available at this time',
+            });
+        }
+
+        // Save new appointment
+        const newAppointment = new AppointmentModel({
+            ...req.body,
+            date: inputDate,
+            time: inputTime,
+            status: 'pending',
+        });
         await newAppointment.save();
-        const user = await userModel.findOne({ _id: req.body.userId });
-        //send mail here
+
+        // Send mail and other necessary operations
+
         res.status(200).send({
-            success: true, 
-            message: 'appointment booked successfully',
+            success: true,
+            message: 'Appointment booked successfully',
         });
     } catch (error) {
-        console.error("Error while booking appointment:", error);
+        console.error('Error while booking appointment:', error);
         res.status(500).send({
             success: false,
             error,
-            message: "Error while booking appointment",
+            message: 'Error while booking appointment',
         });
     }
 };
+
+// Function to check availability
+const checkAvailability = async (doctorID, date, time) => {
+    const appointments = await AppointmentModel.find({
+        doctorID,
+        date,
+        time: {
+            $gte: moment(time).subtract(1, 'hours').toISOString(),
+            $lte: moment(time).add(1, 'hours').toISOString(),
+        },
+    });
+
+    return appointments.length === 0;
+};
+
 
 //booking availability
 const bookingAvailabilityController = async(req,res) => {
