@@ -1,4 +1,6 @@
-Eurika Baral
+.container-fluid {
+  background-color: white;
+}
 .card.m-2 {
     border: 2px solid #f285b6;
     border-radius: 10px; 
