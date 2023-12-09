@@ -13,8 +13,8 @@ router.post('/register', authController.registerController);
 //verify user mail
 router.get('/verify',authController.userVerifyMail)
 
-//verify doctor mail
-router.get('/verify-doctor-email',authController.doctorVerifyMail)
+/* //verify doctor mail
+router.get('/verify-doctor-email',authController.doctorVerifyMail) */
 
 //LOGIN
 router.post("/login", authController.loginController);
@@ -33,7 +33,7 @@ router.get('/admin-auth',requireSignIn,isAdmin, (req,res) => {
 })
 
 //protected route doctor auth
-router.get('/doctor-auth',requireSignIn, isDoctor, (req,res) => {
+router.get('/doctor-auth',requireSignIn, (req,res) => {
     res.status(200).send({ok:true})
 })
 

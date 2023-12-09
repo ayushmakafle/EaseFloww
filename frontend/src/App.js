@@ -158,8 +158,8 @@ function App() {
             <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
           </Route>
 
-          <Route path = '/dashboard' element={<DoctorRoute />}>
-            <Route path='doctor' element={<DoctorDashboard/>} />
+          <Route path='/dashboard' element={<DoctorRoute />}>
+            <Route path='doctor' element={<DoctorDashboard />} />
             <Route path = 'doctor/doctor-profile' element={<DoctorProfile />} />
           </Route>
 

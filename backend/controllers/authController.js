@@ -243,8 +243,8 @@ export const updateProfileController = async (req, res) => {
     });
   }
 };
-
-//user email verification
+/* 
+//doctor email verification
 const sendDoctorVerifyEmail = async(name,email,user_id) => {
   try{
     const transporter = nodemailer.createTransport({
@@ -286,17 +286,15 @@ const doctorVerifyMail = async(req,res) => {
   }catch(error){
     console.error(error.message)
   }
-}
+} */
 
 
 export const registerDoctorController = async (req, res) => {
   try {
     console.log(req.fields);
-
     const { name, email, password, phonenumber, specialization, 
       address, hospitalOrClinic } = req.fields
     const { certificatePhoto } = req.files 
-
     // Validations
     if (!name || !email || !password || !phonenumber || !specialization || !address || !hospitalOrClinic) {
       return res.status(400).json({ success: false, message: 'All fields are required' });
@@ -307,22 +305,18 @@ export const registerDoctorController = async (req, res) => {
     if (certificatePhoto.size > 1000000) {
       return res.status(400).json({ success: false, message: 'Certificate photo size should be less than 1MB' });
     }
-
     // Hash the password before saving
     const hashedPassword = await hashPassword(password);
-
     const newDoctor = new DoctorModel({
       ...req.fields,
       password: hashedPassword,
     });
-
     if (certificatePhoto) {
       newDoctor.certificatePhoto.data = fs.readFileSync(certificatePhoto.path);
       newDoctor.certificatePhoto.contentType = certificatePhoto.type;
     }
-
     await newDoctor.save();
-     await sendDoctorVerifyEmail(name, email, newDoctor._id);
+    //await sendDoctorVerifyEmail(name, email, newDoctor._id);
 
     res.status(201).json({
       success: true,
@@ -490,12 +484,10 @@ export const checkDoctorApprovalController = async (req, res) => {
     // Handle error or send an error response
     res.status(500).json({ error: 'Internal Server Error' });
   }
-}; */
-// DOCTOR LOGIN
+}; */// DOCTOR LOGIN
 export const doctorLoginController = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     // Validation
     if (!email || !password) {
       return res.status(400).send({
@@ -503,33 +495,20 @@ export const doctorLoginController = async (req, res) => {
         message: "Invalid email or password",
       });
     }
-
     // Check if the user is a doctor
     const doctor = await DoctorModel.findOne({ email });
-
     if (!doctor) {
       return res.status(404).send({
         success: false,
         message: "Email is not registered",
       });
     }
-
     // Doctor login logic
     if (doctor.isApproved) {
-      // Check if the doctor's email is verified
-      if (doctor.isEmailVerified !== 1) {
-        return res.status(403).send({
-          success: false,
-          message: doctor.isApproved
-            ? "Your doctor account hasn't been verified yet"
-            : "Your doctor account hasn't been approved by our admins",
-        });
-      }
-
       const isPasswordMatch = await comparePassword(password, doctor.password);
 
       if (isPasswordMatch) {
-        const token = await JWT.sign({ _id: doctor.__id }, process.env.JWT_SECRET, {
+        const token = await JWT.sign({ _id: doctor._id }, process.env.JWT_SECRET, {
           expiresIn: "7d",
         });
 
@@ -544,7 +523,7 @@ export const doctorLoginController = async (req, res) => {
             specialization: doctor.specialization,
             address: doctor.address,
             hospitalOrClinic: doctor.hospitalOrClinic,
-            role:doctor.role
+            role: doctor.role
           },
           token,
         });
@@ -571,6 +550,7 @@ export const doctorLoginController = async (req, res) => {
     });
   }
 };
+
 
 //fetch approved doctors
 export const getDoctorsController = async (req, res) => {
@@ -684,6 +664,6 @@ export const updateDoctorProfileController = async (req, res) => {
 
 export default { registerController, loginController,forgotPasswordController,updateProfileController,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
-denyDoctorController,doctorLoginController, userVerifyMail ,doctorVerifyMail, getDoctorsController,getUsersController
+denyDoctorController,doctorLoginController, userVerifyMail , getDoctorsController,getUsersController
  ,updateDoctorProfileController,getSingleDoctorController};
   
