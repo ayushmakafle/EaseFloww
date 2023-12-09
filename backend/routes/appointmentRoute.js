@@ -1,7 +1,7 @@
 import express from "express";
 import appointmentController from "../controllers/AppointmentController.js";
 
-import { requireSignIn } from "../middleware/authMiddleware.js";
+import { isDoctor, requireSignIn } from "../middleware/authMiddleware.js";
 
 //router object
 const router = express.Router();
@@ -14,5 +14,11 @@ router.post('/booking-availability',requireSignIn,appointmentController.bookingA
 
 //appointment list
 router.get('/user-appointments',requireSignIn,appointmentController.userAppointmentsController)
+
+//get appointment for doctor
+router.get('/doctor-appointment',requireSignIn,appointmentController.doctorAppointmentController)
+
+//update status
+router.post('/update-status',requireSignIn,appointmentController.updateStatusController)
 
 export default router;

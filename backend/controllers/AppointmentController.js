@@ -66,7 +66,7 @@ const bookingAvailabilityController = async(req,res) => {
     }
 }
 
-
+//get all appointment in admin
 const userAppointmentsController = async (req, res) => {
   try {
     const appointments = await AppointmentModel.find({
@@ -87,5 +87,52 @@ const userAppointmentsController = async (req, res) => {
   }
 };
 
+//get appointment for doctor
+const doctorAppointmentController = async (req, res) => {
+  try {
+    const doctor = await DoctorModel.findOne({ userId: req.body.userId });
+    const appointments = await AppointmentModel.find({
+      doctorID: doctor._id,
+    });
+    res.status(200).send({
+      success: true,
+      message: "Doctor Appointments fetched successfully",
+      data: appointments,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error in Doc Appointments",
+    });
+  }
+};
 
-export default {bookAppointmentController,bookingAvailabilityController,userAppointmentsController}
+//update status
+const updateStatusController = async(req,res) => {
+    try{
+        const {appointmentsId,status}=req.body
+        const appointments = await AppointmentModel.findByIdAndUpdate(appointmentsId,{status})
+        //mail
+        res.status(200).send({
+            success:true,
+            message:'Appointment Status Updated'
+        })
+    }catch(error){
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            error,
+            message:'error in update status'
+        })
+    }
+}
+
+
+export default {bookAppointmentController,
+    bookingAvailabilityController,
+    userAppointmentsController,
+    doctorAppointmentController,
+    updateStatusController
+}

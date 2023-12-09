@@ -117,6 +117,8 @@ import LearnMorePage2 from './screens/LearnMorePage2';
 import LearnMorePage3 from './screens/LearnMorePage3';
 import LearnMorePage4 from './screens/LearnMorePage4';
 import LearnMorePage5 from './screens/LearnMorePage5';
+import DoctorAppointments from './Doctor/DoctorAppointments';
+import DoctorRateProducts from './Doctor/DoctorRateProducts';
 function App() {
 
   return (
@@ -163,6 +165,8 @@ function App() {
           <Route path='/dashboard' element={<DoctorRoute />}>
             <Route path='doctor' element={<DoctorDashboard />} />
             <Route path = 'doctor/doctor-profile' element={<DoctorProfile />} />
+            <Route path = 'doctor/doctor-appointments' element={<DoctorAppointments />} />
+            <Route path = 'doctor/doctor-rate-products' element={<DoctorRateProducts />} />
           </Route>
 
           <Route path="/doctor-login" element={<DoctorLoginPage />} />
