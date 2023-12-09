@@ -9,73 +9,67 @@ const EaseFlowOrders = () => {
 
   const columns = [
     {
-      title: 'User',
+      title: 'Name',
       dataIndex: 'user',
-      key: 'user',
+      key: 'name',
       render: user => (
-        <div>
-          <p>{user.username}</p>
-          <p>{user.email}</p>
-          {/* Add more user details if needed */}
-        </div>
+        <p className="mb-0">
+          {user.username}
+        </p>
       ),
     },
     {
-      title: 'Order Items',
-      dataIndex: 'orderItems',
-      key: 'orderItems',
-      render: orderItems => (
-        <div>
-          {orderItems.map(item => (
-            <div key={item._id}>
-              <p>Name: {item.name}</p>
-              <p>Quantity: {item.qyt}</p>
-              <p>Price: {item.price}</p>
-              <p>Product: {item.Product.name}</p>
-            </div>
-          ))}
-        </div>
+      title: 'Email',
+      dataIndex: 'user',
+      key: 'email',
+      render: user => (
+        <p className="mb-0">
+          {user.email}
+        </p>
       ),
     },
+    
     {
       title: 'Payment Result',
       dataIndex: 'paymentResult',
       key: 'paymentResult',
       render: paymentResult => (
-        <div>
-          <p>ID: {paymentResult.id}</p>
-          <p>Status: {paymentResult.status}</p>
-          {/* Add more payment result details if needed */}
-        </div>
+        <p className="mb-0">
+        {paymentResult.status}
+        </p>
       ),
-    },
-    {
-      title: 'Total Price',
-      dataIndex: 'totalPrice',
-      key: 'totalPrice',
-    },
-    {
-      title: 'Is Paid',
-      dataIndex: 'isPaid',
-      key: 'isPaid',
     },
     {
       title: 'Paid At',
       dataIndex: 'paidAt',
       key: 'paidAt',
+      render: paidAt => (
+        <p className="mb-0">
+          {paidAt}
+        </p>
+      ),
     },
     {
       title: 'Is Delivered',
       dataIndex: 'isDelivered',
       key: 'isDelivered',
+      render: isDelivered => (
+        <p className="mb-0">
+          {isDelivered ? 'Yes' : 'No'}
+        </p>
+      ),
     },
     {
       title: 'Delivered At',
       dataIndex: 'deliveredAt',
       key: 'deliveredAt',
+      render: deliveredAt => (
+        <p className="mb-0">
+          {deliveredAt}
+        </p>
+      ),
     },
   ];
-
   const fetchEaseFlowOrders = async () => {
     try {
       // Use the correct endpoint to fetch all orders with successful payments
@@ -106,7 +100,6 @@ const EaseFlowOrders = () => {
     }
   };
   
-
   useEffect(() => {
     fetchEaseFlowOrders();
   }, []);
