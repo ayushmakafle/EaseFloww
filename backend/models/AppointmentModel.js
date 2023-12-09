@@ -26,11 +26,14 @@ const AppointmentSchema = new mongoose.Schema({
         required:true,
         default:'pending'
     },
-    time:{
-        type:String,
-        required:true
+   startTime: {
+        type: String, 
+        required: true,
+    },
+    endTime: {
+        type: String, 
+        required: true,
     }
-
 },{timestamps:true})
 
 export default mongoose.model("appointment",AppointmentSchema)
