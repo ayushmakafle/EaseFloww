@@ -3,8 +3,7 @@ import axios from 'axios';
 //import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
 import { Link, useParams } from 'react-router-dom';
-import { useCart } from '../context/cart';
-import { toast } from 'react-toastify'
+
 const ProductDetails = () => {
   const params = useParams();
 
@@ -61,12 +60,11 @@ const ProductDetails = () => {
                 <h2 className="card-title text-center mb-4">{product.name}</h2>
                 {product.category && (
                   <p className="card-text">
-                    <span style={{ color: '#212129', fontFamily: 'Poppins, sans-serif' }}>Category:</span> {product.category.name}
-
+                    <span style={{ color: '#007BFF' }}>Category:</span> {product.category.name}
                   </p>
                 )}
                 <p className="card-text">
-                  <span style={{ color: '#000080' }}>Price:</span> NRs.{product.price}/-
+                  <span style={{ color: '#28A745' }}>Price:</span> NRs.{product.price}/-
                 </p>
                 <p className="card-text">{product.description}</p>
                 <button className="btn btn-primary btn-lg">
@@ -98,7 +96,7 @@ const ProductDetails = () => {
                 <p className="card-text">
                   NRs.{p.price}/-
                 </p>
-                <button className='btn btn-secondary' onClick={() => { setCart([...cart, p]); toast.success('Item added to cart'); }}>
+                <button className='btn btn-secondary'>
                   <i className="fas fa-cart-shopping"></i>
                 </button>
               </div>
