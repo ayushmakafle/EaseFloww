@@ -114,12 +114,12 @@ nav ul li {
 }
 /* Custom styles for Navbar */
 .custom-navbar {
-background-color: var(--pinkthree-color);
+background-color: #eb6864;
 box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
 /* Custom styles for Navbar */
 .custom-navbar {
-background-color: var(--pinkone-color);
+background-color: #eb6864;
 box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
 
@@ -338,13 +338,7 @@ section p{
   margin-bottom: 30px;
 }
 
-.testimonials-section  h1{
-  font-size: 65px;
-  font-family: "Raleway", sans-serif;
-  font-weight: bold;
-  line-height: 120%;
-  color: var(--pinkthree-color);
-}
+
 
 /* courses section */
 .courses-section{
@@ -582,43 +576,4 @@ nav.mobile-nav{
       display: flex;
   }
 }
-
-/* User Dashboard */
-.container-fluid {
-  background: var(--pink-color);
-  color: #ffffff;
-  padding: 20px;
-}
-
-.card {
-  background: var(--pinkthree-color);
-  border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.card h3 {
-  color: var(--pinkthree-color);
-  font-size: 36px;
-  margin-bottom: 16px;
-}
-
-.card strong {
-  color: var(--pinkone-color);
-  font-weight: bold;
-  margin-right: 8px;
-}
-
-
-.card div {
-  font-size: 24px;
-  margin-bottom: 12px;
-}
-
-
-
-
-
-
-
-
 

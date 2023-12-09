@@ -3,10 +3,10 @@ import axios from 'axios';
 //import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
 import { Link, useParams } from 'react-router-dom';
-import { useCart } from '../context/cart';
+
 const ProductDetails = () => {
   const params = useParams();
-  const [cart, setCart] = useCart()
+
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
 
@@ -67,8 +67,8 @@ const ProductDetails = () => {
                   <span style={{ color: '#28A745' }}>Price:</span> NRs.{product.price}/-
                 </p>
                 <p className="card-text">{product.description}</p>
-                <button className="btn btn-primary btn-lg" >
-                  <i className="fas fa-shopping-cart" ></i> Add to Cart
+                <button className="btn btn-primary btn-lg">
+                  <i className="fas fa-shopping-cart"></i> Add to Cart
                 </button>
               </div>
             </div>

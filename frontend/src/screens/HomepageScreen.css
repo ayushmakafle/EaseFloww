@@ -1,81 +1,60 @@
-:root {
-  --pink-color: #ffc0cb;
-  --pinkone-color: #f38dbc;
-  --pinktwo-color: #ef5e99;
-  --orange-color : #ec6f71;
-  --dark-color : #23395d;
-  --pinkthree-color: #de5d83;
-}
 .home-page {
-  background: #ffc0cb;
-  padding: 20px;
+  background-size: cover;
+  background-color: #eb6864;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  color: white;
   text-align: center;
 }
 
-.content-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.calendar-container {
+  margin-top: 100px;
+  width: 40%;
+  height: 55%;
+  background-color: pink;
 }
 
-.info-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-.text-content {
-  width: 45%;
-  text-align: left;
-}
-
-.image-container {
-  width: 45%;
-}
-
-h1,
-h2
- {
-  color: #fff;
-  font-family: 'Raleway', sans-serif;
-}
-
-p {
-  color: #fff;
-  font-family: 'poppins', sans-serif;
-}
-
-/* Increase font size */
-h1 {
-  font-size: 48px; /* Increased font size */
-}
-
-h2 {
-  font-size: 36px; /* Increased font size */
-}
-
-p {
-  font-size: 20px; /* Increased font size */
-}
-
-/* Equalize image sizes */
-.image-container img {
+/* Calendar styles */
+.react-calendar {
+  border: 7px;
+  color: rgb(5, 5, 5);
+  background-color: pink;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: rgb(300, 213, 255);
   width: 100%;
-  height: auto;
-  border-radius: 8px; /* Add border-radius for rounded corners if desired */
 }
 
-.learn-more-button {
-  background-color: #ff69b4;
-  color: #fff;
-  padding: 15px 30px; /* Increased padding */
-  font-size: 24px; /* Increased font size */
+
+.period-date {
+  background-color:#eb6864!important;
+  color: rgb(13, 12, 12) !important;
+  border-radius: 50%;
+}
+
+/* Styles for predicted dates of next month */
+.predicted-date-next-month {
+  background-color: rgb(233, 147, 213) !important;
+  border-radius: 50%;
+  /* Add any specific styles for predicted dates of next month */
+}
+.log-button {
+  position: absolute;
+  left: 50%;
+  margin-top: 30px;
+  transform: translateX(-50%);
+  background-color:#eb6864;
+  color: white;
   border: none;
+  padding: 12px 20px;
+  font-size: 16px;
   cursor: pointer;
-  margin-top: 40px; /* Increased margin-top */
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
 }
 
-.learn-more-button:hover {
-  background-color: #d6458e;
+.log-button:hover {
+  transform: translateX(-50%) scale(1.1);
 }
+

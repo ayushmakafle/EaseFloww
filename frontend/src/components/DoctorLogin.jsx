@@ -20,7 +20,7 @@ const DoctorLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`/api/v1/auth/doctor-login, { email, password }`);
+      const res = await axios.post(`/api/v1/auth/doctor-login`, { email, password });
 
       if (res.data && res.data.success) {
         toast.success(res.data.message);
@@ -58,12 +58,6 @@ const DoctorLogin = () => {
               <input type="text" name="email" class="form-control focus:border-pink-500 bg-pink-100" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email" required value={email} onChange={(e) => setEmail(e.target.value)}></input>
             </div>
             {/* <div className="mt-1">
-                <input className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm'
-                type="email" name="email" autoComplete='email' required value={email} onChange={(e) => setEmail(e.target.value)}/>
-            </div> */}
-            {/* <div>
-              <label htmlFor='password' className='block text-sm font-medium text-gray-700'>
-                Password
               </label>
             </div> */}
             <div class="form-group">
@@ -72,11 +66,9 @@ const DoctorLogin = () => {
                 value={password} onChange={(e) => setPassword(e.target.value)} />
               {
                 visible ? (
-                  <AiOutlineEye className='absolute right-2 top-2 cursor-pointer' size={25}
-                    onClick={() => setVisible(false)} />
+                  <AiOutlineEye className='absolute right-2 top-2 cursor-pointer' size={25} onClick={() => setVisible(false)} />
                 ) : (
-                  <AiOutlineEyeInvisible className='absolute right-2 top-2 cursor-pointer' size={25}
-                    onClick={() => setVisible(true)} />
+                  <AiOutlineEyeInvisible className='absolute right-2 top-2 cursor-pointer' size={25} onClick={() => setVisible(true)} />
                 )
               }
             </div>
@@ -87,28 +79,25 @@ const DoctorLogin = () => {
                 <label htmlFor='remember-me' className='ml-2 block text-sm text-gray-900'>Remember me</label>
               </div>
               <div className="text-sm" style={{ marginLeft: '175px' }}>
-                <a href=".forget-password" className='font-medium text-pink-600 hover:text-pink-500'>
-                  Forgot Password?
-                </a>
+                <a href=".forget-password" className='font-medium text-pink-600 hover:text-pink-500' />
+                <div>
+                  <button type="submit" className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700'>
+                    Login to your site
+                  </button>
+                </div>
+                <div className={`${styles.noramlFlex} w-full`} >
+                  <h4>New to EaseFlow? </h4>
+                  <Link to="/doctorsignup" className="text-pink-600 pl-2" style={{ marginLeft: '145px' }}>Sign Up</Link>
+                </div>
               </div>
-            </div>
-            <div>
-              <button
-                type="submit"
-                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700"
-              >
-                Login
-              </button>
-            </div>
-            <div className={`${styles.noramlFlex} w-full`} >
-              <h4>New to EaseFlow? </h4>
-              <Link to="/doctorsignup" className="text-pink-600 pl-2" style={{ marginLeft: '145px' }}>Sign Up</Link>
             </div>
           </form>
         </div>
       </div>
     </div>
-  )
-}
+
+  );
+};
+
 
 export default DoctorLogin;

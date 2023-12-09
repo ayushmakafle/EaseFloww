@@ -1,104 +1,103 @@
 .home-pagee {
-  background-image: url("https://img.freepik.com/premium-photo/pastel-pink-watercolor-texture-digital_199112-177.jpg?w=360");
-  background-size: auto 6px;
-  /* height: 100vh; */
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-}
-
-.log-symptoms-container {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: black;
-  font-weight: bold;
-}
-.log-symptoms-container h2 {
-  font-family: 'Poppins', sans-serif;
-  animation-name: headerAnimation;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  color: rgb(9, 9, 9);
-}
-
-@keyframes headerAnimation {
-  from {
-    transform: translateY(0);
+    background-image: url("https://i.pinimg.com/564x/d3/46/b7/d346b7c62a0b53de1632786a27a4230e.jpg");
+    background-size: cover;
+    /* height: 100vh; */
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
   }
-  to {
-    transform: translateY(5px);
+  
+  .log-symptoms-container {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    font-weight: bold;
   }
-}
-
-
-
-.category-grid {
-  /* display: flex; */
-  justify-content: space-evenly;
-  gap: 20px; /* Add some spacing between category cards */
-  flex-wrap: wrap; /* Allow cards to wrap to the next line */
-}
-
-.category-card {
-  text-align: center;
-  padding: 40px;
-  background-color: transparent;
-  border-radius: 15px;
-  margin: 20px 10px; /* Adjust margin */
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* Update shadow */
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.category-card:hover {
-  transform: scale(1.05); /* Enlarge the card on hover */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
-}
-
-.category-card img {
-  width: 80px;
-  height: 80px;
-  margin-top:0px;
-}
-
-.sub-symptom-card {
-  border: 1px solid #c3adad;
-  padding: 2px;
-  margin: 5px;
-  cursor: pointer;
-  color:rgb(132, 5, 83);
-  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-  border-radius: 5px;
-}
-
-.sub-symptom-card:hover {
-  background-color: var(--pinkone-color);
-  transform: translateY(-5px); /* Lift the card on hover */
-}
-
-.sub-symptom-card.selected {
-  background-color: var(--pinkthree-color); /* Change color for selected sub-symptoms */
-  color: rgb(255, 255, 255);
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bolder;
-}
-
-/* Animation for submit button */
-.submit-button {
-  margin: 20px 0 0 20px;
-  size: 40px;
-  padding: 20px 20px;
-  border:8px;
-  border-radius: 20px;
-  background-color: var(--pinktwo-color);
-  color:black;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-.submit-button:hover {
-  transform: scale(1.05); /* Enlarge button on hover */
-  background-color: var(--dark-color);
-  color: white;
-}
+  .log-symptoms-container h2 {
+    animation-name: headerAnimation;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    color: rgb(9, 9, 9);
+  }
+  
+  @keyframes headerAnimation {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(5px);
+    }
+  }
+  
+  
+  
+  .category-grid {
+    /* display: flex; */
+    justify-content: space-evenly;
+    gap: 20px; /* Add some spacing between category cards */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  }
+  
+  .category-card {
+    text-align: center;
+    padding: 40px;
+    background-color: transparent;
+    border-radius: 15px;
+    margin: 20px 10px; /* Adjust margin */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* Update shadow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .category-card:hover {
+    transform: scale(1.05); /* Enlarge the card on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+  }
+  
+  .category-card img {
+    width: 80px;
+    height: 80px;
+    margin-top:0px;
+  }
+  
+  .sub-symptom-card {
+    border: 1px solid #c3adad;
+    padding: 2px;
+    margin: 5px;
+    cursor: pointer;
+    color:rgb(132, 5, 83);
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    border-radius: 5px;
+  }
+  
+  .sub-symptom-card:hover {
+    background-color: #fa6863;
+    transform: translateY(-5px); /* Lift the card on hover */
+  }
+  
+  .sub-symptom-card.selected {
+    background-color: #68d391; /* Change color for selected sub-symptoms */
+    color: rgb(25, 23, 23);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+  }
+  
+  /* Animation for submit button */
+  .submit-button {
+    margin: 20px 0 0 20px;
+    size: 40px;
+    padding: 20px 20px;
+    border:8px;
+    border-radius: 20px;
+    background-color: #fa6863;
+    color:black;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .submit-button:hover {
+    transform: scale(1.05); /* Enlarge button on hover */
+    background-color: #68d391;
+  }
+  
