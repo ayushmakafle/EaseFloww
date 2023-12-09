@@ -65,9 +65,9 @@ import 'react-calendar/dist/Calendar.css';
 
 // import Footer from './components/Footer';
 //import Navbar from './components/Navbar';
-import HomepageScreen from './screens/HomepageScreen';
+// import HomepageScreen from './screens/HomepageScreen';
 import CartPage from './screens/CartPage'; 
-import EcomHeader from './components/EcomHeader'; 
+// import EcomHeader from './components/EcomHeader'; 
 import EcomHomeScreen from './screens/EcomHomeScreen';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProductScreen from './screens/ProductScreen';
@@ -89,9 +89,9 @@ import CreateCategory from './Admin/CreateCategory';
 import CreateProduct from './Admin/CreateProduct';
 import EaseFlowUsers from './Admin/EaseFlowUsers';
 
-import Orders from './user/Orders';
+// import Orders from './user/Orders';
 import EaseFlowOrders from './Admin/EaseFlowOrders';
-
+import MyOrders from './user/MyOrders';
 import Profile from './user/Profile';
 import Appointments from './user/Appointments';
 import Products from './Admin/Products';
@@ -127,7 +127,7 @@ function App() {
 
           <Route path ='/payment' element={<PaymentComponent/>} />
           <Route path ='/paysuccess' element={<SuccessPage />}/>
-        <Route path="/dashboard/user/orders" component={Orders} />
+        {/* <Route path="/dashboard/user/orders" component={Orders} /> */}
 
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/ecommerce" element={<EcomHomeScreen />} />
@@ -141,8 +141,10 @@ function App() {
           
           <Route path ='/dashboard' element={<PrivateRoute />}>
             <Route path ='user' element={<UserDashboard/>}/>
-            <Route path ='user/orders' element={<Orders/>}/>
+            {/* <Route path ='user/orders' element={<Orders/>}/> */}
             <Route path ='user/profile' element={<Profile/>}/>
+            <Route path='user/order' element={<MyOrders/>}/>
+
             <Route path ='user/appointments' element={<Appointments/>}/>
           </Route>
 
@@ -154,6 +156,7 @@ function App() {
             <Route path ='admin/products' element={<Products/>}/>
             <Route path ='admin/users' element={<EaseFlowUsers/>}/>
             <Route path='admin/order' element={<EaseFlowOrders/>}/>
+
 
             <Route path ='admin/doctors' element={<EaseFlowDoctors/>}/>
             <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
