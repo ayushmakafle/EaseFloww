@@ -43,9 +43,59 @@ const bookAppointmentController = async (req, res) => {
     }
 };
 
+const checkAvailabilityController = async (req, res) => {
+    try {
+        const inputDate = req.body.date;
+        const inputStartTime = req.body.startTime;
+        const inputEndTime = req.body.endTime;
+
+        const formattedStartDate = moment(`${inputDate} ${inputStartTime}`, 'DD-MM-YYYY HH:mm');
+        const formattedEndDate = moment(`${inputDate} ${inputEndTime}`, 'DD-MM-YYYY HH:mm');
+
+        // Check if there are any overlapping appointments
+        const overlappingAppointments = await AppointmentModel.find({
+            doctorID: req.body.doctorID,
+            date: inputDate,
+            $or: [
+                {
+                    startTime: { $lt: formattedEndDate },
+                    endTime: { $gt: formattedStartDate }
+                },
+                {
+                    startTime: { $gte: formattedStartDate, $lt: formattedEndDate },
+                },
+                {
+                    endTime: { $gt: formattedStartDate, $lte: formattedEndDate },
+                }
+            ]
+        });
+
+        if (overlappingAppointments.length > 0) {
+            // Appointments exist within the specified range
+            res.status(200).send({
+                success: false,
+                message: 'Appointment slot not available',
+            });
+        } else {
+            // No overlapping appointments, slot is available
+            res.status(200).send({
+                success: true,
+                message: 'Appointment slot available',
+            });
+        }
+    } catch (error) {
+        console.error("Error while checking availability:", error);
+        res.status(500).send({
+            success: false,
+            error,
+            message: "Error while checking availability",
+        });
+    }
+};
+
 
 //booking availability
-const bookingAvailabilityController = async(req,res) => {
+/* const bookingAvailabilityController = async(req,res) => {
     try{
         const date = moment(req.body.date,'DD-MM-YYYY').toISOString()
         const fromTime =moment(req.body.time,'HH:mm').subtract(1,'hours').toISOString()
@@ -78,7 +128,7 @@ const bookingAvailabilityController = async(req,res) => {
             message:'error in checking availability'
         })
     }
-}
+} */
 
 //get all appointment in admin
 const userAppointmentsController = async (req, res) => {
@@ -145,7 +195,7 @@ const updateStatusController = async(req,res) => {
 
 
 export default {bookAppointmentController,
-    bookingAvailabilityController,
+    checkAvailabilityController,
     userAppointmentsController,
     doctorAppointmentController,
     updateStatusController

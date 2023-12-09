@@ -10,7 +10,7 @@ const router = express.Router();
 router.post('/book-appointment',requireSignIn,appointmentController.bookAppointmentController)
 
 //booking availability
-router.post('/booking-availability',requireSignIn,appointmentController.bookingAvailabilityController)
+router.post('/booking-availability',requireSignIn,appointmentController.checkAvailabilityController)
 
 //appointment list
 router.get('/user-appointments',requireSignIn,appointmentController.userAppointmentsController)
