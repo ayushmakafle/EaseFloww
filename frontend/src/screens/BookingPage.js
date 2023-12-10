@@ -35,66 +35,70 @@ const BookingPage = () => {
     fetchDoctor();
   }, [doctorId]);
 
-const handleAvailability = async () => {
+ const handleAvailability = async () => {
+    try {
+      console.log("Selected Date:", date);
+    console.log("Selected Time:", time);
+      if (!date || !time) {
+        toast.error("Please select both date and time.");
+        return;
+      }
+
+      const formattedStartTime = moment(`${date} ${time}`, 'DD-MM-YYYY HH:mm').format('HH:mm');
+
+      const res = await axios.post(
+        "/api/v1/appointment/booking-availability",
+        { doctorId: params.doctorId, date, startTime: formattedStartTime, endTime: formattedStartTime }, // Use formattedStartTime for both
+      );
+
+      console.log("Backend Response:", res.data);
+
+      if (res.data.success) {
+        setIsAvailable(true);
+        toast.success(res.data.message);
+      } else {
+        setIsAvailable(false);
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleBooking = async () => {
   try {
-    if (!date || !startTime || !endTime) {
-      toast.error("Please select date, start time, and end time.");
+    
+    console.log("Selected Date:", date);
+    console.log("Selected Time:", time);
+    if (!isAvailable) {
+      toast.error("Appointment slot not available. Please check availability first.");
       return;
     }
 
-    // Use moment to format the selected times
-    const formattedStartTime = moment(`${date} ${startTime}`, 'DD-MM-YYYY HH:mm').format('HH:mm');
-    const formattedEndTime = moment(`${date} ${endTime}`, 'DD-MM-YYYY HH:mm').format('HH:mm');
+    // Use moment to format the selected time
+    const formattedTime = moment(time, 'HH:mm').format('HH:mm');
+    
+    const selectedDate = moment(date, 'DD-MM-YYYY').format('DD-MM-YYYY');
 
-    console.log("Formatted StartTime:", formattedStartTime);
-    console.log("Formatted EndTime:", formattedEndTime);
-
-    const res = await axios.post(
-      "/api/v1/appointment/booking-availability",
-      { doctorId: params.doctorId, date, startTime: formattedStartTime, endTime: formattedEndTime },
-    );
-
-    console.log("Backend Response:", res.data);
+    const res = await axios.post(`/api/v1/appointment/book-appointment`, {
+      doctorID: params.doctorId,
+      userID: auth.user._id,
+      doctorInfo: { ...doctor },
+      userInfo: { ...auth.user },
+      date: selectedDate, // Use the selectedDate variable
+      startTime: formattedTime,
+      endTime: moment(`${selectedDate} ${formattedTime}`, 'DD-MM-YYYY HH:mm').add(1, 'hours').format('HH:mm'),
+    });
 
     if (res.data.success) {
-      setIsAvailable(true);
       toast.success(res.data.message);
-    } else {
-      setIsAvailable(false);
-      toast.error(res.data.message);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
 
-
-
-  const handleBooking = async () => {
-    try {
-      if (!isAvailable) {
-        toast.error("Appointment slot not available. Please check availability first.");
-        return;
-      }
-
-      const res = await axios.post(`/api/v1/appointment/book-appointment`, {
-        doctorID: params.doctorId,
-        userID: auth.user._id,
-        doctorInfo: doctor,
-        userInfo: auth.user,
-        date,
-        startTime,
-        endTime,
-      });
-
-      if (res.data.success) {
-        toast.success(res.data.message);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   // Render loading state
   if (!doctor) {
@@ -115,40 +119,41 @@ const handleAvailability = async () => {
   return (
     <>
       <MainNavbar />
-
-    <div className="doctor-details mt-2">
+      <div className="doctor-details mt-2">
         <h1>{doctor.name}</h1>
         <div className="doctor-specialization">{doctor.specialization}</div>
-            <div className="hospital-info">
-                <div>{doctor.hospitalOrClinic}</div>
-                <div>{doctor.address}</div>
-            </div>
-            <div className="office-info">
-                <div className="office-hours">
-                    Office Hours: {doctor.officeHoursStart} - {doctor.officeHoursEnd}
-                </div>
-            <div className="office-days">
-                Office Days: {extractedOfficeDays.length > 0 ? extractedOfficeDays.join(', ') : 'No Office Days'}
-            </div>
+        <div className="hospital-info">
+          <div>{doctor.hospitalOrClinic}</div>
+          <div>{doctor.address}</div>
+        </div>
+        <div className="office-info">
+          <div className="office-hours">
+            Office Hours: {doctor.officeHoursStart} - {doctor.officeHoursEnd}
+          </div>
+          <div className="office-days">
+            Office Days: {extractedOfficeDays.length > 0 ? extractedOfficeDays.join(', ') : 'No Office Days'}
+          </div>
         </div>
         <div className="fees">{`Fees per Consultation: NRs. ${doctor.feesPerConsultation}/-`}</div>
             <div className="date-time-picker">
-          <DatePicker
-            className="date-picker"
-            format="DD-MM-YYYY"
-            onChange={(value) => {
-              setDate(moment(value).format('DD-MM-YYYY'));
-            }}
-          />
-          <TimePicker
+        <DatePicker
+  className="date-picker"
+  format="DD-MM-YYYY"
+  onChange={(value) => {
+    // Update state with the selected date in the required format
+    setDate(value.format('DD-MM-YYYY'));
+  }}
+/>
+
+<TimePicker
   className="time-picker"
   format="HH:mm"
   onChange={(value) => {
-    // Use moment to format the selected time
-    const formattedTime = moment(value).format('HH:mm');
-    setTime(formattedTime);
+    // Update state with the selected time in the required format
+    setTime(value.format('HH:mm'));
   }}
 />
+
 
           <button
             className="check-availability-btn m-1"
