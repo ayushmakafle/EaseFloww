@@ -132,23 +132,28 @@ const checkAvailabilityController = async (req, res) => {
     }
 } */
 
-//get all appointment in admin
-const userAppointmentsController = async (req, res) => {
+// Controller to fetch user appointments
+const userAppointments = async (req, res) => {
   try {
+    // Extract user ID from the authenticated user's token
+    const userId = req.user._id; // Assuming you have stored user ID in req.auth
+
+    // Fetch appointments for the specified user ID
     const appointments = await AppointmentModel.find({
-      userID: req.body.userId,
+      userID: userId,
     });
+
     res.status(200).send({
       success: true,
-      message: "Users Appointments fetched Successfully",
+      message: "User's Appointments fetched successfully",
       data: appointments,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send({
       success: false,
-      error,
-      message: "Error In User Fetching Appointments",
+      error: error.message,
+      message: "Error in fetching user appointments",
     });
   }
 };
@@ -198,7 +203,7 @@ const updateStatusController = async(req,res) => {
 
 export default {bookAppointmentController,
     checkAvailabilityController,
-    userAppointmentsController,
+    userAppointments,
     doctorAppointmentController,
     updateStatusController
 }

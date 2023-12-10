@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import UserMenu from './UserMenu'
 import MainNavbar from '../components/Navbar'
+import axios from 'axios'
 
 const Appointments = () => {
+
+  const [appointments,setAppointments] = useState([])
+
+  const getAppointments = async() => {
+    try{
+      const res = await axios.get('/api/v1/user/user-appointments')
+      if(res.data.success){
+        setAppointments(res.data.data)
+      }
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getAppointments()
+  },[])
+
   return (
     <>
       <MainNavbar />

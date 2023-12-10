@@ -13,7 +13,7 @@ router.post('/book-appointment',requireSignIn,appointmentController.bookAppointm
 router.post('/booking-availability',requireSignIn,appointmentController.checkAvailabilityController)
 
 //appointment list
-router.get('/user-appointments',requireSignIn,appointmentController.userAppointmentsController)
+router.get('/user-appointments', requireSignIn, appointmentController.userAppointments);
 
 //get appointment for doctor
 router.get('/doctor-appointment',requireSignIn,appointmentController.doctorAppointmentController)
