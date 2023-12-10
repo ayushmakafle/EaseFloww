@@ -28,8 +28,41 @@ const bookAppointmentController = async (req, res) => {
         });
 
         await newAppointment.save();
+        
+       const doctorID = req.body.doctorID;
+const doctor = await DoctorModel.findById(doctorID);
 
-        // Send mail here
+if (!doctor) {
+    throw new Error('Doctor not found');
+}
+
+const { email } = doctor;
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port:587,
+            secure:false,
+            requireTLS:true, 
+            auth: {
+                user: 'easeflow2023@gmail.com', 
+                pass: `${process.env.SMTP_PASSWORD}`
+            }
+        });
+        const mailOptions = {
+            from:'easeflow2023@gmail.com',
+            to:email,
+            subject:"New appointment request",
+            html:`<p> Hi ${req.body.doctorInfo},
+                you have a new appointment request from ${req.body.userInfo}. 
+                Visit your dashboard to process it.` 
+        }
+        transporter.sendMail(mailOptions, function(error,info){
+        if(error){
+            console.log(error)
+        }
+        else{
+            console.log('appointment request email has been sent ',info.response)
+        }
+        })
 
         res.status(200).send({
             success: true, 
