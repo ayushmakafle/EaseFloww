@@ -89,12 +89,11 @@ import CreateCategory from './Admin/CreateCategory';
 import CreateProduct from './Admin/CreateProduct';
 import EaseFlowUsers from './Admin/EaseFlowUsers';
 import AdminAppointments from './Admin/Appointments';
-
 // import Orders from './user/Orders';
 import EaseFlowOrders from './Admin/EaseFlowOrders';
 import MyOrders from './user/MyOrders';
 import Profile from './user/Profile';
-import Appointments from './user/Appointments';
+import UserAppointments from './user/UserAppointments';
 import Products from './Admin/Products';
 import UpdateProduct from './Admin/UpdateProduct';
 import Search from './screens/Search';
@@ -145,15 +144,13 @@ function App() {
 
           <Route path="/login" element={<LoginPage />} />
           {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
-          <Route path="/signup" element={<SignUpPage />} />
-          
+          <Route path="/signup" element={<SignUpPage />} />          
           <Route path ='/dashboard' element={<PrivateRoute />}>
             <Route path ='user' element={<UserDashboard/>}/>
             {/* <Route path ='user/orders' element={<Orders/>}/> */}
             <Route path ='user/profile' element={<Profile/>}/>
             <Route path='user/order' element={<MyOrders/>}/>
-
-            <Route path ='user/appointments' element={<Appointments/>}/>
+            <Route path ='user/appointment' element={<UserAppointments/>}/>
           </Route>
 
           <Route path='/dashboard' element={<AdminRoute />}>

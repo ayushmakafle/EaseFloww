@@ -136,7 +136,7 @@ const checkAvailabilityController = async (req, res) => {
 const userAppointmentsController = async (req, res) => {
   try {
     const appointments = await AppointmentModel.find({
-      userId: req.body.userId,
+      userID: req.body.userId,
     });
     res.status(200).send({
       success: true,
