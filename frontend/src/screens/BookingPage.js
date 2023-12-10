@@ -126,7 +126,7 @@ const BookingPage = () => {
           <div>{doctor.hospitalOrClinic}</div>
           <div>{doctor.address}</div>
         </div>
-        <div className="office-info">
+        <div className="office-info" style={{fontStyle:'normal'}}>
           <div className="office-hours">
             Office Hours: {doctor.officeHoursStart} - {doctor.officeHoursEnd}
           </div>
@@ -135,7 +135,10 @@ const BookingPage = () => {
           </div>
         </div>
         <div className="fees">{`Fees per Consultation: NRs. ${doctor.feesPerConsultation}/-`}</div>
-            <div className="date-time-picker">
+        <div className='des'>
+          Your appointment will scheduled for a one-hour duration. Please select the desired start time.
+        </div>
+        <div className="date-time-picker">
         <DatePicker
           className="date-picker"
           format="DD-MM-YYYY"

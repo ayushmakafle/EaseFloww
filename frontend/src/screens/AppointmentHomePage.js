@@ -10,7 +10,7 @@ const AppointmentHomePage = () => {
   return (
     <>
     <MainNavbar />
-    <div className="hero-section">
+    <div className="hero-section" style={{ overflowY: 'hidden' }}>
           <div className="left">
             <h2 style={{color:"white"}}>Hassle free appointments <br /> Just book online</h2>
             <p>
@@ -22,7 +22,6 @@ const AppointmentHomePage = () => {
             <img src="images/calenderbg.jpg" alt="" />
           </div>
         </div>
-
 
     </>
   )

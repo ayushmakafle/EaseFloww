@@ -28,9 +28,13 @@ const AllDoctors = () => {
   return (
     <>
       <MainNavbar />
-      <h1>EaseFlow Doctors</h1>
+      <h1 style={{ textAlign: 'center', color: '#ef5e99', marginTop: '20px' }}>
+        EaseFlow Doctors
+      </h1>
 
-      <div className="doctor-cards-container" style={{cursor:'pointer'}}>
+      <div className="doctor-cards-container" 
+        style={{ cursor: 'pointer', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
+      >
         {doctors.map((doctor) => (
           <Link key={doctor._id} to={`/book-appointment/${doctor._id}`} style={{textDecoration:'none'}}>
             <DoctorCard doctor={doctor} />
