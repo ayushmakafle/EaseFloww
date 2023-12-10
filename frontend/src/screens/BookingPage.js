@@ -19,6 +19,8 @@ const BookingPage = () => {
   const [isAvailable, setIsAvailable] = useState(false);
   const [time, setTime] = useState(null);
 
+
+  //for getting doctor information
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
@@ -35,61 +37,52 @@ const BookingPage = () => {
     fetchDoctor();
   }, [doctorId]);
 
-  // Add a console log to check the doctor state
-useEffect(() => {
-  console.log('Doctor:', doctor);
-}, [doctor]);
+  //to check the doctor state
+  useEffect(() => {
+    console.log('Doctor:', doctor);
+  }, [doctor]);
 
-const handleAvailability = async () => {
-  try {
-    console.log("Selected Date:", date);
-    console.log("Selected Time:", time);
-    if (!date || !time) {
-      toast.error("Please select both date and time.");
-      return;
+  const handleAvailability = async () => {
+    try {
+      console.log("Selected Date:", date);
+      console.log("Selected Time:", time);
+      if (!date || !time) {
+        toast.error("Please select both date and time.");
+        return;
+      }
+      const formattedStartTime = moment(`${date} ${time}`, 'DD-MM-YYYY HH:mm').format('HH:mm');
+      const formattedEndTime = moment(`${date} ${time}`, 'DD-MM-YYYY HH:mm').add(1, 'hours').format('HH:mm');
+      console.log("Formatted Start Time:", formattedStartTime);
+      console.log("Formatted End Time:", formattedEndTime);
+      const res = await axios.post(
+        "/api/v1/appointment/booking-availability",
+        { doctorID: params.doctorId, date, startTime: formattedStartTime, endTime: formattedEndTime },
+      );
+      console.log("Backend Response:", res.data);
+      if (res.data.success) {
+        setIsAvailable(true);
+        toast.success(res.data.message);
+      } else {
+        setIsAvailable(false);
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    const formattedStartTime = moment(`${date} ${time}`, 'DD-MM-YYYY HH:mm').format('HH:mm');
-    const formattedEndTime = moment(`${date} ${time}`, 'DD-MM-YYYY HH:mm').add(1, 'hours').format('HH:mm');
-
-    console.log("Formatted Start Time:", formattedStartTime);
-    console.log("Formatted End Time:", formattedEndTime);
-
-    const res = await axios.post(
-      "/api/v1/appointment/booking-availability",
-      { doctorID: params.doctorId, date, startTime: formattedStartTime, endTime: formattedEndTime },
-    );
-
-    console.log("Backend Response:", res.data);
-
-    if (res.data.success) {
-      setIsAvailable(true);
-      toast.success(res.data.message);
-    } else {
-      setIsAvailable(false);
-      toast.error(res.data.message);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
+  //for booking
   const handleBooking = async () => {
   try {
-    
     console.log("Selected Date:", date);
     console.log("Selected Time:", time);
     if (!isAvailable) {
       toast.error("Appointment slot not available. Please check availability first.");
       return;
     }
-
     // Use moment to format the selected time
-    const formattedTime = moment(time, 'HH:mm').format('HH:mm');
-    
+    const formattedTime = moment(time, 'HH:mm').format('HH:mm');    
     const selectedDate = moment(date, 'DD-MM-YYYY').format('DD-MM-YYYY');
-
     const res = await axios.post(`/api/v1/appointment/book-appointment`, {
       doctorID: params.doctorId,
       userID: auth.user._id,
@@ -99,7 +92,6 @@ const handleAvailability = async () => {
       startTime: formattedTime,
       endTime: moment(`${selectedDate} ${formattedTime}`, 'DD-MM-YYYY HH:mm').add(1, 'hours').format('HH:mm'),
     });
-
     if (res.data.success) {
       toast.success(res.data.message);
     }
@@ -107,8 +99,6 @@ const handleAvailability = async () => {
     console.error(error);
   }
 };
-
-
 
   // Render loading state
   if (!doctor) {
@@ -147,40 +137,41 @@ const handleAvailability = async () => {
         <div className="fees">{`Fees per Consultation: NRs. ${doctor.feesPerConsultation}/-`}</div>
             <div className="date-time-picker">
         <DatePicker
-  className="date-picker"
-  format="DD-MM-YYYY"
-  onChange={(value) => {
-    // Update state with the selected date in the required format
-    setDate(value.format('DD-MM-YYYY'));
-  }}
-/>
+          className="date-picker"
+          format="DD-MM-YYYY"
+          onChange={(value) => {
+            // Update state with the selected date in the required format
+            setDate(value.format('DD-MM-YYYY'));
+          }}
+        />
 
-<TimePicker
-  className="time-picker"
-  format="HH:mm"
-  onChange={(value) => {
-    // Update state with the selected time in the required format
-    setTime(value.format('HH:mm'));
-  }}
-/>
+        <TimePicker
+          className="time-picker"
+          format="HH:mm"
+          onChange={(value) => {
+            // Update state with the selected time in the required format
+            setTime(value.format('HH:mm'));
+          }}
+        />
 
-
-          <button
-            className="check-availability-btn m-1"
-            onClick={handleAvailability}
-          >
-            Check Availability
-          </button>
-
+        <button
+          className="check-availability-btn m-1"
+          onClick={handleAvailability}
+        >
+          Check Availability
+        </button>
+        {/* Conditionally render the "Book Now" button */}
+        {isAvailable && (
           <button
             className="check-availability-btn"
             onClick={handleBooking}
           >
             Book Now
           </button>
-        </div>
+        )}
       </div>
-    </>
+    </div>
+  </>
  );
 };
 
