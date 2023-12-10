@@ -52,7 +52,7 @@ const handleAvailability = async () => {
 
     const res = await axios.post(
       "/api/v1/appointment/booking-availability",
-      { doctorId: params.doctorId, date, startTime: formattedStartTime, endTime: formattedEndTime },
+      { doctorID: params.doctorId, date, startTime: formattedStartTime, endTime: formattedEndTime },
     );
 
     console.log("Backend Response:", res.data);
