@@ -1,26 +1,64 @@
-import React, { useEffect, useState } from 'react'
-import UserMenu from './UserMenu'
-import MainNavbar from '../components/Navbar'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import UserMenu from './UserMenu';
+import MainNavbar from '../components/Navbar';
+import axios from 'axios';
+import moment from 'moment'; // Import the moment library
+import { Table, Spin } from 'antd';
 
-const Appointments = () => {
-
-  const [appointments,setAppointments] = useState([])
-
-  const getAppointments = async() => {
-    try{
-      const res = await axios.get('/api/v1/user/user-appointments')
-      if(res.data.success){
-        setAppointments(res.data.data)
-      }
-    }catch(error){
-      console.log(error)
-    }
-  }
+const UserAppointments = () => {
+  const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    getAppointments()
-  },[])
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get('/api/v1/appointment/user-appointments');
+        setAppointments(response.data.data);
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      }
+    };
+
+    fetchAppointments();
+  }, []);
+
+  const columns = [
+    {
+      title: 'Appointment ID',
+      dataIndex: '_id',
+      key: '_id',
+    },
+    {
+      title: 'Doctor Info',
+      dataIndex: 'doctorInfo',
+      key: 'doctorInfo',
+    },
+    {
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
+    },
+ {
+  title: 'Time',
+  dataIndex: 'time',
+  key: 'time',
+  render: (text, record) => {
+    if (record && record.startTime && record.endTime) {
+      const startTime = moment(record.startTime);
+      const endTime = moment(record.endTime);
+      if (startTime.isValid() && endTime.isValid()) {
+        return `${startTime.format('h:mm A')} - ${endTime.format('h:mm A')}`;
+      }
+    }
+    return 'N/A';
+  },
+},
+
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+    },
+  ];
 
   return (
     <>
@@ -32,11 +70,16 @@ const Appointments = () => {
           </div>
           <div className='col-md-9'>
             <h2>My Appointments</h2>
-            </div>
+            {appointments.length === 0 ? (
+              <p>No appointments found.</p>
+            ) : (
+              <Table dataSource={appointments} columns={columns} />
+            )}
+          </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Appointments
+export default UserAppointments;
