@@ -1,7 +1,7 @@
 import mongoose, { Schema, model } from 'mongoose';
 
 // Define the review schema
-const reviewSchema = Schema({
+/* const reviewSchema = Schema({
     name: {
         type: String,
         required: true,
@@ -14,7 +14,7 @@ const reviewSchema = Schema({
         type: String,
         required: false,
     },
-}, { timestamps: true });
+}, { timestamps: true }); */
 
 // Define the product schema
 const productSchema = Schema({
@@ -32,14 +32,14 @@ const productSchema = Schema({
     },
     category: {
         type: mongoose.Schema.Types.ObjectId, // Corrected the type
-        ref: 'Category', // Assuming the category model is named 'Category'
+        ref: 'category', // Assuming the category model is named 'Category'
         required: true,
     },
     description: {
         type: String,
         required: true,
     },
-    reviews: [reviewSchema], // Use the defined review schema as a subdocument array
+   /*  reviews: [reviewSchema], // Use the defined review schema as a subdocument array
     rating: {
         type: Number,
         required: true,
@@ -47,7 +47,7 @@ const productSchema = Schema({
     numReviews: {
         type: Number,
         required: true,
-    },
+    }, */
     price: {
         type: Number,
         required: true,
