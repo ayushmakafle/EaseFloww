@@ -80,7 +80,7 @@ const Products = () => {
             <h3 className="product-name">{product.name}</h3>
             <p className="product-description">{product.description}</p>
             <p className="product-price">Price: ${product.price}</p>
-            <p className="product-rating">Rating: {product.rating}</p>
+            <p className="product-rating">Doctor Rating: {product.doctorRating}</p>
           </div>
         </div>
       ))}

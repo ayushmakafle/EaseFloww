@@ -39,15 +39,7 @@ const productSchema = Schema({
         type: String,
         required: true,
     },
-   /*  reviews: [reviewSchema], // Use the defined review schema as a subdocument array
-    rating: {
-        type: Number,
-        required: true,
-    },
-    numReviews: {
-        type: Number,
-        required: true,
-    }, */
+  
     price: {
         type: Number,
         required: true,
@@ -59,6 +51,13 @@ const productSchema = Schema({
     shipping: {
         type: Boolean,
     },
+    ratings: [
+        {
+            doctorID: { type: mongoose.Schema.Types.ObjectId, ref: 'Doctor' },
+            rating: { type: Number, default: 0 },
+        },
+    ],
+    averageRating: { type: Number, default: 0 },
 }, { timestamps: true });
 
 // Export the "Product" model

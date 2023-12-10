@@ -2,6 +2,9 @@ import productModel from "../models/ProductModel.js";
 import categoryModel from '../models/CategoryModel.js';
 import fs from "fs";
 import slugify from "slugify";
+import Product from '../models/ProductModel.js';
+import mongoose from 'mongoose';
+
 
 export const createProductController = async (req, res) => {
   try {
@@ -308,3 +311,52 @@ export const productCategoryController = async(req,res) => {
     })
   }
 }
+
+
+export const updateProductRating = async (req, res) => {
+  try {
+    const { productId } = req.params;
+    const { doctorId, rating } = req.body;
+
+    // Convert doctorId to ObjectId
+    const doctorObjectId = new mongoose.Types.ObjectId(doctorId);
+
+    // Find the product by ID
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    // Ensure that product.ratings is an array
+    product.ratings = product.ratings || [];
+
+    // Update or add the rating given by the doctor
+    const existingRatingIndex = product.ratings.findIndex(
+      (r) => r.doctorId && r.doctorId.toString() === doctorObjectId.toString()
+    );
+
+    if (existingRatingIndex !== -1) {
+      product.ratings[existingRatingIndex].rating = rating;
+    } else {
+      product.ratings.push({ doctorId: doctorObjectId, rating });
+    }
+
+    // Filter out ratings without doctorId and calculate average rating
+    const doctorRatings = product.ratings.filter((r) => r.doctorId);
+    const totalRating = doctorRatings.reduce((sum, r) => sum + r.rating, 0);
+    const averageRating =
+      doctorRatings.length > 0 ? totalRating / doctorRatings.length : 0;
+
+    // Update the averageRating field in the product model
+    product.averageRating = averageRating;
+
+    // Save the changes
+    await product.save();
+
+    // Send a response back to the client
+    res.json({ success: true, product });
+  } catch (error) {
+    console.error('Error updating product rating:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
