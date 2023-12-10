@@ -1,8 +1,9 @@
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Select } from "antd";
+import { Select, Modal } from "antd"; // Import Modal from antd
 import { useNavigate, useParams } from "react-router-dom";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 import MainNavbar from "../components/Navbar";
 import AdminMenu from "./AdminMenu";
 const { Option } = Select;
@@ -19,6 +20,8 @@ const UpdateProduct = () => {
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
   const [id, setId] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false); // State for modal visibility
+
 
   //get single product
   const getSingleProduct = async () => {
@@ -85,22 +88,37 @@ const UpdateProduct = () => {
       toast.error("something went wrong");
     }
   };
+  const showDeleteModal = () => {
+    setIsModalVisible(true);
+  };
 
-  //delete a product
-  const handleDelete = async () => {
+  const handleOk = async () => {
+    setIsModalVisible(false);
     try {
-      let answer = window.prompt("Are You Sure want to delete this product ? ");
-      if (!answer) return;
+      // Delete product from the database
       const { data } = await axios.delete(
         `/api/v1/product/delete-product/${id}`
       );
-      toast.success("Product DEleted Succfully");
-      navigate("/dashboard/admin/products");
+  
+      if (data?.success) {
+        // If deletion from the database is successful, update the product list
+        const updatedProductList = categories.filter((product) => product._id !== id);
+        setCategories(updatedProductList);
+  
+        toast.success("Product Deleted Successfully");
+        navigate("/dashboard/admin/products");
+      } else {
+        toast.error("Failed to delete product");
+      }
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
     }
   };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <>
     <MainNavbar />
@@ -221,7 +239,7 @@ const UpdateProduct = () => {
                 </button>
               </div>
               <div className="mb-3">
-                <button className="btn btn-danger" onClick={handleDelete}>
+              <button className="btn btn-danger" onClick={showDeleteModal}>
                   DELETE PRODUCT
                 </button>
               </div>
@@ -229,8 +247,16 @@ const UpdateProduct = () => {
           </div>
         </div>
       </div>
+        {/* Confirmation Modal */}
+        <Modal
+        title="Confirmation"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>Are you sure you want to delete this product?</p>
+      </Modal>
     </>
   );
 };
-
 export default UpdateProduct;

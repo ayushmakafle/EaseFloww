@@ -20,7 +20,7 @@ router.get('/verify-doctor-email',authController.doctorVerifyMail) */
 router.post("/login", authController.loginController);
 
 //forgot password
-router.post('/forgot-password',authController.forgotPasswordController)
+// router.post('/forgot-password',authController.forgotPasswordController)
 
 //protected route user auth
 router.get('/user-auth',requireSignIn, (req,res) => {
