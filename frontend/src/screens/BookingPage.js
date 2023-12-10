@@ -35,35 +35,40 @@ const BookingPage = () => {
     fetchDoctor();
   }, [doctorId]);
 
- const handleAvailability = async () => {
-    try {
-      console.log("Selected Date:", date);
+const handleAvailability = async () => {
+  try {
+    console.log("Selected Date:", date);
     console.log("Selected Time:", time);
-      if (!date || !time) {
-        toast.error("Please select both date and time.");
-        return;
-      }
-
-      const formattedStartTime = moment(`${date} ${time}`, 'DD-MM-YYYY HH:mm').format('HH:mm');
-
-      const res = await axios.post(
-        "/api/v1/appointment/booking-availability",
-        { doctorId: params.doctorId, date, startTime: formattedStartTime, endTime: formattedStartTime }, // Use formattedStartTime for both
-      );
-
-      console.log("Backend Response:", res.data);
-
-      if (res.data.success) {
-        setIsAvailable(true);
-        toast.success(res.data.message);
-      } else {
-        setIsAvailable(false);
-        toast.error(res.data.message);
-      }
-    } catch (error) {
-      console.log(error);
+    if (!date || !time) {
+      toast.error("Please select both date and time.");
+      return;
     }
-  };
+
+    const formattedStartTime = moment(`${date} ${time}`, 'DD-MM-YYYY HH:mm').format('HH:mm');
+    const formattedEndTime = moment(`${date} ${time}`, 'DD-MM-YYYY HH:mm').add(1, 'hours').format('HH:mm');
+
+    console.log("Formatted Start Time:", formattedStartTime);
+    console.log("Formatted End Time:", formattedEndTime);
+
+    const res = await axios.post(
+      "/api/v1/appointment/booking-availability",
+      { doctorId: params.doctorId, date, startTime: formattedStartTime, endTime: formattedEndTime },
+    );
+
+    console.log("Backend Response:", res.data);
+
+    if (res.data.success) {
+      setIsAvailable(true);
+      toast.success(res.data.message);
+    } else {
+      setIsAvailable(false);
+      toast.error(res.data.message);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   const handleBooking = async () => {
   try {
