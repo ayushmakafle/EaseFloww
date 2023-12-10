@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Table } from 'antd';
 import moment from 'moment';
 import DoctorNavbar from './DoctorNavbar';
+import {toast} from 'react-toastify';
 
 const DoctorAppointments = () => {
 
@@ -78,6 +79,7 @@ const handleAccept = async (id) => {
     await axios.put(`/api/v1/appointment/accept/${id}`);
     // Refresh appointments after accepting
     fetchAppointments();
+    toast.success('Appointment accepted');
   } catch (error) {
     console.error("Error accepting appointment:", error);
   }
@@ -88,6 +90,8 @@ const handleReject = async (id) => {
     await axios.put(`/api/v1/appointment/reject/${id}`);
     // Refresh appointments after rejecting
     fetchAppointments();
+    toast.success('Appointment rejected');
+
   } catch (error) {
     console.error("Error rejecting appointment:", error);
   }
