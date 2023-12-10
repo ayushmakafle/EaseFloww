@@ -1,5 +1,7 @@
 import { Schema, model } from 'mongoose';
 
+
+
 const orderSchema = Schema({
     User: {
         type: Schema.Types.ObjectId,
@@ -12,7 +14,7 @@ const orderSchema = Schema({
                 type:String,
                 required:true
             },
-            qty:{
+            qyt:{
                 type:Number,
                 required: true
             },

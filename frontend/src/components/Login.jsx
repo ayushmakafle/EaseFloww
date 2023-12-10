@@ -104,13 +104,13 @@ const Login = () => {
               >
                 Login
               </button>
-              <button
+              {/* <button
                 type='submit'
                 className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-center text-sm font-medium rounded-md text-blackauthc bg-pink-600 hover:bg-pink-700'
                 onClick={() => navigate('/forgot-password')}
               >
                 Forgot Password?
-              </button>
+              </button> */}
             </div>
             <div className='text-center mt-6'>
               <div className='flex items-center'>

@@ -1,60 +1,65 @@
+:root {
+  --pink-color: #ffc0cb;
+  --pinkone-color: #f38dbc;
+  --pinktwo-color: #ef5e99;
+  --orange-color : #ec6f71;
+  --dark-color : #23395d;
+  --pinkthree-color: #de5d83;
+}
 .home-page {
-  background-size: cover;
-  background-color: #eb6864;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  color: white;
+  background: #ffffff;
+  padding: 20px;
   text-align: center;
 }
 
-.calendar-container {
-  margin-top: 100px;
-  width: 40%;
-  height: 55%;
-  background-color: pink;
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Calendar styles */
-.react-calendar {
-  border: 7px;
-  color: rgb(5, 5, 5);
-  background-color: pink;
+.info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  
+}
+
+.text-content {
+  width: 45%;
+  text-align: left;
+}
+
+
+
+.learn-more-button h1 {
+ 
+  font-family: "Raleway", sans-serif;
   font-weight: bold;
-  border-radius: 10px;
-  box-shadow: rgb(300, 213, 255);
-  width: 100%;
+  font-size: 48px;
+  color: var(--pinkthree-color);
 }
 
 
-.period-date {
-  background-color:#eb6864!important;
-  color: rgb(13, 12, 12) !important;
-  border-radius: 50%;
+.learn-more-button p {
+  color: var(--pinkthree-color);
+  font-family: 'poppins', sans-serif;
+  font-size: 20px; 
 }
 
-/* Styles for predicted dates of next month */
-.predicted-date-next-month {
-  background-color: rgb(233, 147, 213) !important;
-  border-radius: 50%;
-  /* Add any specific styles for predicted dates of next month */
-}
-.log-button {
-  position: absolute;
-  left: 50%;
-  margin-top: 30px;
-  transform: translateX(-50%);
-  background-color:#eb6864;
-  color: white;
+
+.learn-more-button {
+  border-radius: 111px;
+  background-color: var(--pink-color);
+  color: #fff;
+  padding: 75px 30px; 
+  font-size: 24px;
   border: none;
-  padding: 12px 20px;
-  font-size: 16px;
   cursor: pointer;
-  border-radius: 8px;
-  transition: transform 0.2s ease-in-out;
+  margin-top: 20px; 
 }
 
-.log-button:hover {
-  transform: translateX(-50%) scale(1.1);
+.learn-more-button:hover {
+  background-color: #ffe5ea;
 }
-

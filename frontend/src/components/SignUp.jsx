@@ -12,7 +12,6 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [phonenumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
-  const [answer, setAnswer] = useState('');
 
   const navigate = useNavigate();
   //form function
@@ -43,7 +42,6 @@ const SignUp = () => {
         password,
         phonenumber,
         address,
-        answer,
       });
 
       if (res.data.success) {
@@ -161,22 +159,7 @@ const SignUp = () => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor='answer' className='form-label mt-4'>
-                For account recovery
-              </label>
-              <input
-                type='text'
-                name='answer'
-                className='form-control focus:border-pink-500 bg-pink-100'
-                id='answer'
-                aria-describedby='emailHelp'
-                placeholder='what is the name of your first pet'
-                required
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-              />
-            </div>
+              
 
             <div>
               <button
