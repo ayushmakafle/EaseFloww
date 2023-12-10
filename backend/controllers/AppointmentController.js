@@ -220,7 +220,39 @@ const doctorAppointments = async (req, res) => {
 // Controller to accept an appointment
 const acceptAppointment = async (req, res) => {
   try {
+    const appointment = await AppointmentModel.findById(req.params.id);
     await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'accepted' });
+
+    // Fetch user's email
+    const user = await userModel.findById(appointment.userID);
+    const { email } = user;
+
+    // Send email to user
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port:587,
+      secure:false,
+      requireTLS:true, 
+      auth: {
+        user: 'easeflow2023@gmail.com', 
+        pass: `${process.env.SMTP_PASSWORD}`
+      }
+    });
+    const mailOptions = {
+      from:'easeflow2023@gmail.com',
+      to: email,
+      subject: "Appointment Accepted",
+      html: `<p> Hi ${user.username}, Your appointment has been accepted by the doctor. </p>` 
+    }
+    transporter.sendMail(mailOptions, function(error,info){
+      if(error){
+        console.log(error)
+      }
+      else{
+        console.log('Appointment acceptance email has been sent ',info.response)
+      }
+    })
+
     res.status(200).send({
       success: true,
       message: "Appointment accepted successfully",
