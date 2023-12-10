@@ -16,9 +16,10 @@ router.post('/booking-availability',requireSignIn,appointmentController.checkAva
 router.get('/user-appointments', requireSignIn, appointmentController.userAppointments);
 
 //get appointment for doctor
-router.get('/doctor-appointment',requireSignIn,appointmentController.doctorAppointmentController)
+router.get('/doctor-appointments',requireSignIn,appointmentController.doctorAppointments)
 
-//update status
-router.post('/update-status',requireSignIn,appointmentController.updateStatusController)
+//doctor accept and reject appointment
+router.put('/accept/:id', requireSignIn, appointmentController.acceptAppointment);
+router.put('/reject/:id', requireSignIn,appointmentController.rejectAppointment);
 
 export default router;

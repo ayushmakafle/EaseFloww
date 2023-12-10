@@ -159,28 +159,68 @@ const userAppointments = async (req, res) => {
 };
 
 //get appointment for doctor
-const doctorAppointmentController = async (req, res) => {
+const doctorAppointments = async (req, res) => {
   try {
-    const doctor = await DoctorModel.findOne({ userId: req.body.userId });
+    // Extract doctor ID from the authenticated doctor's token
+    const doctorId = req.user._id; // Assuming you have stored doctor ID in req.doctor
+
+    // Fetch appointments for the specified doctor ID
     const appointments = await AppointmentModel.find({
-      doctorID: doctor._id,
+      doctorID: doctorId,
     });
+
     res.status(200).send({
       success: true,
-      message: "Doctor Appointments fetched successfully",
+      message: "Doctor's Appointments fetched successfully",
       data: appointments,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send({
       success: false,
-      error,
-      message: "Error in Doc Appointments",
+      error: error.message,
+      message: "Error in fetching doctor appointments",
     });
   }
 };
 
-//update status
+// Controller to accept an appointment
+const acceptAppointment = async (req, res) => {
+  try {
+    await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'accepted' });
+    res.status(200).send({
+      success: true,
+      message: "Appointment accepted successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      error: error.message,
+      message: "Error in accepting appointment",
+    });
+  }
+};
+
+// Controller to reject an appointment
+const rejectAppointment = async (req, res) => {
+  try {
+    await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'rejected' });
+    res.status(200).send({
+      success: true,
+      message: "Appointment rejected successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      error: error.message,
+      message: "Error in rejecting appointment",
+    });
+  }
+};
+
+/* //update status
 const updateStatusController = async(req,res) => {
     try{
         const {appointmentsId,status}=req.body
@@ -199,11 +239,12 @@ const updateStatusController = async(req,res) => {
         })
     }
 }
-
+ */
 
 export default {bookAppointmentController,
     checkAvailabilityController,
     userAppointments,
-    doctorAppointmentController,
-    updateStatusController
+    doctorAppointments,
+    acceptAppointment,
+    rejectAppointment
 }
