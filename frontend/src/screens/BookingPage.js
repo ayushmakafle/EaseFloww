@@ -35,6 +35,11 @@ const BookingPage = () => {
     fetchDoctor();
   }, [doctorId]);
 
+  // Add a console log to check the doctor state
+useEffect(() => {
+  console.log('Doctor:', doctor);
+}, [doctor]);
+
 const handleAvailability = async () => {
   try {
     console.log("Selected Date:", date);
@@ -88,9 +93,13 @@ const handleAvailability = async () => {
     const res = await axios.post(`/api/v1/appointment/book-appointment`, {
       doctorID: params.doctorId,
       userID: auth.user._id,
-      doctorInfo: { ...doctor },
-      userInfo: { ...auth.user },
-      date: selectedDate, // Use the selectedDate variable
+      doctorInfo: {
+        username: doctor.name,
+      },
+      userInfo: {
+        username: auth.user.username,
+      },
+      date: selectedDate, 
       startTime: formattedTime,
       endTime: moment(`${selectedDate} ${formattedTime}`, 'DD-MM-YYYY HH:mm').add(1, 'hours').format('HH:mm'),
     });

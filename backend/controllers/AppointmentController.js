@@ -23,6 +23,8 @@ const bookAppointmentController = async (req, res) => {
             startTime: formattedStartDate,
             endTime: formattedEndDate,
             status: "pending",
+             doctorInfo: JSON.stringify(req.body.doctorInfo), // Convert object to string
+      userInfo: JSON.stringify(req.body.userInfo),
         });
 
         await newAppointment.save();
