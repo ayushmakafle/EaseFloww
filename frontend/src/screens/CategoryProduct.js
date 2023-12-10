@@ -3,9 +3,10 @@ import axios from 'axios'
 import MainNavbar from '../components/Navbar'
 import EcomHeader from '../components/EcomHeader'
 import { useNavigate, useParams } from 'react-router-dom'
-
+import { useCart } from '../context/cart';
+import { toast } from 'react-toastify'
 const CategoryProduct = () => {
-
+  const [cart, setCart] = useCart()
     const navigate= useNavigate()
     const params = useParams()
 
@@ -61,7 +62,7 @@ const CategoryProduct = () => {
     <div className="col-md-9 offset-1">
         <div className="d-flex flex-wrap">
             {products?.map((p) => (
-              <div className="card m-2" style={{ width: '300px', height: '450px', padding: '15px' }}>
+              <div className="card m-2" style={{ width: '450px', height: '450px', padding: '15px' }}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -77,11 +78,9 @@ const CategoryProduct = () => {
                   <p className="card-text">
                     NRs.{p.price}/-
                   </p>
-                  <button className='btn btn-primary ms-1'
-                    onClick={() => navigate(`/product/${p.slug}`)}>
-                    More Details</button>
-                  <button className='btn btn-secondary'>
-                    <i className="fas fa-cart-shopping"></i>
+                  <button className='btn btn-primary ms-1'onClick={() => navigate(`/product/${p.slug}`)}>More Details</button>
+                <button className='btn btn-secondary' onClick={() => { setCart([...cart, p]); toast.success('Item added to cart'); }}>
+                <i className="fas fa-cart-shopping"></i>
                   </button>
                 </div>
               </div>

@@ -122,3 +122,4 @@ export const isDoctor = async (req, res, next) => {
     });
   }
 };
+

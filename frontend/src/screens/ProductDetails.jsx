@@ -3,10 +3,11 @@ import axios from 'axios';
 //import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
 import { Link, useParams } from 'react-router-dom';
-
+import { useCart } from '../context/cart';
+import { toast } from 'react-toastify'
 const ProductDetails = () => {
   const params = useParams();
-
+  const [cart, setCart] = useCart()
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
 
@@ -60,16 +61,17 @@ const ProductDetails = () => {
                 <h2 className="card-title text-center mb-4">{product.name}</h2>
                 {product.category && (
                   <p className="card-text">
-                    <span style={{ color: '#007BFF' }}>Category:</span> {product.category.name}
+                    <span style={{ color: '#212129', fontFamily: 'Poppins, sans-serif' }}>Category:</span> {product.category.name}
+
                   </p>
                 )}
                 <p className="card-text">
-                  <span style={{ color: '#28A745' }}>Price:</span> NRs.{product.price}/-
+                  <span style={{ color: '#000080' }}>Price:</span> NRs.{product.price}/-
                 </p>
-                <p className="card-text">{product.description}</p>
-                <button className="btn btn-primary btn-lg">
-                  <i className="fas fa-shopping-cart"></i> Add to Cart
-                </button>
+                <p className="card-text"style={{ color: '#212129' , fontFamily: 'Raleway, sans-serif'}}>{product.description}</p>
+                <button className='btn btn-secondary' onClick={() => { setCart([...cart, product]); toast.success('Item added to cart'); }}>
+                <i className="fas fa-cart-shopping">ADD TO CART</i>
+                  </button>
               </div>
             </div>
           </div>
@@ -96,9 +98,9 @@ const ProductDetails = () => {
                 <p className="card-text">
                   NRs.{p.price}/-
                 </p>
-                <button className='btn btn-secondary'>
-                  <i className="fas fa-cart-shopping"></i>
-                </button>
+                <button className='btn btn-secondary' onClick={() => { setCart([...cart, p]); toast.success('Item added to cart'); }}>
+                <i className="fas fa-cart-shopping"></i>
+                  </button>
               </div>
             </div>
           ))}

@@ -58,7 +58,7 @@ const CartPage = () => {
       <MainNavbar />
       <EcomHeader />
 
-      <div className="container mt-1">
+      <div>
         <div className="row">
           <div className="col-md-12">
             <h1 className="text-center bg-light p-2 mb-1">
@@ -147,12 +147,14 @@ const CartPage = () => {
                   <button
                     className="btn btn-primary"
                     onClick={() => navigate("/dashboard/user/profile")}
+                    style={{ marginRight: '15px',padding: '10px', textAlign: 'center' }}
                   >
                     Update Address
                   </button>
                   <button
-                    className="btn btn-primary mt-2"
+                    className="btn btn-primary"
                     onClick={() => navigate("/checkout")}
+                    style={{ padding: '10px', textAlign: 'center' }}
                   >
                     Checkout
                   </button>

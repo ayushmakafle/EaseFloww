@@ -208,7 +208,21 @@ border-bottom: 2px solid white; /* Underline active link */
   margin-bottom: 30px;
   
 }
+.hero-section .left .nav-link {
+  background-color: #FFB6C1; /* Set your desired background color */
+  color: #495057; /* Set your desired text color */
+  border: 0; /* Set your desired border color */
+  padding: 10px 20px; /* Set your desired padding */
+  text-decoration: none; /* Remove the default underline */
+  border-radius: 5px; /* Set your desired border radius */
+  display: inline-block; /* Ensure it behaves like a block-level element */
+}
 
+.hero-section .left .nav-link:hover {
+  background-color: #ffc2d1; /* Set your desired hover background color */
+  color: #495057; /* Set your desired hover text color */
+  border: 0; /* Set your desired hover border color */
+}
 .hero-section .left{
   margin-bottom: 130px;
   width: 457px;

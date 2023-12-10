@@ -113,7 +113,12 @@ import EaseFlowDoctors from './Admin/EaseFlowDoctors';
 import AppointmentHomePage from './screens/AppointmentHomePage';
 import AllDoctors from './screens/AllDoctors';
 import BookingPage from './screens/BookingPage';
-
+import LearnMorePage0 from './screens/LearnMorePage0';
+import LearnMorePage1 from './screens/LearnMorePage1';
+import LearnMorePage2 from './screens/LearnMorePage2';
+import LearnMorePage3 from './screens/LearnMorePage3';
+import LearnMorePage4 from './screens/LearnMorePage4';
+import LearnMorePage5 from './screens/LearnMorePage5';
 function App() {
 
   return (
@@ -162,18 +167,25 @@ function App() {
             <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
           </Route>
 
-          <Route path = '/dashboard' element={<DoctorRoute />}>
-            <Route path='doctor' element={<DoctorDashboard/>} />
+          <Route path='/dashboard' element={<DoctorRoute />}>
+            <Route path='doctor' element={<DoctorDashboard />} />
             <Route path = 'doctor/doctor-profile' element={<DoctorProfile />} />
           </Route>
 
-          <Route path="/doctorlogin" element={<DoctorLoginPage />} />
+          <Route path="/doctor-login" element={<DoctorLoginPage />} />
           <Route path="/doctorsignup" element={<DoctorSignUpPage />} />
           
           <Route path="/appointment-homepage" element={<AppointmentHomePage />} />
           <Route path='/all-doctors' element={<AllDoctors />}/>
           <Route path = "/book-appointment/:doctorId" element={<BookingPage />} />
 
+
+          <Route path="/learn-more/0" element={<LearnMorePage0 />} />
+          <Route path="/learn-more/1" element={<LearnMorePage1 />} />
+          <Route path="/learn-more/2" element={<LearnMorePage2 />} />
+          <Route path="/learn-more/3" element={<LearnMorePage3 />} />
+          <Route path="/learn-more/4" element={<LearnMorePage4 />} />
+          <Route path="/learn-more/5" element={<LearnMorePage5 />} />
         </Routes>
         <ToastContainer />
       </main>

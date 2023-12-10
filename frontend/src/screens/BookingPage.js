@@ -36,25 +36,49 @@ const BookingPage = () => {
     fetchDoctor();
   }, [doctorId]);
 
-  const handleBooking = async () => {
-  try {
-    const res = await axios.post(`/api/v1/appointment/book-appointment`, {
-      doctorID: params.doctorId, // Ensure it's "doctorID" instead of "doctorId"
-      userID: auth.user._id,
-      doctorInfo: doctor,
-      userInfo: auth.user,
-      date: date,
-      time: time && time.join(' - ') // Check if time is defined before calling join
-    });
 
-    if (res.data.success) {
-      toast.success(res.data.message);
+ //handle availability
+  const handleAvailability = async () => {
+    try {
+      const res = await axios.post(
+        "/api/v1/appointment/booking-availability",
+        { doctorId: params.doctorId, date, time },
+      );
+      if (res.data.success) {
+        setIsAvailable(true);
+        console.log(isAvailable);
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.error(error);
-  }
-};
+  };
 
+//booking
+  const handleBooking = async () => {
+    try {
+      setIsAvailable(true)
+      if(!date && !time){
+        return alert("date and time required")
+      } 
+      const res = await axios.post(`/api/v1/appointment/book-appointment`, {
+        doctorID: params.doctorId, 
+        userID: auth.user._id,
+        doctorInfo: doctor,
+        userInfo: auth.user,
+        date: date,
+        time: time 
+      });
+
+      if (res.data.success) {
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Render loading state
   if (!doctor) {
@@ -95,21 +119,31 @@ const BookingPage = () => {
             <div className="date-time-picker">
                 <DatePicker className="date-picker" 
                     format="DD-MM-YYYY" 
-                    onChange={(value) => setDate(moment(value).format('DD-MM-YYYY'))} 
+                    onChange={(value) => {
+                      setDate(moment(value).format('DD-MM-YYYY'))
+                    }} 
                 />
-                <TimePicker.RangePicker className="time-picker" 
+                <TimePicker className="time-picker" 
                     format="HH:mm" 
-                    onChange={(values) => setTime([
-                        moment(values[0]).format('HH:mm'), 
-                        moment(values[1]).format('HH:mm')
-                    ])} 
+                    onChange={(value) => {
+                      setTime(moment(value).format('HH:mm')) 
+                    }}
                 />
-                <button className="check-availability-btn m-1">
+                <button 
+                  className="check-availability-btn m-1"
+                  onClick={handleAvailability}
+                >
                     Check Availability
                 </button>
-                 <button className="check-availability-btn" onClick={handleBooking}>
+                
+                   <button 
+                    className="check-availability-btn" 
+                    onClick={handleBooking}
+                  >
                     Book Now
                 </button>
+                
+                
             </div>
         </div>
     </>

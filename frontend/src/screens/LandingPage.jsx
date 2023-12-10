@@ -16,7 +16,7 @@ const LandingPage = () => {
             <p>
               Learn more about your cycle with us.
             </p>
-            <Nav.Link as={Link} to="/homepage" className="btn light">Track Now</Nav.Link>
+            <Nav.Link as={Link} to="/homepage" className="btn light">Learn More about Your Cycle</Nav.Link>
           </div>
           <div className="right">
             <img src="images/calenderbg.jpg" alt="" />
@@ -45,16 +45,12 @@ const LandingPage = () => {
               </div>
             </div>
             <div className="right">
-              <h2>Lets go touring menstruation</h2>
+              <h1>Lets go touring menstruation</h1>
               <div className="features">
-                <p> hvjshfjhsdkfjh dfhkjdshiguvhdfiuvh idfhdfhiuhdfsgfh jfhvidf
-                  vdfdfssdf
+                <p> "Welcome to our space where we openly discuss the beauty and significance of menstruation, a natural and essential aspect of women's health."
                 </p>
-                <p> kdgfsjkdgj kvdfjkjf kfgjdfsjgi dfgjodfijgifjdgifjdo</p>
               </div>
-              <Nav.Link as={Link} to="/homepage" className="btn light desktop-btn">Go visit</Nav.Link>
             </div>
-            <Nav.Link as={Link} to="/homepage" className="btn light mobile-btn">Go visit</Nav.Link>
           </section>
         </div>
         <section className="courses-section">
@@ -75,7 +71,7 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-            <Nav.Link as={Link} to="/homepage" className="btn light">View Calendar</Nav.Link>
+            
           </div>
         </section>
         {/* end of courses section */}
