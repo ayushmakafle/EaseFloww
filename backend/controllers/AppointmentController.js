@@ -270,7 +270,51 @@ const acceptAppointment = async (req, res) => {
 // Controller to reject an appointment
 const rejectAppointment = async (req, res) => {
   try {
+    const appointment = await AppointmentModel.findById(req.params.id);
+    if (!appointment) {
+      return res.status(404).send({
+        success: false,
+        message: "Appointment not found",
+      });
+    }
+
+    const user = await userModel.findById(appointment.userID);
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port:587,
+      secure:false,
+      requireTLS:true, 
+      auth: {
+        user: 'easeflow2023@gmail.com', 
+        pass: `${process.env.SMTP_PASSWORD}`
+      }
+    });
+
+    const mailOptions = {
+      from:'easeflow2023@gmail.com',
+      to: user.email,
+      subject: "Appointment Rejected",
+      html: `<p> Hi ${user.username}, your appointment has been rejected. Please book another slot.</p>` 
+    }
+
+    transporter.sendMail(mailOptions, function(error,info){
+      if(error){
+        console.log(error)
+      }
+      else{
+        console.log('Appointment rejection email has been sent ',info.response)
+      }
+    });
+
     await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'rejected' });
+
     res.status(200).send({
       success: true,
       message: "Appointment rejected successfully",
