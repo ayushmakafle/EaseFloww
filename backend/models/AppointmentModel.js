@@ -10,11 +10,11 @@ const AppointmentSchema = new mongoose.Schema({
         required:true
     },
     doctorInfo:{
-        type:Object,
+        type:String,
         required:true
     },
     userInfo:{
-        type:Object,
+        type:String,
         required:true
     },
     date:{

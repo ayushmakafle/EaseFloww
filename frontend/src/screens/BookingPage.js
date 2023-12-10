@@ -93,12 +93,8 @@ const handleAvailability = async () => {
     const res = await axios.post(`/api/v1/appointment/book-appointment`, {
       doctorID: params.doctorId,
       userID: auth.user._id,
-      doctorInfo: {
-        username: doctor.name,
-      },
-      userInfo: {
-        username: auth.user.username,
-      },
+      doctorInfo: doctor.name,
+      userInfo: auth.user.username,
       date: selectedDate, 
       startTime: formattedTime,
       endTime: moment(`${selectedDate} ${formattedTime}`, 'DD-MM-YYYY HH:mm').add(1, 'hours').format('HH:mm'),
