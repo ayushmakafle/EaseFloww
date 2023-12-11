@@ -122,6 +122,7 @@ import LearnMorePage5 from './screens/LearnMorePage5';
 import LearnMorePage6 from './screens/LearnMorePage6';
 import DoctorAppointments from './Doctor/DoctorAppointments';
 import DoctorRateProducts from './Doctor/DoctorRateProducts';
+import EmailVerified from './user/EmailVerified';
 function App() {
 
   return (
@@ -144,6 +145,7 @@ function App() {
           <Route path ='/category/:slug' element={<CategoryProduct/>}/>
 
           <Route path="/login" element={<LoginPage />} />
+          <Route path='/verified-email' element={<EmailVerified/>}/>
           {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
           <Route path="/signup" element={<SignUpPage />} />          
           <Route path ='/dashboard' element={<PrivateRoute />}>
