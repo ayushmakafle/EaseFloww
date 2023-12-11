@@ -1,8 +1,10 @@
 import React from 'react'
+import DoctorNavbar from './DoctorNavbar'
 
 const DoctorProfile = () => {
   return (
     <>
+    <DoctorNavbar />
       <h1>your profile</h1>
     </>
   )

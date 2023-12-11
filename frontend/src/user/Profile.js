@@ -53,14 +53,13 @@ const Profile = () => {
 
   return (
     <>
-    <MainNavbar />
-      <div className='container-fluid p-3 m-3'>
+      <MainNavbar />
+      <div className='container-fluid m-3 p-3'>
         <div className='row'>
-            <div className='col-md-3'>
-                <UserMenu />
-                <h1>My Profile</h1>
-            </div>
-            <div className="col-md-9">
+          <div className='col-md-3'>
+            <UserMenu />
+          </div>
+          <div className='col-md-9'>
             <div className="form-container ">
               <form onSubmit={handleSubmit}>
                 <h4 className="title">USER PROFILE</h4>

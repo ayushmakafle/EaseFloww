@@ -14,6 +14,7 @@
 
 .doctor-specialization {
   margin-bottom: 20px;
+  color: #ef5e99; /* Set the color to pink */
 }
 
 .hospital-info {
@@ -26,10 +27,27 @@
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 20px;
+  color: #000; /* Set the color to black */
+}
+
+.office-hours {
+  color: #000; /* Set the color to black */
+}
+
+.office-days {
+  color: #000; /* Set the color to black */
 }
 
 .fees {
+  font-weight: bolder;
   text-align: right;
+  margin-bottom: 20px;
+  color: #ef5e99; /* Set the color to pink */
+}
+
+.des {
+  font-style: oblique; /* Make it italic */
+  font-size: smaller; /* Set a smaller font size */
   margin-bottom: 20px;
 }
 

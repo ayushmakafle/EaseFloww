@@ -141,7 +141,7 @@ const CheckoutPage = () => {
           ))}
         </tbody>
       </table>
-      <h3 className='mt-4'>Grand Total: <span className='font-weight-bold'>{calculateTotal()}</span></h3>
+      <h3 className='mt-4'>Grand Total: NPR <span className='font-weight-bold'>{calculateTotal()}/-</span></h3>
       <div className='payment-options mt-4'>
         <button className='btn btn-primary mr-2'  onClick={handleKhaltiButtonClick}>Pay with Khalti</button>
       </div>

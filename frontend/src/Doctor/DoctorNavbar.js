@@ -42,20 +42,20 @@ const DoctorNavbar = () => {
       <div className="wrapper">
         <Navbar expand="lg">
           <div className='logo'>
-            <Nav.Link href='/'>EASEFLOW</Nav.Link>
+            <Nav.Link href='/dashboard/doctor'>EASEFLOW</Nav.Link>
             <Navbar.Toggle aria-controls="navbarNav" />
           </div>
           <Navbar.Collapse id="navbarNav">
             <Nav className="ml-auto">
               <ul>
                 <li>
-                  <Nav.Link href="#"> Your Profile</Nav.Link>
+                  <Nav.Link href="/dashboard/doctor/doctor-profile"> Your Profile</Nav.Link>
                 </li>
                 <li>
-                  <Nav.Link href="#"> Your Appointments</Nav.Link>
+                  <Nav.Link href="/dashboard/doctor/doctor-appointments"> Your Appointments</Nav.Link>
                 </li>
                 <li>
-                  <Nav.Link as={Link} to="/ecommerce">Rate Products</Nav.Link>
+                  <Nav.Link as={Link} to="/dashboard/doctor/doctor-rate-products">Rate Products</Nav.Link>
                 </li>
                 <li>
                   <Nav.Link as={Link} to="/login" onClick={handleLogout}>Logout</Nav.Link>

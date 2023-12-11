@@ -88,12 +88,12 @@ import AdminDashboard from './Admin/AdminDashboard';
 import CreateCategory from './Admin/CreateCategory';
 import CreateProduct from './Admin/CreateProduct';
 import EaseFlowUsers from './Admin/EaseFlowUsers';
-
+import AdminAppointments from './Admin/Appointments';
 // import Orders from './user/Orders';
 import EaseFlowOrders from './Admin/EaseFlowOrders';
 import MyOrders from './user/MyOrders';
 import Profile from './user/Profile';
-import Appointments from './user/Appointments';
+import UserAppointments from './user/UserAppointments';
 import Products from './Admin/Products';
 import UpdateProduct from './Admin/UpdateProduct';
 import Search from './screens/Search';
@@ -120,6 +120,8 @@ import LearnMorePage3 from './screens/LearnMorePage3';
 import LearnMorePage4 from './screens/LearnMorePage4';
 import LearnMorePage5 from './screens/LearnMorePage5';
 import LearnMorePage6 from './screens/LearnMorePage6';
+import DoctorAppointments from './Doctor/DoctorAppointments';
+import DoctorRateProducts from './Doctor/DoctorRateProducts';
 function App() {
 
   return (
@@ -143,15 +145,13 @@ function App() {
 
           <Route path="/login" element={<LoginPage />} />
           {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
-          <Route path="/signup" element={<SignUpPage />} />
-          
+          <Route path="/signup" element={<SignUpPage />} />          
           <Route path ='/dashboard' element={<PrivateRoute />}>
             <Route path ='user' element={<UserDashboard/>}/>
             {/* <Route path ='user/orders' element={<Orders/>}/> */}
             <Route path ='user/profile' element={<Profile/>}/>
             <Route path='user/order' element={<MyOrders/>}/>
-
-            <Route path ='user/appointments' element={<Appointments/>}/>
+            <Route path ='user/appointment' element={<UserAppointments/>}/>
           </Route>
 
           <Route path='/dashboard' element={<AdminRoute />}>
@@ -166,11 +166,14 @@ function App() {
 
             <Route path ='admin/doctors' element={<EaseFlowDoctors/>}/>
             <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
+            <Route path ='admin/appointments' element={<AdminAppointments />}/>
           </Route>
 
           <Route path='/dashboard' element={<DoctorRoute />}>
             <Route path='doctor' element={<DoctorDashboard />} />
             <Route path = 'doctor/doctor-profile' element={<DoctorProfile />} />
+            <Route path = 'doctor/doctor-appointments' element={<DoctorAppointments />} />
+            <Route path = 'doctor/doctor-rate-products' element={<DoctorRateProducts />} />
           </Route>
 
           <Route path="/doctor-login" element={<DoctorLoginPage />} />
