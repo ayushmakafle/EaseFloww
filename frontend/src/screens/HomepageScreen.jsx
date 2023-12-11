@@ -7,6 +7,12 @@ import './HomepageScreen.css';
 const HomepageScreen = () => {
   const contentData = [
     {
+      title: 'Menstruation Myths in Nepal',
+      description:
+        'Breaking the silence on menstruation in Nepal is essential to challenge deep-rooted taboos and foster a culture of openness and understanding.',
+        imagePath: 'https://english.onlinekhabar.com/wp-content/uploads/2020/10/Menstruation.jpg',
+      },
+    {
       title: 'Understanding Menstruation Pain',
       description:
         'Welcome to our sweet and informative space where we discuss the natural process of menstruation and the common companion, menstrual pain.',

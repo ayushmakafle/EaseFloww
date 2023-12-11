@@ -9,44 +9,46 @@ const LearnMorePage0 = () => {
       <MainNavbar />
       <div className="page-container">
         <div className="paragraph-container">
-          <h1 className="page-heading">Understanding Menstruation Pain</h1>
+          <h1 className="page-heading"> "We aren't given nutritious food, and we are not treated like humans."</h1>
           <p className="page-paragraph">
-            Menstruation, often referred to as a woman's "period," is a natural physiological process
-            that most women experience on a monthly basis. It is a crucial aspect of the female
-            reproductive system, involving the shedding of the uterine lining in the absence of
-            pregnancy.
+          Menstruation is a physiological process that takes place in the body of a female every month, 
+          yet menstruation in Nepal remains to be taboo as it is in many cultures throughout the world.
+          Menstruation in Nepal is stigmatised, misunderstood, and mythologised. So, it is important to study menstruation 
+          and debunk some popular myths and misconceptions. But how can it be done?
           </p>
-          <img src="https://img.freepik.com/free-photo/young-brunette-woman-jeans-sweater_273609-41333.jpg?w=996&t=st=1702127737~exp=1702128337~hmac=2af47989e152cab933fe54278471149c5f4738fc7d8cf913b6fb86f124fac459" alt="Image 1" className="paragraph-image" />
+          <img src="https://english.onlinekhabar.com/wp-content/uploads/2022/07/menstruation-friendly-office-poster-1536x1152.jpg" alt="Image 1" className="paragraph-image" />
         </div>
 
         <div className="paragraph-container">
           <p className="page-paragraph">
-            Alongside menstruation, many women also experience menstrual pain, also known as
-            dysmenorrhea. This pain can range from mild discomfort to severe cramps and is often
-            accompanied by various symptoms such as bloating, fatigue, and mood swings.
+          Women, girls and people who menstruate are often left with little or no supplies, 
+          and no menstrual protection or washing facilities during their time away from home. 
+          This can cause a range of health issues, along with physical and psychological hardship.
           </p>
-          <img src="https://img.freepik.com/free-photo/portrait-cheerful-positive-curly-haired-woman-standing-isolated-pink_176532-7432.jpg?w=996&t=st=1702127856~exp=1702128456~hmac=32f89c6f24923eb75dff73f846d465ad3fec80bfba041c796ee77ebc4ab657c8" alt="Image 2" className="paragraph-image2" />
+          <img src="https://thehimalayantimes.com/uploads/imported_images/wp-content/uploads/2016/11/Chhaupadi-shed-in-Bajura-district.jpg" alt="Image 2" className="paragraph-image2" />
         </div>
 
         <div className="paragraph-container">
           <p className="page-paragraph">
-            Menstrual pain is a unique and personal experience, and its intensity varies among women.
-            Some may barely notice it, while others may find it challenging to engage in daily activities.
-            It's essential to recognize that menstruation and its associated discomfort are normal
-            physiological processes that women navigate throughout their lives.
+          Without access to sanitary pads, she has to use rags to soak up the blood. 
+          These can cause serious and painful infections. Alone and isolated in the chhaupadi hut, 
+          Ishu misses the comforts of home: "I can't bring warm clothes to the hut—that's why I feel cold in the winter. 
+          There are no windows and during the summer season I feel really warm." 
           </p>
-          <img src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669" alt="Image 3" className="paragraph-image" />
+          <img src="https://www.actionaid.org.uk/sites/default/files/styles/hero_large/public/207738-full.jpg?h=74d68f78&itok=V52CDujp" alt="Image 4" className="paragraph-image2" />
         </div>
-
         <div className="paragraph-container">
           <p className="page-paragraph">
-            Understanding menstruation and its pain is crucial for promoting empathy and support
-            for women. By acknowledging the naturalness of this process, we can foster a more
-            compassionate and informed perspective on women's health.
+          Since ActionAid began working in Nepal, more than 1,400 women of reproductive age have stopped practising chhaupadi. 
+          In the last five years, ActionAid - alongside local partners - has helped to establish at least 11 'chhaupadi-free' 
+          communities, and through awareness raising initiatives, people's beliefs around menstruation are changing. "I hope that, 
+          whatever we have faced now, girls will not be able to face this kind of discrimination in the future," Rajkumari says.
           </p>
-          <img src="https://img.freepik.com/free-photo/good-looking-feminine-girl-holds-clean-sanitary-napkin_176532-12421.jpg?w=996&t=st=1702127917~exp=1702128517~hmac=26dc44ba573cc8c9910b5735c9176506ba36eba97ee942ab01e55d40e86130b5" alt="Image 4" className="paragraph-image2" />
+          <img src="https://www.actionaid.org.uk/sites/default/files/styles/full_width_large/public/storieshub/rs_207961.jpeg?h=74d68f78&itok=nPrMi8Pi" alt="Image 3" className="paragraph-image" />
         </div>
+
       </div>
+      <p>https://www.actionaid.org.uk/our-work/period-poverty/chhaupadi-and-menstruation-taboos</p>
       <Footer />
     </>
   );

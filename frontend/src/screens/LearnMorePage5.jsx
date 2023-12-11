@@ -7,32 +7,19 @@ const LearnMorePage5 = () => {
     <>
     <MainNavbar />
     <div className="page-container">
-      <h1 className="page-heading">Connecting with Your Body</h1>
+      <h1 className="page-heading">Nutrition Tips for Menstruating Women</h1>
       <p className="page-paragraph">
-      Connecting with one's body during menstruation is a holistic approach that involves tuning into the 
-      body's signals, embracing its natural rhythms, and fostering a positive relationship with oneself. 
-      This connection extends beyond physical awareness to encompass emotional and spiritual well-being, 
-      creating a harmonious and empowering relationship with the self.</p>
+      Nutrition plays a pivotal role in supporting women's health, particularly during menstruation. A well-balanced diet can address nutritional needs, alleviate symptoms, and contribute to an overall sense of well-being during the menstrual cycle. Tailoring dietary choices to support the body's demands during menstruation is an empowering aspect of women's health. </p>
       <p className="page-paragraph">
-      Building awareness of the body's signals throughout the menstrual cycle involves menstrual tracking. 
-      Observing changes in mood, energy levels, and physical sensations provides valuable insights into the 
-      cyclical nature of menstruation. Utilizing tracking methods facilitates a deeper understanding of individual patterns.</p>
+      Menstruation often leads to a loss of iron, making it crucial to include iron-rich foods in the diet. Leafy greens, lean meats, legumes, and fortified cereals are excellent sources of iron. Adequate iron intake helps prevent anemia and supports overall energy levels. </p>
       <p className="page-paragraph">
-      Engaging in mind-body practices enhances self-awareness and emotional well-being. Practices such as 
-      meditation, yoga, or tai chi create opportunities for introspection, grounding, and centering. These 
-      practices contribute to a mindful and holistic connection with the body.</p>
+      Supporting bone health is vital for women, especially during menstruation. Consuming calcium-rich foods, such as dairy products, and ensuring sufficient vitamin D through exposure to sunlight or fortified foods contributes to strong and healthy bones.</p>
       <p className="page-paragraph">
-      Connecting with the body during menstruation includes actively listening to its needs. This may involve 
-      adjusting daily activities, dietary choices, and self-care practices based on the changing requirements of each menstrual phase. 
-      Responding with sensitivity fosters a compassionate relationship with oneself.</p>
+      Staying well-hydrated is essential for managing bloating and maintaining overall health. Additionally, incorporating foods rich in omega-3 fatty acids, such as fatty fish, flaxseeds, and walnuts, can help reduce inflammation and ease menstrual discomfort.</p>
       <p className="page-paragraph">
-      Embracing the unique aspects of femininity associated with the menstrual cycle is a powerful aspect of connecting with the body. 
-      Celebrating the strengths, resilience, and intuition that come with being a woman during menstruation contributes to a positive self-image 
-      and fosters a sense of empowerment. </p>
+      Moderating caffeine and sugar intake is advisable during menstruation. Excessive consumption of these substances can exacerbate symptoms like irritability and cramps. Opting for alternatives and mindful consumption supports better overall health. </p>
       <p className="page-paragraph">
-      Practicing self-compassion and avoiding self-judgment are integral components of connecting with the body. 
-      Every woman's experience is unique, and acknowledging and accepting the variations within the menstrual cycle contribute to a healthy and 
-      positive relationship with oneself.</p>
+      Adopting a pattern of small, frequent meals during menstruation helps stabilize blood sugar levels and maintain energy throughout the day. Balanced and nutritious snacks contribute to sustained energy and well-being.</p>
     </div>
     <Footer />
     </>

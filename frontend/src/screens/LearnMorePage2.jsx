@@ -7,16 +7,27 @@ const LearnMorePage2 = () => {
     <>
     <MainNavbar />
     <div className="page-container">
-      <h1 className="page-heading">Self-Care During Menstruation</h1>
+      <h1 className="page-heading">Embracing Your Menstrual Cycle</h1>
       <p className="page-paragraph">
-      A fundamental aspect of self-care during menstruation is prioritizing rest and relaxation. Menstrual cycles can bring about fatigue and discomfort, making it crucial to allow oneself sufficient time for restful sleep and moments of relaxation. Creating a serene environment and acknowledging the need for downtime contributes significantly to overall well-being.
+        Discovering the beauty of your menstrual cycle is an empowering journey that allows women
+        to connect with their bodies on a profound level. Embracing the different phases of the
+        menstrual cycle involves understanding the natural ebb and flow of hormonal changes
+        throughout the month.
       </p>
+      <img src="https://img.freepik.com/free-photo/portrait-cheerful-positive-curly-haired-woman-standing-isolated-pink_176532-7432.jpg?w=996&t=st=1702127856~exp=1702128456~hmac=32f89c6f24923eb75dff73f846d465ad3fec80bfba041c796ee77ebc4ab657c8" alt="Image 2" className="paragraph-image2" />
+       
       <p className="page-paragraph">
-      Maintaining optimal hydration levels and focusing on nutritious foods are key components of self-care during menstruation. Drinking plenty of water helps manage bloating and supports the body in eliminating waste. A balanced diet with a focus on iron-rich foods is essential to replenish nutrients lost during menstruation, contributing to sustained energy levels. </p>
+        Each phase of the menstrual cycle brings unique qualities and opportunities for self-care.
+        From the menstrual phase to ovulation and beyond, women can tailor their routines to
+        align with the changing needs of their bodies, fostering a sense of harmony and well-being.
+        </p>
+        <img src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669" alt="Image 3" className="paragraph-image" />
       <p className="page-paragraph">
-      Choosing comfortable clothing and utilizing menstrual products that align with personal preferences contribute to a sense of comfort and well-being. Furthermore, incorporating small indulgences, such as warm baths, herbal teas, or enjoying a favorite book or movie, can provide moments of pampering and self-nurturing during the menstrual cycle.  </p>
-      <p className="page-paragraph">
-      Engaging in gentle exercises, such as walking or yoga, can alleviate menstrual cramps and enhance mood through the release of endorphins. Additionally, practicing mindfulness techniques, like meditation and deep breathing, aids in stress reduction. Mindful self-care practices provide women with the tools to navigate the physical and emotional aspects of menstruation more gracefully.</p>
+        Embracing your menstrual cycle is not just about acceptance; it's about celebrating the
+        innate wisdom of the female body. By recognizing the cyclical nature of menstruation,
+        women can navigate life with a deeper understanding of themselves and their inherent strength.
+      </p>
+      <img src="https://img.freepik.com/free-photo/young-brunette-woman-jeans-sweater_273609-41333.jpg?w=996&t=st=1702127737~exp=1702128337~hmac=2af47989e152cab933fe54278471149c5f4738fc7d8cf913b6fb86f124fac459" alt="Image 1" className="paragraph-image" />
     </div>
     <Footer />
     </>

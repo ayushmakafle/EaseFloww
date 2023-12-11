@@ -119,6 +119,7 @@ import LearnMorePage2 from './screens/LearnMorePage2';
 import LearnMorePage3 from './screens/LearnMorePage3';
 import LearnMorePage4 from './screens/LearnMorePage4';
 import LearnMorePage5 from './screens/LearnMorePage5';
+import LearnMorePage6 from './screens/LearnMorePage6';
 function App() {
 
   return (
@@ -186,6 +187,7 @@ function App() {
           <Route path="/learn-more/3" element={<LearnMorePage3 />} />
           <Route path="/learn-more/4" element={<LearnMorePage4 />} />
           <Route path="/learn-more/5" element={<LearnMorePage5 />} />
+          <Route path="/learn-more/6" element={<LearnMorePage6 />} />
         </Routes>
         <ToastContainer />
       </main>
