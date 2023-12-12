@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { Navbar, Nav} from 'react-bootstrap';
-
 import { Link} from 'react-router-dom';
 import { useAuth } from '../context/auth';
 import { toast } from 'react-toastify';
+import {useNavigate } from 'react-router-dom';
 import '../styles/MainNavbar.css';
 
 const DoctorNavbar = () => {
   const [auth, setAuth] = useAuth();
+  const navigate = useNavigate();  // Use useNavigate instead of navigate
+
 
   const handleLogout = () => {
     setAuth({
@@ -15,8 +17,8 @@ const DoctorNavbar = () => {
     });
     localStorage.removeItem('auth');
     localStorage.removeItem('cart');
-
     toast.success('Logout Successful');
+    navigate('/login');  // Use navigate function to redirect
   };
 
   useEffect(() => {
@@ -58,7 +60,8 @@ const DoctorNavbar = () => {
                   <Nav.Link as={Link} to="/dashboard/doctor/doctor-rate-products">Rate Products</Nav.Link>
                 </li>
                 <li>
-                  <Nav.Link as={Link} to="/login" onClick={handleLogout}>Logout</Nav.Link>
+                  <Nav.Link as={Link} 
+                  onClick={handleLogout}>Logout</Nav.Link>
                 </li>
 
               </ul>

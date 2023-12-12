@@ -24,7 +24,7 @@ const sendUserVerifyEmail = async(username,email,user_id) => {
       from:'easeflow2023@gmail.com',
       to:email,
       subject:"Verify your EaseFlow account",
-      html:`<p> Hi ${username},Please click here to <a href="http://localhost:3000/verify?id=${user_id}">Verify</a>Your mail.</p>` 
+      html:`<p> Hi ${username},Please click here to <a href="${process.env.REACT_APP_API}/api/v1/auth/verify?id=${user_id}">Verify</a>Your mail.</p>` 
     }
     transporter.sendMail(mailOptions, function(error,info){
       if(error){
@@ -41,11 +41,12 @@ const sendUserVerifyEmail = async(username,email,user_id) => {
 
 const userVerifyMail = async(req,res) => {
   try{
+    console.log(req.query)
     const updateVerifiedUser = await userModel.updateOne({_id:req.query.id},{$set:{
       isEmailVerified:1
     }})
     console.log(updateVerifiedUser)
-     res.redirect('/verified-email')
+     res.redirect(`${process.env.FRONTEND_URL}/verified-email`)
   }catch(error){
     console.error(error.message)
   }
@@ -617,42 +618,51 @@ export const getUsersController = async (req, res) => {
 //update profile
 export const updateDoctorProfileController = async (req, res) => {
   try {
-    const { username, email, password, address, phonenumber,specialization,hospitalOrClinic,experience,feesPerConsultation,
-    officeHoursStart,officeHoursEnd,officeDays } = req.body;
-    const user = await DoctorModel.findById(req.user._id);
-    //password
-    if (password && password.length < 6) {
-      return res.json({ error: "Password is required and 6 character long" });
-    }
-    const hashedPassword = password ? await hashPassword(password) : undefined;
-    const updatedUser = await userModel.findByIdAndUpdate(
-      req.user._id,
-      {
-        username: username || user.username,
-        password: hashedPassword || user.password,
-        phonenumber: phonenumber || user.phonenumber,
-        address: address || user.address,
-        specialization:specialization || user.specialization,
-        hospitalOrClinic:hospitalOrClinic || user.hospitalOrClinic,
-        experience:experience || user.experience,
-        feesPerConsultation:feesPerConsultation||user.feesPerConsultation,
-        officeHoursStart:officeHoursStart||user.officeHoursStart,
-        officeHoursEnd:officeHoursEnd||user.officeHoursEnd,
-        officeDays:officeDays||user.officeDays
-      },
-      { new: true }
-    );
-    return res.status(200).send({
+    // Extract the doctor's ID from the authenticated doctor's token
+    const doctorId = req.user._id; // Assuming you have stored doctor ID in req.user
+
+    // Update the doctor's profile with the data in req.body
+    const updatedDoctor = await DoctorModel.findByIdAndUpdate(doctorId, req.body, { new: true });
+
+    res.status(200).json({
       success: true,
-      message: "Profile Updated Successfully",
-      updatedUser,
+      message: 'Profile updated successfully',
+      doctor: updatedDoctor,
     });
   } catch (error) {
-    console.log(error);
-    return res.status(400).send({
+    console.error('Error updating profile:', error);
+    res.status(500).json({
       success: false,
-      message: "Error While Updating profile",
-      error,
+      message: 'Internal Server Error',
+    });
+  }
+};
+
+// Fetch doctor data
+export const getDoctorData = async (req, res) => {
+  try {
+    // Get the authenticated user's ID from the request object
+    const doctorId = req.doctor._id;
+
+    // Fetch the doctor data based on the user's ID
+    const doctorData = await DoctorModel.findOne({ doctor: doctorId });
+
+    if (doctorData) {
+      res.status(200).json({
+        success: true,
+        data: doctorData,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: 'Doctor data not found',
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching doctor data:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
     });
   }
 };
@@ -661,5 +671,5 @@ export const updateDoctorProfileController = async (req, res) => {
 export default { registerController, loginController,updateProfileController,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
 denyDoctorController,doctorLoginController, userVerifyMail , getDoctorsController,getUsersController
- ,updateDoctorProfileController,getSingleDoctorController};
+ ,updateDoctorProfileController,getSingleDoctorController,getDoctorData};
   

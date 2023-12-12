@@ -1,35 +1,57 @@
+// LearnMorePage2.js
+
 import React from 'react';
 import MainNavbar from '../components/Navbar';
-import '../styles/LearnMorePage0.css';
+import '../styles/LearnMorePage0.css'; // Use the same CSS file for consistency
 import Footer from '../components/footer';
+
 const LearnMorePage2 = () => {
   return (
     <>
-    <MainNavbar />
-    <div className="page-container">
-      <h1 className="page-heading">Embracing Your Menstrual Cycle</h1>
-      <p className="page-paragraph">
-        Discovering the beauty of your menstrual cycle is an empowering journey that allows women
-        to connect with their bodies on a profound level. Embracing the different phases of the
-        menstrual cycle involves understanding the natural ebb and flow of hormonal changes
-        throughout the month.
-      </p>
-      <img src="https://img.freepik.com/free-photo/portrait-cheerful-positive-curly-haired-woman-standing-isolated-pink_176532-7432.jpg?w=996&t=st=1702127856~exp=1702128456~hmac=32f89c6f24923eb75dff73f846d465ad3fec80bfba041c796ee77ebc4ab657c8" alt="Image 2" className="paragraph-image2" />
-       
-      <p className="page-paragraph">
-        Each phase of the menstrual cycle brings unique qualities and opportunities for self-care.
-        From the menstrual phase to ovulation and beyond, women can tailor their routines to
-        align with the changing needs of their bodies, fostering a sense of harmony and well-being.
-        </p>
-        <img src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669" alt="Image 3" className="paragraph-image" />
-      <p className="page-paragraph">
-        Embracing your menstrual cycle is not just about acceptance; it's about celebrating the
-        innate wisdom of the female body. By recognizing the cyclical nature of menstruation,
-        women can navigate life with a deeper understanding of themselves and their inherent strength.
-      </p>
-      <img src="https://img.freepik.com/free-photo/young-brunette-woman-jeans-sweater_273609-41333.jpg?w=996&t=st=1702127737~exp=1702128337~hmac=2af47989e152cab933fe54278471149c5f4738fc7d8cf913b6fb86f124fac459" alt="Image 1" className="paragraph-image" />
-    </div>
-    <Footer />
+      <MainNavbar />
+      <div className="page-container">
+        <h1 className="page-heading">Self-Care During Menstruation</h1>
+
+        <div className="paragraph-container">
+          <div className="text-box">
+            <p className="page-paragraph">
+              A fundamental aspect of self-care during menstruation is prioritizing rest and relaxation. Menstrual cycles can bring about fatigue and discomfort, making it crucial to allow oneself sufficient time for restful sleep and moments of relaxation. Creating a serene environment and acknowledging the need for downtime contributes significantly to overall well-being.
+            </p>
+          </div>
+          <img
+            src="https://img.freepik.com/free-photo/portrait-cheerful-attractive-young-lady-holding-tampon-sanitary-napkin_176532-7402.jpg?w=1060&t=st=1702377083~exp=1702377683~hmac=c764da42c1ad94a8c4139693adf5a07036526c2a3c581561141461e3346c5e7d"
+            alt="Image 1"
+            className="paragraph-image2"
+          />
+        </div>
+
+        <div className="paragraph-container reverse">
+          <img
+            src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669"
+            alt="Image 2"
+            className="paragraph-image"
+          />
+          <div className="text-box">
+            <p className="page-paragraph">
+              Maintaining optimal hydration levels and focusing on nutritious foods are key components of self-care during menstruation. Drinking plenty of water helps manage bloating and supports the body in eliminating waste. A balanced diet with a focus on iron-rich foods is essential to replenish nutrients lost during menstruation, contributing to sustained energy levels.
+            </p>
+          </div>
+        </div>
+
+        <div className="paragraph-container">
+          <div className="text-box">
+            <p className="page-paragraph">
+              Choosing comfortable clothing and utilizing menstrual products that align with personal preferences contribute to a sense of comfort and well-being. Furthermore, incorporating small indulgences, such as warm baths, herbal teas, or enjoying a favorite book or movie, can provide moments of pampering and self-nurturing during the menstrual cycle.
+            </p>
+          </div>
+          <img
+            src="https://img.freepik.com/free-photo/young-brunette-woman-jeans-sweater_273609-41333.jpg?w=996&t=st=1702127737~exp=1702128337~hmac=2af47989e152cab933fe54278471149c5f4738fc7d8cf913b6fb86f124fac459"
+            alt="Image 3"
+            className="paragraph-image"
+          />
+        </div>
+      </div>
+      <Footer />
     </>
   );
 };
