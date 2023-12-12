@@ -4,7 +4,6 @@ import styles from '../styles/styles';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-
 const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -57,16 +56,16 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div className="login-page">
       <div className='sm:mx-auto sm:w-full sm:max-w-md'>
         <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-800'>Sign up</h2>
       </div>
-      <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
+      <div className='mt-2 mb-3 sm:mx-auto sm:w-full sm:max-w-md'>
         <div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-18'>
-          <form className='space-y-6'
+          <form className="space-y-1"
             onSubmit={handleSubmit}>
             <div>
-              <label htmlFor='username' className='form-label mt-4'>
+              <label htmlFor='username' className='form-label mt-0'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Name
               </label>
               <input
@@ -83,7 +82,7 @@ const SignUp = () => {
             </div>
 
             <div className='form-group'>
-              <label htmlFor='password' className='form-label mt-4'>
+              <label htmlFor='password' className='form-label mt-0'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Password
               </label>
               <input
@@ -112,7 +111,7 @@ const SignUp = () => {
               )}
             </div>
             <div>
-              <label htmlFor='email' className='form-label mt-4'>
+              <label htmlFor='email' className='form-label mt-0'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Email
               </label>
               <input
@@ -128,7 +127,7 @@ const SignUp = () => {
               />
             </div>
             <div>
-              <label htmlFor='address' className='form-label mt-4'>
+              <label htmlFor='address' className='form-label mt-0'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Address
               </label>
               <input
@@ -144,7 +143,7 @@ const SignUp = () => {
               />
             </div>
             <div>
-              <label htmlFor='phonenumber' className='form-label mt-4'>
+              <label htmlFor='phonenumber' className='form-label mt-0'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Phone Number
               </label>
               <input
@@ -159,38 +158,36 @@ const SignUp = () => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
-              
-
             <div>
-              <button
+            <button
                 type='submit'
-                className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-center text-sm font-medium rounded-md text-blackauthc bg-pink-600 hover:bg-pink-700'
-              >
+                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
                 Signup
               </button>
             </div>
-          </form>
-        </div>
         <div className='text-center mt-6'>
           <div className='flex items-center'>
-            <h3 className='inline-block mr-2 px-4'>Already a member?</h3>
+            <h5 className='inline-block mr-2 px-4'>Already a member?</h5>
             <Link to='/Login' className='text-pink-600 inline-block'>
-              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
+              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
                 Login
               </button>
             </Link>
           </div>
         </div>
-        <div className='text-center mt-6'>
+        <div className='text-center mt-1'>
           <div className='flex items-center'>
-            <h3 className='inline-block mr-2 px-4'> An EaseFlow Doctor?</h3>
+            <h5 className='inline-block mr-2 px-4'> An EaseFlow Doctor?</h5>
             <Link to='/doctor-login' className='text-pink-600'>
-              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
+              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
                 Doctor Login
               </button>
             </Link>
+            </div>
           </div>
+          </form>
         </div>
+        
       </div>
     </div>
   );
