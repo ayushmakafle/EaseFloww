@@ -12,7 +12,7 @@ const LandingPage = () => {
       <div>
         <div className="hero-section">
           <div className="left">
-            <h1>Track, <br /> Learn, <br />Flourish</h1>
+            <h1>Embrace,<br /> Learn, <br />Flourish</h1>
             <p>
               Learn more about your cycle with us.
             </p>
