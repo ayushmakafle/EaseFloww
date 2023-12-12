@@ -87,7 +87,6 @@
 //   }
 
 
-// Import necessary modules and dependencies
 import OrderModel from '../models/OrderModel.js';
 import UserModel from '../models/UserModel.js';
 
@@ -138,7 +137,6 @@ export async function createOrder(req, res) {
   }
 }
 
-// Import necessary modules and dependencies
 
 export async function getUserOrders(req, res) {
   try {

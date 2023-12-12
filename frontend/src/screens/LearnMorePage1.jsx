@@ -42,6 +42,7 @@ import MainNavbar from '../components/Navbar';
 import '../styles/LearnMorePage0.css'; // Use the same CSS file for consistency
 import Footer from '../components/footer';
 
+
 const LearnMorePage1 = () => {
   return (
     <>

@@ -53,7 +53,7 @@ const LandingPage = () => {
             </div>
           </section>
         </div>
-        <section className="courses-section">
+        {/* <section className="courses-section">
           <div className="wrapper">
             <div className="course-cards">
               <div className="course-card">
@@ -73,7 +73,7 @@ const LandingPage = () => {
             </div>
             
           </div>
-        </section>
+        </section> */}
         {/* end of courses section */}
         <div className="wrapper">
           <section className="app-section">

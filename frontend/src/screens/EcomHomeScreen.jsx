@@ -196,8 +196,8 @@ const EcomHomeScreen = () => {
           </h3>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
-              <Col key={p._id} xs={24} sm={12} md={8} lg={6}>
-                <div className="card" style={{ padding: '15px' }}>
+              <Col key={p._id}>
+                <div className="card m-2" style={{ width: '450px', height: '450px',padding: '15px' }}>
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"

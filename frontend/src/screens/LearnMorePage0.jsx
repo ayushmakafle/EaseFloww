@@ -73,7 +73,9 @@ const LearnMorePage0 = () => {
             </p>
           </div>
         </div>
+
       </div>
+      <p>https://www.actionaid.org.uk/our-work/period-poverty/chhaupadi-and-menstruation-taboos</p>
       <Footer />
     </>
   );

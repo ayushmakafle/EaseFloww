@@ -89,12 +89,11 @@ import CreateCategory from './Admin/CreateCategory';
 import CreateProduct from './Admin/CreateProduct';
 import EaseFlowUsers from './Admin/EaseFlowUsers';
 import AdminAppointments from './Admin/Appointments';
-
 // import Orders from './user/Orders';
 import EaseFlowOrders from './Admin/EaseFlowOrders';
 import MyOrders from './user/MyOrders';
 import Profile from './user/Profile';
-import Appointments from './user/Appointments';
+import UserAppointments from './user/UserAppointments';
 import Products from './Admin/Products';
 import UpdateProduct from './Admin/UpdateProduct';
 import Search from './screens/Search';
@@ -120,8 +119,10 @@ import LearnMorePage2 from './screens/LearnMorePage2';
 import LearnMorePage3 from './screens/LearnMorePage3';
 import LearnMorePage4 from './screens/LearnMorePage4';
 import LearnMorePage5 from './screens/LearnMorePage5';
+import LearnMorePage6 from './screens/LearnMorePage6';
 import DoctorAppointments from './Doctor/DoctorAppointments';
 import DoctorRateProducts from './Doctor/DoctorRateProducts';
+import EmailVerified from './user/EmailVerified';
 function App() {
 
   return (
@@ -144,16 +145,15 @@ function App() {
           <Route path ='/category/:slug' element={<CategoryProduct/>}/>
 
           <Route path="/login" element={<LoginPage />} />
+          <Route path='/verified-email' element={<EmailVerified/>}/>
           {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
-          <Route path="/signup" element={<SignUpPage />} />
-          
+          <Route path="/signup" element={<SignUpPage />} />          
           <Route path ='/dashboard' element={<PrivateRoute />}>
             <Route path ='user' element={<UserDashboard/>}/>
             {/* <Route path ='user/orders' element={<Orders/>}/> */}
             <Route path ='user/profile' element={<Profile/>}/>
             <Route path='user/order' element={<MyOrders/>}/>
-
-            <Route path ='user/appointments' element={<Appointments/>}/>
+            <Route path ='user/appointment' element={<UserAppointments/>}/>
           </Route>
 
           <Route path='/dashboard' element={<AdminRoute />}>
@@ -192,6 +192,7 @@ function App() {
           <Route path="/learn-more/3" element={<LearnMorePage3 />} />
           <Route path="/learn-more/4" element={<LearnMorePage4 />} />
           <Route path="/learn-more/5" element={<LearnMorePage5 />} />
+          <Route path="/learn-more/6" element={<LearnMorePage6 />} />
         </Routes>
         <ToastContainer />
       </main>

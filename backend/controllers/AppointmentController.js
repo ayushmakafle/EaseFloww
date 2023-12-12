@@ -23,11 +23,46 @@ const bookAppointmentController = async (req, res) => {
             startTime: formattedStartDate,
             endTime: formattedEndDate,
             status: "pending",
+             doctorInfo: JSON.stringify(req.body.doctorInfo), // Convert object to string
+      userInfo: JSON.stringify(req.body.userInfo),
         });
 
         await newAppointment.save();
+        
+       const doctorID = req.body.doctorID;
+const doctor = await DoctorModel.findById(doctorID);
 
-        // Send mail here
+if (!doctor) {
+    throw new Error('Doctor not found');
+}
+
+const { email } = doctor;
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port:587,
+            secure:false,
+            requireTLS:true, 
+            auth: {
+                user: 'easeflow2023@gmail.com', 
+                pass: `${process.env.SMTP_PASSWORD}`
+            }
+        });
+        const mailOptions = {
+            from:'easeflow2023@gmail.com',
+            to:email,
+            subject:"New appointment request",
+            html:`<p> Hi ${req.body.doctorInfo},
+                you have a new appointment request from ${req.body.userInfo}. 
+                Visit your dashboard to process it.` 
+        }
+        transporter.sendMail(mailOptions, function(error,info){
+        if(error){
+            console.log(error)
+        }
+        else{
+            console.log('appointment request email has been sent ',info.response)
+        }
+        })
 
         res.status(200).send({
             success: true, 
@@ -130,50 +165,171 @@ const checkAvailabilityController = async (req, res) => {
     }
 } */
 
-//get all appointment in admin
-const userAppointmentsController = async (req, res) => {
+// Controller to fetch user appointments
+const userAppointments = async (req, res) => {
   try {
+    // Extract user ID from the authenticated user's token
+    const userId = req.user._id; // Assuming you have stored user ID in req.auth
+
+    // Fetch appointments for the specified user ID
     const appointments = await AppointmentModel.find({
-      userId: req.body.userId,
+      userID: userId,
     });
+
     res.status(200).send({
       success: true,
-      message: "Users Appointments fetched Successfully",
+      message: "User's Appointments fetched successfully",
       data: appointments,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send({
       success: false,
-      error,
-      message: "Error In User Fetching Appointments",
+      error: error.message,
+      message: "Error in fetching user appointments",
     });
   }
 };
 
 //get appointment for doctor
-const doctorAppointmentController = async (req, res) => {
+const doctorAppointments = async (req, res) => {
   try {
-    const doctor = await DoctorModel.findOne({ userId: req.body.userId });
+    // Extract doctor ID from the authenticated doctor's token
+    const doctorId = req.user._id; // Assuming you have stored doctor ID in req.doctor
+
+    // Fetch appointments for the specified doctor ID
     const appointments = await AppointmentModel.find({
-      doctorID: doctor._id,
+      doctorID: doctorId,
     });
+
     res.status(200).send({
       success: true,
-      message: "Doctor Appointments fetched successfully",
+      message: "Doctor's Appointments fetched successfully",
       data: appointments,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send({
       success: false,
-      error,
-      message: "Error in Doc Appointments",
+      error: error.message,
+      message: "Error in fetching doctor appointments",
     });
   }
 };
 
-//update status
+// Controller to accept an appointment
+const acceptAppointment = async (req, res) => {
+  try {
+    const appointment = await AppointmentModel.findById(req.params.id);
+    await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'accepted' });
+
+    // Fetch user's email
+    const user = await userModel.findById(appointment.userID);
+    const { email } = user;
+
+    // Send email to user
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port:587,
+      secure:false,
+      requireTLS:true, 
+      auth: {
+        user: 'easeflow2023@gmail.com', 
+        pass: `${process.env.SMTP_PASSWORD}`
+      }
+    });
+    const mailOptions = {
+      from:'easeflow2023@gmail.com',
+      to: email,
+      subject: "Appointment Accepted",
+      html: `<p> Hi ${user.username}, Your appointment has been accepted by the doctor. </p>` 
+    }
+    transporter.sendMail(mailOptions, function(error,info){
+      if(error){
+        console.log(error)
+      }
+      else{
+        console.log('Appointment acceptance email has been sent ',info.response)
+      }
+    })
+
+    res.status(200).send({
+      success: true,
+      message: "Appointment accepted successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      error: error.message,
+      message: "Error in accepting appointment",
+    });
+  }
+};
+
+// Controller to reject an appointment
+const rejectAppointment = async (req, res) => {
+  try {
+    const appointment = await AppointmentModel.findById(req.params.id);
+    if (!appointment) {
+      return res.status(404).send({
+        success: false,
+        message: "Appointment not found",
+      });
+    }
+
+    const user = await userModel.findById(appointment.userID);
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port:587,
+      secure:false,
+      requireTLS:true, 
+      auth: {
+        user: 'easeflow2023@gmail.com', 
+        pass: `${process.env.SMTP_PASSWORD}`
+      }
+    });
+
+    const mailOptions = {
+      from:'easeflow2023@gmail.com',
+      to: user.email,
+      subject: "Appointment Rejected",
+      html: `<p> Hi ${user.username}, your appointment has been rejected. Please book another slot.</p>` 
+    }
+
+    transporter.sendMail(mailOptions, function(error,info){
+      if(error){
+        console.log(error)
+      }
+      else{
+        console.log('Appointment rejection email has been sent ',info.response)
+      }
+    });
+
+    await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'rejected' });
+
+    res.status(200).send({
+      success: true,
+      message: "Appointment rejected successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      error: error.message,
+      message: "Error in rejecting appointment",
+    });
+  }
+};
+
+/* //update status
 const updateStatusController = async(req,res) => {
     try{
         const {appointmentsId,status}=req.body
@@ -192,11 +348,12 @@ const updateStatusController = async(req,res) => {
         })
     }
 }
-
+ */
 
 export default {bookAppointmentController,
     checkAvailabilityController,
-    userAppointmentsController,
-    doctorAppointmentController,
-    updateStatusController
+    userAppointments,
+    doctorAppointments,
+    acceptAppointment,
+    rejectAppointment
 }
