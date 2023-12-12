@@ -15,10 +15,10 @@ const UserDashboard = () => {
     </div>
     <div className='col-md-9'>
       <div className='card p-3 w-75 m-5'>
-        <h1 className='mb-3' style={{color:'#ef5e99',fontWeight: 'bold'}}>
+        <h1 className='mb-3' style={{color:'#ef5e99',fontWeight: 'normal', fontFamily: 'Raleway, sans-serif' }}>
           Hello {auth?.user?.username}!
         </h1>
-        <h5 style={{color:'#f38dbc'}}>
+        <h5 style={{color:'#c01c5c',fontFamily: 'Poppins, sans-serif'}}>
           We're glad to have you here at EaseFlow. <br/>Explore the features and make the most of your dashboard experience.
         </h5>
 

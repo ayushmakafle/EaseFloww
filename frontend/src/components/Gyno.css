@@ -1,5 +1,18 @@
 /* gyno.css */
+.gynolog-page {
+  
+  justify-content: flex-end;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(45deg,#f484b4, #ffbcd4 ); 
+   background-size: cover;
+  background-position: center;
+  
+}
+.gradient-bg {
+  background: linear-gradient(45deg,#f484b4, #ffbcd4 ); 
 
+}
 .min-h-screen {
     min-height: 100vh;
   }
@@ -44,11 +57,11 @@
   }
   
   .text-gray-800 {
-    color: #1f2937;
-  }
+    color:white;
+    }
   
   .bg-gray-100 {
-    background-color: #f3f4f6;
+    background-color: linear-gradient(109.6deg, #ef5e99 11.2%, #f38dbc 100.2% );
   }
   
   .bg-white {
@@ -72,8 +85,10 @@
   .form-label {
     display: block;
     font-size: 1rem;
-    color: #374151;
+    /* color: #ffbcd4; */
+    color: black;
     margin-top: 1rem;
+    font-weight: bold;
   }
   
   .form-control {

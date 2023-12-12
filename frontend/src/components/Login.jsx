@@ -44,16 +44,15 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-        <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-800'>Login</h2>
-      </div>
-      <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
-        <div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-18'>
-          <form className='space-y-6'
-            onSubmit={handleSubmit}>
+    <div className="login-page">
+<div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <h2 className="mt-4 text-center text-3xl font-extrabold text-gray-800">Login</h2>
+</div>
+<div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-18">
+          <form className="space-y-1" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor='email' className='form-label mt-4'>
+              <label htmlFor='email' className='form-label mt-4'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Email
               </label>
               <input
@@ -69,7 +68,7 @@ const Login = () => {
               />
             </div>
             <div className='form-group'>
-              <label htmlFor='password' className='form-label mt-4'>
+              <label htmlFor='password' className='form-label mt-4'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Password
               </label>
               <input
@@ -100,7 +99,7 @@ const Login = () => {
             <div>
               <button
                 type='submit'
-                className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-center text-sm font-medium rounded-md text-blackauthc bg-pink-600 hover:bg-pink-700'
+                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}
               >
                 Login
               </button>
@@ -114,20 +113,20 @@ const Login = () => {
             </div>
             <div className='text-center mt-6'>
               <div className='flex items-center'>
-                <h6 className='inline-block mr-2 px-4'>New to EaseFlow?</h6>
+              <h5 className='inline-block mr-2 px-4'style={{color:'#ef5e99',fontWeight: 'normal', fontFamily: 'Raleway, sans-serif' }}>New to EaseFlow?</h5>
                 <Link to='/signup' className='text-pink-600 inline-block'>
-                  <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
-                    Sign Up
+                  <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
+                  Sign Up
                   </button>
                 </Link>
               </div>
             </div>
             <div className='text-center mt-6'>
               <div className='flex items-center'>
-                <h6 className='inline-block mr-2 px-4'> An EaseFlow Doctor?</h6>
+              <h5 className='inline-block mr-2 px-4'style={{color:'#ef5e99',fontWeight: 'normal', fontFamily: 'Raleway, sans-serif' }}>Doctor in EaseFlow?</h5>
                 <Link to='/doctor-login' className='text-pink-600'>
-                  <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
-                    Doctor Login
+                  <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
+                  Dr. Login
                   </button>
                 </Link>
               </div>

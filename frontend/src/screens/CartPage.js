@@ -61,10 +61,10 @@ const CartPage = () => {
       <div>
         <div className="row">
           <div className="col-md-12">
-            <h1 className="text-center bg-light p-2 mb-1">
+            <h1 className="text-center bg-light p-2 mb-1" style={{ fontFamily: 'Raleway, sans-serif' }}>
               {`Hello ${auth?.token && auth?.user?.username}`}
             </h1>
-            <h4 className="text-center">
+            <h4 className="text-center" style={{ fontFamily: 'Raleway, sans-serif' }}>
               {cart?.length
                 ? `You Have ${
                     cart.length

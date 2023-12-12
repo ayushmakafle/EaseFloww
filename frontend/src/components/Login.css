@@ -1,4 +1,15 @@
 
+
+.login-page {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100vh;
+  background-image: url('C:\Users\acer\OneDrive\Documents\EaseFlow\EaseFloww\frontend\src\components\images\Untitled design (29).png'); 
+  background-size: cover;
+  background-position: center;
+  
+}
 .form-label {
   display: block;
   font-size: 0.875rem;
@@ -68,7 +79,7 @@ a {
 a:hover {
   color: #d94684; 
 }
-/* login.css */
+
 
 .container {
   display: flex;
@@ -288,3 +299,4 @@ padding: 10px;
 max-width: 100%;
 height: auto;
 }
+

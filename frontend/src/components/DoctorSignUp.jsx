@@ -5,7 +5,7 @@ import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
+import './Gyno.css';
 const DoctorSignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -99,15 +99,15 @@ const DoctorSignUp = () => {
   };
 
   return (
-    <div>
+    <div className="gradient-bg">
       <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-        <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-800'>Sign up for Gynecologist</h2>
+        <h1 className='mt-0 text-center text-3xl font-extrabold text-gray-800'>Sign up for Gynecologist</h1>
       </div>
       <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
         <div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-18'>
           <form className='space-y-6' onSubmit={handleSubmit}>
             <div>
-              <label htmlFor='name' className='form-label mt-4'>
+              <label htmlFor='name' className='form-label mt-1'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Name
               </label>
               <input
@@ -123,7 +123,7 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
-              <label htmlFor='email' className='form-label'>
+              <label htmlFor='email' className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Email
               </label>
               <input
@@ -137,7 +137,7 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
-              <label htmlFor='password' className='form-label'>
+              <label htmlFor='password' className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Password
               </label>
               <input
@@ -151,7 +151,7 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
-              <label htmlFor='phonenumber' className='form-label'>
+              <label htmlFor='phonenumber' className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Phone Number
               </label>
               <input
@@ -165,7 +165,7 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
-              <label htmlFor='specialization' className='form-label'>
+              <label htmlFor='specialization' className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Specialization
               </label>
               <input
@@ -179,7 +179,7 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
-              <label htmlFor='certificatePhoto' className='form-label mt-4'>
+              <label htmlFor='certificatePhoto' className='form-label mt-4'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Certificate Photo
               </label>
               <input
@@ -207,7 +207,7 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
-              <label htmlFor='address' className='form-label'>
+              <label htmlFor='address' className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Address
               </label>
               <input
@@ -221,7 +221,7 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
-              <label htmlFor='hospitalOrClinic' className='form-label'>
+              <label htmlFor='hospitalOrClinic' className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Hospital or Clinic
               </label>
               <input
@@ -235,7 +235,7 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
-              <label htmlFor='experience' className='form-label'>
+              <label htmlFor='experience' className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Number of years of experience in the field of specialization
               </label>
               <input
@@ -249,7 +249,7 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
-              <label className='form-label'>Office Days</label>
+              <label className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>Office Days</label>
               <Select
                 name='officeDays'
                 options={daysOfWeek}
@@ -261,7 +261,7 @@ const DoctorSignUp = () => {
 
 
             <div>
-              <label htmlFor='officeHours' className='form-label'>
+              <label htmlFor='officeHours' className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Office Hours Start
               </label>
               <input
@@ -275,7 +275,7 @@ const DoctorSignUp = () => {
             </div>
 
             <div>
-              <label htmlFor='officeHours' className='form-label'>
+              <label htmlFor='officeHours' className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Office Hours End
               </label>
               <input
@@ -290,7 +290,7 @@ const DoctorSignUp = () => {
 
 
             <div>
-              <label htmlFor='feesPerConsultation' className='form-label'>
+              <label htmlFor='feesPerConsultation' className='form-label'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Fees Per Consultation
               </label>
               <input
@@ -307,8 +307,7 @@ const DoctorSignUp = () => {
             <div>
               <button
                 type='submit'
-                className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-center text-sm font-medium rounded-md text-blackauthc bg-pink-600 hover:bg-pink-700'
-              >
+                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
                 Sign Up
               </button>
             </div>
@@ -316,17 +315,17 @@ const DoctorSignUp = () => {
         </div>
         <div className='text-center mt-6'>
           <div className='flex items-center'>
-            <h3 className='inline-block mr-2 px-4'>Already a doctor?</h3>
+            <h3 className='inline-block mr-2 px-4'style={{color:'white',fontWeight: 'normal', fontFamily: 'Raleway, sans-serif' }}>Already a doctor?</h3>
             <Link to='/doctor-login' className='text-pink-600 inline-block'>
-              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
+              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
                 Doctor Login
               </button>
             </Link>
           </div>
           <div className='flex items-center'>
-            <h3 className='inline-block mr-2 px-4'>Regular User?</h3>
+            <h3 className='inline-block mr-2 px-4'style={{color:'white',fontWeight: 'normal', fontFamily: 'Raleway, sans-serif' }}>Regular User?</h3>
             <Link to='/login' className='text-pink-600 inline-block'>
-              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'>
+              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
                 Login
               </button>
             </Link>
