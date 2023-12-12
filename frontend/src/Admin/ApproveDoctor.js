@@ -3,16 +3,20 @@ import AdminMenu from './AdminMenu';
 import MainNavbar from '../components/Navbar';
 import axios from 'axios';
 import { Table, Button, Modal } from 'antd';
+import { imageFromBuffer } from "../utils/utils"
 
 const ApproveDoctors = () => {
   const [unapprovedDoctors, setUnapprovedDoctors] = useState([]);
   const [visible, setVisible] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
-
+  const [selectedImage,setSelectedImage]=useState("");
   useEffect(() => {
   // Fetch unapproved doctors from the server
   fetchUnapprovedDoctors();
 }, []);
+
+
+
 
 useEffect(() => {
   console.log('Unapproved Doctors:', unapprovedDoctors);
@@ -54,7 +58,7 @@ useEffect(() => {
       title: 'Certificate',
       dataIndex: 'certificatePhoto',
       key: 'certificatePhoto',
-      render: (text, record) => (
+      render: (_, record) => (
         <Button type="primary" onClick={() => handleViewCertificate(record)}>
           View Certificate
         </Button>
@@ -105,33 +109,35 @@ useEffect(() => {
   ];
 
 const handleViewCertificate = async (doctor) => {
-  try {
-    // Fetch the certificate photo using the doctor's ID
-    const response = await axios.get(`/api/v1/auth/unapproved-photo/${doctor._id}`, {
-      responseType: 'arraybuffer',
-    });
+  // try {
+  setSelectedImage(doctor.certificatePhoto)
+    setVisible(true);
+  // Fetch the certificate photo using the doctor's ID
+  // const response = await axios.get(`/api/v1/auth/unapproved-photo/${doctor._id}`, {
+  //   responseType: 'arraybuffer',
+  // });
 
-    console.log('Response:', response); // Log the entire response object
+  // console.log('Response:', response); // Log the entire response object
 
-    if (response.status === 200) {
-      // Convert the image data to a base64 string using Uint8Array
-      const imageData = btoa(
-        new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
-      );
-      
-      // Show the modal and update the state of selectedDoctor with the certificate photo data
-      setVisible(true);
-      setSelectedDoctor({
-        ...doctor,
-        certificatePhoto: {
-          ...doctor.certificatePhoto,
-          data: imageData,
-        },
-      });
-    }
-  } catch (error) {
-    console.error('Error fetching certificate photo:', error.message);
-  }
+  // if (response.status === 200) {
+  //   // Convert the image data to a base64 string using Uint8Array
+  //   const imageData = btoa(
+  //     new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
+  //   );
+
+  //   // Show the modal and update the state of selectedDoctor with the certificate photo data
+  //   setVisible(true);
+  //   setSelectedDoctor({
+  //     ...doctor,
+  //     certificatePhoto: {
+  //       ...doctor.certificatePhoto,
+  //       data: imageData,
+  //     },
+  //   });
+  // }
+  // } catch (error) {
+  //   console.error('Error fetching certificate photo:', error.message);
+  // }
 };
 
   const handleApproveDoctor = async (doctor) => {
@@ -188,15 +194,15 @@ const handleViewCertificate = async (doctor) => {
     <>
       <MainNavbar />
 
-      <div className='container-fluid m-3 p-3'>
-        <div className='row'>
-          <div className='col-md-3'>
+      <div className="container-fluid m-3 p-3">
+        <div className="row">
+          <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className='col-md-9'>
+          <div className="col-md-9">
             <h1>Approve EaseFlow Doctor Requests</h1>
-               <div style={{ overflowX: 'auto' }}>
-            <Table dataSource={unapprovedDoctors} columns={columns} />
+            <div style={{ overflowX: "auto" }}>
+              <Table dataSource={unapprovedDoctors} columns={columns} />
             </div>
 
             <Modal
@@ -205,24 +211,23 @@ const handleViewCertificate = async (doctor) => {
               onCancel={handleModalCancel}
               footer={null}
             >
-              {selectedDoctor && selectedDoctor.certificatePhoto && (
+              {selectedImage && (
                 <img
-                  src={`data:${selectedDoctor.certificatePhoto.contentType};base64,${btoa(
-                    new Uint8Array(selectedDoctor.certificatePhoto.data).reduce(
-                      (data, byte) => data + String.fromCharCode(byte),
-                      ''
-                    )
-                  )}`}
-                  alt='Certificate'
-                  style={{ width: '100%' }}
+                  src={imageFromBuffer({
+                    type: selectedImage?.contentType,
+                    data: selectedImage?.data?.data,
+                  })}
+                  alt="Certificate"
+                  height="400px"
+                  width="400px"
                 />
               )}
-              </Modal>
+            </Modal>
           </div>
         </div>
       </div>
     </>
-  );
+  )
 };
 
 export default ApproveDoctors;

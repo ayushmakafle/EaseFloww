@@ -1,87 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import DoctorNavbar from './DoctorNavbar';
-// import axios from 'axios';
-// import { toast } from 'react-toastify';
-// import { Link } from 'react-router-dom';
-// import { Rate } from 'antd';
-
-// const DoctorRateProducts = () => {
-//   const [products, setProducts] = useState([]);
-
-//   // Get all products
-//   const getAllProducts = async () => {
-//     try {
-//       const response = await axios.get('/api/v1/product/get-product');
-//       console.log('API Response:', response.data); // Log the response
-//       setProducts(response.data.products);
-//     } catch (error) {
-//       console.error('API Error:', error);
-//       toast.error('Something went wrong');
-//     }
-//   };
-
-//   // Lifecycle method
-//   useEffect(() => {
-//     getAllProducts();
-//   }, []);
-
-//   const handleRateProduct = async (productId, rating) => {
-//     try {
-//       const doctorId = 'your-doctor-id'; // Replace with the actual doctor ID
-  
-//       // Send a POST request to the API endpoint
-//       await axios.post(`/api/v1/product/rate/${productId}`, { doctorId, rating });
-  
-//       toast.success(`You rated product ID ${productId} with ${rating} stars.`);
-  
-//       // Refresh the product list after rating
-//       getAllProducts();
-//     } catch (error) {
-//       console.error('Error submitting rating:', error);
-//       toast.error('Failed to submit rating. Please try again.');
-//     }
-//   };
-
-//   console.log('Sample Product:', products[0]); // Log a sample product
-
-//   return (
-//     <>
-//       <DoctorNavbar />
-//       <div>
-//         <div className="row justify-content-center">
-//           <div className="col-md-8">
-//             <h1 className="text-center">All Products List</h1>
-//             <div className="d-flex flex-wrap justify-content-around">
-//               {products?.map((p) => (
-//                 <div key={p._id} className="card m-2" style={{ width: '300px', height: '500px', padding: '10px', margin: '10px' }}>
-//                   <Link to={`/dashboard/doctor/product/${p.slug}`} className="product-link">
-//                     <img
-//                       src={`/api/v1/product/product-photo/${p._id}`}
-//                       className="card-img-top"
-//                       alt={p.name}
-//                       style={{ height: '200px', objectFit: 'cover' }}
-//                     />
-//                   </Link>
-//                   <div className="card-body">
-//                     <h5 className="card-title" style={{ color: '#FF06BF' }}>{p.name}</h5>
-//                     <p className="card-text" style={{ overflow: 'hidden', display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, maxHeight: '3em' }}>
-//                       {p.description}
-//                     </p>
-//                     <div className="text-center mt-3">
-//         <Rate allowHalf defaultValue={0} onChange={(productRating) => handleRateProduct(p._id, productRating)} />
-//       </div>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default DoctorRateProducts;
 import React, { useState, useEffect } from 'react';
 import DoctorNavbar from './DoctorNavbar';
 import axios from 'axios';
@@ -115,7 +31,7 @@ const DoctorRateProducts = () => {
   // Handle rating submission
 const handleRateProduct = async (productId, rating) => {
   try {
-    
+
 
 
     // Rating payload
@@ -175,5 +91,4 @@ const handleRateProduct = async (productId, rating) => {
     </>
   );
 };
-
-export default DoctorRateProducts;
+export default DoctorRateProducts

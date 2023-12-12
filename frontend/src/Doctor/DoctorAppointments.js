@@ -33,15 +33,15 @@ const DoctorAppointments = () => {
     dataIndex: 'userInfo',
     key: 'userInfo',
   },
-  {
+  /* {
     title: 'Date',
     dataIndex: 'date',
     key: 'date',
     render: (text, record) => {
       const date = moment(record.date);
-      return date.isValid() ? date.format('YYYY-MM-DD') : 'N/A';
+      return date.isValid() ? date.format('DD-MM-YYYY') : 'N/A';
     },
-  },
+  }, */
   {
     title: 'Time',
     dataIndex: 'time',

@@ -1,10 +1,9 @@
 import productModel from "../models/ProductModel.js";
 import categoryModel from '../models/CategoryModel.js';
+import doctorModel from '../models/DoctorModel.js'
 import fs from "fs";
 import slugify from "slugify";
-import Product from '../models/ProductModel.js';
-import mongoose from 'mongoose';
-
+import mongoose from "mongoose";
 
 export const createProductController = async (req, res) => {
   try {
@@ -56,7 +55,7 @@ export const getProductController = async (req, res) => {
     const products = await productModel
       .find({})
       .populate("category")
-      .select("-photo")
+
       .limit(12)
       .sort({ createdAt: -1 });
     res.status(200).send({
@@ -281,7 +280,7 @@ export const relatedProductController= async(req,res)=>{
       success:false,
       products
     })
-    
+
   }catch(error){
     console.log(error)
     res.status(400).send({
@@ -292,7 +291,7 @@ export const relatedProductController= async(req,res)=>{
   }
 }
 
-//get product by category
+//get product by catehory
 export const productCategoryController = async(req,res) => {
   try{
     const category = await categoryModel.findOne({slug:req.params.slug})
@@ -312,45 +311,27 @@ export const productCategoryController = async(req,res) => {
   }
 }
 
-// Define a constant for the doctor role
-const DOCTOR_ROLE = 2;
 export const updateProductRating = async (req, res) => {
   try {
     const { productId } = req.params;
-    const { doctorId,rating, role } = req.body; //doctorid hatako
-
-    // Check if the user is a doctor
-    if (role !== 2) {
-      return res.status(403).json({ error: 'Only doctors with role 2 can rate products' });
-    }
-    // Check if the user is a doctor
-    if (role !== DOCTOR_ROLE) {
-      return res.status(403).json({ error: `Only doctors with role ${DOCTOR_ROLE} can rate products` });
-    }
-
-// Convert doctorId to ObjectId
-if (!mongoose.Types.ObjectId.isValid(doctorId)) {
-  return res.status(400).json({ error: 'Invalid doctorId' });
-}
-const doctorObjectId = new mongoose.Types.ObjectId(doctorId);
-
+    const { rating } = req.body; 
+    const {user}= req
     // Find the product by ID
-    const product = await Product.findById(productId);
+    const product = await productModel.findById(productId);
     if (!product) {
       return res.status(404).json({ error: 'Product not found' });
     }
-
     // Ensure that product.ratings is an array
     product.ratings = product.ratings || [];
 
     // Update or add the rating given by the doctor
     const existingRatingIndex = product.ratings.findIndex(
-  (r) => r.doctorId && r.doctorId.toString() === doctorObjectId.toString()
-);
+      (r) => r.doctorId && r.doctorId.toString() === user._id.toString(),
+    )
     if (existingRatingIndex !== -1) {
       product.ratings[existingRatingIndex].rating = Number(rating);
     } else {
-      product.ratings.push({ doctorId: doctorObjectId, rating: Number(rating) });
+      product.ratings.push({ doctorId: user._id, rating: Number(rating) })
     }
 
     product.markModified('ratings');

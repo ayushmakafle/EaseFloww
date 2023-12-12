@@ -68,10 +68,21 @@ const ProductDetails = () => {
                 <p className="card-text">
                   <span style={{ color: '#000080' }}>Price:</span> NRs.{product.price}/-
                 </p>
-                <p className="card-text"style={{ color: '#212129' , fontFamily: 'Raleway, sans-serif'}}>{product.description}</p>
-                <button className='btn btn-secondary' onClick={() => { setCart([...cart, product]); toast.success('Item added to cart'); }}>
-                <i className="fas fa-cart-shopping">ADD TO CART</i>
-                  </button>
+                <p className="card-text" style={{ color: '#212129', fontFamily: 'Raleway, sans-serif' }}>{product.description}</p>
+                <button className='btn btn-secondary' onClick={() => {
+                  const updatedCart = [...cart];
+                  const existingProduct = updatedCart.find(item => item._id === product._id);
+                  if (existingProduct) {
+                    existingProduct.numberOfItems += 1;
+                  } else {
+                    updatedCart.push({ ...product, numberOfItems: 1 });
+                  }
+                  setCart(updatedCart);
+                  localStorage.setItem("cart", JSON.stringify(updatedCart));
+                  toast.success("Item Added to cart")
+                }}>
+                  <i className="fas fa-cart-shopping">ADD TO CART</i>
+                </button>
               </div>
             </div>
           </div>
@@ -99,8 +110,8 @@ const ProductDetails = () => {
                   NRs.{p.price}/-
                 </p>
                 <button className='btn btn-secondary' onClick={() => { setCart([...cart, p]); toast.success('Item added to cart'); }}>
-                <i className="fas fa-cart-shopping"></i>
-                  </button>
+                  <i className="fas fa-cart-shopping"></i>
+                </button>
               </div>
             </div>
           ))}

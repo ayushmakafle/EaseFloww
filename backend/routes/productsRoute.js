@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler';
 //import Product from '../models/ProductModel.js';
 import express from 'express';
 
-import { isAdmin, requireSignIn } from '../middleware/authMiddleware.js';
+import { isAdmin, requireSignIn,isDoctor } from '../middleware/authMiddleware.js';
 import { createProductController, 
   deleteProductController, getProductController, getSingleProductController, 
   productCategoryController, 
@@ -49,10 +49,10 @@ router.get('/search/:keyword',searchProductController)
 //similar product
 router.get('/related-product/:pid/:cid',relatedProductController)
 
-//categort wise product
+//category wise product
 router.get('/product-category/:slug',productCategoryController)
 
 // Route to update product rating
-router.post('/rate/:productId', updateProductRating);
+router.post('/rate/:productId', requireSignIn,isDoctor,updateProductRating);
 
 export default router;

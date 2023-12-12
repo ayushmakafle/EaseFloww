@@ -3,7 +3,7 @@ import React from 'react'
 const EmailVerified = () => {
   return (
     <>
-      <h1>Email is verified</h1>
+      <h1>Welcome to EaseFlow! Your email is now verified.</h1>
     </>
   )
 }

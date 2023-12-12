@@ -33,11 +33,11 @@ router.put('/update-delivery/:orderId', async (req, res) => {
   try {
     const { orderId } = req.params;
     const { isDelivered } = req.body;
-
+    console.log("From here",req.body)
     // Update the delivery status and set deliveredAt if isDelivered is true
     const update = {
       isDelivered,
-      deliveredAt: isDelivered ? new Date() : null,
+      DeliveredAt: isDelivered ? new Date().toLocaleDateString() : null,
     };
 
     const updatedOrder = await OrderModel.findByIdAndUpdate(orderId, update, { new: true });

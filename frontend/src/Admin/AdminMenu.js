@@ -28,9 +28,9 @@ const AdminMenu = () => {
         EaseFlow Orders  
         </NavLink>
 
-        <NavLink to="/dashboard/admin/appointments" className="list-group-item list-group-item-action" activeClassName="active">
+       {/*  <NavLink to="/dashboard/admin/appointments" className="list-group-item list-group-item-action" activeClassName="active">
           Appointments
-        </NavLink>
+        </NavLink> */}
       </div>
     </div>
   );

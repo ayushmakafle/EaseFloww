@@ -503,25 +503,26 @@ export const doctorLoginController = async (req, res) => {
     // Doctor login logic
     if (doctor.isApproved) {
       const isPasswordMatch = await comparePassword(password, doctor.password);
+      const userData = {
+        _id: doctor._id,
+        name: doctor.name,
+        email: doctor.email,
+        phonenumber: doctor.phonenumber,
+        specialization: doctor.specialization,
+        address: doctor.address,
+        hospitalOrClinic: doctor.hospitalOrClinic,
+        role: doctor.role,
+      }
 
       if (isPasswordMatch) {
-        const token = await JWT.sign({ _id: doctor._id }, process.env.JWT_SECRET, {
+        const token = await JWT.sign(userData,process.env.JWT_SECRET, {
           expiresIn: "7d",
         });
 
         return res.status(200).send({
           success: true,
           message: "Doctor login successful",
-          doctor: {
-            _id: doctor._id,
-            name: doctor.name,
-            email: doctor.email,
-            phonenumber: doctor.phonenumber,
-            specialization: doctor.specialization,
-            address: doctor.address,
-            hospitalOrClinic: doctor.hospitalOrClinic,
-            role: doctor.role
-          },
+          doctor: userData,
           token,
         });
       } else {

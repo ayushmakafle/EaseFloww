@@ -8,17 +8,19 @@ import '../styles/MainNavbar.css';
 
 const DoctorNavbar = () => {
   const [auth, setAuth] = useAuth();
-  const navigate = useNavigate();  // Use useNavigate instead of navigate
+  const navigate = useNavigate(); 
 
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+      e.preventDefault();
+
     setAuth({
       ...auth, user: null, token: ''
     });
     localStorage.removeItem('auth');
     localStorage.removeItem('cart');
     toast.success('Logout Successful');
-    navigate('/login');  // Use navigate function to redirect
+    navigate('/doctor-login');  // Use navigate function to redirect
   };
 
   useEffect(() => {

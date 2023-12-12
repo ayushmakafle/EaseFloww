@@ -63,7 +63,7 @@ const MyOrders = () => {
         key: 'isDelivered',
         render: (isDelivered, record) => {
           const deliveredAtDate = new Date(record.deliveredAt);
-      
+
           return (
             <>
               {isDelivered ? (
@@ -73,14 +73,30 @@ const MyOrders = () => {
                   `Completed at ${deliveredAtDate.toLocaleString()}`
                 )
               ) : (
-                'Dispatched'
+                'On the Way'
               )}
             </>
           );
-        }, 
+        },
+      },
+      {
+        title: 'Delivered At',
+        dataIndex: 'deliveredAt',
+        key: 'deliveredAt',
+        render: (deliveredAt, record) => {
+          const deliveredAtDate = new Date(deliveredAt);
+
+          return (
+            <>
+              {record.isDelivered && !isNaN(deliveredAtDate) && deliveredAtDate.toString() !== 'Invalid Date'
+                ? deliveredAtDate.toLocaleString()
+                : ''}
+            </>
+          );
+        },
       },
   ];
-  
+
 
   return (
     <>
