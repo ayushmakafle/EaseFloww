@@ -8,14 +8,11 @@ import '../styles/MainNavbar.css';
 const LandingPage = () => {
   return (
     <>
-    <MainNavbar />
+      <MainNavbar />
       <div>
         <div className="hero-section">
           <div className="left">
             <h1>Embrace,<br /> Learn, <br />Flourish</h1>
-            <p>
-              Learn more about your cycle with us.
-            </p>
             <Nav.Link as={Link} to="/homepage" className="btn light">Learn More about Your Cycle</Nav.Link>
           </div>
           <div className="right">

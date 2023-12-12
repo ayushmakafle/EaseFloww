@@ -23,7 +23,7 @@ const MainNavbar = () => {
     localStorage.removeItem('auth');
     localStorage.removeItem('cart');
     toast.success('Logout Successful');
-    navigate('/login');  // Use navigate function to redirect
+    navigate('/login');
 
   };
 
@@ -33,30 +33,30 @@ const MainNavbar = () => {
         <Navbar expand="lg">
           <ul className='logo'>
             <LinkContainer to="/">
-              <Navbar.Brand className="pb-3 text-white">EASEFLOW</Navbar.Brand>
+              <Navbar.Brand className="pb-3 text-white mt-3">EASEFLOW</Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="navbarNav" />
           </ul>
           <Navbar.Collapse id="navbarNav">
             <Nav className="ml-auto">
               <ul className="navbar-nav">
-                <li className="nav-item">
+                <li className="nav-item mt-0">
                   <LinkContainer to="/appointment-homepage">
                     <Nav.Link className="pb-3 text-white">Appointment</Nav.Link>
                   </LinkContainer>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item mt-0">
                   <LinkContainer to="/queries">
                     <Nav.Link className="pb-3 text-white">Queries!</Nav.Link>
                   </LinkContainer>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item mt-0">
                   <LinkContainer to="/ecommerce">
                     <Nav.Link className="pb-3 text-white">Our Products</Nav.Link>
                   </LinkContainer>
                 </li>
                 {!auth.user ? (
-                  <li className="nav-item">
+                  <li className="nav-item mt-0">
                     <LinkContainer to="/login" className="active">
                       <Nav.Link className="pb-3 text-white">
                         <i className="fa-solid fa-user"></i> Profile
@@ -76,7 +76,7 @@ const MainNavbar = () => {
                     </button>
                   </NavDropdown>
                 )}
-                <li className="nav-item">
+                <li className="nav-item mt-0">
                   <LinkContainer to="/cart" className="p-4 m-4">
                     <Badge count={cart?.length} showZero>
                       <Nav.Link as={Link} to="/cart" className="pb-3">
