@@ -88,8 +88,12 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { Rate } from 'antd';
+import { useAuth } from '../context/auth';
 
 const DoctorRateProducts = () => {
+  const { auth } = useAuth();
+  const doctorId = auth?.user?._id;
+
   const [products, setProducts] = useState([]);
 
   // Get all products
@@ -111,8 +115,8 @@ const DoctorRateProducts = () => {
   // Handle rating submission
 const handleRateProduct = async (productId, rating) => {
   try {
-    // Replace the following line with the actual doctor ID
-    const doctorId = 'your-actual-doctor-id';
+    
+
 
     // Rating payload
     const ratingPayload = { doctorId, rating };

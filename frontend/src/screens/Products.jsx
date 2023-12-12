@@ -71,7 +71,7 @@ const Products = () => {
     },
   ];
 
-  return (
+return (
     <div className="products-container">
       {products.map((product, index) => (
         <div key={index} className="product-box">
@@ -80,7 +80,21 @@ const Products = () => {
             <h3 className="product-name">{product.name}</h3>
             <p className="product-description">{product.description}</p>
             <p className="product-price">Price: ${product.price}</p>
-            <p className="product-rating">Doctor Rating: {product.doctorRating}</p>
+            <div className="product-rating">
+              <p>Doctor Rating:</p>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                {/* Display stars or any other representation of the rating */}
+                {Array.from({ length: Math.floor(product.rating) }, (_, index) => (
+                  <span key={index} role="img" aria-label="star">⭐</span>
+                ))}
+                {/* Display the decimal part of the rating if any */}
+                {product.rating % 1 !== 0 && (
+                  <span role="img" aria-label="half-star">½</span>
+                )}
+              </div>
+            </div>
+            {/* Display the number of reviews */}
+            <p className="product-reviews">Number of Reviews: {product.numReviews}</p>
           </div>
         </div>
       ))}

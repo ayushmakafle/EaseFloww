@@ -292,7 +292,7 @@ export const relatedProductController= async(req,res)=>{
   }
 }
 
-//get product by catehory
+//get product by category
 export const productCategoryController = async(req,res) => {
   try{
     const category = await categoryModel.findOne({slug:req.params.slug})
@@ -312,14 +312,27 @@ export const productCategoryController = async(req,res) => {
   }
 }
 
-
+// Define a constant for the doctor role
+const DOCTOR_ROLE = 2;
 export const updateProductRating = async (req, res) => {
   try {
     const { productId } = req.params;
-    const { doctorId, rating } = req.body;
+    const { doctorId,rating, role } = req.body; //doctorid hatako
 
-    // Convert doctorId to ObjectId
-    const doctorObjectId = new mongoose.Types.ObjectId(doctorId);
+    // Check if the user is a doctor
+    if (role !== 2) {
+      return res.status(403).json({ error: 'Only doctors with role 2 can rate products' });
+    }
+    // Check if the user is a doctor
+    if (role !== DOCTOR_ROLE) {
+      return res.status(403).json({ error: `Only doctors with role ${DOCTOR_ROLE} can rate products` });
+    }
+
+// Convert doctorId to ObjectId
+if (!mongoose.Types.ObjectId.isValid(doctorId)) {
+  return res.status(400).json({ error: 'Invalid doctorId' });
+}
+const doctorObjectId = new mongoose.Types.ObjectId(doctorId);
 
     // Find the product by ID
     const product = await Product.findById(productId);
@@ -332,14 +345,16 @@ export const updateProductRating = async (req, res) => {
 
     // Update or add the rating given by the doctor
     const existingRatingIndex = product.ratings.findIndex(
-      (r) => r.doctorId && r.doctorId.toString() === doctorObjectId.toString()
-    );
-
+  (r) => r.doctorId && r.doctorId.toString() === doctorObjectId.toString()
+);
     if (existingRatingIndex !== -1) {
-      product.ratings[existingRatingIndex].rating = rating;
+      product.ratings[existingRatingIndex].rating = Number(rating);
     } else {
-      product.ratings.push({ doctorId: doctorObjectId, rating });
+      product.ratings.push({ doctorId: doctorObjectId, rating: Number(rating) });
     }
+
+    product.markModified('ratings');
+
 
     // Filter out ratings without doctorId and calculate average rating
     const doctorRatings = product.ratings.filter((r) => r.doctorId);
@@ -349,7 +364,9 @@ export const updateProductRating = async (req, res) => {
 
     // Update the averageRating field in the product model
     product.averageRating = averageRating;
-
+    console.log('doctorRatings:', doctorRatings);
+    console.log('totalRating:', totalRating);
+    console.log('averageRating:', averageRating);
     // Save the changes
     await product.save();
 

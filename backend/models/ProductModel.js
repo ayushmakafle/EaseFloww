@@ -53,10 +53,11 @@ const productSchema = Schema({
     },
     ratings: [
         {
-            doctorID: { type: mongoose.Schema.Types.ObjectId, ref: 'Doctor' },
-            rating: { type: Number, default: 0 },
+        //   doctorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Doctor' },
+          rating: { type: Number, default: 0 },
         },
-    ],
+      ],
+      
     averageRating: { type: Number, default: 0 },
 }, { timestamps: true });
 
