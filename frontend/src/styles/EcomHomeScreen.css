@@ -1,0 +1,57 @@
+.container-fluid {
+  background-color: white;
+}
+.card.m-2 {
+    border: 2px solid #f285b6;
+    border-radius: 10px; 
+    transition: border-color 0.3s ease; 
+  }
+  
+  .card.m-2:hover {
+    border-color: #ff1493;
+  }
+
+.text-center-box {
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    border: 2px solid #f48cbc;
+    padding: 10px; 
+    border-radius: 5px; 
+  }
+
+.d-flex.flex-column {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .ant-radio-group {
+    color: #ffc0cb;
+  }
+  
+  .ant-radio-wrapper {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .ant-radio-inner {
+    border-color: #ffc0cb;
+  }
+  
+  .ant-radio-checked .ant-radio-inner {
+    background-color: #ffc0cb;
+  }
+  
+  
+  .ant-checkbox-group {
+    color: #ffc0cb;
+  }
+  
+  .ant-checkbox-wrapper {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .ant-checkbox-inner {
+    border-color: #ffc0cb;
+  }
+  
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #ffc0cb;
+  }
