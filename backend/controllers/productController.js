@@ -60,7 +60,7 @@ export const getProductController = async (req, res) => {
       .sort({ createdAt: -1 });
     res.status(200).send({
       success: true,
-      counTotal: products.length,
+      countTotal: products.length,
       message: "AllProducts ",
       products,
     });
@@ -68,7 +68,7 @@ export const getProductController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Erorr in getting products",
+      message: "Error in getting products",
       error: error.message,
     });
   }
@@ -89,7 +89,7 @@ export const getSingleProductController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error while getitng single product",
+      message: "Error while getting single product",
       error,
     });
   }
@@ -107,7 +107,7 @@ export const productPhotoController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Erorr while getting photo",
+      message: "Error while getting photo",
       error,
     });
   }
@@ -131,7 +131,7 @@ export const deleteProductController = async (req, res) => {
   }
 };
 
-//upate products
+//update products
 export const updateProductController = async (req, res) => {
   try {
     const { name, description, price, category, quantity, shipping } =
@@ -291,7 +291,7 @@ export const relatedProductController= async(req,res)=>{
   }
 }
 
-//get product by catehory
+//get product by category
 export const productCategoryController = async(req,res) => {
   try{
     const category = await categoryModel.findOne({slug:req.params.slug})

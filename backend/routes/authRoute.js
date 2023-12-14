@@ -73,7 +73,7 @@ router.get('/get-user',authController.getUsersController)
 //update profile
 router.put('/update-doctor-profile', authController.updateDoctorProfileController);
 
-router.get('/doctor-data',authController.getDoctorData)
+router.get('/doctor-data',requireSignIn,authController.getDoctorData)
 
 
 //test

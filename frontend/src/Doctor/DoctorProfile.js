@@ -17,7 +17,7 @@ const DoctorProfile = () => {
   useEffect(() => {
     const fetchDoctorData = async () => {
       try {
-        const response = await axios.get('/api/v1/auth/doctor-data'); // Replace with the actual endpoint to fetch doctor profile
+        const response = await axios.get('/api/v1/auth/doctor-data'); 
         if (response.data.success) {
           console.log(response.data)
           const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd } = response.data.doctor;
