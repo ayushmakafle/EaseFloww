@@ -22,26 +22,28 @@ const DoctorAppointments = () => {
     fetchAppointments();
   }, []);
 
-  const columns = [
-    {
+const columns = [
+  {
     title: 'Appointment Id',
     dataIndex: '_id',
     key: '_id',
   },
-    {
+  {
     title: 'Patient',
     dataIndex: 'userInfo',
     key: 'userInfo',
   },
-  /* {
-    title: 'Date',
-    dataIndex: 'date',
-    key: 'date',
-    render: (text, record) => {
-      const date = moment(record.date);
-      return date.isValid() ? date.format('DD-MM-YYYY') : 'N/A';
-    },
-  }, */
+{
+  title: 'Date',
+  dataIndex: 'date',
+  key: 'date',
+  render: (text, record) => {
+    const date = moment(record.date, 'DD-MM-YYYY');
+    console.log("Raw Date Value:", record.date);
+    console.log("Parsed Date Object:", date.toDate());
+    return date.isValid() ? date.format('DD-MM-YYYY') : 'N/A';
+  },
+},
   {
     title: 'Time',
     dataIndex: 'time',
@@ -62,17 +64,24 @@ const DoctorAppointments = () => {
     dataIndex: 'status',
     key: 'status',
   },
-    {
+  {
     title: 'Actions',
     key: 'actions',
     render: (text, record) => (
       <div>
-        <button onClick={() => handleAccept(record._id)} className='m-1'>Accept</button>
-        <button onClick={() => handleReject(record._id)}>Reject</button>
+        {record.status === 'pending' && (
+          <>
+            <button onClick={() => handleAccept(record._id)} className='m-1'>
+              Accept
+            </button>
+            <button onClick={() => handleReject(record._id)}>Reject</button>
+          </>
+        )}
       </div>
     ),
   },
 ];
+
 
 const handleAccept = async (id) => {
   try {

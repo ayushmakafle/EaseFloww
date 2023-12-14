@@ -222,9 +222,12 @@ const acceptAppointment = async (req, res) => {
   try {
     const appointment = await AppointmentModel.findById(req.params.id);
     await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'accepted' });
+       console.log("Appointment ID:", req.params.id);
+    console.log("Appointment User ID:", appointment.userID);
 
     // Fetch user's email
     const user = await userModel.findById(appointment.userID);
+       console.log("User Object:", user);
     const { email } = user;
 
     // Send email to user
