@@ -107,61 +107,73 @@ const daysOfWeek = [
   return (
     <>
       <DoctorNavbar />
-      <form onSubmit={handleSubmit} className='m-5 p-5'>
+      <form onSubmit={handleSubmit} className='p-5' style={{ margin: 'auto' }}>
   <div>
-    <label htmlFor='name'>Name</label>
+    <label htmlFor='name' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+      Name</label>
     <input
       type='text'
       id='name'
+        className='form-control'
       value={name}
       onChange={(e) => setName(e.target.value)}
     />
   </div>
 
   <div>
-    <label htmlFor='email'>Email</label>
+    <label htmlFor='email' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+      Email</label>
     <input
       type='email'
       id='email'
+        className='form-control'
       value={email}
       onChange={(e) => setEmail(e.target.value)}
     />
   </div>
 
   <div>
-    <label htmlFor='phonenumber'>Phone Number</label>
+    <label htmlFor='phonenumber' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+      Phone Number</label>
     <input
       type='text'
       id='phonenumber'
+        className='form-control'
       value={phonenumber}
       onChange={(e) => setPhonenumber(e.target.value)}
     />
   </div>
 
   <div>
-    <label htmlFor='address'>Address</label>
+    <label htmlFor='address' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+      Address</label>
     <input
       type='text'
       id='address'
+        className='form-control'
       value={address}
       onChange={(e) => setAddress(e.target.value)}
     />
   </div>
 
   <div>
-    <label htmlFor='officeHoursStart'>Office Hours Start</label>
+    <label htmlFor='officeHoursStart' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+      Office Hours Start</label>
     <input
       type='time'
       id='officeHoursStart'
+        className='form-control'
       value={officeHoursStart}
       onChange={(e) => setOfficeHoursStart(e.target.value)}
     />
   </div>
 
   <div>
-    <label htmlFor='officeHoursEnd'>Office Hours End</label>
+    <label htmlFor='officeHoursEnd' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+      Office Hours End</label>
     <input
       type='time'
+        className='form-control'
       id='officeHoursEnd'
       value={officeHoursEnd}
       onChange={(e) => setOfficeHoursEnd(e.target.value)}
@@ -194,7 +206,7 @@ const daysOfWeek = [
      </div>
 
 
-  <button type='submit'>Update</button>
+  <button type='submit' className='w-100'>Update</button>
 </form>
 
     </>
