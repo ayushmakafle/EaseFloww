@@ -14,29 +14,32 @@ const DoctorProfile = () => {
   const [officeHoursEnd, setOfficeHoursEnd] = useState('');
 
   // Fetch doctor data
-  useEffect(() => {
-    const fetchDoctorData = async () => {
-      try {
-        const response = await axios.get('/api/v1/auth/doctor-data'); 
-        if (response.data.success) {
-          console.log(response.data)
-          const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd } = response.data.doctor;
-          setName(name);
-          setEmail(email);
-          setPhonenumber(phonenumber);
-          setAddress(address);
-          setOfficeHoursStart(officeHoursStart);
-          setOfficeHoursEnd(officeHoursEnd);
-        } else {
-          console.error('Error fetching doctor data:', response.data.message);
-        }
-      } catch (error) {
-        console.error('Error fetching doctor data:', error);
+  // Fetch doctor data
+useEffect(() => {
+  const fetchDoctorData = async () => {
+    try {
+      const response = await axios.get('/api/v1/auth/doctor-data'); 
+      if (response.data.success) {
+        console.log(response.data);
+        const doctorData = response.data.data; // Update this line
+        const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd } = doctorData;
+        setName(name);
+        setEmail(email);
+        setPhonenumber(phonenumber);
+        setAddress(address);
+        setOfficeHoursStart(officeHoursStart);
+        setOfficeHoursEnd(officeHoursEnd);
+      } else {
+        console.error('Error fetching doctor data:', response.data.message);
       }
-    };
+    } catch (error) {
+      console.error('Error fetching doctor data:', error);
+    }
+  };
 
-    fetchDoctorData();
-  }, []);
+  fetchDoctorData();
+}, []);
+
 
   useEffect(() => {
     if (auth && auth.doctor) {
