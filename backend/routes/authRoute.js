@@ -71,7 +71,7 @@ router.get('/get-doctor/:doctorId',authController.getSingleDoctorController)
 router.get('/get-user',authController.getUsersController)
 
 //update profile
-router.put('/update-doctor-profile', authController.updateDoctorProfileController);
+router.put('/update-doctor-profile',  requireSignIn, isDoctor, authController.updateDoctorProfileController);
 
 router.get('/doctor-data',requireSignIn,authController.getDoctorData)
 

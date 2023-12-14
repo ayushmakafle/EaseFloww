@@ -616,18 +616,18 @@ export const getUsersController = async (req, res) => {
   res.send('protected route')
 } */
 
-//update profile
+// Update doctor profile controller
 export const updateDoctorProfileController = async (req, res) => {
   try {
-    // Extract the doctor's ID from the authenticated doctor's token
-    const doctorId = req.user._id; // Assuming you have stored doctor ID in req.user
+    // req.user should be available if requireSignIn middleware is applied
+    const doctorId = req.user?._id;
 
     // Update the doctor's profile with the data in req.body
     const updatedDoctor = await DoctorModel.findByIdAndUpdate(doctorId, req.body, { new: true });
 
     res.status(200).json({
       success: true,
-      message: 'Profile updated successfully',
+      message: 'Doctor Profile updated successfully',
       doctor: updatedDoctor,
     });
   } catch (error) {
