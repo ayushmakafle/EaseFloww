@@ -3,6 +3,8 @@ import { useAuth } from '../context/auth';
 import axios from 'axios';
 import DoctorNavbar from './DoctorNavbar';
 import {toast} from 'react-toastify';
+import Select from 'react-select';
+
 
 const DoctorProfile = () => {
   const [auth, setAuth] = useAuth();
@@ -12,8 +14,9 @@ const DoctorProfile = () => {
   const [address, setAddress] = useState('');
   const [officeHoursStart, setOfficeHoursStart] = useState('');
   const [officeHoursEnd, setOfficeHoursEnd] = useState('');
+  const [officeDays,setOfficeDays] = useState('');
+  const [ feesPerConsultation,setFeesPerConsultation]=useState('');
 
-  // Fetch doctor data
   // Fetch doctor data
 useEffect(() => {
   const fetchDoctorData = async () => {
@@ -22,13 +25,15 @@ useEffect(() => {
       if (response.data.success) {
         console.log(response.data);
         const doctorData = response.data.data; // Update this line
-        const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd } = doctorData;
+        const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd ,feesPerConsultation,officeDays} = doctorData;
         setName(name);
         setEmail(email);
         setPhonenumber(phonenumber);
         setAddress(address);
         setOfficeHoursStart(officeHoursStart);
         setOfficeHoursEnd(officeHoursEnd);
+        setFeesPerConsultation(feesPerConsultation);
+        setOfficeDays(officeDays);
       } else {
         console.error('Error fetching doctor data:', response.data.message);
       }
@@ -40,16 +45,33 @@ useEffect(() => {
   fetchDoctorData();
 }, []);
 
+const daysOfWeek = [
+    { value: 'Sunday', label: 'Sunday' },
+    { value: 'Monday', label: 'Monday' },
+    { value: 'Tuesday', label: 'Tuesday' },
+    { value: 'Wednesday', label: 'Wednesday' },
+    { value: 'Thursday', label: 'Thursday' },
+    { value: 'Friday', label: 'Friday' },
+    { value: 'Saturday', label: 'Saturday' },
+  ];
+
+  const handleOfficeDaysChange = (selectedOptions) => {
+    // Handle the selected office days
+    setOfficeDays(selectedOptions);
+  };
+
 
   useEffect(() => {
     if (auth && auth.doctor) {
-      const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd } = auth.doctor;
+      const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd,officeDays,feesPerConsultation } = auth.doctor;
       setName(name);
       setEmail(email);
       setPhonenumber(phonenumber);
       setAddress(address);
       setOfficeHoursStart(officeHoursStart);
       setOfficeHoursEnd(officeHoursEnd);
+      setOfficeDays(officeDays);
+      setFeesPerConsultation(feesPerConsultation)
     }
   }, [auth]);
 
@@ -63,6 +85,8 @@ useEffect(() => {
         address,
         officeHoursStart,
         officeHoursEnd,
+        officeDays,
+        feesPerConsultation
       });
       if (data?.error) {
         toast.error(data?.error);
@@ -143,6 +167,32 @@ useEffect(() => {
       onChange={(e) => setOfficeHoursEnd(e.target.value)}
     />
   </div>
+
+  <div>
+    <label className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>Office Days</label>
+      <Select
+        name='officeDays'
+        options={daysOfWeek}
+        isMulti
+        value={officeDays}
+        onChange={handleOfficeDaysChange}
+      />
+  </div>
+
+   <div>
+      <label htmlFor='feesPerConsultation' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+        Fees Per Consultation
+      </label>
+      <input
+        type='number'
+        name='feesPerConsultation'
+        className='form-control'
+        required
+        value={feesPerConsultation}
+        onChange={(e) => setFeesPerConsultation(e.target.value)}
+      />
+     </div>
+
 
   <button type='submit'>Update</button>
 </form>
