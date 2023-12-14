@@ -80,7 +80,7 @@ const DoctorProfile = () => {
   return (
     <>
       <DoctorNavbar />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='m-5 p-5'>
   <div>
     <label htmlFor='name'>Name</label>
     <input
