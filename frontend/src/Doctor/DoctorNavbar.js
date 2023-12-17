@@ -53,7 +53,7 @@ const DoctorNavbar = () => {
             <Nav className="ml-auto">
               <ul>
                 <li>
-                  <Nav.Link href="/dashboard/doctor/doctor-profile"> Your Profile</Nav.Link>
+                  <Nav.Link href="/dashboard/doctor/update-schedule"> Update Schedule</Nav.Link>
                 </li>
                 <li>
                   <Nav.Link href="/dashboard/doctor/doctor-appointments"> Your Appointments</Nav.Link>
