@@ -129,6 +129,25 @@ const BookingPage = () => {
   // Extract only the 'label' property from each day object
   const extractedOfficeDays = parsedOfficeDays.map((day) => day.label);
 
+    // Parse the office hours into moment objects
+  const officeHoursStart = moment(doctor.officeHoursStart, 'HH:mm');
+  const officeHoursEnd = moment(doctor.officeHoursEnd, 'HH:mm');
+
+// Function to generate an array of disabled times
+const disabledTime = (current) => {
+  const currentTime = current.clone();
+  const officeStart = officeHoursStart.clone();
+  const officeEnd = officeHoursEnd.clone();
+
+  // Disable times before the office hours start or after the office hours end
+  return (
+    currentTime.isBefore(officeStart, 'hour') ||
+    currentTime.isAfter(officeEnd, 'hour')
+  );
+};
+
+
+
   return (
     <>
       <MainNavbar />
@@ -169,17 +188,20 @@ const BookingPage = () => {
             );
           }}
         />
+<TimePicker
+  className="time-picker"
+  format="HH:mm"
+  onChange={(value) => {
+    // Update state with the selected time in the required format
+    setTime(value.format('HH:mm'));
+  }}
+  // Use the disabledHours and disabledMinutes props to disable times outside office hours
+  disabledHours={() => Array.from({ length: 24 }, (_, i) => i).filter(hour => hour < officeHoursStart.hour() || hour >= officeHoursEnd.hour())}
+  disabledMinutes={() => []} // Allow all minutes
+/>
 
 
 
-        <TimePicker
-          className="time-picker"
-          format="HH:mm"
-          onChange={(value) => {
-            // Update state with the selected time in the required format
-            setTime(value.format('HH:mm'));
-          }}
-        />
 
         <button
           className="check-availability-btn m-1"
