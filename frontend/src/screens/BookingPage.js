@@ -146,7 +146,10 @@ const BookingPage = () => {
             // Update state with the selected date in the required format
             setDate(value.format('DD-MM-YYYY'));
           }}
+          // Use the disabledDate prop to disable dates before today
+          disabledDate={(current) => current && current < moment().startOf('day')}
         />
+
 
         <TimePicker
           className="time-picker"
