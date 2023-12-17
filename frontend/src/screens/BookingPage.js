@@ -68,6 +68,7 @@ const BookingPage = () => {
       }
     } catch (error) {
       console.log(error);
+      toast.error('You need to login to book an appointment')
     }
   };
 
@@ -199,7 +200,6 @@ const disabledTime = (current) => {
   disabledHours={() => Array.from({ length: 24 }, (_, i) => i).filter(hour => hour < officeHoursStart.hour() || hour >= officeHoursEnd.hour())}
   disabledMinutes={() => []} // Allow all minutes
 />
-
 
 
 
