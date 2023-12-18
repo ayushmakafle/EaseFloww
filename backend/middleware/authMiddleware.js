@@ -43,7 +43,7 @@ export const isAdmin = async (req, res, next) => {
 export const isDoctor = async (req, res, next) => {
   try {
     const doctor = await DoctorModel.findById(req.user._id);
-    if (doctor) {
+    if (!doctor) {
       return res.status(401).send({
         success: false,
         message: 'Unauthorized access',

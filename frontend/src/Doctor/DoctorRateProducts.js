@@ -41,11 +41,13 @@ const handleRateProduct = async (productId, rating) => {
 
     // Make the API call to submit the rating
     const response = await axios.post(`/api/v1/product/rate/${productId}`, ratingPayload);
+    // Get the product name from the products array
+    const productName = products.find((p) => p._id === productId)?.name || 'Unknown Product';
 
     // Handle the response
     console.log('Rating Response:', response.data);
 
-    toast.success(`You rated product ID ${productId} with ${rating} stars.`);
+    toast.success(`You rated ${productName} with ${rating} stars.`);
 
     // Refresh the product list after rating
     getAllProducts();

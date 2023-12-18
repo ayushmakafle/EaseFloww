@@ -123,6 +123,7 @@ import LearnMorePage6 from './screens/LearnMorePage6';
 import DoctorAppointments from './Doctor/DoctorAppointments';
 import DoctorRateProducts from './Doctor/DoctorRateProducts';
 import EmailVerified from './user/EmailVerified';
+import DoctorUpdateSchedule from './Doctor/DoctorUpdateSchedule';
 function App() {
 
   return (
@@ -176,6 +177,7 @@ function App() {
             <Route path = 'doctor/doctor-profile' element={<DoctorProfile />} />
             <Route path = 'doctor/doctor-appointments' element={<DoctorAppointments />} />
             <Route path = 'doctor/doctor-rate-products' element={<DoctorRateProducts />} />
+            <Route path =  'doctor/update-schedule' element={<DoctorUpdateSchedule />} />
           </Route>
 
           <Route path="/doctor-login" element={<DoctorLoginPage />} />
