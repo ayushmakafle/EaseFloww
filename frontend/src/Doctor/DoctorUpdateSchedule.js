@@ -33,7 +33,7 @@ useEffect(() => {
         setOfficeHoursStart(officeHoursStart);
         setOfficeHoursEnd(officeHoursEnd);
         setFeesPerConsultation(feesPerConsultation);
-        setOfficeDays(officeDays);
+        setOfficeDays(JSON.parse(officeDays[0]));
       } else {
         console.error('Error fetching doctor data:', response.data.message);
       }
@@ -44,6 +44,8 @@ useEffect(() => {
 
   fetchDoctorData();
 }, []);
+
+ 
 
 const daysOfWeek = [
     { value: 'Sunday', label: 'Sunday' },
@@ -56,8 +58,10 @@ const daysOfWeek = [
   ];
 
   const handleOfficeDaysChange = (selectedOptions) => {
+    console.log(selectedOptions)
     // Handle the selected office days
     setOfficeDays(selectedOptions);
+
   };
 
 
@@ -78,6 +82,10 @@ const daysOfWeek = [
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      let formattedOfficeDays = []
+      formattedOfficeDays[0] = JSON.stringify(officeDays)
+      //console.log(officeHoursStart,officeDays,officeHoursEnd,feesPerConsultation)
+      console.log(formattedOfficeDays)
       const { data } = await axios.put("/api/v1/auth/update-doctor-profile", {
         //name,
         //email,
@@ -85,7 +93,7 @@ const daysOfWeek = [
         //address,
         officeHoursStart,
         officeHoursEnd,
-        officeDays,
+        officeDays:formattedOfficeDays,
         feesPerConsultation
       });
       if (data?.error) {
@@ -182,6 +190,7 @@ const daysOfWeek = [
 
   <div>
     <label className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>Office Days</label>
+      {console.log(officeDays)}
       <Select
         name='officeDays'
         options={daysOfWeek}
