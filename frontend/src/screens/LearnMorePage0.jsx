@@ -22,7 +22,7 @@ const LearnMorePage0 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/young-brunette-woman-jeans-sweater_273609-41333.jpg?w=996&t=st=1702127737~exp=1702128337~hmac=2af47989e152cab933fe54278471149c5f4738fc7d8cf913b6fb86f124fac459"
+            src="https://img.freepik.com/free-photo/good-looking-feminine-girl-holds-clean-sanitary-napkin_176532-12421.jpg?w=996&t=st=1702912714~exp=1702913314~hmac=3ad607af56917599575966a832c484c4cb7cdfdf99810f3f85e952f1e235288b"
             alt="Image 1"
             className="paragraph-image"
           />
@@ -30,7 +30,7 @@ const LearnMorePage0 = () => {
 
         <div className="paragraph-container reverse">
           <img
-            src="https://img.freepik.com/free-photo/portrait-cheerful-positive-curly-haired-woman-standing-isolated-pink_176532-7432.jpg?w=996&t=st=1702127856~exp=1702128456~hmac=32f89c6f24923eb75dff73f846d465ad3fec80bfba041c796ee77ebc4ab657c8"
+            src="https://img.freepik.com/free-vector/female-reproductive-system-illustrated_23-2148654102.jpg?w=740&t=st=1702912643~exp=1702913243~hmac=6f8058f6afb2bc0ac025367589543bda01b955f1448fd0331db2390f9662b9c4"
             alt="Image 2"
             className="paragraph-image2"
           />
@@ -53,7 +53,7 @@ const LearnMorePage0 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669"
+            src="https://img.freepik.com/free-photo/young-woman-sitting-bed-morning_23-2148298131.jpg?w=996&t=st=1702912719~exp=1702913319~hmac=0fecf7a683789f2080208bc4bfbd95efcaf740b44e439888cac44e4bc5af5c4d"
             alt="Image 3"
             className="paragraph-image"
           />
@@ -61,7 +61,7 @@ const LearnMorePage0 = () => {
 
         <div className="paragraph-container reverse">
           <img
-            src="https://img.freepik.com/free-photo/good-looking-feminine-girl-holds-clean-sanitary-napkin_176532-12421.jpg?w=996&t=st=1702127917~exp=1702128517~hmac=26dc44ba573cc8c9910b5735c9176506ba36eba97ee942ab01e55d40e86130b5"
+            src="https://img.freepik.com/free-photo/young-brunette-pink-sweater-isolated-purple-wall_343596-5669.jpg?w=996&t=st=1702912727~exp=1702913327~hmac=086945595d4762ce42618f162e7edf7373bc199e97b1abdb9e88beeb5273c04a"
             alt="Image 4"
             className="paragraph-image2"
           />
@@ -75,7 +75,6 @@ const LearnMorePage0 = () => {
         </div>
 
       </div>
-      <p>https://www.actionaid.org.uk/our-work/period-poverty/chhaupadi-and-menstruation-taboos</p>
       <Footer />
     </>
   );
