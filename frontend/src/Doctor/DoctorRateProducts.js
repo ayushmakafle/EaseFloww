@@ -81,7 +81,7 @@ const handleRateProduct = async (productId, rating) => {
                       {p.description}
                     </p>
                     <div className="text-center mt-3">
-                      <Rate allowHalf defaultValue={0} onChange={(rating) => handleRateProduct(p._id, rating)} />
+                      <Rate allowHalf defaultValue={p.averageRating} onChange={(rating) => handleRateProduct(p._id, rating)} />
                     </div>
                   </div>
                 </div>

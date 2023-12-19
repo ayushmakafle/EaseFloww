@@ -63,16 +63,16 @@ const EaseFlowOrders = () => {
 };
 
   const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'user',
-      key: 'name',
-      render: user => (
-        <p className="mb-0">
-          {user.username}
-        </p>
-      ),
-    },
+    // {
+    //   title: 'Name',
+    //   dataIndex: 'user',
+    //   key: 'name',
+    //   render: user => (
+    //     <p className="mb-0">
+    //       {user.username}
+    //     </p>
+    //   ),
+    // },
     {
       title: 'Email',
       dataIndex: 'user',
@@ -133,13 +133,12 @@ const EaseFlowOrders = () => {
       setError(null);
 
       const response = await axios.get('/api/v1/order/all-orders');
-
       if (response.data.success) {
         const ordersWithUsers = response.data.orders.map(order => ({
           key: order._id,
           user: {
-            username: order.User.username,
-            email: order.User.email,
+            // username: order.User.username,
+            email: order.paymentResult.email_address,
           },
           orderItems: order.orderItems,
           paymentResult: order.paymentResult,

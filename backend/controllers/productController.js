@@ -338,7 +338,8 @@ export const updateProductRating = async (req, res) => {
 
 
     // Filter out ratings without doctorId and calculate average rating
-    const doctorRatings = product.ratings.filter((r) => r.doctorId);
+    
+    const doctorRatings = product.ratings.filter((r) => r._id);
     const totalRating = doctorRatings.reduce((sum, r) => sum + r.rating, 0);
     const averageRating =
       doctorRatings.length > 0 ? totalRating / doctorRatings.length : 0;
