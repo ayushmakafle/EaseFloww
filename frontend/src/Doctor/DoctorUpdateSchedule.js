@@ -5,7 +5,12 @@ import DoctorNavbar from './DoctorNavbar';
 import {toast} from 'react-toastify';
 import Select from 'react-select';
 
-
+const customStyles = {
+  control: (provided) => ({
+    ...provided,
+    width: '15%',
+  }),
+};
 const DoctorUpdateSchedule = () => {
   const [auth, setAuth] = useAuth();
 /*   const [name, setName] = useState('');
@@ -107,55 +112,7 @@ const daysOfWeek = [
   return (
     <>
       <DoctorNavbar />
-      <form onSubmit={handleSubmit} className='p-5' style={{ margin: 'auto' }}>
- {/*  <div>
-    <label htmlFor='name' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Name</label>
-    <input
-      type='text'
-      id='name'
-        className='form-control'
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-    />
-  </div>
-
-  <div>
-    <label htmlFor='email' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Email</label>
-    <input
-      type='email'
-      id='email'
-        className='form-control'
-      value={email}
-      onChange={(e) => setEmail(e.target.value)}
-    />
-  </div>
-
-  <div>
-    <label htmlFor='phonenumber' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Phone Number</label>
-    <input
-      type='text'
-      id='phonenumber'
-        className='form-control'
-      value={phonenumber}
-      onChange={(e) => setPhonenumber(e.target.value)}
-    />
-  </div>
-
-  <div>
-    <label htmlFor='address' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Address</label>
-    <input
-      type='text'
-      id='address'
-        className='form-control'
-      value={address}
-      onChange={(e) => setAddress(e.target.value)}
-    />
-  </div> */}
-
+      <form onSubmit={handleSubmit} className='p-5'>
   <div>
     <label htmlFor='officeHoursStart' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
       Office Hours Start</label>
@@ -163,6 +120,7 @@ const daysOfWeek = [
       type='time'
       id='officeHoursStart'
         className='form-control'
+        style={{ width: '15%' }}
       value={officeHoursStart}
       onChange={(e) => setOfficeHoursStart(e.target.value)}
     />
@@ -174,6 +132,7 @@ const daysOfWeek = [
     <input
       type='time'
         className='form-control'
+        style={{ width: '15%' }}
       id='officeHoursEnd'
       value={officeHoursEnd}
       onChange={(e) => setOfficeHoursEnd(e.target.value)}
@@ -188,6 +147,7 @@ const daysOfWeek = [
         isMulti
         value={officeDays}
         onChange={handleOfficeDaysChange}
+        styles={customStyles}
       />
   </div>
 
@@ -199,14 +159,31 @@ const daysOfWeek = [
         type='number'
         name='feesPerConsultation'
         className='form-control'
+        style={{ width: '15%' }}
         required
         value={feesPerConsultation}
         onChange={(e) => setFeesPerConsultation(e.target.value)}
       />
      </div>
 
+    
+     <button
+  type='submit'
+  className='w-90'
+  style={{
+    backgroundColor: '#ffbcd4',
+    fontFamily: 'Poppins',
+    fontWeight: 'medium',
+    color: '#000000',
+    padding: '10px',
+    border: 'none',
+    borderRadius: '8px',
+    cursor: 'pointer'
+  }}
+>
+  Update
+</button>
 
-  <button type='submit' className='w-100'>Update</button>
 </form>
 
     </>

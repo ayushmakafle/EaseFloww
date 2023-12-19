@@ -1,0 +1,82 @@
+/* .why-shop-here-container {
+  max-width: 800px;
+  margin: 10px 300px;
+  padding: 20px;
+}
+.why-shop-here-container h2 {
+  font-size: 50px;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.feature img {
+  width: 350px; 
+  margin-right: 20px;
+}
+
+
+.feature h3 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  color: #333;
+}
+
+
+.feature p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #666;
+} */
+
+
+
+.why-shop-here-container h2 {
+  font-size: 50px;
+  font-weight: bolder;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+}
+
+.why-shop-here-container {
+  background: linear-gradient(45deg,#f484b4, #ffbcd4 ); 
+  max-width: calc(100% - 20px);
+  padding: 20px;
+}
+
+
+.feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.feature img {
+  height: 450px;
+  width: 350px; 
+  margin-right: 20px;
+  border-radius: 35px;
+}
+
+
+.feature h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 32px;
+  color: #fff;
+}
+
+
+.feature p {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  color: #fff;
+}
+

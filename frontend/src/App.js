@@ -120,6 +120,8 @@ import LearnMorePage3 from './screens/LearnMorePage3';
 import LearnMorePage4 from './screens/LearnMorePage4';
 import LearnMorePage5 from './screens/LearnMorePage5';
 import LearnMorePage6 from './screens/LearnMorePage6';
+import WhyShopHere from './screens/WhyShopHere';
+
 import DoctorAppointments from './Doctor/DoctorAppointments';
 import DoctorRateProducts from './Doctor/DoctorRateProducts';
 import EmailVerified from './user/EmailVerified';
@@ -195,6 +197,10 @@ function App() {
           <Route path="/learn-more/4" element={<LearnMorePage4 />} />
           <Route path="/learn-more/5" element={<LearnMorePage5 />} />
           <Route path="/learn-more/6" element={<LearnMorePage6 />} />
+
+
+          <Route path="/whyshophere" element={<WhyShopHere/>} />
+          
         </Routes>
         <ToastContainer />
       </main>
