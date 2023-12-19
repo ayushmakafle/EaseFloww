@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/auth';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import DoctorNavbar from './DoctorNavbar';
-import {toast} from 'react-toastify';
-import Select from 'react-select';
-
+import axios from 'axios';
+import DoctorCard from '../components/DoctorCard';
+import { toast } from 'react-toastify';
+import {useAuth} from '../context/auth'
+import { Link } from 'react-router-dom';
 
 const DoctorProfile = () => {
   const [auth, setAuth] = useAuth();
@@ -14,202 +14,144 @@ const DoctorProfile = () => {
   const [address, setAddress] = useState('');
   const [officeHoursStart, setOfficeHoursStart] = useState('');
   const [officeHoursEnd, setOfficeHoursEnd] = useState('');
-  const [officeDays,setOfficeDays] = useState('');
-  const [ feesPerConsultation,setFeesPerConsultation]=useState('');
+  const [officeDays, setOfficeDays] = useState('');
+  const [feesPerConsultation, setFeesPerConsultation] = useState('');
+  const [doctor, setDoctor] = useState(null);
 
   // Fetch doctor data
-useEffect(() => {
-  const fetchDoctorData = async () => {
-    try {
-      const response = await axios.get('/api/v1/auth/doctor-data'); 
-      if (response.data.success) {
-        console.log(response.data);
-        const doctorData = response.data.data; // Update this line
-        const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd ,feesPerConsultation,officeDays} = doctorData;
-        setName(name);
-        setEmail(email);
-        setPhonenumber(phonenumber);
-        setAddress(address);
-        setOfficeHoursStart(officeHoursStart);
-        setOfficeHoursEnd(officeHoursEnd);
-        setFeesPerConsultation(feesPerConsultation);
-        setOfficeDays(officeDays);
-      } else {
-        console.error('Error fetching doctor data:', response.data.message);
-      }
-    } catch (error) {
-      console.error('Error fetching doctor data:', error);
-    }
-  };
-
-  fetchDoctorData();
-}, []);
-
-const daysOfWeek = [
-    { value: 'Sunday', label: 'Sunday' },
-    { value: 'Monday', label: 'Monday' },
-    { value: 'Tuesday', label: 'Tuesday' },
-    { value: 'Wednesday', label: 'Wednesday' },
-    { value: 'Thursday', label: 'Thursday' },
-    { value: 'Friday', label: 'Friday' },
-    { value: 'Saturday', label: 'Saturday' },
-  ];
-
-  const handleOfficeDaysChange = (selectedOptions) => {
-    // Handle the selected office days
-    setOfficeDays(selectedOptions);
-  };
-
-
   useEffect(() => {
-    if (auth && auth.doctor) {
-      const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd,officeDays,feesPerConsultation } = auth.doctor;
-      setName(name);
-      setEmail(email);
-      setPhonenumber(phonenumber);
-      setAddress(address);
-      setOfficeHoursStart(officeHoursStart);
-      setOfficeHoursEnd(officeHoursEnd);
-      setOfficeDays(officeDays);
-      setFeesPerConsultation(feesPerConsultation)
-    }
-  }, [auth]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.put("/api/v1/auth/update-doctor-profile", {
-        name,
-        email,
-        phonenumber,
-        address,
-        officeHoursStart,
-        officeHoursEnd,
-        officeDays,
-        feesPerConsultation
-      });
-      if (data?.error) {
-        toast.error(data?.error);
-      } else {
-        setAuth({ ...auth, doctor: data?.updatedUser });
-        let ls = localStorage.getItem("auth");
-        ls = JSON.parse(ls);
-        ls.doctor = data.updatedUser;
-        localStorage.setItem("auth", JSON.stringify(ls));
-        toast.success("Profile Updated Successfully");
+    const fetchDoctorData = async () => {
+      try {
+        const response = await axios.get('/api/v1/auth/doctor-data');
+        if (response.data.success) {
+          console.log(response.data);
+          const doctorData = response.data.data;
+          const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd, feesPerConsultation, officeDays } = doctorData;
+          setName(name);
+          setEmail(email);
+          setPhonenumber(phonenumber);
+          setAddress(address);
+          setOfficeHoursStart(officeHoursStart);
+          setOfficeHoursEnd(officeHoursEnd);
+          setFeesPerConsultation(feesPerConsultation);
+          setOfficeDays(officeDays);
+          setDoctor(doctorData); // Set the doctor object here
+        } else {
+          console.error('Error fetching doctor data:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching doctor data:', error);
       }
-       } catch (error) {
-      console.error('Error:', error);
-      toast.error('Error in updating profile');
-    }
-  };
+    };
+
+    fetchDoctorData();
+  }, []);
+
+    // Parse the officeDays string into an array of objects or use an empty array if falsy
+    const parsedOfficeDays = officeDays ? JSON.parse(officeDays) : [];
+
+    // Extract only the 'label' property from each day object
+    const extractedOfficeDays = parsedOfficeDays.map((day) => day.label);
 
   return (
     <>
-      <DoctorNavbar />
-      <form onSubmit={handleSubmit} className='p-5' style={{ margin: 'auto' }}>
-  <div>
-    <label htmlFor='name' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Name</label>
-    <input
-      type='text'
-      id='name'
-        className='form-control'
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-    />
-  </div>
+      <DoctorNavbar />  
+      <h2 style={styles.profileTitle}>Your Doctor Profile</h2>
+        <p style={styles.profileDescription}>This is how your profile looks like to our EaseFlow users.</p>
+   <div style={styles.doctorProfileContainer}>
+        
 
-  <div>
-    <label htmlFor='email' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Email</label>
-    <input
-      type='email'
-      id='email'
-        className='form-control'
-      value={email}
-      onChange={(e) => setEmail(e.target.value)}
-    />
-  </div>
-
-  <div>
-    <label htmlFor='phonenumber' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Phone Number</label>
-    <input
-      type='text'
-      id='phonenumber'
-        className='form-control'
-      value={phonenumber}
-      onChange={(e) => setPhonenumber(e.target.value)}
-    />
-  </div>
-
-  <div>
-    <label htmlFor='address' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Address</label>
-    <input
-      type='text'
-      id='address'
-        className='form-control'
-      value={address}
-      onChange={(e) => setAddress(e.target.value)}
-    />
-  </div>
-
-  <div>
-    <label htmlFor='officeHoursStart' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Office Hours Start</label>
-    <input
-      type='time'
-      id='officeHoursStart'
-        className='form-control'
-      value={officeHoursStart}
-      onChange={(e) => setOfficeHoursStart(e.target.value)}
-    />
-  </div>
-
-  <div>
-    <label htmlFor='officeHoursEnd' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Office Hours End</label>
-    <input
-      type='time'
-        className='form-control'
-      id='officeHoursEnd'
-      value={officeHoursEnd}
-      onChange={(e) => setOfficeHoursEnd(e.target.value)}
-    />
-  </div>
-
-  <div>
-    <label className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>Office Days</label>
-      <Select
-        name='officeDays'
-        options={daysOfWeek}
-        isMulti
-        value={officeDays}
-        onChange={handleOfficeDaysChange}
-      />
-  </div>
-
-   <div>
-      <label htmlFor='feesPerConsultation' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-        Fees Per Consultation
-      </label>
-      <input
-        type='number'
-        name='feesPerConsultation'
-        className='form-control'
-        required
-        value={feesPerConsultation}
-        onChange={(e) => setFeesPerConsultation(e.target.value)}
-      />
-     </div>
-
-
-  <button type='submit' className='w-100'>Update</button>
-</form>
-
+        {doctor ? (
+          <div style={styles.doctorDetails}>
+            <h1 style={styles.doctorName}>{doctor.name}</h1>
+            <div style={styles.doctorSpecialization}>{doctor.specialization}</div>
+            <div style={styles.hospitalInfo}>
+              <div>{doctor.hospitalOrClinic}</div>
+              <div>{doctor.address}</div>
+            </div>
+            <div style={styles.officeInfo}>
+              <div style={styles.officeHours}>
+                Office Hours: {doctor.officeHoursStart} - {doctor.officeHoursEnd}
+              </div>
+              <div style={styles.officeDays}>
+                {extractedOfficeDays.length > 0 ? `Office Days: ${extractedOfficeDays.join(', ')}` : 'No Office Days'}
+              </div>
+            </div>
+            <div style={styles.fees}>{`Fees per Consultation: NRs. ${doctor.feesPerConsultation}/-`}</div>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+       <div style={{ textAlign: 'center' }}>
+          <Link to="/dashboard/doctor/update-schedule">
+            <button type="button" style={{ backgroundColor: '#ef5e99', color: 'white' }}>
+              Update Schedule</button>
+          </Link>
+      </div>
     </>
-  )
-}
-export default DoctorProfile
+  );
+};
+
+const styles = {
+  doctorProfileContainer: {
+    textAlign: 'center',
+    margin: '20px auto',
+    padding: '20px',
+    border: '1px solid #ddd',
+    borderRadius: '8px',
+    maxWidth: '600px',
+  },
+  profileTitle: {
+    fontSize: '24px',
+    marginBottom: '10px',
+    color: '#ff0066', // Darker pink for the title
+    textAlign: 'center',
+    marginTop: '20px',
+  },
+  profileDescription: {
+    fontSize: '16px',
+    marginBottom: '20px',
+    color: 'black', // Darker pink for the description
+    textAlign: 'center',
+  },
+  doctorDetails: {
+    marginTop: '20px',
+  },
+  doctorName: {
+    fontSize: '1.5em',
+    marginBottom: '10px',
+    color: '#ff0066', // Darker pink for the name
+    fontWeight:'bold'
+  },
+  doctorSpecialization: {
+    color: '#ff66b2', // Lighter pink for specialization
+    marginBottom: '15px',
+  },
+  hospitalInfo: {
+    marginBottom: '10px',
+  },
+  officeInfo: {
+    fontStyle: 'normal',
+    marginTop: '10px',
+    border: '1px solid #ddd',
+    borderRadius: '8px',
+    padding: '10px',
+  },
+  officeHours: {
+    fontStyle: 'italic',
+    marginBottom: '5px',
+  },
+  officeDays: {
+    fontStyle: 'italic',
+    marginBottom: '10px',
+  },
+  fees: {
+    marginTop: '10px',
+    color: '#ff0066', // Darker pink for fees
+    fontWeight: 'bold', // Make fees bold
+  },
+};
+
+
+export default DoctorProfile;

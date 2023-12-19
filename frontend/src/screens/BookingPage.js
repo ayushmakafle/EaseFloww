@@ -68,6 +68,7 @@ const BookingPage = () => {
       }
     } catch (error) {
       console.log(error);
+      toast.error('You need to login to book an appointment')
     }
   };
 
@@ -110,11 +111,43 @@ const BookingPage = () => {
     );
   }
 
-  // Parse the officeDays string into an array of objects or use an empty array if falsy
-  const parsedOfficeDays = doctor.officeDays ? JSON.parse(doctor.officeDays) : [];
+ // Parse the officeDays string into an array of objects or use an empty array if falsy
+ const parsedOfficeDays = doctor.officeDays ? JSON.parse(doctor.officeDays) : [];
+  // Map the days to their corresponding numerical values
+  const daysMap = {
+    "Sunday": 0,
+    "Monday": 1,
+    "Tuesday": 2,
+    "Wednesday": 3,
+    "Thursday": 4,
+    "Friday": 5,
+    "Saturday": 6,
+  };
+
+  // Extract the numerical values of the available days
+  const availableDays = parsedOfficeDays.map(day => daysMap[day]);
 
   // Extract only the 'label' property from each day object
   const extractedOfficeDays = parsedOfficeDays.map((day) => day.label);
+
+    // Parse the office hours into moment objects
+  const officeHoursStart = moment(doctor.officeHoursStart, 'HH:mm');
+  const officeHoursEnd = moment(doctor.officeHoursEnd, 'HH:mm');
+
+// Function to generate an array of disabled times
+const disabledTime = (current) => {
+  const currentTime = current.clone();
+  const officeStart = officeHoursStart.clone();
+  const officeEnd = officeHoursEnd.clone();
+
+  // Disable times before the office hours start or after the office hours end
+  return (
+    currentTime.isBefore(officeStart, 'hour') ||
+    currentTime.isAfter(officeEnd, 'hour')
+  );
+};
+
+
 
   return (
     <>
@@ -139,23 +172,36 @@ const BookingPage = () => {
           Your appointment will scheduled for a one-hour duration. Please select the desired start time.
         </div>
         <div className="date-time-picker">
-        <DatePicker
+         <DatePicker
           className="date-picker"
           format="DD-MM-YYYY"
           onChange={(value) => {
             // Update state with the selected date in the required format
             setDate(value.format('DD-MM-YYYY'));
           }}
-        />
-
-        <TimePicker
-          className="time-picker"
-          format="HH:mm"
-          onChange={(value) => {
-            // Update state with the selected time in the required format
-            setTime(value.format('HH:mm'));
+          // Use the disabledDate prop to disable dates not in the available days
+          disabledDate={(current) => {
+            const dayOfWeek = current.format('dddd');
+            return (
+              current &&
+              current < moment().startOf('day') || // Disable past dates
+              !parsedOfficeDays.some(day => day.value === dayOfWeek) // Disable days not in the available days
+            );
           }}
         />
+<TimePicker
+  className="time-picker"
+  format="HH:mm"
+  onChange={(value) => {
+    // Update state with the selected time in the required format
+    setTime(value.format('HH:mm'));
+  }}
+  // Use the disabledHours and disabledMinutes props to disable times outside office hours
+  disabledHours={() => Array.from({ length: 24 }, (_, i) => i).filter(hour => hour < officeHoursStart.hour() || hour >= officeHoursEnd.hour())}
+  disabledMinutes={() => []} // Allow all minutes
+/>
+
+
 
         <button
           className="check-availability-btn m-1"

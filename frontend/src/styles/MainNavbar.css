@@ -424,14 +424,25 @@ section p{
 
 /* app section */
 .app-section{
+  height: 500px;
+  background: linear-gradient(100.6deg, #ef5e99 11.2%, #f38dbc 100.2% );
   text-align: center;
-  padding-top: 160px;    
-  padding-bottom: 210px;
+  padding-top: 100px;  
+   
+ 
 }
 .app-section h2{
-  color: #ec6f71;
+  font-family: 'Raleway', Courier, monospace;
+  font-weight: bold;
+  font-size: 40px;
+  color: #ffffff;
 }
-
+.app-section p{
+  font-family: 'Poppins', Courier, monospace;
+  color: #ffffff;
+  padding-right: 100px;
+  padding-left: 100px;
+}
 
 /* footer section */
 footer{
