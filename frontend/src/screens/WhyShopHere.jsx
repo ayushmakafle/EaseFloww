@@ -6,7 +6,7 @@ const WhyShopHere = () => {
     <div className="why-shop-here-container">
       <h2>Why Shop at EaseFlow?</h2>
       <div className="feature">
-        <img src="https://images.unsplash.com/photo-1691934338603-af553029aaa3?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gynecologist" />
+        <img src="https://images.unsplash.com/photo-1691934338617-bbd08080d0ed?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gynecologist" />
         <div>
           <h3>Gynecologist Appointments</h3>
           <p>Embark on a journey of personalized and comprehensive menstrual care by booking appointments with our team of highly experienced gynecologists. Our platform connects you with healthcare professionals specializing in women's health, ensuring that you receive expert guidance tailored to your unique needs. Whether you seek advice on reproductive health, family planning, or managing menstrual disorders, our dedicated gynecologists are here to provide the support and care you deserve. Enjoy the convenience of scheduling appointments from the comfort of your home and take proactive steps toward your overall well-being.</p>
