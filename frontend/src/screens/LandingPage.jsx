@@ -72,10 +72,10 @@ const LandingPage = () => {
           </div>
         </section> */}
         {/* end of courses section */}
-        <div className="wrapper">
+        <div >
           <section className="app-section">
             <h2>CHERISH YOUR CYCLE</h2>
-            <p>Transform the way you navigate your menstrual journey. Our app is your trusted companion, fluttering alongside you through each cycle, bringing comfort, insights, and gentle reminders.</p>
+            <p>"Embark on a transformative journey with our app as your steadfast companion throughout your menstrual cycle. Cherish Your Cycle with EaseFlow, where you can seamlessly book personalized appointments with experienced gynecologists, gaining expert insights into women's health and receiving tailored menstrual care advice. Explore our curated ecommerce platform offering high-quality menstrual products, from eco-friendly pads to organic tampons, all designed to prioritize your well-being. Engage in real-time conversations with our interactive chatbot, available 24/7 to provide instant answers to your menstrual health queries, ensuring you have continuous access to valuable information, support, and gentle reminders."</p>
           </section>
         </div>
       </div>
