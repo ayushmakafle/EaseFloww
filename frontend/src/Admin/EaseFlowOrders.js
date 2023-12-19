@@ -6,15 +6,8 @@ import { Table, Spin, Switch } from 'antd';
 
 const EaseFlowOrders = () => {
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    // Load orders from localStorage when the component mounts
-    const storedOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    setOrders(storedOrders);
-    fetchEaseFlowOrders();
-  }, []);
 
   const handleUpdateDelivery = async (orderId, isDelivered) => {
   try {
@@ -50,7 +43,6 @@ const EaseFlowOrders = () => {
       });
 
       setOrders(updatedOrders);
-      localStorage.setItem('orders', JSON.stringify(updatedOrders));
     } else {
       setError(response.data.message);
     }
@@ -63,16 +55,7 @@ const EaseFlowOrders = () => {
 };
 
   const columns = [
-    // {
-    //   title: 'Name',
-    //   dataIndex: 'user',
-    //   key: 'name',
-    //   render: user => (
-    //     <p className="mb-0">
-    //       {user.username}
-    //     </p>
-    //   ),
-    // },
+    
     {
       title: 'Email',
       dataIndex: 'user',
@@ -137,7 +120,6 @@ const EaseFlowOrders = () => {
         const ordersWithUsers = response.data.orders.map(order => ({
           key: order._id,
           user: {
-            // username: order.User.username,
             email: order.paymentResult.email_address,
           },
           orderItems: order.orderItems,
@@ -146,7 +128,7 @@ const EaseFlowOrders = () => {
           isPaid: order.isPaid,
           paidAt: order.paidAt,
           isDelivered: order.isDelivered,
-          deliveredAt: order.deliveredAt,
+          deliveredAt: order.DeliveredAt,
         }));
 
         setOrders(ordersWithUsers);
@@ -176,9 +158,8 @@ const EaseFlowOrders = () => {
           </div>
           <div className='col-md-9'>
             <h1>All EaseFlow Orders</h1>
-            {loading && <Spin />}
+            {loading ? <Spin />:<Table dataSource={orders} columns={columns} />}
             {error && <div>Error: {error}</div>}
-            <Table dataSource={orders} columns={columns} />
           </div>
         </div>
       </div>
