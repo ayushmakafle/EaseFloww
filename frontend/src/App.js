@@ -69,7 +69,7 @@ import ChatInput from './components/chatbot/ChatInput';
 import { useState } from 'react';
 
 function App() {
-   const [chatVisible, setChatVisible] = useState(false);
+     const [chatVisible, setChatVisible] = useState(false);
   const [chatMessages, setChatMessages] = useState([]);
 
   const handleChatToggle = () => {
@@ -99,6 +99,12 @@ function App() {
       console.error('Error:', error);
     }
   };
+
+  // Function to clear chat history
+  const clearChatHistory = () => {
+    setChatMessages([]);
+  };
+
 
   return (
     <Router>
@@ -176,7 +182,7 @@ function App() {
           
         </Routes>
 
-        {/* Chat toggle button at the bottom right */}
+       {/* Chat toggle button at the bottom right */}
         <button
           className="chat-toggle-button"
           onClick={handleChatToggle}
@@ -187,38 +193,41 @@ function App() {
             zIndex: 999, // Make sure it's above other elements
           }}
         >
-          <i class="fa-regular fa-comments"></i>        
+          <i className="fa-regular fa-comments"></i>
         </button>
 
         {/* Chatbot components */}
-       {chatVisible && (
-  <div
-    className="chat-window-container"
-    style={{
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      zIndex: 1000, // Make sure it's above the button
-      width: '50%', // Set the width to 50%
-      maxWidth: '400px', // Set a maximum width if needed
-    }}
-  >
-    <button
-      className="close-chat-button"
-      onClick={handleChatToggle}
-      style={{
-        position: 'absolute',
-        top: '10px',
-        right: '10px',
-      }}
-    >
-      <i className="fa-solid fa-circle-xmark"></i>
-    </button>
-    <ChatWindow messages={chatMessages} />
-    <ChatInput onSendMessage={handleChatSendMessage} />
-  </div>
-)}
+        {chatVisible && (
+          <div
+            className="chat-window-container"
+            style={{
+              position: 'fixed',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 1000, // Make sure it's above the button
+              width: '50%', // Set the width to 50%
+              maxWidth: '400px', // Set a maximum width if needed
+            }}
+          >
+            <button
+              className="close-chat-button"
+              onClick={() => {
+                handleChatToggle();
+                clearChatHistory(); // Clear chat history when closing
+              }}
+              style={{
+                position: 'absolute',
+                top: '10px',
+                right: '10px',
+              }}
+            >
+              <i className="fa-solid fa-circle-xmark"></i>
+            </button>
+            <ChatWindow messages={chatMessages} />
+            <ChatInput onSendMessage={handleChatSendMessage} />
+          </div>
+        )}
 
         <ToastContainer />
       </main>
