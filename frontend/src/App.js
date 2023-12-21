@@ -69,7 +69,7 @@ import ChatInput from './components/chatbot/ChatInput';
 import { useState } from 'react';
 
 function App() {
-    const [chatVisible, setChatVisible] = useState(false);
+   const [chatVisible, setChatVisible] = useState(false);
   const [chatMessages, setChatMessages] = useState([]);
 
   const handleChatToggle = () => {
@@ -176,14 +176,6 @@ function App() {
           
         </Routes>
 
-         {/* Chatbot components */}
-        {chatVisible && (
-          <>
-            <ChatWindow messages={chatMessages} />
-            <ChatInput onSendMessage={handleChatSendMessage} />
-          </>
-        )}
-
         {/* Chat toggle button at the bottom right */}
         <button
           className="chat-toggle-button"
@@ -197,6 +189,34 @@ function App() {
         >
           Chat
         </button>
+
+        {/* Chatbot components */}
+        {chatVisible && (
+          <div
+            className="chat-window-container"
+            style={{
+              position: 'fixed',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 1000, // Make sure it's above the button
+            }}
+          >
+            <button
+              className="close-chat-button"
+              onClick={handleChatToggle}
+              style={{
+                position: 'absolute',
+                top: '10px',
+                right: '10px',
+              }}
+            >
+              Close
+            </button>
+            <ChatWindow messages={chatMessages} />
+            <ChatInput onSendMessage={handleChatSendMessage} />
+          </div>
+        )}
 
         <ToastContainer />
       </main>
