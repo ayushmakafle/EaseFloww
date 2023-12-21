@@ -79,22 +79,22 @@ const MyOrders = () => {
           );
         },
       },
-      {
-        title: 'Delivered At',
-        dataIndex: 'deliveredAt',
-        key: 'deliveredAt',
-        render: (deliveredAt, record) => {
-          const deliveredAtDate = new Date(deliveredAt);
+      // {
+      //   title: 'Delivered At',
+      //   dataIndex: 'deliveredAt',
+      //   key: 'deliveredAt',
+      //   render: (deliveredAt, record) => {
+      //     const deliveredAtDate = new Date(deliveredAt);
 
-          return (
-            <>
-              {record.isDelivered && !isNaN(deliveredAtDate) && deliveredAtDate.toString() !== 'Invalid Date'
-                ? deliveredAtDate.toLocaleString()
-                : ''}
-            </>
-          );
-        },
-      },
+      //     return (
+      //       <>
+      //         {record.isDelivered && !isNaN(deliveredAtDate) && deliveredAtDate.toString() !== 'Invalid Date'
+      //           ? deliveredAtDate.toLocaleString()
+      //           : ''}
+      //       </>
+      //     );
+      //   },
+      // },
   ];
 
 

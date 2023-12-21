@@ -104,7 +104,7 @@ const EaseFlowOrders = () => {
       key: 'deliveredAt',
       render: deliveredAt => (
         <p className="mb-0">
-          {deliveredAt ? new Date(deliveredAt).toLocaleString() : 'Not Delivered'}
+          {deliveredAt ? new Date(deliveredAt).toLocaleDateString() : 'Not Delivered'}
         </p>
       ),
     },
