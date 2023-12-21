@@ -45,12 +45,12 @@ const MainNavbar = () => {
                     <Nav.Link className="pb-3 text-white">Appointment</Nav.Link>
                   </LinkContainer>
                 </li>
-                
-                <li className="nav-item mt-0">
+
+                {/*  <li className="nav-item mt-0">
                   <LinkContainer to="/queries">
                     <Nav.Link className="pb-3 text-white">Queries!</Nav.Link>
                   </LinkContainer>
-                </li>
+                </li> */}
                 <li className="nav-item mt-0">
                   <LinkContainer to="/ecommerce">
                     <Nav.Link className="pb-3 text-white"> Products</Nav.Link>
@@ -58,7 +58,7 @@ const MainNavbar = () => {
                 </li>
                 <li className="nav-item mt-0">
                   <LinkContainer to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'
-                        }`}>
+                    }`}>
                     <Nav.Link className="pb-3 text-white">Dashboard</Nav.Link>
                   </LinkContainer>
                 </li>
@@ -71,12 +71,12 @@ const MainNavbar = () => {
                     </LinkContainer>
                   </li>
                 ) : (
-                  
+
                   <NavDropdown title={<i className="fa-solid fa-user"></i>} id="navbarDropdown">
                     <button className='btn btn-transparent' onClick={handleLogout}>
                       <NavDropdown.Item className="pb-3">Logout</NavDropdown.Item>
                     </button>
-                    
+
                   </NavDropdown>
                 )}
                 <li className="nav-item mt-0">

@@ -206,24 +206,29 @@ function App() {
               left: '50%',
               transform: 'translate(-50%, -50%)',
               zIndex: 1000, // Make sure it's above the button
-              width: '50%', // Set the width to 50%
-              maxWidth: '400px', // Set a maximum width if needed
+              width: '75%', // Set the width to 50%
+              maxWidth: '500px', // Set a maximum width if needed
             }}
           >
             <button
-              className="close-chat-button"
-              onClick={() => {
-                handleChatToggle();
-                clearChatHistory(); // Clear chat history when closing
-              }}
-              style={{
-                position: 'absolute',
-                top: '10px',
-                right: '10px',
-              }}
-            >
-              <i className="fa-solid fa-circle-xmark"></i>
-            </button>
+  className="close-chat-button"
+  onClick={() => {
+    handleChatToggle();
+    clearChatHistory(); // Clear chat history when closing
+  }}
+  style={{
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    borderRadius: '50%', // Set border-radius to 50% for a circle
+    backgroundColor: '#ffafc7', // Set pink background color
+    padding: '5px', // Adjust padding as needed
+    cursor: 'pointer',
+  }}
+>
+  <i className="fa-solid fa-circle-xmark"></i>
+</button>
+
             <ChatWindow messages={chatMessages} />
             <ChatInput onSendMessage={handleChatSendMessage} />
           </div>
