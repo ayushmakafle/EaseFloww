@@ -14,15 +14,19 @@ const ChatInput = ({ onSendMessage }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <input
                 type="text"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
-                placeholder="Type your message..."
+                placeholder="What's up?"
+                style={{ flex: '1', padding: '10px', backgroundColor: '#f38dbc' }}
             />
-            <button type="submit">Send</button>
+            <button type="submit" style={{ padding: '10px', borderRadius: '5px', color: '#ccc', border: 'none' }}>
+                <i className="fa-solid fa-paper-plane"></i>
+            </button>
         </form>
+
     );
 };
 

@@ -187,36 +187,38 @@ function App() {
             zIndex: 999, // Make sure it's above other elements
           }}
         >
-          Chat
+          <i class="fa-regular fa-comments"></i>        
         </button>
 
         {/* Chatbot components */}
-        {chatVisible && (
-          <div
-            className="chat-window-container"
-            style={{
-              position: 'fixed',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 1000, // Make sure it's above the button
-            }}
-          >
-            <button
-              className="close-chat-button"
-              onClick={handleChatToggle}
-              style={{
-                position: 'absolute',
-                top: '10px',
-                right: '10px',
-              }}
-            >
-              Close
-            </button>
-            <ChatWindow messages={chatMessages} />
-            <ChatInput onSendMessage={handleChatSendMessage} />
-          </div>
-        )}
+       {chatVisible && (
+  <div
+    className="chat-window-container"
+    style={{
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 1000, // Make sure it's above the button
+      width: '50%', // Set the width to 50%
+      maxWidth: '400px', // Set a maximum width if needed
+    }}
+  >
+    <button
+      className="close-chat-button"
+      onClick={handleChatToggle}
+      style={{
+        position: 'absolute',
+        top: '10px',
+        right: '10px',
+      }}
+    >
+      <i className="fa-solid fa-circle-xmark"></i>
+    </button>
+    <ChatWindow messages={chatMessages} />
+    <ChatInput onSendMessage={handleChatSendMessage} />
+  </div>
+)}
 
         <ToastContainer />
       </main>
