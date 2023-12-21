@@ -1,65 +1,3 @@
-// import './App.css';
-// import { Container } from 'react-bootstrap';
-// import 'react-calendar/dist/Calendar.css';
-
-// // import Footer from './components/Footer';
-// import Navbar from './components/Navbar';
-// import HomepageScreen from './screens/HomepageScreen';
-// import LogSymptoms from './screens/LogSymptoms';
-
-// import EcomHeader from './components/EcomHeader'; 
-// import EcomHomeScreen from './screens/EcomHomeScreen';
-// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import ProductScreen from './screens/ProductScreen';
-// import ProductDetails from './screens/ProductDetails';
-// import LoginPage from './screens/Auth/LoginPage';
-// import SignUpPage from './screens/Auth/SignUpPage';
-// import DoctorLoginPage from './screens/DoctorLoginPage';
-// import DoctorSignUpPage from './screens/DoctorSignUpPage';
-// //import Cart from './screens/Cart'; 
-// //import ForgtPasswordPage from './screens/ForgetPasswordPage';
-// import { ToastContainer } from 'react-toastify';
-// import "react-toastify/dist/ReactToastify.css";
-// import Dashboard from './user/Dashboard';
-// import PrivateRoute from './components/Routes/Private';
-// import ForgotPassword from './screens/ForgotPassword';
-
-
-// function App() {
-//   <LogSymptoms/>
-//   return (
-//     <Router>
-//       <main className='m-0 w-100' style={{height:"95vh"}}>
-//           <Routes>
-//              <Route path="/" Component={HomepageScreen} exact/>
-//              <Route path="/log-symptoms" Component={LogSymptoms}exact/>
-//              <Route path ='/dashboard' Component={PrivateRoute}>
-//                 <Route path='' Component={Dashboard} />
-//              </Route>
-
-//               <Route path="/ecommerce" Component={EcomHomeScreen} exact/>
-//               <Route path="/login" Component={LoginPage} exact/>
-//               <Route path="/forgot-password" Component={ForgotPassword} exact/>
-
-//               <Route path="/signup" Component={SignUpPage} exact/>
-//               <Route path="/DoctorLogin" Component={DoctorLoginPage} exact/>
-//               <Route path="/DoctorSignUp" Component={DoctorSignUpPage} exact/>
-//               {/*<Route path="/ForgetPassword" Component={ForgetPasswordPage} exact/>*/}
-//              <Route path='/product/:id' Component={ProductDetails}/>
-//               {/* <Route path='/cart' Component={Cart} exact/> */}
-//           </Routes>
-//           <ToastContainer />
-//       </main>
-//       {/* <LogSymptoms/> */}
-
-//     </Router>
-//   );
-// }
-// {/* <Footer /> */}
-
-// export default App;
-
-
 import './App.css';
 import 'react-calendar/dist/Calendar.css';
 
@@ -126,11 +64,46 @@ import DoctorAppointments from './Doctor/DoctorAppointments';
 import DoctorRateProducts from './Doctor/DoctorRateProducts';
 import EmailVerified from './user/EmailVerified';
 import DoctorUpdateSchedule from './Doctor/DoctorUpdateSchedule';
+import ChatWindow from './components/chatbot/ChatWindow';
+import ChatInput from './components/chatbot/ChatInput';
+import { useState } from 'react';
+
 function App() {
+    const [chatVisible, setChatVisible] = useState(false);
+  const [chatMessages, setChatMessages] = useState([]);
+
+  const handleChatToggle = () => {
+    setChatVisible(!chatVisible);
+  };
+
+  const handleChatSendMessage = async (message) => {
+    try {
+      // API call to the chatbot server
+      const response = await fetch('http://localhost:5000/api/send-message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+
+      // Add the chat message to the state
+      setChatMessages([...chatMessages, { content: message, sender: 'user' }, { content: data.response, sender: 'bot' }]);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <Router>
       <main className='m-0 w-100' style={{ height: "95vh" }}>
+
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/homepage" element={<HomeScreenPage/>} />
@@ -202,6 +175,29 @@ function App() {
           <Route path="/whyshophere" element={<WhyShopHere/>} />
           
         </Routes>
+
+         {/* Chatbot components */}
+        {chatVisible && (
+          <>
+            <ChatWindow messages={chatMessages} />
+            <ChatInput onSendMessage={handleChatSendMessage} />
+          </>
+        )}
+
+        {/* Chat toggle button at the bottom right */}
+        <button
+          className="chat-toggle-button"
+          onClick={handleChatToggle}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 999, // Make sure it's above other elements
+          }}
+        >
+          Chat
+        </button>
+
         <ToastContainer />
       </main>
     </Router>

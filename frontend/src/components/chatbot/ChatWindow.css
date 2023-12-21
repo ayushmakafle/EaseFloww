@@ -1,0 +1,26 @@
+/* ChatWindow.css */
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.message {
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 70%;
+}
+
+.user {
+  background-color: #ffd3e0; /* Light pink for user messages */
+  align-self: flex-start;
+}
+
+.bot {
+  background-color: #ffafc7; /* Darker pink for bot messages */
+  align-self: flex-end;
+}
