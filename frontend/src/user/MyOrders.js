@@ -73,7 +73,7 @@ const MyOrders = () => {
                   `Completed at ${deliveredAtDate.toLocaleString()}`
                 )
               ) : (
-                'On the Way'
+                'Dispatched'
               )}
             </>
           );
