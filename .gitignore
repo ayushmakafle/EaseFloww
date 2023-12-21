@@ -1,2 +1,8 @@
 
 .env
+
+__pycache__/
+*.pyc
+# Virtual environment
+nlp
+data.pth
