@@ -67,6 +67,7 @@ import DoctorUpdateSchedule from './Doctor/DoctorUpdateSchedule';
 import ChatWindow from './components/chatbot/ChatWindow';
 import ChatInput from './components/chatbot/ChatInput';
 import { useState } from 'react';
+import MainNavbar from './components/Navbar';
 
 function App() {
      const [chatVisible, setChatVisible] = useState(false);
@@ -181,6 +182,9 @@ function App() {
           <Route path="/whyshophere" element={<WhyShopHere/>} />
           
         </Routes>
+
+        <MainNavbar clearChatHistory={clearChatHistory} />
+
 
        {/* Chat toggle button at the bottom right */}
         <button

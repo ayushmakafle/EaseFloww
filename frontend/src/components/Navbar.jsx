@@ -8,7 +8,7 @@ import '../styles/MainNavbar.css';
 import { useCart } from '../context/cart';
 import { Avatar, Badge } from 'antd';
 
-const MainNavbar = () => {
+const MainNavbar = ({ clearChatHistory }) => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const navigate = useNavigate()
@@ -24,7 +24,8 @@ const MainNavbar = () => {
     localStorage.removeItem('cart');
     toast.success('Logout Successful');
     navigate('/login');
-
+    // Clear chat history when logging out
+    clearChatHistory();
   };
 
   return (
