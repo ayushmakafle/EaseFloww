@@ -4,7 +4,7 @@ import axios from "axios";
 import { Select, Modal } from "antd"; // Import Modal from antd
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import MainNavbar from "../components/Navbar";
+// import MainNavbar from "../components/Navbar";
 import AdminMenu from "./AdminMenu";
 const { Option } = Select;
 
@@ -121,7 +121,7 @@ const UpdateProduct = () => {
 
   return (
     <>
-    <MainNavbar />
+    {/* <MainNavbar /> */}
       <div className="container-fluid m-3 p-3">
         <div className="row">
           <div className="col-md-3">

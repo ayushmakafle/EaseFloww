@@ -1,5 +1,5 @@
 import React from 'react'
-import MainNavbar from '../components/Navbar'
+//import MainNavbar from '../components/Navbar'
 import AdminMenu from './AdminMenu'
 import { useAuth } from '../context/auth'
 
@@ -8,7 +8,7 @@ const AdminDashboard = () => {
   console.log(auth);
   return (
     <>
-     <MainNavbar /> 
+     {/* <MainNavbar />  */}
      <div className='container-fluid m-3 p-3'>
       <div className='row'>
         <div className='col-md-3'>

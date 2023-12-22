@@ -1,5 +1,5 @@
 import React ,{useState,useEffect} from 'react';
-import MainNavbar from '../components/Navbar'
+//import MainNavbar from '../components/Navbar'
 import AdminMenu from './AdminMenu'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -28,7 +28,7 @@ const Products = () => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <div>
         <div className="row">
           <div className="col-md-3">

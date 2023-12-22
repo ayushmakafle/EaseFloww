@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AdminMenu from './AdminMenu';
-import MainNavbar from '../components/Navbar';
+//import MainNavbar from '../components/Navbar';
 import axios from 'axios';
 import { Table, Button, Modal } from 'antd';
 import { imageFromBuffer } from "../utils/utils"
@@ -192,7 +192,7 @@ const handleViewCertificate = async (doctor) => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
 
       <div className="container-fluid m-3 p-3">
         <div className="row">

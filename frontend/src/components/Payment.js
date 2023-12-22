@@ -129,7 +129,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import MainNavbar from './Navbar';
+//import MainNavbar from './Navbar';
 import EcomHeader from './EcomHeader';
 import MainFooter from './footer';
 import {useNavigate} from 'react-router-dom'
@@ -240,7 +240,7 @@ const PaymentComponent = () => {
 
   return (
     <>
-    <MainNavbar />
+    {/* <MainNavbar /> */}
     <EcomHeader />
     <div>
       <h2>Payment Details</h2>

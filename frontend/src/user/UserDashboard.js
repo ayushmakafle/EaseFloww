@@ -1,5 +1,5 @@
 import React from 'react'
-import MainNavbar from '../components/Navbar'
+// import MainNavbar from '../components/Navbar'
 import UserMenu from './UserMenu'
 import {useAuth} from '../context/auth'
 
@@ -7,7 +7,7 @@ const UserDashboard = () => {
   const [auth] = useAuth()
   return (
     <>
-    <MainNavbar />
+    {/* <MainNavbar /> */}
     <div className='container-fluid mt-3 mb-3'>
   <div className='row'>
     <div className='col-md-3'>

@@ -68,90 +68,61 @@ import ChatWindow from './components/chatbot/ChatWindow';
 import ChatInput from './components/chatbot/ChatInput';
 import { useState } from 'react';
 import MainNavbar from './components/Navbar';
+import WithLayout from './components/hoc/hoc';
+import { useAuth } from './context/auth';
+import { useChatbot } from './hooks/useChatbot';
 
 function App() {
-     const [chatVisible, setChatVisible] = useState(false);
-  const [chatMessages, setChatMessages] = useState([]);
-
-  const handleChatToggle = () => {
-    setChatVisible(!chatVisible);
-  };
-
-  const handleChatSendMessage = async (message) => {
-    try {
-      // API call to the chatbot server
-      const response = await fetch('http://localhost:5000/api/send-message', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-
-      // Add the chat message to the state
-      setChatMessages([...chatMessages, { content: message, sender: 'user' }, { content: data.response, sender: 'bot' }]);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  // Function to clear chat history
-  const clearChatHistory = () => {
-    setChatMessages([]);
-  };
-
+     const {clearChatHistory,handleChatSendMessage,handleChatToggle,chatMessages,chatVisible} = useChatbot()
+  const auth = useAuth()
+  console.log(auth)
 
   return (
     <Router>
       <main className='m-0 w-100' style={{ height: "95vh" }}>
 
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/homepage" element={<HomeScreenPage/>} />
-          <Route path='/cart' element={<CartPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/" element={WithLayout(LandingPage)} />
+          <Route path="/homepage" element={WithLayout(HomeScreenPage)} />
+          <Route path='/cart' element={WithLayout(CartPage)} />
+          <Route path="/checkout" element={WithLayout(CheckoutPage)} />
 
-          <Route path ='/payment' element={<PaymentComponent/>} />
-          <Route path ='/paysuccess' element={<SuccessPage />}/>
+          <Route path ='/payment' element={WithLayout(PaymentComponent)} />
+          <Route path ='/paysuccess' element={WithLayout(SuccessPage)}/>
         {/* <Route path="/dashboard/user/orders" component={Orders} /> */}
 
-          <Route path="/product/:slug" element={<ProductDetails />} />
-          <Route path="/ecommerce" element={<EcomHomeScreen />} />
-          <Route path ='/search' element={<Search />} />
-          <Route path ='/categories' element={<Categories/>}/>
-          <Route path ='/category/:slug' element={<CategoryProduct/>}/>
+          <Route path="/product/:slug" element={WithLayout(ProductDetails)} />
+          <Route path="/ecommerce" element={WithLayout(EcomHomeScreen)} />
+          <Route path ='/search' element={WithLayout(Search)} />
+          <Route path ='/categories' element={WithLayout(Categories)}/>
+          <Route path ='/category/:slug' element={WithLayout(CategoryProduct)}/>
 
           <Route path="/login" element={<LoginPage />} />
           <Route path='/verified-email' element={<EmailVerified/>}/>
           {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
           <Route path="/signup" element={<SignUpPage />} />          
+          
           <Route path ='/dashboard' element={<PrivateRoute />}>
-            <Route path ='user' element={<UserDashboard/>}/>
+            <Route path ='user' element={WithLayout(UserDashboard)}/>
             {/* <Route path ='user/orders' element={<Orders/>}/> */}
-            <Route path ='user/profile' element={<Profile/>}/>
-            <Route path='user/order' element={<MyOrders/>}/>
-            <Route path ='user/appointment' element={<UserAppointments/>}/>
+            <Route path ='user/profile' element={WithLayout(Profile)}/>
+            <Route path='user/order' element={WithLayout(MyOrders)}/>
+            <Route path ='user/appointment' element={WithLayout(UserAppointments)}/>
           </Route>
 
           <Route path='/dashboard' element={<AdminRoute />}>
-            <Route path ='admin' element={<AdminDashboard/>}/>
-            <Route path ='admin/create-category' element={<CreateCategory/>}/>
-            <Route path ='admin/create-product' element={<CreateProduct/>}/>
-            <Route path ='admin/product/:slug' element={<UpdateProduct/>}/>
-            <Route path ='admin/products' element={<Products/>}/>
-            <Route path ='admin/users' element={<EaseFlowUsers/>}/>
-            <Route path='admin/order' element={<EaseFlowOrders/>}/>
+            <Route path ='admin' element={WithLayout(AdminDashboard)}/>
+            <Route path ='admin/create-category' element={WithLayout(CreateCategory)}/>
+            <Route path ='admin/create-product' element={WithLayout(CreateProduct)}/>
+            <Route path ='admin/product/:slug' element={WithLayout(UpdateProduct)}/>
+            <Route path ='admin/products' element={WithLayout(Products)}/>
+            <Route path ='admin/users' element={WithLayout(EaseFlowUsers)}/>
+            <Route path='admin/order' element={WithLayout(EaseFlowOrders)}/>
 
 
-            <Route path ='admin/doctors' element={<EaseFlowDoctors/>}/>
-            <Route path ='admin/doctorapproval' element={<ApproveDoctors/>}/>
-            <Route path ='admin/appointments' element={<AdminAppointments />}/>
+            <Route path ='admin/doctors' element={WithLayout(EaseFlowDoctors)}/>
+            <Route path ='admin/doctorapproval' element={WithLayout(ApproveDoctors)}/>
+            <Route path ='admin/appointments' element={WithLayout(AdminAppointments)}/>
           </Route>
 
           <Route path='/dashboard' element={<DoctorRoute />}>
@@ -165,28 +136,27 @@ function App() {
           <Route path="/doctor-login" element={<DoctorLoginPage />} />
           <Route path="/doctorsignup" element={<DoctorSignUpPage />} />
           
-          <Route path="/appointment-homepage" element={<AppointmentHomePage />} />
-          <Route path='/all-doctors' element={<AllDoctors />}/>
-          <Route path = "/book-appointment/:doctorId" element={<BookingPage />} />
+          <Route path="/appointment-homepage" element={WithLayout(AppointmentHomePage)} />
+          <Route path='/all-doctors' element={WithLayout(AllDoctors)}/>
+          <Route path = "/book-appointment/:doctorId" element={WithLayout(BookingPage)} />
 
 
-          <Route path="/learn-more/0" element={<LearnMorePage0 />} />
-          <Route path="/learn-more/1" element={<LearnMorePage1 />} />
-          <Route path="/learn-more/2" element={<LearnMorePage2 />} />
-          <Route path="/learn-more/3" element={<LearnMorePage3 />} />
-          <Route path="/learn-more/4" element={<LearnMorePage4 />} />
-          <Route path="/learn-more/5" element={<LearnMorePage5 />} />
-          <Route path="/learn-more/6" element={<LearnMorePage6 />} />
+          <Route path="/learn-more/0" element={WithLayout(LearnMorePage0)} />
+          <Route path="/learn-more/1" element={WithLayout(LearnMorePage1)} />
+          <Route path="/learn-more/2" element={WithLayout(LearnMorePage2)} />
+          <Route path="/learn-more/3" element={WithLayout(LearnMorePage3)} />
+          <Route path="/learn-more/4" element={WithLayout(LearnMorePage4)} />
+          <Route path="/learn-more/5" element={WithLayout(LearnMorePage5)} />
+          <Route path="/learn-more/6" element={WithLayout(LearnMorePage6)} />
 
 
-          <Route path="/whyshophere" element={<WhyShopHere/>} />
+          <Route path="/whyshophere" element={WithLayout(WhyShopHere)} />
           
         </Routes>
 
-        <MainNavbar clearChatHistory={clearChatHistory} />
-
 
        {/* Chat toggle button at the bottom right */}
+       {auth[0]?.user?.role === 0 &&
         <button
           className="chat-toggle-button"
           onClick={handleChatToggle}
@@ -199,6 +169,7 @@ function App() {
         >
           <i className="fa-regular fa-comments"></i>
         </button>
+        }
 
         {/* Chatbot components */}
         {chatVisible && (

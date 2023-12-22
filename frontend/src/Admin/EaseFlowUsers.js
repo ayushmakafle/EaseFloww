@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import MainNavbar from '../components/Navbar'
+//import MainNavbar from '../components/Navbar'
 import AdminMenu from './AdminMenu'
 import axios from 'axios';
 import { Table} from 'antd';
@@ -52,7 +52,7 @@ const EaseFlowUsers = () => {
 
   return (
     <>
-    <MainNavbar />
+    {/* <MainNavbar /> */}
 
      <div className='container-fluid m-3 p-3'>
 

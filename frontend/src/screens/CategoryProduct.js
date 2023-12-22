@@ -1,6 +1,6 @@
 import React ,{useState,useEffect} from 'react'
 import axios from 'axios'
-import MainNavbar from '../components/Navbar'
+// import MainNavbar from '../components/Navbar'
 import EcomHeader from '../components/EcomHeader'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useCart } from '../context/cart';
@@ -53,7 +53,7 @@ const CategoryProduct = () => {
 
   return (
     <>
-        <MainNavbar />
+        {/* <MainNavbar /> */}
         <EcomHeader />
         <h4 className='text-center'>Category - {category?.name}</h4>
         <h6 className='text-center'>{products?.length} products found</h6>

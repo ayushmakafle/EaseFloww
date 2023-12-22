@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import UserMenu from './UserMenu';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import axios from 'axios';
 import moment from 'moment'; // Import the moment library
 import { Table, Spin } from 'antd';
@@ -62,7 +62,7 @@ const UserAppointments = () => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <div className='container-fluid m-3 p-3'>
         <div className='row'>
           <div className='col-md-3'>

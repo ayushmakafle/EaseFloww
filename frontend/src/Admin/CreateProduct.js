@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import MainNavbar from '../components/Navbar'
+//import MainNavbar from '../components/Navbar'
 import {useNavigate} from 'react-router-dom'
 import AdminMenu from './AdminMenu'
 import { toast } from 'react-toastify'
@@ -63,7 +63,7 @@ const CreateProduct = () => {
 
   return (
      <>
-    <MainNavbar />
+    {/* <MainNavbar /> */}
      <div className='container-fluid m-3 p-3'>
 
     <div className='row'>

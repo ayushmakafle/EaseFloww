@@ -1,14 +1,14 @@
 // LearnMorePage5.js
 
 import React from 'react';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import '../styles/LearnMorePage0.css'; // Use the same CSS file for consistency
 import Footer from '../components/footer';
 
 const LearnMorePage5 = () => {
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <div className="page-container">
         <h1 className="page-heading">Connecting with Your Body</h1>
 

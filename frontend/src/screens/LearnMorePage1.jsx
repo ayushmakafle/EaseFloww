@@ -15,7 +15,7 @@
 //         throughout the month.
 //       </p>
 //       <img src="https://img.freepik.com/free-photo/portrait-cheerful-positive-curly-haired-woman-standing-isolated-pink_176532-7432.jpg?w=996&t=st=1702127856~exp=1702128456~hmac=32f89c6f24923eb75dff73f846d465ad3fec80bfba041c796ee77ebc4ab657c8" alt="Image 2" className="paragraph-image2" />
-       
+
 //       <p className="page-paragraph">
 //         Each phase of the menstrual cycle brings unique qualities and opportunities for self-care.
 //         From the menstrual phase to ovulation and beyond, women can tailor their routines to
@@ -38,7 +38,7 @@
 // LearnMorePage1.js
 
 import React from 'react';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import '../styles/LearnMorePage0.css'; // Use the same CSS file for consistency
 import Footer from '../components/footer';
 
@@ -46,7 +46,7 @@ import Footer from '../components/footer';
 const LearnMorePage1 = () => {
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <div className="page-container">
         <h1 className="page-heading">Embracing Your Menstrual Cycle</h1>
 

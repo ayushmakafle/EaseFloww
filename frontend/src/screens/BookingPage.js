@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { DatePicker, TimePicker } from 'antd';
@@ -105,7 +105,7 @@ const BookingPage = () => {
   if (!doctor) {
     return (
       <>
-        <MainNavbar />
+        {/* <MainNavbar /> */}
         <p>Loading...</p>
       </>
     );
@@ -151,7 +151,7 @@ const disabledTime = (current) => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <div className="doctor-details mt-2">
         <h1>{doctor.name}</h1>
         <div className="doctor-specialization">{doctor.specialization}</div>

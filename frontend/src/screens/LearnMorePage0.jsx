@@ -1,14 +1,14 @@
 // LearnMorePage0.js
 
 import React from 'react';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import '../styles/LearnMorePage0.css';
 import Footer from '../components/footer';
 
 const LearnMorePage0 = () => {
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <div className="page-container">
         <h1 className="page-heading">Understanding Menstruation Pain</h1>
 

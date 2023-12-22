@@ -2,7 +2,7 @@ import React from "react";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
-import MainNavbar from "../components/Navbar";
+// import MainNavbar from "../components/Navbar";
 import EcomHeader from "../components/EcomHeader";
 
 const CartPage = () => {
@@ -55,7 +55,7 @@ const CartPage = () => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <EcomHeader />
 
       <div>

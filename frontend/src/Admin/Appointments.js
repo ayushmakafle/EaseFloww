@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import MainNavbar from '../components/Navbar'
+//import MainNavbar from '../components/Navbar'
 import AdminMenu from './AdminMenu'
 import axios from 'axios'
 import moment from 'moment'
@@ -65,7 +65,7 @@ const Appointments = () => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
        <div className='container-fluid m-3 p-3'>
         <div className='row'>
           <div className='col-md-3'>

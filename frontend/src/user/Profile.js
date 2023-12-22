@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import UserMenu from './UserMenu'
-import MainNavbar from '../components/Navbar'
+// import MainNavbar from '../components/Navbar'
 import { useAuth } from "../context/auth";
 import {toast} from 'react-toastify'
 import axios from 'axios';
@@ -53,7 +53,7 @@ const Profile = () => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <div className='container-fluid m-3 p-3'>
         <div className='row'>
           <div className='col-md-3'>

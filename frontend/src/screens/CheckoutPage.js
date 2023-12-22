@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
 import { useCart } from '../context/cart';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
 import axios from 'axios';
 import '../styles/CheckoutPage.css';
@@ -82,7 +82,7 @@ const CheckoutPage = () => {
 
   return (
     <>
-    <MainNavbar />
+    {/* <MainNavbar /> */}
     <EcomHeader />
     <div className='text-center border p-4 mt-4'>
       <h2 className='mb-4'>Please enter your details to proceed with payment</h2>

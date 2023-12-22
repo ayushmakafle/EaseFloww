@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import DoctorCard from '../components/DoctorCard';
 import axios from 'axios';
 
@@ -27,7 +27,7 @@ const AllDoctors = () => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <h1 style={{ textAlign: 'center', color: '#ef5e99', marginTop: '20px' }}>
         EaseFlow Doctors
       </h1>

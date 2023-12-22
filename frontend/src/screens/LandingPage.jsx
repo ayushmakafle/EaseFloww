@@ -1,14 +1,14 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import MainNavbar from './../components/Navbar';
+// import MainNavbar from './../components/Navbar';
 import Footer from '../components/footer';
 import '../styles/MainNavbar.css';
 
 const LandingPage = () => {
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <div>
         <div className="hero-section">
           <div className="left">

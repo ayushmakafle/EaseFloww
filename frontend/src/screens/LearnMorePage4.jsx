@@ -1,14 +1,14 @@
 // LearnMorePage4.js
 
 import React from 'react';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import '../styles/LearnMorePage0.css'; // Use the same CSS file for consistency
 import Footer from '../components/footer';
 
 const LearnMorePage4 = () => {
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <div className="page-container">
         <h1 className="page-heading">Nutrition Tips for Menstruating Women</h1>
 

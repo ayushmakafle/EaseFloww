@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import MainNavbar from '../components/Navbar'
+//import MainNavbar from '../components/Navbar'
 import AdminMenu from './AdminMenu'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -92,7 +92,7 @@ const CreateCategory = () => {
 
   return (
      <>
-    <MainNavbar />
+    {/* <MainNavbar /> */}
 
       <div className='container-fluid m-3 p-3'>
         <div className='row'>

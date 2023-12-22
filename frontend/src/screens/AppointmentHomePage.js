@@ -2,14 +2,14 @@ import React from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
-import MainNavbar from '../components/Navbar'
+//import MainNavbar from '../components/Navbar'
 import '../styles/MainNavbar.css';
 
 
 const AppointmentHomePage = () => {
   return (
     <>
-    <MainNavbar />
+    {/* <MainNavbar /> */}
     <div className="hero-section" style={{ overflowY: 'hidden' }}>
           <div className="left">
             <h2 style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "600" ,fontSize:"46px", color:"white"}}>Hassle free appointments <br /> Just book online</h2>

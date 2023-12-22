@@ -1,14 +1,14 @@
 // SuccessPage.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MainNavbar from './Navbar';
+//import MainNavbar from './Navbar';
 import EcomHeader from './EcomHeader';
 import MainFooter from './footer';
 
 const SuccessPage = () => {
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <EcomHeader />
      <div style={{ textAlign: 'center',margin: '20px'}}>
   <h2 style={{color:'#ef5e99'}}>Payment Successful!</h2>

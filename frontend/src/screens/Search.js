@@ -1,5 +1,5 @@
 import React from 'react'
-import MainNavbar from '../components/Navbar'
+// import MainNavbar from '../components/Navbar'
 import EcomHeader from '../components/EcomHeader'
 import { useSearch } from '../context/search'
 
@@ -7,7 +7,7 @@ const Search = () => {
     const[values,setValues]=useSearch()
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <EcomHeader />
       <div className="container">
         <div className="text-center">

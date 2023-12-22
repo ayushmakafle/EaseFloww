@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useCategory from '../hooks/useCategory';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ const Categories = () => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <EcomHeader />
 
       <div >

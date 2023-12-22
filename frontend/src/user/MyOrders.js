@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MainNavbar from '../components/Navbar';
+// import MainNavbar from '../components/Navbar';
 import UserMenu from './UserMenu';
 import axios from 'axios';
 import { Table, Spin } from 'antd';
@@ -100,7 +100,7 @@ const MyOrders = () => {
 
   return (
     <>
-      <MainNavbar />
+      {/* <MainNavbar /> */}
       <div className='container-fluid m-3 p-3'>
         <div className='row'>
           <div className='col-md-3'>
