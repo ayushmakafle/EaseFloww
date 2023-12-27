@@ -7,10 +7,11 @@ import { toast } from 'react-toastify';
 import '../styles/MainNavbar.css';
 import { useCart } from '../context/cart';
 import { Avatar, Badge } from 'antd';
-import { useChatbot } from '../hooks/useChatbot';
+//import { useChatbot } from '../hooks/useChatbot';
+import { useChat } from '../context/chat';
 
 const MainNavbar = () => {
-  const { clearChatHistory } = useChatbot()
+  const { clearChatHistory, setChatVisible } = useChat()
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const navigate = useNavigate()
@@ -26,6 +27,7 @@ const MainNavbar = () => {
     localStorage.removeItem('cart');
     // Clear chat history when logging out
     clearChatHistory();
+    setChatVisible(false)
     toast.success('Logout Successful');
     navigate('/login');
 

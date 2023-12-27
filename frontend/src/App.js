@@ -71,9 +71,12 @@ import MainNavbar from './components/Navbar';
 import WithLayout from './components/hoc/hoc';
 import { useAuth } from './context/auth';
 import { useChatbot } from './hooks/useChatbot';
+import { useChat } from './context/chat';
+
 
 function App() {
-     const {clearChatHistory,handleChatSendMessage,handleChatToggle,chatMessages,chatVisible} = useChatbot()
+
+  const {clearChatHistory,handleChatSendMessage,handleChatToggle,chatMessages,chatVisible} = useChat()
   const auth = useAuth()
   console.log(auth)
 
