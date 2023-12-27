@@ -12,7 +12,7 @@ const AppointmentHomePage = () => {
     <MainNavbar />
     <div className="hero-section" style={{ overflowY: 'hidden' }}>
           <div className="left">
-            <h2 style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "600" ,fontSize:"46px", color:"white"}}>Hassle free appointments <br /> Just book online</h2>
+            <h2 style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "600" ,fontSize:"46px", color:"white  animation: fadeIn 2s ;"}}>Hassle free appointments <br /> Just book online</h2>
             <p>
                Time saving, stress reducing
             </p>
