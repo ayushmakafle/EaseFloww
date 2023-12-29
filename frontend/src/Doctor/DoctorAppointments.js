@@ -31,6 +31,11 @@ const columns = [
   {
     title: 'Patient',
     dataIndex: 'userInfo',
+    render: (text, record) => (
+      <span>
+        {record.userInfo ? JSON.parse(record.userInfo) : ''}
+      </span>
+    ),
     key: 'userInfo',
   },
 {
