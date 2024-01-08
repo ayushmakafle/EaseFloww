@@ -30,6 +30,7 @@ import Profile from './user/Profile';
 import UserAppointments from './user/UserAppointments';
 import Products from './Admin/Products';
 import UpdateProduct from './Admin/UpdateProduct';
+import AdminAppointments from './Admin/Appointments'
 import Search from './screens/Search';
 import Categories from './screens/Categories';
 import CategoryProduct from './screens/CategoryProduct';
