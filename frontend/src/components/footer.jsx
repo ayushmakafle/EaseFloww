@@ -28,16 +28,16 @@ const MainFooter = () => {
                     <h3>Encyclopedia</h3>
                     <ul>
                         <li>
-                            <a href="#">Login</a>
+                            <a href="/Login">Login</a>
                         </li>
                         <li>
-                            <a href="#">Chatbot</a>
+                            <a href="/queries">Chatbot</a>
                         </li>
                         <li>
-                            <a href="#">Gynecologist appointment</a>
+                            <a href="/appointment-homepage">Gynecologist appointment</a>
                         </li>
                         <li>
-                            <a href="#">Our Products</a>
+                            <a href="/ecommerce">Our Products</a>
                         </li>
                     </ul>
                 </div>

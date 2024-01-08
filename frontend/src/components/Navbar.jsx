@@ -39,7 +39,7 @@ const MainNavbar = () => {
         <Navbar expand="lg">
           <ul className='logo'>
             <LinkContainer to="/">
-              <Navbar.Brand className="pb-3 text-white mt-3">EASEFLOW</Navbar.Brand>
+              <Navbar.Brand className="pb-1 text-white mt-3">EASEFLOW</Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="navbarNav" />
           </ul>
