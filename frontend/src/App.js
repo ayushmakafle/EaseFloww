@@ -1,14 +1,8 @@
 import './App.css';
 import 'react-calendar/dist/Calendar.css';
-
-// import Footer from './components/Footer';
-//import Navbar from './components/Navbar';
-// import HomepageScreen from './screens/HomepageScreen';
 import CartPage from './screens/CartPage'; 
-// import EcomHeader from './components/EcomHeader'; 
 import EcomHomeScreen from './screens/EcomHomeScreen';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ProductScreen from './screens/ProductScreen';
 import ProductDetails from './screens/ProductDetails';
 import LoginPage from './screens/Auth/LoginPage';
 import SignUpPage from './screens/Auth/SignUpPage';
@@ -26,7 +20,9 @@ import AdminDashboard from './Admin/AdminDashboard';
 import CreateCategory from './Admin/CreateCategory';
 import CreateProduct from './Admin/CreateProduct';
 import EaseFlowUsers from './Admin/EaseFlowUsers';
-import AdminAppointments from './Admin/Appointments';
+import Appointments from "./Admin/Appointments";
+
+// import AdminAppointments from './Admin/Appointments';
 // import Orders from './user/Orders';
 import EaseFlowOrders from './Admin/EaseFlowOrders';
 import MyOrders from './user/MyOrders';
@@ -114,13 +110,15 @@ function App() {
           </Route>
 
           <Route path='/dashboard' element={<AdminRoute />}>
-            <Route path ='admin' element={WithLayout(AdminDashboard)}/>
-            <Route path ='admin/create-category' element={WithLayout(CreateCategory)}/>
-            <Route path ='admin/create-product' element={WithLayout(CreateProduct)}/>
-            <Route path ='admin/product/:slug' element={WithLayout(UpdateProduct)}/>
-            <Route path ='admin/products' element={WithLayout(Products)}/>
-            <Route path ='admin/users' element={WithLayout(EaseFlowUsers)}/>
-            <Route path='admin/order' element={WithLayout(EaseFlowOrders)}/>
+            <Route path ='admin' element={<AdminDashboard/>}/>
+            <Route path ='admin/create-category' element={<CreateCategory/>}/>
+            <Route path ='admin/create-product' element={<CreateProduct/>}/>
+            <Route path ='admin/product/:slug' element={<UpdateProduct/>}/>
+            <Route path ='admin/products' element={<Products/>}/>
+            <Route path ='admin/users' element={<EaseFlowUsers/>}/>
+            <Route path='admin/order' element={<EaseFlowOrders/>}/>
+            <Route path='admin/appointments' element={<Appointments/>}/>
+
 
 
             <Route path ='admin/doctors' element={WithLayout(EaseFlowDoctors)}/>

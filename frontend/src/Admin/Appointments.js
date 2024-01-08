@@ -1,68 +1,78 @@
-import React, { useEffect, useState } from 'react'
-//import MainNavbar from '../components/Navbar'
-import AdminMenu from './AdminMenu'
-import axios from 'axios'
-import moment from 'moment'
-import { Table } from 'antd';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import moment from 'moment';
+import { Table, Spin } from 'antd';
+import MainNavbar from '../components/Navbar';
+import AdminMenu from './AdminMenu';
 
-const Appointments = () => {
+const Appointments = ({ isAdmin }) => {
+  const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const [appointments,setAppointments] = useState([])
-    
-    const getAppointments = async() => {
-        try{
-            const res = await axios.get('/api/v1/appointment/user-appointments')
-            if(res.data.success){
-                setAppointments(res.data.data)
-            }
-        }catch(error){
-            console.log(error)
-        }
+  const getAppointments = async () => {
+    try {
+      const endpoint =  '/api/v1/appointment/doctor-appointments';
+      const res = await axios.get(endpoint);
+      if (res.data.success) {
+        setAppointments(res.data.data);
+      }
+    } catch (error) {
+      console.error(error);
+      setError('An error occurred while fetching appointments.');
+    } finally {
+      setLoading(false);
     }
+  };
 
-    useEffect(() => {
-        getAppointments()
-    },[])
+  useEffect(() => {
+    getAppointments();
+  }, [isAdmin]);
 
-    const columns = [
-        {
-            title:'ID',
-            dataIndex:'_id'
-        },
-     /*    {
-            title:'Name',
-            dataIndex:'name',
-            render:(text,record) => (
-                <span>
-                    {record.doctorID.name} 
-                </span>
-            )
-        },
-        {
-            title:'Phone',
-            dataIndex:'phone',
-            render:(text,record)=>(
-                <span>
-                    {record.doctorID.phonenumber}
-                </span>
-            )
-        }, */
-        {
-            title:'Date & Time',
-            dataIndex:'date',
-            render:(text,record)=>(
-                <span>
-                    {moment(record.date).format('DD-MM-YYYY')} &nbsp;
-                    {moment(record.time).format('HH:mm')}
-                </span>
-            )
-        },
-        {
-            title:'Status',
-            dataIndex:'status'
-        }
-    ]
-
+  const columns = [
+    
+    {
+      title: 'Doctor Name',
+      dataIndex: 'doctorInfo',
+      render: (text, record) => (
+        <span>
+          {record.doctorInfo ? JSON.parse(record.doctorInfo) : ''}
+        </span>
+      ),
+    },
+    {
+      title: 'User Name',
+      dataIndex: 'userInfo',
+      render: (text, record) => (
+        <span>
+          {record.userInfo ? JSON.parse(record.userInfo) : ''}
+        </span>
+      ),
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+    },
+    {
+      title: 'Start Date',
+      dataIndex: 'startTime',
+      render: (text, record) => (
+        <span>
+          {moment(record.startTime).format('DD-MM-YYYY HH:mm')}
+        </span>
+      ),
+    },
+    {
+      title: 'End Date',
+      dataIndex: 'endTime',
+      render: (text, record) => (
+        <span>
+          {moment(record.endTime).format('DD-MM-YYYY HH:mm')}
+        </span>
+      ),
+    },
+  ];
+  
   return (
     <>
       {/* <MainNavbar /> */}
@@ -72,13 +82,18 @@ const Appointments = () => {
             <AdminMenu />
           </div>
           <div className='col-md-9'>
-            <h1>All Appointments</h1>
-            <Table columns ={columns} dataSource={appointments} className='m-2'/>
+            <h1>{isAdmin ? 'Admin Appointments' : 'All Appointments'}</h1>
+            {loading ? (
+              <Spin />
+            ) : (
+              <Table columns={columns} dataSource={appointments} className='m-2' />
+            )}
+            {error && <div>Error: {error}</div>}
           </div>
-         </div>
         </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Appointments
+export default Appointments;

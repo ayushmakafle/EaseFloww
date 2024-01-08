@@ -37,12 +37,12 @@ router.put('/update-delivery/:orderId', async (req, res) => {
     // Update the delivery status and set deliveredAt if isDelivered is true
     const update = {
       isDelivered,
-      DeliveredAt: isDelivered ? new Date().toLocaleDateString() : null,
+      DeliveredAt: isDelivered ? new Date(): null,
     };
 
     const updatedOrder = await OrderModel.findByIdAndUpdate(orderId, update, { new: true });
 
-res.json({ success: true, updatedOrder, deliveredAt: update.deliveredAt });
+res.json({ success: true, updatedOrder, deliveredAt: update.DeliveredAt });
   } catch (error) {
     console.error('Error updating delivery status:', error);
     res.status(500).json({ success: false, error: 'Internal Server Error', details: error.message });

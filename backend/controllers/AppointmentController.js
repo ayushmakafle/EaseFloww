@@ -128,44 +128,6 @@ const checkAvailabilityController = async (req, res) => {
     }
 };
 
-
-//booking availability
-/* const bookingAvailabilityController = async(req,res) => {
-    try{
-        const date = moment(req.body.date,'DD-MM-YYYY').toISOString()
-        const fromTime =moment(req.body.time,'HH:mm').subtract(1,'hours').toISOString()
-        const toTime = moment(req.body.time,'HH:mm').add(1,'hours').toISOString()
-        const doctorId = req.body.doctorId;
-        const appointments = await AppointmentModel.find({
-            doctorId,
-            date,
-            time: {
-                $gte: fromTime,
-                $lte: toTime,
-            },
-        });
-        if (appointments.length > 0) {
-            return res.status(200).send({
-                message: "Appointments not available at this time",
-                success: true,
-            });
-        } else {
-            return res.status(200).send({
-            success: true,
-            message: "Appointments available",
-        });
-    }
-    }catch(error){
-        console.log(error)
-        res.status(500).send({
-            success:false,
-            error,
-            message:'error in checking availability'
-        })
-    }
-} */
-
-// Controller to fetch user appointments
 const userAppointments = async (req, res) => {
   try {
     // Extract user ID from the authenticated user's token
@@ -331,32 +293,30 @@ const rejectAppointment = async (req, res) => {
     });
   }
 };
-
-/* //update status
-const updateStatusController = async(req,res) => {
-    try{
-        const {appointmentsId,status}=req.body
-        const appointments = await AppointmentModel.findByIdAndUpdate(appointmentsId,{status})
-        //mail
-        res.status(200).send({
-            success:true,
-            message:'Appointment Status Updated'
-        })
-    }catch(error){
-        console.log(error)
-        res.status(500).send({
-            success:false,
-            error,
-            message:'error in update status'
-        })
-    }
-}
- */
-
+const adminAppointments = async (req, res) => {
+  try {
+    const appointments = await AppointmentModel.find({ });
+    console.log(appointments)
+    res.status(200).send({
+      success: true,
+      message: "Admin Appointments fetched successfully",
+      data: appointments,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      error: error.message,
+      message: "Error in fetching admin appointments",
+    });
+  }
+};
 export default {bookAppointmentController,
     checkAvailabilityController,
     userAppointments,
     doctorAppointments,
     acceptAppointment,
+    adminAppointments,
     rejectAppointment
+    
 }

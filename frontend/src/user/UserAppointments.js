@@ -30,6 +30,11 @@ const UserAppointments = () => {
     {
       title: 'Doctor Info',
       dataIndex: 'doctorInfo',
+      render: (text, record) => (
+        <span>
+          {record.doctorInfo ? JSON.parse(record.doctorInfo) : ''}
+        </span>
+      ),
       key: 'doctorInfo',
     },
     {
