@@ -84,36 +84,39 @@ const CheckoutPage = () => {
     <>
     {/* <MainNavbar /> */}
     <EcomHeader />
-    <div className='text-center border p-4 mt-4'>
-      <h2 className='mb-4'>Please enter your details to proceed with payment</h2>
-      <form>
-   <label>
+    <div className='text-center border p-4 mt-4 animated-btnn'>
+      <h2 style={{fontFamily:'Raleway'}} className='mb-4'>Please enter your details to proceed with payment</h2>
+      <form >
+   <label style={{ fontFamily:'Poppins'}}>
     Name:
    <input
   type="text"
   name="name"
    value={paymentData.customer_info.name}
             onChange={handleInputChange}
+            style={{ width: '100%', padding: '8px', boxSizing: 'border-box',borderRadius:'12px' }}
 />
   </label>
   <br />
-  <label>
+  <label style={{ fontFamily:'Poppins'}}>
     Phone:
     <input
   type="tel"
   name="phone"
   value={paymentData.customer_info.phone}
   onChange={handleInputChange}
+  style={{ width: '100%', padding: '8px', boxSizing: 'border-box',borderRadius:'12px' }}
 />
-  </label>
+  </label >
   <br />
-  <label>
+  <label style={{ fontFamily:'Poppins'}}>
     Email:
    <input
   type="email"
   name="email"
   value={paymentData.customer_info.email}
   onChange={handleInputChange}
+  style={{ width: '100%', padding: '8px', boxSizing: 'border-box',borderRadius:'12px' }}
 />
   </label>
   <br />
@@ -143,7 +146,7 @@ const CheckoutPage = () => {
       </table>
       <h3 className='mt-4'>Grand Total: NPR <span className='font-weight-bold'>{calculateTotal()}/-</span></h3>
       <div className='payment-options mt-4'>
-        <button className='btn btn-primary mr-2'  onClick={handleKhaltiButtonClick}>Pay with Khalti</button>
+        <button className='btn-paykhalti'  onClick={handleKhaltiButtonClick}>Pay with Khalti</button>
       </div>
     </div>
 

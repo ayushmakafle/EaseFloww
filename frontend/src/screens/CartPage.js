@@ -4,6 +4,7 @@ import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
 // import MainNavbar from "../components/Navbar";
 import EcomHeader from "../components/EcomHeader";
+import './CartPage.css'; 
 
 const CartPage = () => {
   const [auth] = useAuth();
@@ -60,7 +61,7 @@ const CartPage = () => {
 
       <div>
         <div className="row">
-          <div className="col-md-12">
+          <div className="col-md-12 animation-cart">
             <h1 className="text-center bg-light p-2 mb-1" style={{ fontFamily: 'Raleway, sans-serif' }}>
               {`Hello ${auth?.token && auth?.user?.username}`}
             </h1>
@@ -74,7 +75,7 @@ const CartPage = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-8">
+          <div className="col-md-8 animation-cart">
             <table className="table table-bordered m-3">
               <thead>
                 <tr>
@@ -118,7 +119,7 @@ const CartPage = () => {
                     </td>
                     <td>
                       <button
-                        className="btn btn-danger"
+                        className="btn-remove"
                         onClick={() => removeCartItem(p._id)}
                       >
                         Remove
@@ -130,9 +131,8 @@ const CartPage = () => {
             </table>
           </div>
 
-          <div className="col-md-4 text-center">
-            <h2 className="mb-4">Cart Summary</h2>
-            <p className="mb-3">Total | Checkout | Payment</p>
+          <div className="col-md-4 text-center animation-cart">
+            <h2 className="mb-4" style={{fontFamily:'Raleway'}}>Cart Summary</h2>
             <hr className="mb-4" />
             <h4 className="mb-2">
               Total:{" "}
@@ -142,17 +142,17 @@ const CartPage = () => {
             {auth?.user?.address ? (
               <>
                 <div className="mb-4">
-                  <h5 className="mb-2">Current Address :</h5>
-                  <h2 className="text-info">{auth?.user?.address}</h2>
+                  <h4 className="mb-2">Current Address :
+                  <span className="text-info">{auth?.user?.address}</span></h4>
                   <button
-                    className="btn btn-primary"
+                    className="btn-updateadd"
                     onClick={() => navigate("/dashboard/user/profile")}
                     style={{ marginRight: '15px',padding: '10px', textAlign: 'center' }}
                   >
                     Update Address
                   </button>
                   <button
-                    className="btn btn-primary"
+                    className="btn-checkout"
                     onClick={() => navigate("/checkout")}
                     style={{ padding: '10px', textAlign: 'center' }}
                   >

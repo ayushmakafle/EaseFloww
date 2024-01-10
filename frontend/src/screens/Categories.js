@@ -2,7 +2,7 @@ import React from 'react';
 import useCategory from '../hooks/useCategory';
 import EcomHeader from '../components/EcomHeader';
 import { Link } from 'react-router-dom';
-import './Categories.css'; // Import the CSS file for styles
+import './Categories.css'; 
 
 const Categories = () => {
   const categories = useCategory();

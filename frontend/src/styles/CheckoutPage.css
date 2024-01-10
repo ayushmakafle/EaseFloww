@@ -1,6 +1,4 @@
-/* CheckoutPage.css */
 
-/* Body styling */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #ef5e99; /* Set the background color for the entire page */
@@ -75,5 +73,29 @@ color: #ffc0cb;
   
   .btn-primary:hover {
     background-color: #d1478c; 
+  }
+
+  .animated-btnn {
+    animation: fadeInUp 2s ease;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .btn-paykhalti {
+    background-color: #ff69b4; 
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
   }
   
