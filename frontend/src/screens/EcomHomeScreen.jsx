@@ -130,8 +130,8 @@ const EcomHomeScreen = () => {
 
       <div className="container-fluid row mt-2">
         <div className="col-md-2">
-          <h6 className="text-center-box " style={{ color: '#000080' }}>Filter by Category</h6>
-          <div className="d-flex flex-column">
+          <h6 className="text-center-box animate-allpro" style={{ color: '#000080' }}>Filter by Category</h6>
+          <div className="d-flex flex-column animate-allpro">
             {categories?.map((c) => (
               <Checkbox key={c._id}
                 onChange={(e) => handleFilter(e.target.checked, c._id)}>
@@ -140,8 +140,8 @@ const EcomHomeScreen = () => {
             ))}
           </div>
 
-          <h6 className="text-center-box" style={{ color: '#000080' }}>Filter by Price</h6>
-          <div className="d-flex flex-column">
+          <h6 className="text-center-box animate-allpro" style={{ color: '#000080' }}>Filter by Price</h6>
+          <div className="d-flex flex-column animate-allpro">
             <Radio.Group onChange={e => setRadio(e.target.value)}>
               {Prices?.map(p => (
                 <div key={p._id}>
@@ -159,7 +159,7 @@ const EcomHomeScreen = () => {
 
         </div>
         <div className="col-md-9">
-          <h3 className="text-center" style={{ color: '#000080' }}> All Products</h3>
+          <h3 className="text-center animate-allpro" style={{ color: '#000080' }}> All Products</h3>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Col key={p._id}>
