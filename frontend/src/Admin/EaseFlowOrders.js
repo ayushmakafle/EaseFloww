@@ -77,15 +77,16 @@ const EaseFlowOrders = () => {
       ),
     },
     {
-      title: 'Paid At',
-      dataIndex: 'paidAt',
-      key: 'paidAt',
-      render: paidAt => (
-        <p className="mb-0">
-          {paidAt}
-        </p>
-      ),
-    },
+  title: 'Paid At',
+  dataIndex: 'paidAt',
+  key: 'paidAt',
+  render: paidAt => (
+    <p className="mb-0">
+      {paidAt ? new Date(paidAt).toLocaleDateString() : 'Not Paid'}
+    </p>
+  ),
+},
+
     {
       title: 'Is Delivered',
       dataIndex: 'isDelivered',

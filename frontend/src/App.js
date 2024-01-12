@@ -22,7 +22,7 @@ import CreateProduct from './Admin/CreateProduct';
 import EaseFlowUsers from './Admin/EaseFlowUsers';
 import Appointments from "./Admin/Appointments";
 
-// import AdminAppointments from './Admin/Appointments';
+ import AdminAppointments from './Admin/Appointments';
 // import Orders from './user/Orders';
 import EaseFlowOrders from './Admin/EaseFlowOrders';
 import MyOrders from './user/MyOrders';
