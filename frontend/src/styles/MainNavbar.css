@@ -228,7 +228,7 @@ border-bottom: 2px solid white;
 }
 
 .hero-section .right img{
-  animation: slideIn 3s;
+  animation: slideIn 1s;
   height:512px;
   vertical-align: middle;
   padding-right: 270px;
