@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 // import MainNavbar from './../components/Navbar';
 import Footer from '../components/footer';
 import '../styles/MainNavbar.css';
+// import Lottie from 'lottie-react';
+// import animationData from '../components/audio.json';
 
 const LandingPage = () => {
   return (
@@ -67,6 +69,10 @@ const LandingPage = () => {
           </section>
         </div>
       </div>
+      {/* <Lottie
+            animationData={animationData}
+            className="lottie-animation-home cursor-pointer"
+/> */}
       <Footer />
     </>
   );

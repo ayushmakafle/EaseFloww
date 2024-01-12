@@ -1,6 +1,6 @@
 import nltk
 import numpy as np
-# nltk.download('punkt') #punkt has a pre trained tokenizer. use it when running for first rime
+#nltk.download('punkt') #punkt has a pre trained tokenizer. use it when running for first rime
 from nltk.stem.porter import PorterStemmer
 stemmer = PorterStemmer()
 
