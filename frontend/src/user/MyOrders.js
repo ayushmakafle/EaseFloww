@@ -46,16 +46,20 @@ const MyOrders = () => {
       key: 'totalPrice',
     },
     {
-      title: 'Is Paid',
-      dataIndex: 'isPaid',
-      key: 'isPaid',
-      render: isPaid => (isPaid ? 'True' : 'False'),
-    },
-    {
-      title: 'Paid At',
-      dataIndex: 'paidAt',
-      key: 'paidAt',
-    },
+    title: 'Paid At',
+    dataIndex: 'paidAt',
+    key: 'paidAt',
+    render: paidAt => (
+      <p className="mb-0">
+        {paidAt ? new Date(paidAt).toLocaleString() : 'Not Paid'}
+      </p>
+    ),
+  },
+    // {
+    //   title: 'Paid At',
+    //   dataIndex: 'paidAt',
+    //   key: 'paidAt',
+    // },
 
       {
         title: 'Shipping',
