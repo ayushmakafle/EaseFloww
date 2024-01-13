@@ -112,17 +112,14 @@ function App() {
           </Route>
 
           <Route path='/dashboard' element={<AdminRoute />}>
-            <Route path ='admin' element={<AdminDashboard/>}/>
-            <Route path ='admin/create-category' element={<CreateCategory/>}/>
-            <Route path ='admin/create-product' element={<CreateProduct/>}/>
-            <Route path ='admin/product/:slug' element={<UpdateProduct/>}/>
-            <Route path ='admin/products' element={<Products/>}/>
-            <Route path ='admin/users' element={<EaseFlowUsers/>}/>
-            <Route path='admin/order' element={<EaseFlowOrders/>}/>
-            <Route path='admin/appointments' element={<Appointments/>}/>
-
-
-
+            <Route path ='admin' element={WithLayout(AdminDashboard)}/>
+            <Route path ='admin/create-category' element={WithLayout(CreateCategory)}/>
+            <Route path ='admin/create-product' element={WithLayout(CreateProduct)}/>
+            <Route path ='admin/product/:slug' element={WithLayout(UpdateProduct)}/>
+            <Route path ='admin/products' element={WithLayout(Products)}/>
+            <Route path ='admin/users' element={WithLayout(EaseFlowUsers)}/>
+            <Route path='admin/order' element={WithLayout(EaseFlowOrders)}/>
+            <Route path='admin/appointments' element={WithLayout(Appointments)}/>
             <Route path ='admin/doctors' element={WithLayout(EaseFlowDoctors)}/>
             <Route path ='admin/doctorapproval' element={WithLayout(ApproveDoctors)}/>
             <Route path ='admin/appointments' element={WithLayout(AdminAppointments)}/>
