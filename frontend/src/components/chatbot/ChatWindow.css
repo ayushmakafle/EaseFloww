@@ -1,12 +1,23 @@
 
 
+
+
 .chat-window {
   display: flex;
   flex-direction: column;
-  max-height: 400px;
+  max-height: 300px;
   overflow-y: auto;
   padding: 10px;
-  background-color: white; /* Set the background color to white */
+  margin-left: auto;
+  margin-top:11px;
+  background-color: rgb(253, 192, 226); /* Set the background color to white */
+}
+.chat-window h4{
+
+color:#d74470;
+font-weight: bold;
+margin-bottom: 4px;
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .message {
@@ -17,11 +28,13 @@
 }
 
 .user {
-  background-color: #ffd3e0; /* Light pink for user messages */
-  align-self: flex-start;
+  background-color: #f0abea; /* Light pink for user messages */
+  align-self: flex-end;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .bot {
   background-color: #ffafc7; /* Darker pink for bot messages */
-  align-self: flex-end;
+  align-self:flex-start;
+  font-family:Georgia, 'Times New Roman', Times, serif;
 }
