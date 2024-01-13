@@ -311,12 +311,40 @@ const adminAppointments = async (req, res) => {
     });
   }
 };
+
+// Controller to fetch appointments of a specific doctor by ID
+const doctorAppointmentsById = async (req, res) => {
+  try {
+    const doctorId = req.params.id;
+    console.log("Doctor ID in Controller:", doctorId);
+    // Fetch appointments for the specified doctor ID
+    const appointments = await AppointmentModel.find({
+      doctorID: doctorId,
+    });
+
+    res.status(200).send({
+      success: true,
+      message: "Doctor's Appointments fetched successfully",
+      data: appointments,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      error: error.message,
+      message: "Error in fetching doctor appointments",
+    });
+  }
+};
+
+
 export default {bookAppointmentController,
     checkAvailabilityController,
     userAppointments,
     doctorAppointments,
     acceptAppointment,
     adminAppointments,
-    rejectAppointment
+    rejectAppointment,
+    doctorAppointmentsById
     
 }

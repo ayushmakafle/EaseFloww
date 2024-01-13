@@ -24,5 +24,8 @@ router.put('/reject/:id', requireSignIn,appointmentController.rejectAppointment)
 
 router.get('/doctor-appointments', requireSignIn, appointmentController.adminAppointments);
 
+router.get('/doctor-appointments/:id', requireSignIn, appointmentController.doctorAppointmentsById);
+
+
 
 export default router;
