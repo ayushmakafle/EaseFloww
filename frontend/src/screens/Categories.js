@@ -1,34 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import useCategory from '../hooks/useCategory';
-// import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
 import { Link } from 'react-router-dom';
+import './Categories.css'; 
 
 const Categories = () => {
   const categories = useCategory();
 
   return (
     <>
-      {/* <MainNavbar /> */}
       <EcomHeader />
 
-      <div >
+      <div>
         <div className="row">
-          {categories.map((c) => (
-            <div className="col-md-7 mt-9 mb-3 gx-3 gy-3" key={c._id}>
-              <Link
-                to={`/category/${c.slug}`}
-                className='btn btn-secondary'
-                style={{
-                  backgroundColor: '#FB6B90', 
-                  color: '#fff', 
-                  fontFamily: 'Raleway, sans-serif',
-                  fontSize: '24px', 
-                  textAlign:'center'
-                }}
-              >
-                {c.name}
-              </Link>
+          {categories.map((c, index) => (
+            <div className="col-md-7 mt-5 mb-3 gx-3 gy-3" key={c._id}>
+              <div>
+                <Link
+                  to={`/category/${c.slug}`}
+                  className='btn btn-secondary animated-btn'
+                  style={{
+                    backgroundColor: '#ef5e99', 
+                    padding:'12px',
+                    color: '#fff', 
+                    fontFamily: 'Poppins, sans-serif',
+                    fontSize: '24px', 
+                    textAlign: 'center',
+                    textDecoration: 'none',
+                    width: '45%',
+                    marginLeft:'524px'
+                  
+                  }}
+                >
+                  {c.name}
+                </Link>
+              </div>
             </div>
           ))}
         </div>
@@ -38,3 +44,4 @@ const Categories = () => {
 };
 
 export default Categories;
+

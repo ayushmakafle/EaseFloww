@@ -8,6 +8,8 @@ import LoginPage from './screens/Auth/LoginPage';
 import SignUpPage from './screens/Auth/SignUpPage';
 import DoctorLoginPage from './screens/DoctorLoginPage';
 import DoctorSignUpPage from './screens/DoctorSignUpPage';
+import Lottie from 'lottie-react';
+import animationData from './components/robott.json';
 
 //import Cart from './screens/Cart'; 
 import { ToastContainer } from 'react-toastify';
@@ -30,6 +32,7 @@ import Profile from './user/Profile';
 import UserAppointments from './user/UserAppointments';
 import Products from './Admin/Products';
 import UpdateProduct from './Admin/UpdateProduct';
+import AdminAppointments from './Admin/Appointments'
 import Search from './screens/Search';
 import Categories from './screens/Categories';
 import CategoryProduct from './screens/CategoryProduct';
@@ -159,16 +162,22 @@ function App() {
        {/* Chat toggle button at the bottom right */}
        {auth[0]?.user?.role === 0 &&
         <button
-          className="chat-toggle-button"
+          className="btn btn-transparent chat-toggle-button"
           onClick={handleChatToggle}
           style={{
             position: 'fixed',
-            bottom: '20px',
-            right: '20px',
+            bottom: '10px',
+            right: '10px',
             zIndex: 999, // Make sure it's above other elements
+            width: '250px', // Set your desired width
+            height: '250px', 
           }}
         >
-          <i className="fa-regular fa-comments"></i>
+      <Lottie
+            animationData={animationData}
+            className="lottie-animation-home cursor-pointer"
+/>
+          {/* <i className="fa-regular fa-comments"></i> */}
         </button>
         }
 
@@ -207,7 +216,9 @@ function App() {
 
             <ChatWindow messages={chatMessages} />
             <ChatInput onSendMessage={handleChatSendMessage} />
+            
           </div>
+          
         )}
 
         <ToastContainer />

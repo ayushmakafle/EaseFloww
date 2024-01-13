@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
 //import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
 import { Link, useParams } from 'react-router-dom';
@@ -10,6 +11,7 @@ const ProductDetails = () => {
   const [cart, setCart] = useCart()
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (params?.slug) getProduct();
@@ -58,10 +60,10 @@ const ProductDetails = () => {
           <div className="col-md-6">
             <div className="card">
               <div className="card-body">
-                <h2 className="card-title text-center mb-4">{product.name}</h2>
+                <h2 className="card-title text-center mb-4" style={{fontFamily: 'Raleway, sans-serif'}}>{product.name}</h2>
                 {product.category && (
                   <p className="card-text">
-                    <span style={{ color: '#212129', fontFamily: 'Poppins, sans-serif' }}>Category:</span> {product.category.name}
+                    <span style={{ color: '#212129', fontFamily: 'Raleway, sans-serif' }}>Category:</span> {product.category.name}
 
                   </p>
                 )}
@@ -89,7 +91,7 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="row">
-        <h1>Similar Products</h1>
+        <h1 style={{fontFamily:'Raleway,sans serif',marginLeft:'22px',marginTop:'22px'}}>Similar Products</h1>
         {relatedProducts.length < 1 && (<p>No Similar Products Found</p>)}
         <div className="d-flex flex-wrap">
           {relatedProducts?.map((p) => (
@@ -109,9 +111,10 @@ const ProductDetails = () => {
                 <p className="card-text">
                   NRs.{p.price}/-
                 </p>
-                <button className='btn btn-secondary' onClick={() => { setCart([...cart, p]); toast.success('Item added to cart'); }}>
-                  <i className="fas fa-cart-shopping"></i>
-                </button>
+                <button className='btn btn-primary ms-1'
+                      onClick={() => navigate(`/product/${p.slug}`)}>
+                      More Details</button>
+                
               </div>
             </div>
           ))}

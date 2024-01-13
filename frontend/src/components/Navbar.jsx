@@ -39,7 +39,7 @@ const MainNavbar = () => {
         <Navbar expand="lg">
           <ul className='logo'>
             <LinkContainer to="/">
-              <Navbar.Brand className="pb-3 text-white mt-3">EASEFLOW</Navbar.Brand>
+              <Navbar.Brand className="pb-1 text-white mt-3">EASEFLOW</Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="navbarNav" />
           </ul>
@@ -78,7 +78,7 @@ const MainNavbar = () => {
                   </li>
                 ) : (
 
-                  <NavDropdown title={<i className="fa-solid fa-user"></i>} id="navbarDropdown">
+                  <NavDropdown title={<i className="fa-solid fa-user mb-3  text-white"></i>} id="navbarDropdown">
                     <button className='btn btn-transparent' onClick={handleLogout}>
                       <NavDropdown.Item className="pb-3">Logout</NavDropdown.Item>
                     </button>
@@ -88,7 +88,7 @@ const MainNavbar = () => {
                 <li className="nav-item mt-0">
                   <LinkContainer to="/cart" className="p-4 m-4">
                     <Badge count={cart?.length} showZero>
-                      <Nav.Link as={Link} to="/cart" className="pb-3">
+                      <Nav.Link as={Link} to="/cart" className="pb-3 text-white">
                         <i className="fa-solid fa-cart-shopping"></i>
                       </Nav.Link>
                     </Badge>

@@ -42,6 +42,7 @@
     "jsesc": "^2.5.2",
     "json5": "^2.2.3",
     "jsonwebtoken": "^9.0.2",
+    "lottie-react": "^2.4.0",
     "lru-cache": "^5.1.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",

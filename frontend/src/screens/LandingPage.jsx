@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 // import MainNavbar from './../components/Navbar';
 import Footer from '../components/footer';
 import '../styles/MainNavbar.css';
+// import Lottie from 'lottie-react';
+// import animationData from '../components/audio.json';
 
 const LandingPage = () => {
   return (
@@ -12,14 +14,14 @@ const LandingPage = () => {
       <div>
         <div className="hero-section">
           <div className="left">
-            <h1>Embrace,<br /> Learn, <br />Flourish</h1>
-            <Nav.Link as={Link} to="/homepage" className="btn light">Learn More about Your Cycle</Nav.Link>
+            <h2 style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "600" ,fontSize:"60px", color:"white" , animation: "fadeIn 1s "}}>Embrace <br /> Learn and Flourish</h2>
+            <Nav.Link as={Link} to="/homepage" className="btn light">Learn more about your cycle</Nav.Link>
           </div>
           <div className="right">
             <img src="images/calenderbg.jpg" alt="" />
           </div>
         </div>
-        <div className="wrapper">
+        {/* <div className="wrapper">
           <section className="testimonials-section">
             <div className="left">
               <div className="testimonial-card">
@@ -49,29 +51,17 @@ const LandingPage = () => {
               </div>
             </div>
           </section>
-        </div>
-        {/* <section className="courses-section">
+        </div> */}
+        <section className="courses-section">
           <div className="wrapper">
             <div className="course-cards">
               <div className="course-card">
-                <img src="images/female-reproductive-system-concept/4274784.jpg" alt="" />
-                <div className="info">
-                  <h3>Calendar Facilitate</h3>
-                  <div className="duration">Moon Time</div>
-                </div>
-              </div>
-              <div className="course-card">
                 <img src="images/female-reproductive-system-concept/gradient-menopause-infographic/6984044.jpg" alt="" />
-                <div className="info">
-                  <h3>Symptoms Measures</h3>
-                  <div className="duration">Shark week</div>
-                </div>
               </div>
             </div>
             
           </div>
-        </section> */}
-        {/* end of courses section */}
+        </section>
         <div >
           <section className="app-section">
             <h2>CHERISH YOUR CYCLE</h2>
@@ -79,6 +69,10 @@ const LandingPage = () => {
           </section>
         </div>
       </div>
+      {/* <Lottie
+            animationData={animationData}
+            className="lottie-animation-home cursor-pointer"
+/> */}
       <Footer />
     </>
   );

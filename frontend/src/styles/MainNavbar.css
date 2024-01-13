@@ -37,6 +37,9 @@ body{
 }
 
 .btn.light {
+  margin-top: 0;
+  margin-bottom: 19px;
+  animation: fadeIn 2s ;
   background: var(--pink-color);
 }
 
@@ -95,7 +98,6 @@ nav ul li {
  
 }
 
-/* Custom styles for Navbar */
 .custom-navbar {
   background-color: #eb6864; 
   height: 75px;
@@ -103,33 +105,32 @@ nav ul li {
 
 .custom-navbar .navbar-brand,
 .custom-navbar .nav-link {
-  color: #ffffff; /* Text color */
-  margin:0 20px 0 20px; /* Adjust spacing between links */
-  font-weight: bold; /* Bold text */
-  transition: color 0.3s ease-in-out; /* Smooth color transition */
+  color: #ffffff;
+  margin:0 20px 0 20px; 
+  font-weight: bold; 
+  transition: color 0.3s ease-in-out; 
 }
 
 .custom-navbar .nav-link:hover {
-  color:white; /* Text color on hover */
+  color:white; 
 }
-/* Custom styles for Navbar */
+
 .custom-navbar {
 background-color: #eb6864;
-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
 }
-/* Custom styles for Navbar */
 .custom-navbar {
 background-color: #eb6864;
-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .custom-navbar .navbar-brand {
-font-size: 24px; /* Adjust the font size as needed */
+font-size: 24px; 
 color: #151515;
 margin-right: 15px;
 font-weight: bold;
 transition: color 0.3s ease-in-out;
-text-transform: uppercase; /* Uppercase text */
+text-transform: uppercase;
 }
 
 .custom-navbar .nav-link {
@@ -137,44 +138,41 @@ color: #151515;
 margin: 0 15px;
 font-weight: bold;
 transition: color 0.3s ease-in-out;
-text-transform: uppercase; /* Uppercase text */
+text-transform: uppercase; 
 }
 
 .custom-navbar .nav-link:hover {
 color: white;
 }
 
-/* Add styles for the icons */
+
 .custom-navbar .nav-link i {
 margin-right: 5px;
 }
 
-/* Add styles for active link */
+
 .custom-navbar .nav-link.active {
 color: white;
-border-bottom: 2px solid white; /* Underline active link */
+border-bottom: 2px solid white; 
 }
 
-/* Media query for smaller screens */
+
 @media (max-width: 768px) {
 .custom-navbar .nav-link {
     margin: 0;
 }
 }
 
-
-/* Add styles for the icons */
 .custom-navbar .nav-link i {
 margin-right: 5px;
 }
 
-/* Add styles for active link */
 .custom-navbar .nav-link.active {
 color: white;
-border-bottom: 2px solid white; /* Underline active link */
+border-bottom: 2px solid white; 
 }
 
-/* Media query for smaller screens */
+
 @media (max-width: 768px) {
 .custom-navbar .nav-link {
     margin: 0;
@@ -192,6 +190,7 @@ border-bottom: 2px solid white; /* Underline active link */
   padding-top: 0.1px;
 }
 .hero-section .left h1{
+  animation: fadeIn 1s ;
   font-family: "Raleway", sans-serif;
   font-weight: 900;
   font-size: 60px;
@@ -209,19 +208,19 @@ border-bottom: 2px solid white; /* Underline active link */
   
 }
 .hero-section .left .nav-link {
-  background-color: #FFB6C1; /* Set your desired background color */
-  color: #495057; /* Set your desired text color */
-  border: 0; /* Set your desired border color */
-  padding: 10px 20px; /* Set your desired padding */
-  text-decoration: none; /* Remove the default underline */
-  border-radius: 5px; /* Set your desired border radius */
-  display: inline-block; /* Ensure it behaves like a block-level element */
+  background-color: #FFB6C1; 
+  color: #495057; 
+  border: 0; 
+  padding: 10px 20px;
+  text-decoration: none; 
+  border-radius: 5px; 
+  display: inline-block; 
 }
 
 .hero-section .left .nav-link:hover {
-  background-color: #ffc2d1; /* Set your desired hover background color */
-  color: #495057; /* Set your desired hover text color */
-  border: 0; /* Set your desired hover border color */
+  background-color: #ffc2d1; 
+  color: #495057; 
+  border: 0; 
 }
 .hero-section .left{
   margin-bottom: 130px;
@@ -229,6 +228,7 @@ border-bottom: 2px solid white; /* Underline active link */
 }
 
 .hero-section .right img{
+  animation: slideIn 1s;
   height:512px;
   vertical-align: middle;
   padding-right: 270px;
@@ -356,7 +356,7 @@ section p{
 
 /* courses section */
 .courses-section{
-  background: linear-gradient(109.6deg, #ef5e99 11.2%, #f38dbc 100.2% );
+  background: linear-gradient(109.6deg,#f38dbc 100.2%, #ef5e99 11.2%);
   padding: 70px 0;
   padding-bottom: 120px;
 }
@@ -366,7 +366,7 @@ section p{
 }
 .courses-section .course-cards{
   display: flex;
-  gap: 70px;
+  gap: 50px;
 }
 .courses-section .course-cards img{
   width:100%;
@@ -382,16 +382,6 @@ section p{
   position: relative;
 
 }
-.courses-section .course-card::after{
-  content: "";
-  height: 8px;
-  position: absolute;
-  left: 32px;
-  right: 32px;
-  bottom: 0;
-  background: var(--pinktwo-color);
-  border-radius: 24px;
-}
 
 .courses-section .course-card h3{
   font-family: "Raleway", sans-serif;
@@ -400,19 +390,7 @@ section p{
   line-height: 150%;
   color: var(--dark-color);
 }
-.courses-section .course-card .info{
-  display: flex;
-  gap: 16px;
-  justify-content: space-between;
-  align-items: center;
-}
-.courses-section .course-card .duration{
-  font-family: "Raleway", sans-serif;
-  font-weight: 900;
-  font-size: 16px;
-  line-height: 150%;
-  color: var(--dark-color);
-}
+
 .courses-section .wrapper{
   position: relative;
 }
