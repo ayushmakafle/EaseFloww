@@ -82,10 +82,11 @@ const EaseFlowOrders = () => {
   key: 'paidAt',
   render: paidAt => (
     <p className="mb-0">
-      {paidAt ? new Date(paidAt).toLocaleDateString() : 'Not Paid'}
+      {paidAt ? new Date(paidAt).toLocaleString() : 'Not Paid'}
     </p>
   ),
 },
+
 
     {
       title: 'Is Delivered',
