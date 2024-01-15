@@ -319,9 +319,8 @@ const doctorAppointmentsById = async (req, res) => {
     console.log("Doctor ID in Controller:", doctorId);
     // Fetch appointments for the specified doctor ID
     const appointments = await AppointmentModel.find({
-      doctorID: doctorId,
+      doctorID: doctorId
     });
-
     res.status(200).send({
       success: true,
       message: "Doctor's Appointments fetched successfully",

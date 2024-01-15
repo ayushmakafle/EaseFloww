@@ -4,14 +4,18 @@ import { Table } from 'antd';
 import moment from 'moment';
 import DoctorNavbar from './DoctorNavbar';
 import {toast} from 'react-toastify';
+import { useAuth } from '../context/auth';
 
 const DoctorAppointments = () => {
 
+  const [auth] = useAuth()
   const [appointments, setAppointments] = useState([]);
 
   const fetchAppointments = async () => {
     try {
-      const response = await axios.get('/api/v1/appointment/doctor-appointments');
+      console.log(auth)
+      console.log(auth.doctor._id)
+      const response = await axios.get(`/api/v1/appointment/doctor-appointments/${auth.doctor._id}`);
       setAppointments(response.data.data);
     } catch (error) {
       console.error("Error fetching appointments:", error);

@@ -6,7 +6,8 @@ const AuthContext = createContext()
 const AuthProvider = ({children}) => {
     const[auth,setAuth] = useState({
         user:null,
-        token :""
+        token :"",
+        doctor:null
     });
 
     //default axios
@@ -15,8 +16,10 @@ const AuthProvider = ({children}) => {
         const data = localStorage.getItem('auth')
         if(data){
             const parseData = JSON.parse(data)
+            console.log('parsedata',parseData)
             setAuth({
                 ...auth,user:parseData.user,
+                doctor:parseData.doctor,
                 token:parseData.token
             })
         }
