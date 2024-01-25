@@ -4,7 +4,7 @@
   {
     "Tag": "greeting",
     "patterns": ["Hi","Hello","hey"],
-    "Response": "Hello, nice to meet you."
+    "Response": "Hello, How can I help you?."
   },
   { 
     "Tag": "greeting",
