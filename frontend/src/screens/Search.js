@@ -33,9 +33,7 @@ const Search = () => {
                   </p>
                   
                   <button className='btn btn-primary ms-1'>More Details</button>
-                  <button className='btn btn-secondary'>
-                    <i className="fas fa-cart-shopping"></i>
-                  </button>
+      
                 </div>
               </div>
             ))}
