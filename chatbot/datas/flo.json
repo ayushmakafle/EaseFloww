@@ -12,6 +12,11 @@
     "Response": "Namastey! How can I help you?"
   },
   {
+    "Tag": "greeting",
+    "patterns": ["how are you"],
+    "Response": "Hello, nice to meet you. I am doing well. How are you?"
+  },
+  {
       "Tag": "greeting",
       "patterns":[ 
         "I need help fast",
@@ -235,7 +240,6 @@
   {
       "Tag": "taboo", 
       "patterns": [
-        "Are you impure if you are on your period?", 
         "Menstruation and impurity",
         "is period impure",
         "is menstruation impure",
