@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS  # Import CORS from flask_cors
+from flask_cors import CORS  
 
 from chat import get_response
 
@@ -44,23 +44,24 @@ def home():
 def send_message():
     user_message = request.json['message']
 
-    print(f"Received user message: {user_message}")  # Debug line
+    print(f"Received user message: {user_message}")  
 
     if user_message.lower() == 'bye girly':
-        print("User wants to exit")  # Debug line
+        print("User wants to exit")  
         return jsonify({'response': 'Goodbye!'})
 
     sentence = tokenizer(user_message)
-    print(f"Tokenized sentence: {sentence}")  # Debug line
+    print(f"Tokenized sentence: {sentence}")  
 
     X = bag_of_words(sentence, all_words)
     X = X.reshape(1, X.shape[0])
     X = torch.from_numpy(X).to(device)
 
-    response = get_response(user_message)
+    response, _ = get_response(user_message)
 
-    print(f'Response: {bot_name}: {response}')  # Debug line
-    return jsonify({'response': f'{bot_name}: {response}'})
+    print(f'Response: {response}')
+    return jsonify({'response': f'{response}'})
+
 
 
 if __name__ == '__main__':

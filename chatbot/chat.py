@@ -3,6 +3,7 @@ import json
 import torch
 from bag_of_words import bag_of_words
 from tokenizer import tokenizer
+from porter_stemmer import porter_stemmer
 from model import NeuralNet
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -27,16 +28,21 @@ model.eval()
 bot_name = "EaseFlow girly"
 
 def get_response(sentence):
-    sentence = tokenizer(sentence)
-    X = bag_of_words(sentence, all_words)
+    # Tokenize and stem the input sentence
+    tokenized_and_stemmed = [porter_stemmer(word) for word in tokenizer(sentence)]
+
+    # Bag of words representation
+    X = bag_of_words(tokenized_and_stemmed, all_words)
     X = X.reshape(1, X.shape[0])
     X = torch.from_numpy(X).to(device)
 
+    # Model prediction
     output = model(X)
     _, predicted = torch.max(output, dim=1)
 
     tag = tags[predicted.item()]
 
+    # Softmax probabilities
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
 
@@ -46,9 +52,13 @@ def get_response(sentence):
     if prob.item() > 0.75:
         for intent in intents['intents']:
             for pattern in intent['patterns']:
-                pattern_words = bag_of_words(tokenizer(pattern), all_words)
-                pattern_words = torch.from_numpy(pattern_words).to(device)
+                # Tokenize and stem the pattern
+                pattern_words = [porter_stemmer(word) for word in tokenizer(pattern)]
 
+                # Bag of words representation for the pattern
+                pattern_words = torch.from_numpy(bag_of_words(pattern_words, all_words)).to(device)
+
+                # Cosine similarity calculation
                 similarity = torch.cosine_similarity(X, pattern_words.unsqueeze(0), dim=1).item()
 
                 if similarity > best_similarity:
@@ -56,11 +66,11 @@ def get_response(sentence):
                     best_match_intent = intent
 
         if best_match_intent:
-            return best_match_intent['Response']
+            return best_match_intent['Response'], tokenized_and_stemmed
         else:
-            return "I can help with common menstrual health questions, but cycles vary. For personalized advice, consult a doctor. At EaseFlow, you can easily book appointments!"
+            return "I can help with common menstrual health questions, but cycles vary. For personalized advice, consult a doctor. At EaseFlow, you can easily book appointments!", tokenized_and_stemmed
     else:
-        return "I do not understand..."
+        return "I do not understand...", tokenized_and_stemmed
 
 if __name__ == '__main__':
     print("Let's chat! (type 'bye girly' to exit)")
@@ -69,5 +79,5 @@ if __name__ == '__main__':
         if sentence == "bye girly":
             break
 
-        response = get_response(sentence)
+        response, tokenized_and_stemmed = get_response(sentence)
         print(f"{bot_name}: {response}")

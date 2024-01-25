@@ -1,212 +1,207 @@
 {
   "intents":[
+    
   {
     "Tag": "greeting",
-    "patterns": [
-      "Hello, how are you?",
-        "how are you"
-  ],
-    "Response":
-      "Hello, nice to meet you. Thank you for asking, I am doing amazing, I hope you are doing good!"
+    "patterns": ["Hi","Hello","hey"],
+    "Response": "Hello, nice to meet you."
   },
-  {
+  { 
     "Tag": "greeting",
-    "patterns": [
-      "Hey","thank you"
+    "patterns": ["Namastey","Namaste","Namaskar"],
+    "Response": "Namastey! How can I help you?"
+  },
+  {
+      "Tag": "greeting",
+      "patterns":[ 
+        "I need help fast",
+        "help me"
+      ],
+      "Response": "Hello, how can I help?"
+    },
+    {
+      "Tag": "greeting",
+      "patterns":[ "I am worried"],
+      "Response": "Do you know why you're worried?"
+    },
+   {
+      "Tag": "Ovary",
+      "patterns": [
+        "ovary",
+        "what is an ovary",
+        "what are ovaries"
+      ],
+      "Response": "The ovaries are the female reproductive organs. One of the pair of ovaries is located on each side of the uterus in the pelvis."
+    },
+    {
+      "Tag": "Pelvis",
+      "patterns": [
+        "pelvis",
+        "what is pelvis"
+      ],
+        "Response": "A pelvis is the middle part of the human body between the lumbar region of the abdomen superiorly and thighs inferiorly."
+      },
+    {
+      "Tag": "Uterus",
+      "patterns":[
+        "uterus",
+        "what is uterus"
+      ],
+      "Response": "The uterus is a hollow muscular organ located in the female pelvis between the bladder and rectum. The ovaries produce the eggs that travel through the fallopian tubes. Once the egg has left the ovary it can be fertilized and implant itself in the lining of the uterus."
+    },
+  {
+    "Tag": "vagina",
+    "patterns":[ 
+      "What is a vagina?",
+      "vagina"
     ],
-    "Response": "So, how can I help you?"
+      "Response": "The vagina is the tube between the vulva and the cervix. This tube is the connection between your uterus and the outside world. The vagina is what babies exit through during birth, and what menstrual blood exits through during your period. Tampons and menstrual cups can be inserted into the vagina."
   },
-  {
-    "Tag": "Infraradian Rhythm",
-    "patterns":
-      [
-        "I don't know anything about Infraradian Rhythm. Can you please help me learn about it?"
+    {
+      "Tag": "vagina",
+      "patterns":[ 
+        "How to clean vagina?",
+        "vaginal hygiene"
       ],
-    "Response":
-      "The infradian rhythm is one of the two internal timekeepers experienced by women. People with male physiology only experience the circadian rhythm. People with female physiology experience both. The infradian rhythm and its four phases track with your menstrual cycle, and alongside affecting the reproductive hormones, it also has an influence the other parts of your body. The infradian rhythm affects our physiology cyclically which is why it supports your body in a cyclical way too. As a woman yourself, in order to have optimal hormonal and overall health, it is ideal that you eat, move, supplement and live in line with this infradian rhythm, which is expressed in your mesntrual cycle in four distinct phases, namely the follicular, ovulatory, luteal and menstrual phase."
-  },
+      "Response": "For vaginal hygiene, use mild, fragrance-free soap for external cleansing during regular bathing. Avoid douching and practice front-to-back wiping. Choose breathable cotton underwear and change out of damp clothes promptly. Remember, the vagina is self-cleaning, and if you have concerns, consult a healthcare professional for guidance. Book a doctor appointment with EaseFlow!"
+    },
   {
-    "Tag": "what happens to my body when I am in the menstrual phase",
-    "patterns":
-      [
-        "What happens to my body when I am in the menstrual phase?","I want to know what happens to my body when I am in the menstrual phase"
-      ],
-    "Response":
-      "A few changes happen. The corpus luteum  it is a vital yet temporary organ that plays a crucial role in fertility in your body gets reabsorbed. Simultaneously, progesterone levels decline, your uterus sheds the thick endometrial lining that it has built up in the luteal phase and estrogen hits its lowest point just before your bleed"
-  },
-  {
-    "Tag": "changes in brain",
+    "Tag": "follicular",
     "patterns": 
     [
-      "Does any changes occur in my brain too?"
+      "When does the Follicular Phase happen",
+      "follicular phase"
     ],
     "Response":
-      "The left analytical and right feeling hemispheres of your brain communicate the most during this time, which means its a great time to integrate how you feel about situations in your life and make decisions about how to proceed. This is an ideal time to reflect and journal."
-  },
-  {
-    "Tag": "follicular",
-    "patterns": 
-    [
-      "When does the Follicular Phase happen"
-    ],
-    "Response":
-      "Your follicular phase happens 7 to 10 days after your period ends."
-  },
-  {
-    "Tag": "follicular",
-    "patterns": [
-      "How does my body change during the follicular phase"
-    ],
-    "Response":
-      "A few changes occur. Your reproductive hormones are at their lowest level which is where they were during your bleed during the first part of this phase. Estrogen starts to ramp up during the later part of this phase and the lining of your uterus starts to thicken. Your ovaries get ready to release an egg during ovulation the next phase, metabolism is slower and resting cortisol levels are lower. No significant progesterone or testosterone production during this time and you can feel a little tired during this phase if your hormones are unbalanced."
-  },
-  {
-    "Tag": "follicular",
-    "patterns": [
-      "What happens to my brain when I am in my follicular phase"
-    ],
-    "Response":
-      "The subtle increase in estrogen has you interested in planning out new things and exploring new ideas during this time. Symbolically, this is a phase of new beginnings."
+      "Your follicular phase happens 7 to 10 days after your period ends. Your reproductive hormones are at their lowest level"
   },
   {
     "Tag": "ovulatory",
     "patterns": [
-      "When does the Ovulatory Phase happen","When is ovulation phase"
+      "Ovulatory Phase","When is ovulation phase"
     ],
     "Response":
-      "It happens 3 to 4 days in the middle of your cycle, right after the follicular phase which lasts for 7 to 10 days and before the luteal phase which is the phase just before your period."
-  },
-  {
-    "Tag": "ovulatory",
-    "patterns": [
-      "What happens to my body when I am in the ovulatory phase", "What happens after ovulation"
-    ],
-    "Response":
-      "A few changes occur in your body. Estrogen surges and luteinizing hormone LH arrives on the scene to spark the release of an egg. The lining of your uterus gets thicker and testosterone surges then quickly goes back down"
-  },
-  {
-    "Tag": "ovulatory",
-    "patterns": [
-      "What happens to my brain when I am in the ovulatory phase","what happens in ovulation"
-    ],
-    "Response":
-      "The hormone shift during this phase activates the verbal and social areas of your brain. You're apt to feel your most social and communicative during this phase, and it is a good time to plan conversations with friends and significant others."
+      "Ovulation happens for 3 to 4 days in the middle of your cycle. Egg is released from the ovary. Hormonal shifts may cause changes like increased cervical mucus and a slight rise in body temperature."
   },
   {
     "Tag": "luteal",
     "patterns": [
-      "i do not remember the next phase after the ovulatory phase","after ovulation"
+      "Luteal phase"
     ],
-    "Response":
-      "The luteal phase is the phase that happens after ovulation"
-  },
-  {
-    "Tag": "luteal",
-    "patterns": [
-      "How long is luteal phase"
-    ],
-    "Response": "Luteal happens 10 to 14 days after ovulation and before your bleed."
-  },
-  {
-    "Tag": "luteal",
-    "patterns": [
-      "What happens to my body when I am in the luteal phase"
-    ],
-    "Response":
-      "A few changes occur in your body. Estrogen levels continue to rise, your uterine lining continues to thicken and your progesterone levels start to rise. Toward the end of the luteal phase, estrogen, testosterone, and progesterone peak and then begin to drop, hitting their lowest levels just before your period. Pre Menstrual Syndrome during this phase is caused by too much estrogen in the body relative to progesterone, or estrogen dominance and metabolism speeds up."
-  },
-  {
-    "Tag": "luteal",
-    "patterns": [
-      "Does my brain change in luteal?"
-    ],
-    "Response":
-      "Your brain goes through changes in every phase. Hormone levels during this phase prime your brain to be good at focusing on details and wrapping up projects. Towards the end of this phase, as your hormone levels plummet, you will have less energy and feel more inclined to focus inward rather than on socializing."
+    "Response": "Luteal happens 10 to 14 days after ovulation and before your bleed. A few changes occur in your body during luteal phase. Estrogen levels continue to rise, your uterine lining continues to thicken and your progesterone levels start to rise. Toward the end of the luteal phase, estrogen, testosterone, and progesterone peak and then begin to drop, hitting their lowest levels just before your period. Pre Menstrual Syndrome during this phase is caused by too much estrogen in the body relative to progesterone, or estrogen dominance and metabolism speeds up."
   },
   {
     "Tag": "thank",
-    "patterns": ["Thankyou","Thanks","Thenks"],
+    "patterns": ["Thankyou","Thanks"],
     "Response": "No problem"
-  },
-  {
-    "Tag": "greeting",
-    "patterns": ["Hi"],
-    "Response": "Hello I am EaseFlow girly, nice to meet you."
-  },
-  {
-    "Tag": "insomnia",
-    "patterns":
-      ["I was having insomnia and the following week I got my periods?","insomnia and periods"],
-    "Response":
-      "The week before your periods, if you have too much estrogen relative to progesterone, you can experience PMS premenstrual syndrome symptoms, including insomnia. Estrogen dominance is triggered by a long list of common factors, including stress, lack of selfcare, poor diet, sedentary lifestyle, and exposure to environmental toxins. Some common environmental factors make the situation even worse. Drinking caffeine is one. If you have adrenal fatigue, you may experience PMSrelated insomnia, where you lay in bed exhausted but cant fall asleep. Micronutrient deficiencies, including low levels of magnesium, zinc, andor selenium can also fuel the problem. Magnesium helps promote relaxation; selenium may help boost progesterone and bring your reproductive hormones back into balance; studies show that zinc can help improve sleep quantity and quality."
-  },
-  {
-    "Tag": "insomnia",
-    "patterns":
-      ["Why does my khala go through insomnia before her periods but I don't"],
-    "Response":
-      "The hormone imbalance is made worse if your progesterone levels are low overall which can affect women of every age, but which happens more often to women over age 35. If your khala is older than 35, then this may be it. Thats because overall progesterone levels start trending downward during perimenopause, and lower progesterone negatively impacts the production of melatonin, which is required to fall asleep and stay asleep. Progesterone also promotes relaxation, and without enough of it, you will have trouble falling asleep easily. Progesterone is good for sleep."
   },
   {
     "Tag": "healthy period",
     "patterns":
-      ["This actually made me think, what classifies as a normal, healthy or perfect period?",
-    "what is normal period",
-  "what is healthy period",
-"what is perfect period"],
+      [
+        "what classifies as a normal, healthy or perfect period?",
+        "what is normal period",
+        "what is healthy period",
+        "what is perfect period"
+      ],
     "Response":
-      "Your cycle should last 2632 days. Your bleed should be the color of cranberry juice, with no clots. A nice, strong, flow that isnt inconveniently heavy. Your period should really start first thing in the morning, without any brown stains leading up to the appearance of that cranberry red. And it should last 47 days, not longer or shorter. You should be able to feel your uterus in action with some slight sensations or warm feelings, but there should not be any kind of pain that might have you reaching for drugs or hot water bottles. After your period, leading up to ovulation, you should see the development of cervical fluid, which is an indicator of healthy fertility and necessary for getting pregnant."
-  },
+      "A healthy period cycle should last 2632 days. Your bleed should be the color of cranberry juice, with no clots. A nice, strong, flow that isn't inconveniently heavy. Your period should really start first thing in the morning, without any brown stains leading up to the appearance of that cranberry red. And it should last 47 days, not longer or shorter. You should be able to feel your uterus in action with some slight sensations or warm feelings, but there should not be any kind of pain that might have you reaching for drugs or hot water bottles. After your period, leading up to ovulation, you should see the development of cervical fluid, which is an indicator of healthy fertility and necessary for getting pregnant."
+    },  
+ {
+    "Tag":"cramps",
+   "patterns": [
+      "I have horrible cramps",
+      "I have period cramps",
+      "I have bad cramps",
+      "I have menstrual cramps",
+      "I have stomach ache",
+      "My stomach is paining",
+      "I have period ache"
+    ],
+   "Response": "To reduce period cramps you can try the following things: placing a heating pad on your belly or lower back, or having a hot bath. If your period pain is so painful that you cannot take part in everyday life, please consult a doctor. Book an appointment with EaseFlow!"
+ }, 
+ {
+    "Tag":"cramps",
+   "patterns": [
+      "stop the pain",
+      "Reduce pain",
+      "Reduce cramps",
+      "Stop cramps",
+      "stop pain",
+      "stop menstrual cramps",
+      "stop menstrual pain",
+      "control pain of periods"
+    ],
+   "Response": "To reduce period cramps and pain you can try the following things: placing a heating pad on your belly or lower back, or having a hot bath. Cramps are a pretty standard part of having your period. But if your period pain is so painful that you cant take part in everyday life, please consult your doctor. You can easily book an appointment with a EaseFlow doctor."
+ }, 
+ {
+      "Tag": "period pain",
+      "patterns": [
+        "I am uncomfortable",
+        "is it normal to be uncomfortable"
+      ],
+      "Response": "It's common to feel physically uncomfortable during your period. You might experience cramps, bloating, or other sensations. Taking warm baths, using a heating pad, or taking over-the-counter pain relievers can help ease these discomforts."
+    },
+ {
+    "Tag":"flow",
+   "patterns": [
+      "I have irregular periods",
+      "irregular periods",
+      "I get periods very late",
+      "I get periods very fast"
+    ],
+   "Response": "Your period is irregular if it comes more frequently than 21 days, or you go 35 days or more between periods. For irregular periods there usually is no immediate reason to consult your doctor. But if you are concerned, please do so. If you need contraception your doctor can help you with that by prescribing you hormonal contraceptives which do not only reliably prevent unintended pregnancies but can also stabilize your menstrual cycle so that you can better plan for your periods. Book an appointment with EaseFlow doctor today!"
+ },
+ {
+    "Tag":"cramps",
+   "patterns": [
+      "can we take medicine for period pain",
+      "medicine for cramps",
+      "painkillers for cramps"
+    ],
+   "Response": "Prioritize consulting your doctor before considering any medication, especially hormonal treatments, for a safe and tailored approach to your health. You can book an appointment with through EaseFlow"
+ },
+ {
+    "Tag":"cycle length",
+   "patterns": [
+      "how many days should a period cycle lasts normally",
+      "how long does period last",
+      "what is a normal cycle length",
+      "how long is menstruation cycle",
+      "how long is menstrual cycle"
+    ],
+   "Response": "Period should last between 3 and 8 days, but it will usually last for about 5 days. The bleeding tends to be heaviest in the first 2 days."
+ },
   {
     "Tag": "period miss",
     "patterns":
-      ["My periods have stopped coming, but I am not married. Is something wrong with me?",
+      ["My periods have stopped coming",
       "I missed my period",
-      "Missed periods" 
+      "Missed period" 
     ],
     "Response":
-      "There are some wellknown, textbook reasons that periods disappear, like pregnancy, breastfeeding, and menopause.Theres also engaging in too much exercise. As you may know, too much of anything is never healthy. Extreme exercise can lead to hormonal imbalance, so can eating too little andor being underweight. Finally, a condition called polycystic ovary syndrome PCOS, in which cysts grow on your ovaries, can stop ovulation in young women.One of the top triggers for missing periods is coming off hormonal birth control. And stopping the pill doesnt guarantee that your period will come right back. In fact, without making a concentrated effort through food and lifestyle modifications, many women who quit the pill do not start bleeding again for months or years."
+      "Missing periods can be due to various reasons. Pregnancy, breastfeeding, and menopause can stop periods. If none of these apply to you, there are other factors like extreme exercise and being underweight. If you have discontinued taking hormonal birth controls, it may take time for periods to return. Finally, a condition called polycystic ovary syndrome PCOS, in which cysts grow on your ovaries, can stop ovulation in young women. You should talk to a doctor if you think you have PCOS. Book an appointment through EaseFlow today!"
   },
   {
     "Tag": "period miss",
-    "patterns": ["I am tired of not getting my periods, I want it back","get period back"],
+    "patterns": ["I want it back","get period back"],
     "Response":
-      "Take self care seriously. The more stressed you are, the harder you need to work to manage and mitigate stress. Scan your life for stressors you can change, and then do so! The single best way to address blood sugar problems is with food. Emphasize healthy complex and nongluten carbs, eat enough healthy, highquality fats and proteins, and make sure you frontload nonstarchy vegetables in all colors of the rainbow. Go to bed earlier! Hormones are hugely affected by sleep. The 24hour circadian cycle has a direct influence on, and is directly influenced by, our bodies masterlining hormones. When were short on sleep, its almost impossible to get our hormones balanced. So make sleep a priority tonight and every night!."
-  },
-  {
-    "Tag": "pms",
-    "patterns": ["What causes PMS?","PreMenstrual Syndrome"],
-    "Response":
-      "Experts believe PMS is triggered in part by cyclical changes in sex hormones each month. Monthly hormone shifts are normal and expected. They happen! But the root cause of the problem is when we have more or less estrogen and progesterone than we need. As our bodies move through the 28day hormone cycle in this hormonally imbalanced environment, that is when we experience symptoms. If you address the underlying hormone imbalance with food and lifestyle, you can erase the symptoms of Pre Menstrual Syndrome. Experts also believe that nutrient deficiencies play a role in PMS symptoms. Research has shown a connection between low levels of vitamin D, calcium, and magnesium and PMS symptoms."
-  },
-  {
-    "Tag": "pms",
-    "patterns":
-      ["I have a sweet tooth and love eating sweet things, does that contribute to my PMS",
-    "sweet food and pms",
-  "does sweet food make pms"],
-    "Response":
-      "Sugar is one of the most inflammatory foods you can eat and more inflammation means more PMS. Cutting down on sugar is a must when you're trying to tame PMS."
+      "To regulate your periods, manage stress. Focus on a balanced diet with complex carbs, healthy fats, and proteins. Prioritize sleep as it directly impacts hormonal balance. Best option is always to talk to a doctor. Book an appointment through EaseFlow today!"
   },
   {
     "Tag": "goodbye",
     "patterns": ["You were helpful", "bye"],
-    "Response": "It is my pleasure to help you out. Take care, bye!"
-  },
-  {
-    "Tag": "questions",
-    "patterns": ["I have questions","help","i want answers"],
-    "Response": "Feel free to ask any questions, I am here to answer them all."
+    "Response": "Take care, bye!"
   },
   {
     "Tag": "pms",
-    "patterns": ["Please tell me if stress contributes to PMS","stress and pms"],
+    "patterns": ["stress contributes to PMS","stress and pms"],
     "Response":
-      "We live in a society that places a high value on always being busy. If you ask someone how they're doing or whats new and they reply, Ive been SO busy, it often sounds as much like a point of pride as it does a complaint. But we need to reverse our stance on stress. Research shows that the higher the level of our perceived stress, the worse our PMSand that stress reduction techniques might be effective nonpharmaceutical interventions for easing PMS. So grab your yoga mat, go out and get some deep breaths surrounded by nature, or make more time for the leisure activity that relaxes you."
+      "The higher the level of our perceived stress, the worse our PMS. Stress reduction techniques might be effective non-pharmaceutical interventions for easing PMS. So grab your yoga mat, go out and get some deep breaths surrounded by nature, or make more time for the leisure activity that relaxes you."
   },
   {
     "Tag": "pms",
-    "patterns": ["What about coffee's contribution?","coffee and pms","caffeine and pms"],
+    "patterns": ["coffee and pms","caffeine and pms"],
     "Response":
       "Coffee fuels prostaglandin production, and increases the risk of cysts, fibroids, and period pain. Coffee also depletes the body of key hormone balancing nutrients like magnesium."
   },
@@ -218,65 +213,395 @@
   },
   {
     "Tag": "pms",
-    "patterns": ["Do I need to worry about inflammation making my PMS worse?"],
-    "Response":
-      "Inflammation is a system wide response to injury or stress, and it can be brought on by a large number of environmental factors, from eating unhealthy foods and being too sedentary to using toxic health and body care products. Prostaglandins are hormonelike substances that control the bodys inflammatory response and experts believe they can trigger many of the symptoms of PMS. Prostaglandin overproduction is why some women get relief by taking NSAIDs like ibuprofen. NSAIDs block the synthesis of prostaglandins."
-  },
-  {
-    "Tag": "pms",
-    "patterns": ["Is there anything else that contributes to making my PMS worse","what makes pms worse"],
-    "Response":
-      "While being overweight is associated with a greater risk of PMS, the real problem is how fat you are on the inside, which is not reflected in how much you weigh. You can be skinny on the outside and overweight on the inside, your PMS might be telling you to address internal obesity. You might not be living in sync with your cycle. Research shows that our 28day menstrual cycle affects our brain function, emotions, mood, sensory processing, appetite, and even our perception of pain. If youre not supporting your bodys unique hormonal needs during each of the four phases of the 28day cycle, you wont have healthy, pain free periods."
-  },
-  {
-    "Tag": "questions",
     "patterns":
-      ["I still have a lot of questions"],
+      [
+        "I don't want PMS",
+        "get rid of pms",
+        "no more pms",
+        "i don't want pms",
+        "pms cure"
+      ],
     "Response":
-      "This is a safe space and you may ask any questions regarding your menstrual health"
+      "You can arrange your environment to help defeat PMS. Reduce the amount of sugar you eat. Eat pomegranate and small, oily fish that contain high levels of inflammation fighting omega3 fatty acids. Eat organic and clean whenever possible. Give up coffee. If you don't exercise, eat a high-sugar diet. High levels of stress are associated with more severe PMS, try to keep them low."
+  },
+   {
+    "Tag": "taboo",
+    "patterns": [
+      "are periods a taboo",
+      "is bleeding taboo"
+    ],
+   "Response": "Although menstruation is considered a taboo topic in certain cultures, it is essential to recognize and address this natural biological process openly and without stigma."
+ },
+  {
+      "Tag": "taboo", 
+      "patterns": [
+        "Are you impure if you are on your period?", 
+        "Menstruation and impurity",
+        "is period impure",
+        "is menstruation impure",
+        "am i impure during my period"
+      ],
+      "Response": "Menstruation is considered impure in some cultures but its not. Neither you nor your period blood is impure in scientific terms. Please take good care of yourself during that time."
+    },
+  {
+    "Tag":"cup",
+   "patterns": [
+      "are menstrual cups effective",
+      "are menstrual cups good"
+    ],
+   "Response": "Menstrual cups are placed internally inside the vaginal canal and are very effective. You can easily order one at EaseFlow"
+ },
+ {
+    "Tag":"products",
+   "patterns": [
+      "what are tampons",
+      "what is a tampon",
+      "tampon",
+      "can i use tampons"
+    ],
+   "Response": "A tampon is placed internally inside of the vaginal canal. Once inserted correctly, a tampon will be held in place by the vagina and expands as it soaks up menstrual blood. You can easily buy tampons on EaseFlow."
+ },
+ {
+    "Tag": "information",
+    "patterns": [
+      "tampon for the first time?", 
+      "Tips for using tampons for beginners",
+      "how to use tampon"
+    ],
+    "Response": "If you decide to try tampon, start with the smallest size and follow the instructions carefully. It may take a few attempts to get comfortable with insertion. If you have any concerns or difficulties, don't hesitate to reach out for guidance."
   },
   {
-    "Tag": "pms",
-    "patterns":
-      ["I don't want to go through PMS",
-      "get rid of pms",
-      "no more pms",
-      "i don't want pms"],
-    "Response":
-      "Here's how to arrange your environment to help defeat PMS. Eat low inflammatory foods, like cruciferous vegetables, pastured eggs and pastured animal proteins, and nuts and seeds. Reduce the amount of sugar you eat. Eat pomegranate and small, oily fish that contain high levels of inflammationfighting omega3 fatty acids. Eat organic and clean whenever possible. Give up coffee. If you dont exercise, eat a highsugar diet andor dont have enough phytonutrientrich vegetables on your plate, you might be overweight or obese, which are strongly correlated with PMS. When you start correcting whats going on internally, you can see a reduction in symptoms. In the medical literature, high levels of stress are associated with more severe PMS, try to keep them low."
-  },
+    "Tag": "information",
+    "patterns": [
+      "What's the difference between pads, tampons, and menstrual cups?", 
+      "Which menstrual product is right for me?",
+      "which product should i use"
+    ],
+      "Response": "Pads, tampons, and menstrual cups are different methods of managing menstrual flow. Tampons are inserted into the vagina, while menstrual cups collect blood. The choice depends on your comfort and lifestyle. EaseFlow offers a range of options for you to explore."
+    },
   {
-    "Tag": "sync",
-    "patterns": ["Why is syncing with your cycle important?","cycle sync"],
-    "Response":
-      "All of the bio-hacks will only get you so far if you don't start to live in accordance with your cycle. Eating and exercising for each weeklong phase of your 28day cycle is the foundation of feeling better and having a symptomfree period. For too long, weve been living the same way day in and day out. This works for men, but not for women. Syncing your cycle will not only fix your period problems, it will help you find more happiness, energy, and success in life. Simply put, tending to your 28day cycle is as important as tending to your 24hour circadian cycle."
-  },
+    "Tag": "information",
+    "patterns": [
+      "Leaks during my period", 
+      "Tips for preventing period leaks",
+      "how to prevent leaks"
+    ],
+      "Response": "To prevent leaks, ensure you're using the right size of menstrual products. Change pads or tampons regularly, especially on heavier flow days. Consider using additional protection like panty liners for extra confidence. Wearing dark-colored clothing can also minimize any visible stains."
+    },
+       {
+      "Tag": "hygiene",
+      "patterns": [
+        "What's the best way to dispose of used period products?", 
+        "how to dispose period products",
+        "how to dispose menstrual products"
+      ],
+      "Response": "Dispose of used period products in designated bins. Consider eco-friendly options like biodegradable pads or menstrual cups, which reduce environmental impact. EaseFlow Ecommerce provides such sustainable products for your convenience."
+    },
+ {
+    "Tag":"information",
+    "patterns": [
+        "What is a period?",
+        "what are periods",
+        "what happens in periods",
+        "What is a menstrual cycle?",
+        "What is a period cycle?",
+        "what is menstruation"
+      ],
+   "Response": "A period is the part of the menstrual cycle when a woman bleeds from her vagina for a few days. For most women this happens every 28 days. but it's common for periods to be more or less frequent than this, ranging from day 21 to day 40 of their menstrual cycle."
+ },
+ {
+    "Tag":"cramps",
+   "patterns": [
+      "why do I get cramps?",
+      "reason for cramps",
+      "why cramps",
+      "why pain"
+    ],
+   "Response": "A common cause of cramps is Premenstrual Syndrome or PMS for short."
+ },
+ {
+  "Tag":"pms",
+  "patterns":[
+    "pms",
+    "what is pms",
+    "Pre Menstrual Syndrome"
+  ],
+  "Response":"Premenstrual Syndrome or PMS for short. occurs right before a women gets her period. These symptoms are caused by the hormonal changes of the cycle. PMS has the following symptoms including irritation, mood swings, bloating, cramps, constipation, acne, vaginal discharge, headaches, food cravings, moods swings, and tender breasts."
+ },
+ {
+    "Tag":"products",
+   "patterns": [
+      "what products can I use when I get a period?",
+      "what to use in periods?",
+      "hygienic products for periods",
+      "menstrual hygiene products",
+      "period hygiene products"
+    ],
+   "Response": "You can use a menstrual pad, cup, tampon, or a period panty to absorb your period. You can easily order them through EaseFlow!"
+ },
   {
-    "Tag": "pms",
-    "patterns":
-      ["I know that PMS exists but I want to know what are some foods that are considered good to eat?","good food for pms"],
-    "Response":
-      "Chickpeas a great source of magnesium. They also contain vitamin B6. Kale, broccoli, cauliflower, and other dark leafy greens. All of these contain indole3 carbinol, which helps the liver metabolize excess estrogen and prevent estrogen dominance which is a common hormone imbalance that gives rise to a bunch of period problems, including PMS.Coconut yogurt contains probiotics in the form of live cultures which helps the gut metabolize estrogen and keep hormones balancedSweet potatoes are naturally sweet and can help satisfy your sweet cravings. The vitamin A in sweet potatoes supports the liver as it metabolizes excess estrogen.Bone broth can be a good source of magnesium and calcium, both of which can help alleviate the symptoms of PMS."
-  },
+    "Tag": "hygiene",
+    "patterns": [
+      "How often should I change my pad or tampon?", 
+      "when should i change my pad or tampon",
+      "Is there a recommended frequency for changing menstrual products?"
+    ],
+      "Response": "The frequency of changing your pad or tampon depends on your flow intensity. On average, changing every 4-6 hours is recommended. For heavier flow, more frequent changes may be necessary. EaseFlow Ecommerce offers a variety of products suitable for different flow intensities."
+    },
+ {
+    "Tag":"infection",
+   "patterns": [
+      "infection",
+      "improper hygiene",
+      "bad hygiene"
+    ],
+   "Response": "There are different kinds of infections that can occur if you do not take care of your hygiene during your period. This is why it is important to follow safe sanitary practices. Easily order hygiene products on EaseFlow!"
+ },
+ {
+    "Tag":"taboo",
+    "patterns": [
+      "why is it that a period is considered impure",
+      "are periods impure",
+      "is period cycle impure",
+      "is menstruation cycle impure"
+    ],
+   "Response": "Menstruation is a taboo topic in some cultures but it should not be. I am here to clarify any confusions you may have about menstruation."
+ },
+ {
+    "Tag":"blood loss",
+   "patterns": [
+      "how much blood do we approximately loose during our periods",
+      "how much blood during periods",
+      "how much do we bleed during menstruation"
+    ],
+   "Response": "Most girls lose about 60 milliliters about 4 tablespoon of menstrual fluid during their periods mostly in the first few days. Not to worry, though  your body makes up for it."
+ },
+ {
+    "Tag":"colour",
+   "patterns": [
+    "I noticed different colours of blood throughout my period?",
+    "different colour blood"
+  ],
+   "Response": "Period blood color ranges from bright red to dark brown and black. The color of period blood depends on how long the blood stays in the uterus and vagina."
+ },
+ {
+    "Tag":"flow",
+   "patterns": [
+    "very heavy flow in periods",
+    "very light flow in periods",
+    "my flow is light",
+    "my flow is heavy"
+  ],
+   "Response": "Heavier or lighter periods are not usually cause concern. People often find their menstrual flow varies from month-to-month, and some months are naturally lighter or heavier than others. Please talk to your doctor to get individual medical advice."
+ },
+ {
+    "Tag":"birth control",
+   "patterns": [
+    "does birth control pills affect menstruation",
+    "birth control pill and periods",
+    "birth control pill and menstruation"
+],
+   "Response": "Different medications affect menstruation in different ways. Consult your doctor to find out how exactly your medication affects yoour menstrual cycle."
+ },
+ {
+    "Tag":"clots",
+   "patterns": [
+    "my periods have clumps in it",
+    "period clumps",
+    "menstrual blood clumps",
+    "blood clumps",
+    "clots",
+    "blood clots"
+  ],
+   "Response": "Passing small blood clots during periods is usually normal. If you experience large or painful clots, consult with a doctor. You can easily book an appointment at EaseFlow."
+ },
+ {
+  "Tag": "period diarrhea",
+  "patterns": [
+    "What is period diarrhea", 
+    "What is period diarrhoea",
+    "What is menstrual diarrhea",
+    "What is menstrual diarrhoea",
+    "Diarrhea during periods",
+    "Diarrhoea during periods",
+    "Diarrhoea menstruation period",
+    "Diarrhea menstruation period"
+  ],
+  "Response": "Period diarrhea, also known as menstrual diarrhea, is a normal symptom for many women. Diarrhea during menstruation is a common phenomenon that occurs due to the same hormonal changes that cause your uterus to contract and shed its lining each month."
+},
   {
-    "Tag": "pms",
-    "patterns":
-      ["And what if I want to prevent PMS but I don't want to use medicines. Are there any natural supplements?",
-    "natural ways to cure pms",
-    "pms cure"],
+      "Tag": "period blood color",
+      "patterns":[ "bright red period blood"],
+      "Response": "Period flow typically becomes heavier on the second or third day of the cycle as the uterine lining sheds faster lining. Bright red period blood is newer blood, thus it doesn't have time to darken before it exits your body."
+    },
+    {
+      "Tag": "period blood color",
+      "patterns":[ "pink period blood"],
+      "Response": "Pink period blood can be normal and is often associated with lighter or diluted menstrual flow. It may indicate the presence of a small amount of blood mixed with cervical mucus. However, if the pink color persists or is accompanied by other concerning symptoms, it's advisable to consult with a healthcare professional to rule out any underlying issues."
+    },
+    {
+      "Tag": "period blood color",
+      "patterns":[ "gray period blood"],
+      "Response": "If you have grayish discharge, this could be a sign of an infection. If you experience heavy bleeding with pieces of grayish tissue, this could be a sign of a miscarriage. We recommended visiting a doctor for either situation. You can easily book an appointment on EaseFlow."
+    },
+    {
+      "Tag": "PCOS",
+      "patterns":[ 
+        "what is PCOS",
+        "explain pcos",
+        "pcos"
+      ],
+      "Response": "Polycystic ovary syndrome or PCOS is a condition where you have few, unusual or very long periods. It often results in having too much of a male hormone called androgen. They may fail to regularly release eggs. It may cause issues like irregular cycles, acne, and fertility challenges."
+    },
+    {
+      "Tag":"PCOS",
+      "patterns":[
+        "pcos cure",
+        "treat pcos",
+        "pcos treatment"
+      ],
+      "Response":"Treatment for PCOS involves lifestyle changes and medications. Consultation with a healthcare professional is important for diagnosis and management. PCOS is made worse by high blood sugar and insulin, so one of the best treatments is to stop eating sugary foods such as dessert, fruit juice and sweetened yogurt. The nutritional supplements magnesium, berberine and inositol can help to regulate blood sugar and may relieve symptoms of PCOS."
+    },
+    {
+      "Tag": "first period",
+      "patterns": [
+        "I just got my first period.",
+        "What's it like to get your first period?"
+      ],
+      "Response": "First period is a natural part of growing up. You might experience some discomfort, but it's a manageable process."
+    },
+    {
+      "Tag": "information",
+      "patterns":[ 
+        "What if I have periods at college",
+        "What if I have periods at school",
+        "What if I have periods at work"
+      ],
+      "Response": "You should always carry a menstrual product. Incase you don't have one ask someone for supplies or go to a store if possible. Use the restroom to manage your period. It is important to stay calm and remember it's a normal part of life. "
+    },
+    {
+      "Tag": "classmate period",
+      "patterns":[ 
+        "classmate gets their period",
+        "help my friend when she has period"
+      ],
+      "Response": "Be kind and helpful to your friend who got her period. Offer a tampon or pad and help normalize periods and menstrual health in your group of friends.If you see blood on someone elses pants or skirt, let them know discretely about the situation. If it is their first period, take them to the nurse or bathroom and lend them some period supplies if needed. You are in this together, so look out for each other!"
+    },
+      {
+      "Tag": "information",
+      "patterns": [
+        "Can I still participate in sports and other activities while on my period?", 
+        "Can I play sports during my period?"
+      ],
+      "Response": "Having your period doesn't mean you have to stop doing the things you love. You can continue with sports and activities. Just make sure to use the right menstrual products for your level of activity and comfort."
+    },
+       {
+      "Tag": "information",
+      "patterns": [
+        "Can I swim during my period?", 
+        "Is it safe to swim while menstruating?"
+      ],
+      "Response": "You can swim during your period! Use a tampon or a menstrual cup to prevent water from entering the vagina. Change your tampon immediately after swimming. Swimming is a great way to stay active and manage period discomfort."
+    },
+    {
+      "Tag": "recommendation",
+      "patterns": [
+        "Do you have any recommendations for a good gynecologist?", 
+        "Can you suggest a gynecologist near me?"
+      ],
+      "Response": "I recommend visiting EaseFlow site, where you can find a list of experienced gynecologists. You can also schedule an appointment directly through the platform."
+    },
+    {
+      "Tag": "recommendation",
+      "patterns": [
+        "Where can I buy high-quality period products like pads, tampons, or menstrual cups?", 
+        "Any recommendations for reliable period product brands?"
+      ],
+      "Response": "For high-quality period products, I recommend checking out EaseFlow, our trusted platform. You'll find a variety of products to suit your needs, and it's a convenient way to shop for reliable brands."
+    },
+    {
+      "Tag": "food",
+      "patterns": [
+        "What should I eat during my period?", 
+        "What should I eat during my menstruation?", 
+        "Is there a specific diet for menstruation?",
+        "diet for period",
+        "food for period",
+        "food for menstruation"
+      ],
+      "Response": "You can eat your regular diet during your period. There's no specific diet you need to follow. However, staying hydrated and consuming foods rich in iron and vitamins can help manage energy levels and reduce discomfort."
+    },
+    {
+      "Tag": "mood swings",
+      "patterns": [
+        "intense mood swings during my period.",
+        "moody during my period?"
+      ],
+      "Response": "Mood swings are a common symptom of menstruation due to hormonal changes. Engaging in activities you enjoy, practicing relaxation techniques, and getting enough sleep can help manage mood swings. If it becomes overwhelming, consulting a healthcare professional is a good idea. Ypu can easily book an appointment with EaseFlow"
+    },
+     {
+      "Tag": "mood swings",
+      "patterns": [
+        "Depressed during my periods?", 
+        "Dealing with depression during menstruation",
+        "depression during periods"
+      ],
+      "Response": "Bad moods or mood swings before your periods can be part of PMS. If you're experiencing depression, consider consulting a healthcare provider. Easily book an appointment with EaseFlow."
+    },
+    {
+      "Tag": "period pain",
+      "patterns": [
+        "Is it normal to experience nausea during my period?", 
+        "Why do I feel nauseous when I have my period?",
+        "why do i have nausea"
+      ],
+      "Response": "Nausea can be a menstrual symptom for some individuals due to hormonal fluctuations. It's considered normal. Taking deep breaths, staying hydrated, and avoiding heavy or greasy foods may help ease nausea. If it persists, consulting with a healthcare professional is advisable."
+    },
+    {
+     "Tag": "period pain",
+      "patterns": [
+        "migraine during periods?", 
+        "Do periods cause headaches?"
+      ],
+      "Response": "Some women get migraine headaches at the start of their period. If you think your pain is too severe talk to a doctor. Lying down in a dark and quiet room, drinking water or having a light meal can shorten or stop episodes in some people"
+    },
+    {
+      "Tag": "period stains",
+      "patterns":[ 
+        "period stains on clothes",
+        "how to remove stains",
+        "how to remove blood stains"
+      ],
+      "Response": "If you notice period stains on your clothing, act promptly by prewashing them with cold water and soap to enhance the chances of complete stain removal. Blood can be challenging to clean once it dries, so swift action is key. Don't stress about it."
+    },
+     {
+      "Tag": "menstruation",
+      "patterns": [
+        "What is the earliest age that I can get my period?", 
+        "When do periods start in girls?"
+      ],
+      "Response": "Most girls start their periods when they're about 12, but they can start as early as 8. It's important to talk to girls from an early age to ensure they're prepared."
+    },
+      {
+      "Tag": "menopause",
+      "patterns":[ 
+        "what is menopause",
+        "age of menopause",
+        "when does menopause start",
+        "what age do we stop period"
+      ],
+      "Response": "Menopause is the time that marks the end of menstrual cycles. It's diagnosed after someone has gone 12 months without a menstrual period. Most people reach it anywhere between ages 45 to 55"
+    },
+  {
+    "Tag": "goodbye",
+    "patterns": ["thank you"],
     "Response":
-      "Research suggests that magnesium helps alleviate symptoms of PMS, including weight gain, breast tenderness, and bloating. Omega 3 fatty acids and vitamin D3 help promote hormone balance. Vitamin E helps reduce breast premenstrual breast tenderness, according to research. So does vitamin B6!. Alpha Lipoic Acid ALA offers powerful antioxidant support for the liver as it works to metabolize excess estrogen  remember: too much estrogen relative to progesterone can trigger PMS symptoms  and also supports stable blood sugar. Calcium supplements have been shown to help with mood swings during the luteal phase."
+      "You're very welcome dear!"
   },
   {
     "Tag": "goodbye",
-    "patterns": ["This was really helpful", "thank you"],
-    "Response":
-      "You're very welcome dear, do you have any more questions for me?"
-  },
-  {
-    "Tag": "goodbye",
-    "patterns": ["I think I am good." ,"Good bye Mai!", "Lovely talking to you"],
-    "Response": "Same here! Enjoy the rest of your day, good bye!"
+    "patterns": ["Goodbye!"],
+    "Response": "Enjoy the rest of your day, good bye!"
   }
 ]
 }
