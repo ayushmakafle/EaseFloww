@@ -11,20 +11,23 @@
 .doctor-name {
   font-size: 1.5em;
   margin-bottom: 10px;
-  color: #ff0066; /* Darker pink for the name */
+  color: #ff0066; 
+  font-weight: bolder;
+
 }
 
 .doctor-specialization {
-  color: #ff66b2; /* Lighter pink for specialization */
+  color: #ff66b2; 
   margin-bottom: 15px;
+  font-style: italic;
 }
 
 .hospital-info {
   margin-bottom: 10px;
-  color: #ff3399; /* Another shade of pink for hospital info */
+  color: #ff3399;
 }
 
 .office-hours {
-  font-style: italic;
-  color:  #ff3399; /* Light pink for office hours */
+  font-style: bold;
+  color:  #ff3399; 
 }

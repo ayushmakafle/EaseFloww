@@ -19,6 +19,9 @@ const BookingPage = () => {
   const [isAvailable, setIsAvailable] = useState(false);
   const [time, setTime] = useState(null);
 
+  // New state variable for showing the notification
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
 
   //for getting doctor information
   useEffect(() => {
@@ -64,6 +67,8 @@ const BookingPage = () => {
         toast.success(res.data.message);
       } else {
         setIsAvailable(false);
+         setNotificationMessage(res.data.message); // Set notification message
+        setShowNotification(true); // Show the notification
         toast.error(res.data.message);
       }
     } catch (error) {
@@ -106,7 +111,7 @@ const BookingPage = () => {
     return (
       <>
         {/* <MainNavbar /> */}
-        <p>Loading...</p>
+        <p className='center'>Loading...</p>
       </>
     );
   }
@@ -153,6 +158,7 @@ const disabledTime = (current) => {
     <>
       {/* <MainNavbar /> */}
       <div className="doctor-details mt-2">
+      
         <h1>{doctor.name}</h1>
         <div className="doctor-specialization">{doctor.specialization}</div>
         <div className="hospital-info">
@@ -172,7 +178,8 @@ const disabledTime = (current) => {
           Your appointment will scheduled for a one-hour duration. Please select the desired start time.
         </div>
         <div className="date-time-picker">
-         <DatePicker
+        
+        <DatePicker
           className="date-picker"
           format="DD-MM-YYYY"
           onChange={(value) => {
@@ -189,27 +196,34 @@ const disabledTime = (current) => {
             );
           }}
         />
-<TimePicker
-  className="time-picker"
-  format="HH:mm"
-  onChange={(value) => {
-    // Update state with the selected time in the required format
-    setTime(value.format('HH:mm'));
-  }}
-  // Use the disabledHours and disabledMinutes props to disable times outside office hours
-  disabledHours={() => Array.from({ length: 24 }, (_, i) => i).filter(hour => hour < officeHoursStart.hour() || hour >= officeHoursEnd.hour())}
-  disabledMinutes={() => []} // Allow all minutes
-/>
+      
+      <TimePicker
+        className="time-picker"
+        format="HH:mm"
+        onChange={(value) => {
+        // Update state with the selected time in the required format
+        setTime(value.format('HH:mm'));
+        }}
+        // Use disabledHours and disabledMinutes props to disable times outside office hours
+        disabledHours={() => Array.from({ length: 24 }, (_, i) => i).filter(hour => hour < officeHoursStart.hour() || hour >= officeHoursEnd.hour())}
+        disabledMinutes={() => []} // Allow all minutes
+      />
 
+      <button
+        className="check-availability-btn m-1"
+        onClick={handleAvailability}
+      >
+        Check Availability
+      </button>
+      
+      {/* Conditionally render the notification */}
+      {showNotification && (
+        <div className="notification">
+          {notificationMessage}
+        </div>
+      )}
 
-
-        <button
-          className="check-availability-btn m-1"
-          onClick={handleAvailability}
-        >
-          Check Availability
-        </button>
-        {/* Conditionally render the "Book Now" button */}
+      {/* Conditionally render the "Book Now" button */}
         {isAvailable && (
           <button
             className="check-availability-btn"
