@@ -31,7 +31,7 @@ const AllDoctors = () => {
 <>
   {/* <MainNavbar /> */}
   <div style={{ display: 'flex' }}>
-    <div style={{ flex: '1', maxWidth: '20%', marginTop: '40px' }}>
+    <div style={{ flex: '1', maxWidth: '25%', marginTop: '60px' }}>
       <Lottie
         animationData={animation}
         className="lottie-animation-home cursor-pointer"
