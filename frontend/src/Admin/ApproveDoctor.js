@@ -4,12 +4,45 @@ import AdminMenu from './AdminMenu';
 import axios from 'axios';
 import { Table, Button, Modal } from 'antd';
 import { imageFromBuffer } from "../utils/utils"
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+
 
 const ApproveDoctors = () => {
   const [unapprovedDoctors, setUnapprovedDoctors] = useState([]);
   const [visible, setVisible] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [selectedImage,setSelectedImage]=useState("");
+
+   // State to manage the approve confirmation modal
+  const [approveModalVisible, setApproveModalVisible] = useState(false);
+
+  // Function to handle the approve confirmation
+  const showApproveConfirm = (doctor) => {
+    Modal.confirm({
+      title: 'Confirm Approve',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Are you sure you want to approve this doctor?',
+      okText: 'Yes',
+      cancelText: 'No',
+      onOk: () => handleApproveDoctor(doctor),
+    });
+  };
+
+  // State to manage the deny confirmation modal
+  const [denyModalVisible, setDenyModalVisible] = useState(false);
+
+  // Function to handle the deny confirmation
+  const showDenyConfirm = (doctor) => {
+    Modal.confirm({
+      title: 'Confirm Deny',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Are you sure you want to deny this doctor?',
+      okText: 'Yes',
+      cancelText: 'No',
+      onOk: () => handleDenyDoctor(doctor),
+    });
+  };
+
   useEffect(() => {
   // Fetch unapproved doctors from the server
   fetchUnapprovedDoctors();
@@ -92,15 +125,15 @@ useEffect(() => {
     dataIndex: 'feesPerConsultation',
     key: 'feesPerConsultation',
   },
-    {
+  {
       title: 'Actions',
       key: 'actions',
       render: (text, record) => (
         <>
-          <Button type="primary" onClick={() => handleApproveDoctor(record)}>
+          <Button type="primary" onClick={() => showApproveConfirm(record)}>
             Approve
           </Button>
-          <Button type="danger" onClick={() => handleDenyDoctor(record)}>
+          <Button type="danger" onClick={() => showDenyConfirm(record)}>
             Deny
           </Button>
         </>
