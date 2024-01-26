@@ -1,0 +1,19 @@
+{
+  "intents": [
+    {
+      "Tag": "greeting",
+      "patterns": ["Hi there", "Hey", "Greetings"],
+      "Response": "Testing Greeting Intent"
+    },
+    {
+      "Tag": "Ovary",
+      "patterns": ["Tell me about ovaries", "Ovaries function"],
+      "Response": "Testing Ovary Intent"
+    },
+    {
+      "Tag": "vagina",
+      "patterns": ["Vagina details", "Explain the vagina"],
+      "Response": "Testing Vagina Intent"
+    }
+  ]
+}

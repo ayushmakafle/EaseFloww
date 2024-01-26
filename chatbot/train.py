@@ -161,4 +161,49 @@ FILE = "data.pth"
 torch.save(data, FILE)
 
 print(f'training complete. file saved to {FILE}')
-    
+
+# Load the trained model
+loaded_data = torch.load(FILE)
+loaded_model = NeuralNet(loaded_data["input_size"], loaded_data["hidden_size"], loaded_data["output_size"])
+loaded_model.load_state_dict(loaded_data["model_state"])
+loaded_model.eval()
+
+# ... (Your existing code)
+
+# Test the model
+test_dataset = ChatDataset()
+test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False, num_workers=0)
+
+correct_predictions_test = 0
+total_predictions_test = 0
+test_accuracy_values = []  # List to store test accuracy values
+
+with torch.no_grad():
+    for (test_words, test_labels) in test_loader:
+        test_words = test_words.to(device)
+        test_labels = test_labels.to(dtype=torch.long).to(device)
+
+        # Forward pass
+        test_outputs = loaded_model(test_words)
+
+        # Calculate accuracy
+        _, test_predicted = torch.max(test_outputs.data, 1)
+        total_predictions_test += test_labels.size(0)
+        correct_predictions_test += (test_predicted == test_labels).sum().item()
+
+        # Store test accuracy for each batch
+        batch_accuracy = (test_predicted == test_labels).sum().item() / test_labels.size(0)
+        test_accuracy_values.append(batch_accuracy)
+
+# Calculate overall accuracy on test data
+overall_accuracy_test = correct_predictions_test / total_predictions_test
+print(f'Overall Accuracy on Test Data: {overall_accuracy_test:.4f}')
+
+# Plotting the test accuracy values
+plt.figure()
+plt.plot(range(1, len(test_accuracy_values) + 1), test_accuracy_values, label='Test Accuracy')
+plt.xlabel('Batch')
+plt.ylabel('Accuracy')
+plt.title('Test Accuracy Over Batches')
+plt.legend()
+plt.show()
