@@ -43,7 +43,7 @@ const ProductDetails = () => {
       {/* <MainNavbar /> */}
       <EcomHeader />
 
-      <Link to='/ecommerce' className='btn-light' style={{ textDecoration: 'none' }}>
+      <Link to='/ecommerce' className='btn-light' style={{ fontWeight: 'bold', textDecoration: 'none', margin: '20px', color: "#FF06BF" }}>
         <i className="fa-solid fa-arrow-left" style={{ fontSize: '1em' }}></i>
         &nbsp;GO BACK
       </Link>
@@ -60,18 +60,20 @@ const ProductDetails = () => {
           <div className="col-md-6">
             <div className="card">
               <div className="card-body">
-                <h2 className="card-title text-center mb-4" style={{fontFamily: 'Raleway, sans-serif'}}>{product.name}</h2>
+                <h2 className="card-title text-center mb-4" style={{ fontFamily: 'Poppins', color: '#FF06BF' }}>
+                  {product.name}
+                </h2>
                 {product.category && (
-                  <p className="card-text">
-                    <span style={{ color: '#212129', fontFamily: 'Raleway, sans-serif' }}>Category:</span> {product.category.name}
+                  <p className="card-text" style={{ color: '#ef5e99' }}>
+                    <span style={{ color: '#de5d83', fontFamily: 'sans-serif' }}>Category:</span> {product.category.name}
 
                   </p>
                 )}
-                <p className="card-text">
-                  <span style={{ color: '#000080' }}>Price:</span> NRs.{product.price}/-
+                <p className="card-text" style={{ color: '#ef5e99', fontWeight: 'bolder' }}>
+                  <span style={{ color: '#de5d83' }}>Price:</span> NRs.{product.price}/-
                 </p>
-                <p className="card-text" style={{ color: '#212129', fontFamily: 'Raleway, sans-serif' }}>{product.description}</p>
-                <button className='btn btn-secondary' onClick={() => {
+                <p className="card-text" style={{ color: '#212129', fontFamily: 'sans-serif' }}>{product.description}</p>
+                <button className='btn btn-secondary' style={{ backgroundColor: '#FF06BF' }} onClick={() => {
                   const updatedCart = [...cart];
                   const existingProduct = updatedCart.find(item => item._id === product._id);
                   if (existingProduct) {
@@ -83,7 +85,7 @@ const ProductDetails = () => {
                   localStorage.setItem("cart", JSON.stringify(updatedCart));
                   toast.success("Item Added to cart")
                 }}>
-                  <i className="fas fa-cart-shopping">ADD TO CART</i>
+                  <i className="fas fa-cart-shopping"></i>
                 </button>
               </div>
             </div>
@@ -91,9 +93,11 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="row">
-        <h1 style={{fontFamily:'Raleway,sans serif',marginLeft:'22px',marginTop:'22px'}}>Similar Products</h1>
-        {relatedProducts.length < 1 && (<p>No Similar Products Found</p>)}
-        <div className="d-flex flex-wrap">
+        <h1 style={{ fontFamily: 'Times New Roman', marginLeft: '22px', marginTop: '22px', textAlign: 'center', color: '#FF06BF' }}>
+          Similar Products
+        </h1>
+        {relatedProducts.length < 1 && (<h3 style={{ fontFamily: 'Times New Roman', marginLeft: '22px', marginTop: '22px', textAlign: 'center', color: '#FF06BF' }}>No Similar Products Found</h3>)}
+        <div className="d-flex flex-wrap" style={{ margin: '20px', alignContent: 'center' }}>
           {relatedProducts?.map((p) => (
             <div className="card m-2" style={{ width: '300px', height: '450px', padding: '15px' }}>
               <img
@@ -112,9 +116,12 @@ const ProductDetails = () => {
                   NRs.{p.price}/-
                 </p>
                 <button className='btn btn-primary ms-1'
-                      onClick={() => navigate(`/product/${p.slug}`)}>
-                      More Details</button>
-                
+                  onClick={() => navigate(`/product/${p.slug}`)}
+                  style={{ backgroundColor: '#FF06BF' }}
+                >
+                  More Details
+                </button>
+
               </div>
             </div>
           ))}

@@ -55,8 +55,9 @@ const CategoryProduct = () => {
     <>
         {/* <MainNavbar /> */}
         <EcomHeader />
-        <h4 className='text-center'>Category - {category?.name}</h4>
-        <h6 className='text-center'>{products?.length} products found</h6>
+        <h3 style={{fontFamily: 'Poppins', color: '#FF06BF', textAlign:'center', marginTop:'10px'}}>
+          Category - {category?.name}</h3>
+        <h6 className='text-center' style={{color:'#de5d83', fontWeight:'bold'}}>{products?.length} products found</h6>
 
         <div className="row">
     <div className="col-md-9 offset-1">
@@ -78,10 +79,14 @@ const CategoryProduct = () => {
                   <p className="card-text">
                     NRs.{p.price}/-
                   </p>
-                  <button className='btn btn-primary ms-1'onClick={() => navigate(`/product/${p.slug}`)}>More Details</button>
-                <button className='btn btn-secondary' onClick={() => { setCart([...cart, p]); toast.success('Item added to cart'); }}>
+                  <button 
+                    className='btn btn-primary ms-1'
+                    onClick={() => navigate(`/product/${p.slug}`)}
+                    style={{backgroundColor:'#FF06BF'}}
+                  >More Details</button>
+               {/*  <button className='btn btn-secondary' onClick={() => { setCart([...cart, p]); toast.success('Item added to cart'); }}>
                 <i className="fas fa-cart-shopping"></i>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             ))}
