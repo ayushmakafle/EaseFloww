@@ -524,7 +524,10 @@
       "Tag": "recommendation",
       "patterns": [
         "Do you have any recommendations for a good gynecologist?", 
-        "Can you suggest a gynecologist near me?"
+        "Can you suggest a gynecologist near me?",
+        "where do i book appointment",
+        "book doctor appointment",
+        "gynecologist appointment"
       ],
       "Response": "I recommend visiting EaseFlow site, where you can find a list of experienced gynecologists. You can also schedule an appointment directly through the platform."
     },

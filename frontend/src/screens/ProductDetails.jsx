@@ -6,6 +6,7 @@ import EcomHeader from '../components/EcomHeader';
 import { Link, useParams } from 'react-router-dom';
 import { useCart } from '../context/cart';
 import { toast } from 'react-toastify'
+import { Rate } from 'antd';
 const ProductDetails = () => {
   const params = useParams();
   const [cart, setCart] = useCart()
@@ -71,6 +72,9 @@ const ProductDetails = () => {
                 )}
                 <p className="card-text" style={{ color: '#ef5e99', fontWeight: 'bolder' }}>
                   <span style={{ color: '#de5d83' }}>Price:</span> NRs.{product.price}/-
+                </p>
+                <p className="card-text" style={{ color: '#ef5e99' }}>
+                  Rating from EaseFlow Doctors: <Rate value={Number(product.averageRating)} disabled allowHalf />
                 </p>
                 <p className="card-text" style={{ color: '#212129', fontFamily: 'sans-serif' }}>{product.description}</p>
                 <button className='btn btn-secondary' style={{ backgroundColor: '#FF06BF' }} onClick={() => {
