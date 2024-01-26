@@ -4,6 +4,8 @@ import axios from 'axios';
 import DoctorNavbar from './DoctorNavbar';
 import {toast} from 'react-toastify';
 import Select from 'react-select';
+import Lottie from 'lottie-react';
+import animation from './schedule.json';
 
 const customStyles = {
   control: (provided) => ({
@@ -118,84 +120,96 @@ const daysOfWeek = [
   };
 
   return (
-    <>
-      <DoctorNavbar />
-      <form onSubmit={handleSubmit} className='p-5'>
-  <div>
-    <label htmlFor='officeHoursStart' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Office Hours Start</label>
-    <input
-      type='time'
-      id='officeHoursStart'
-        className='form-control'
-        style={{ width: '15%' }}
-      value={officeHoursStart}
-      onChange={(e) => setOfficeHoursStart(e.target.value)}
-    />
+  <>
+  <DoctorNavbar />
+  <div className='container-fluid mt-3 mb-3'>
+    <div className='row'>
+      <div className='col-md-6'>
+        <form onSubmit={handleSubmit} className='p-5'>
+          <div className='mb-3'>
+            <label htmlFor='officeHoursStart' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+              Office Hours Start
+            </label>
+            <input
+              type='time'
+              id='officeHoursStart'
+              className='form-control'
+              style={{ width: '100%' }}
+              value={officeHoursStart}
+              onChange={(e) => setOfficeHoursStart(e.target.value)}
+            />
+          </div>
+
+          <div className='mb-3'>
+            <label htmlFor='officeHoursEnd' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+              Office Hours End
+            </label>
+            <input
+              type='time'
+              className='form-control'
+              style={{ width: '100%' }}
+              id='officeHoursEnd'
+              value={officeHoursEnd}
+              onChange={(e) => setOfficeHoursEnd(e.target.value)}
+            />
+          </div>
+
+          <div className='mb-3'>
+            <label className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+              Office Days
+            </label>
+            <Select
+              name='officeDays'
+              options={daysOfWeek}
+              isMulti
+              value={officeDays}
+              onChange={handleOfficeDaysChange}
+              styles={{ width: '100%' }}
+            />
+          </div>
+
+          <div className='mb-3'>
+            <label htmlFor='feesPerConsultation' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+              Fees Per Consultation
+            </label>
+            <input
+              type='number'
+              name='feesPerConsultation'
+              className='form-control'
+              style={{ width: '100%' }}
+              required
+              value={feesPerConsultation}
+              onChange={(e) => setFeesPerConsultation(e.target.value)}
+            />
+          </div>
+
+          <button
+            type='submit'
+            className='btn btn-primary'
+            style={{
+              fontFamily: 'Poppins',
+              fontWeight: 'medium',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              width:'100%',
+              backgroundColor:'#ef5e99'
+            }}
+          >
+            Update
+          </button>
+        </form>
+      </div>
+      <div className='col-md-6 d-flex align-items-center justify-content-center'>
+        <Lottie
+          animationData={animation}
+          className="lottie-animation-home cursor-pointer m-4"
+          style={{ width: '500px', height: '500px' }}
+        />
+      </div>
+    </div>
   </div>
+</>
 
-  <div>
-    <label htmlFor='officeHoursEnd' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-      Office Hours End</label>
-    <input
-      type='time'
-        className='form-control'
-        style={{ width: '15%' }}
-      id='officeHoursEnd'
-      value={officeHoursEnd}
-      onChange={(e) => setOfficeHoursEnd(e.target.value)}
-    />
-  </div>
-
-  <div>
-    <label className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>Office Days</label>
-      {console.log(officeDays)}
-      <Select
-        name='officeDays'
-        options={daysOfWeek}
-        isMulti
-        value={officeDays}
-        onChange={handleOfficeDaysChange}
-        styles={customStyles}
-      />
-  </div>
-
-   <div>
-      <label htmlFor='feesPerConsultation' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-        Fees Per Consultation
-      </label>
-      <input
-        type='number'
-        name='feesPerConsultation'
-        className='form-control'
-        style={{ width: '15%' }}
-        required
-        value={feesPerConsultation}
-        onChange={(e) => setFeesPerConsultation(e.target.value)}
-      />
-     </div>
-
-    
-     <button
-  type='submit'
-  className='w-90'
-  style={{
-    backgroundColor: '#ffbcd4',
-    fontFamily: 'Poppins',
-    fontWeight: 'medium',
-    color: '#000000',
-    padding: '10px',
-    border: 'none',
-    borderRadius: '8px',
-    cursor: 'pointer'
-  }}
->
-  Update
-</button>
-
-</form>
-
-    </>
   )
 }
 export default DoctorUpdateSchedule

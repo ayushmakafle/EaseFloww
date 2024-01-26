@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import DoctorNavbar from './DoctorNavbar';
 import '../styles/MainNavbar.css';
+import Lottie from 'lottie-react';
+import animation from './doctordash.json';
 
 const DoctorDashboard = () => {
   return (
@@ -15,10 +17,12 @@ const DoctorDashboard = () => {
         <NavLink to="/dashboard/doctor/doctor-profile" className="btn light">
           View your profile
         </NavLink>
-        {/* <div className="right">
-            <img src="images/calenderbg.jpg" alt="" />
-          </div> */}
       </div>
+       <Lottie
+              animationData={animation}
+              className="lottie-animation-home cursor-pointer m-4"
+              style={{ width: '500px', height: '500px' }} 
+      />
     </div>
     </>
   );
