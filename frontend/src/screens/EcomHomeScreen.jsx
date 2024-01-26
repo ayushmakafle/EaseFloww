@@ -130,8 +130,8 @@ const EcomHomeScreen = () => {
 
       <div className="container-fluid row mt-2">
         <div className="col-md-2">
-          <h6 className="text-center-box animate-allpro" style={{ color: '#000080' }}>Filter by Category</h6>
-          <div className="d-flex flex-column animate-allpro">
+          <h6 className="text-center-box animate-allpro" style={{ color: '#ff0066', margin: '10px', fontWeight: 'bold' }}>Filter by Category</h6>
+          <div className="d-flex flex-column animate-allpro" style={{ margin: '10px' }}>
             {categories?.map((c) => (
               <Checkbox key={c._id}
                 onChange={(e) => handleFilter(e.target.checked, c._id)}>
@@ -140,8 +140,8 @@ const EcomHomeScreen = () => {
             ))}
           </div>
 
-          <h6 className="text-center-box animate-allpro" style={{ color: '#000080' }}>Filter by Price</h6>
-          <div className="d-flex flex-column animate-allpro">
+          <h6 className="text-center-box animate-allpro" style={{ color: '#ff0066', margin: '10px', fontWeight: 'bold' }}>Filter by Price</h6>
+          <div className="d-flex flex-column animate-allpro" style={{ margin: '10px' }}>
             <Radio.Group onChange={e => setRadio(e.target.value)}>
               {Prices?.map(p => (
                 <div key={p._id}>
@@ -152,14 +152,14 @@ const EcomHomeScreen = () => {
           </div>
 
           <div className="d-flex flex-column">
-            <button className='btn btn-primary'
+            <button className='btn btn-primary' style={{ backgroundColor: '#ff0066' }}
               onClick={() => window.location.reload()}>
               Reset Filters</button>
           </div>
 
         </div>
         <div className="col-md-9">
-          <h3 className="text-center animate-allpro" style={{ color: '#000080' }}> All Products</h3>
+          <h3 className="text-center animate-allpro" style={{ color: '#ff0066', fontWeight: 'bold' }}> Discover Our Carefully Curated Menstrual Health Collection </h3>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Col key={p._id}>
@@ -181,11 +181,11 @@ const EcomHomeScreen = () => {
                     <p className="card-text">
                       NRs.{p.price}/-
                     </p>
-                    <button className='btn btn-primary ms-1'
+                    <button className='btn btn-primary ms-1' style={{ backgroundColor: '#ff0066' }}
                       onClick={() => navigate(`/product/${p.slug}`)}>
                       More Details</button>
                     <button
-                      className="btn btn-secondary ms-1"
+                      className="btn btn-secondary ms-1" style={{ backgroundColor: '#ff66b2' }}
                       onClick={() => {
                         const updatedCart = [...cart];
                         const existingProduct = updatedCart.find(item => item._id === p._id);
@@ -209,7 +209,7 @@ const EcomHomeScreen = () => {
           </div>
           <div className='m-2 p-3'>
             {products && products.length < total && (
-              <button className='btn btn-primary'
+              <button className='btn btn-primary' style={{ backgroundColor: '#ff0066' }}
                 onClick={(e) => {
                   e.preventDefault()
                   setPage(page + 1)
