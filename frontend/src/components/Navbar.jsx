@@ -62,17 +62,20 @@ const MainNavbar = () => {
                     <Nav.Link className="pb-3 text-white"> Products</Nav.Link>
                   </LinkContainer>
                 </li>
-                <li className="nav-item mt-0">
-                  <LinkContainer to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'
-                    }`}>
-                    <Nav.Link className="pb-3 text-white">Dashboard</Nav.Link>
-                  </LinkContainer>
-                </li>
+                {auth.user &&
+                  <li className="nav-item mt-0">
+                    <LinkContainer to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'
+                      }`}>
+                      <Nav.Link className="pb-3 text-white">Dashboard</Nav.Link>
+                    </LinkContainer>
+                  </li>
+                }
+
                 {!auth.user ? (
                   <li className="nav-item mt-0">
                     <LinkContainer to="/login" className="active">
                       <Nav.Link className="pb-3 text-white">
-                        <i className="fa-solid fa-user"></i> Profile
+                        <i className="fa-solid fa-user"></i>
                       </Nav.Link>
                     </LinkContainer>
                   </li>
