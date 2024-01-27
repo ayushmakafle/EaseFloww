@@ -159,9 +159,9 @@ const EaseFlowOrders = () => {
             <AdminMenu />
           </div>
           <div className='col-md-9'>
-            <h1>All EaseFlow Orders</h1>
-            {loading ? <Spin />:<Table dataSource={orders} columns={columns} />}
-            {error && <div>Error: {error}</div>}
+            <h1 style={{color:'#ef5e99',margin:'20px'}}>All EaseFlow Orders</h1>
+            {loading ? <Spin />:<Table dataSource={orders} columns={columns} style={{margin:'20px'}}/>}
+            {/* {error && <div>Error: {error}</div>} */}
           </div>
         </div>
       </div>

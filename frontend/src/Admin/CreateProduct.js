@@ -71,7 +71,7 @@ const CreateProduct = () => {
             <AdminMenu />
         </div>
         <div className='col-md-9'>
-            <h1>Create Products</h1>
+            <h1 style={{color:'#ef5e99',margin:'20px'}}>Create Products</h1>
             <div className="m-1 w-75">
               <Select bordered={false}
                 placeholder="select a category"
@@ -152,7 +152,7 @@ const CreateProduct = () => {
               </Select>
               </div>
               <div className="mb-3 text-center">
-                <button className='btn btn-primary' onClick={handleCreate}>
+                <button className='btn btn-primary' onClick={handleCreate} style={{backgroundColor:'#ef5e99'}}>
                   Create Product
                 </button>
               </div>

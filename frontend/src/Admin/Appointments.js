@@ -82,11 +82,11 @@ const Appointments = ({ isAdmin }) => {
             <AdminMenu />
           </div>
           <div className='col-md-9'>
-            <h1>{isAdmin ? 'Admin Appointments' : 'All Appointments'}</h1>
+            <h1 style={{color:'#ef5e99',margin:'20px'}}>{isAdmin ? 'Admin Appointments' : 'All EaseFlow Appointments'}</h1>
             {loading ? (
               <Spin />
             ) : (
-              <Table columns={columns} dataSource={appointments} className='m-2' />
+              <Table columns={columns} dataSource={appointments} style={{margin:'20px'}}/>
             )}
             {error && <div>Error: {error}</div>}
           </div>

@@ -61,8 +61,8 @@ const EaseFlowUsers = () => {
             <AdminMenu />
         </div>
         <div className='col-md-9'>
-            <h1>All EaseFlow Users</h1>
-             <Table dataSource={users} columns={columns} />
+            <h1 style={{color:'#ef5e99',margin:'20px'}}>All EaseFlow Users</h1>
+             <Table dataSource={users} columns={columns} style={{margin:'20px'}}/>
         </div>
     </div>
     </div>

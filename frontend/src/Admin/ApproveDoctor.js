@@ -233,7 +233,7 @@ const handleViewCertificate = async (doctor) => {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>Approve EaseFlow Doctor Requests</h1>
+            <h1 style={{color:'#ef5e99',margin:'20px'}}>Approve EaseFlow Doctor Requests</h1>
             <div style={{ overflowX: "auto" }}>
               <Table dataSource={unapprovedDoctors} columns={columns} />
             </div>
