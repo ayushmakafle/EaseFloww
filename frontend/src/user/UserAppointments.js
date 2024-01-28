@@ -28,7 +28,7 @@ const UserAppointments = () => {
       key: '_id',
     },
     {
-      title: 'Doctor Info',
+      title: 'Doctor',
       dataIndex: 'doctorInfo',
       render: (text, record) => (
         <span>
@@ -74,11 +74,11 @@ const UserAppointments = () => {
             <UserMenu />
           </div>
           <div className='col-md-9'>
-            <h2>My Appointments</h2>
+            <h2 style={{color:'#ef5e99',margin:'20px',fontWeight:'bold'}}>My Appointments</h2>
             {appointments.length === 0 ? (
               <p>No appointments found.</p>
             ) : (
-              <Table dataSource={appointments} columns={columns} />
+              <Table dataSource={appointments} columns={columns} style={{margin:'20px'}}/>
             )}
           </div>
         </div>

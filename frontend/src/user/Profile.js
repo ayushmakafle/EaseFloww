@@ -60,10 +60,10 @@ const Profile = () => {
             <UserMenu />
           </div>
           <div className='col-md-9'>
-            <div className="form-container ">
+            <div className="form-container " style={{margin:'20px'}}>
               <form onSubmit={handleSubmit}>
-                <h4 className="title">USER PROFILE</h4>
-                <div className="mb-3">
+                <h4 className="title" style={{color:'#ef5e99', fontWeight:'bold'}}>USER PROFILE</h4>
+                <div className="mb-3" >
                   <input
                     type="text"
                     value={username}

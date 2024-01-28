@@ -92,8 +92,7 @@ const MyOrders = () => {
 
       //     return (
       //       <>
-      //         {record.isDelivered && !isNaN(deliveredAtDate) && deliveredAtDate.toString() !== 'Invalid Date'
-      //           ? deliveredAtDate.toLocaleString()
+      //         {record.isDelivered && !isNaN(deliveredAtDate) && deliveredAtDate.toString() !== 'Invalid Date'       //           ? deliveredAtDate.toLocaleString()
       //           : ''}
       //       </>
       //     );
@@ -111,13 +110,13 @@ const MyOrders = () => {
             <UserMenu />
           </div>
           <div className='col-md-9'>
-            <h2>My Orders</h2>
+            <h2 style={{color:'#ef5e99',margin:'20px',fontWeight:'bold'}}>My Orders</h2>
             {loading && <Spin />}
             {error && <p>Error: {error}</p>}
             {orders.length === 0 ? (
               <p>No orders found.</p>
             ) : (
-              <Table dataSource={orders} columns={columns} />
+              <Table dataSource={orders} columns={columns} style={{margin:'20px'}}/>
             )}
           </div>
         </div>
