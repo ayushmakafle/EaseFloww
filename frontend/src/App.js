@@ -169,10 +169,10 @@ function App() {
             height: '250px', 
           }}
         >
-      <Lottie
+       <Lottie
             animationData={animationData}
             className="lottie-animation-home cursor-pointer"
-/>
+        />
           {/* <i className="fa-regular fa-comments"></i> */}
         </button>
         }
@@ -192,23 +192,23 @@ function App() {
             }}
           >
             <button
-  className="close-chat-button"
-  onClick={() => {
-    handleChatToggle();
-    clearChatHistory(); // Clear chat history when closing
-  }}
-  style={{
-    position: 'absolute',
-    top: '10px',
-    right: '10px',
-    borderRadius: '50%', // Set border-radius to 50% for a circle
-    backgroundColor: '#ffafc7', // Set pink background color
-    padding: '5px', // Adjust padding as needed
-    cursor: 'pointer',
-  }}
->
-  <i className="fa-solid fa-circle-xmark"></i>
-</button>
+              className="close-chat-button"
+              onClick={() => {
+                handleChatToggle();
+                clearChatHistory(); // Clear chat history when closing
+              }}
+              style={{
+                position: 'absolute',
+                top: '10px',
+                right: '10px',
+                borderRadius: '50%', // Set border-radius to 50% for a circle
+                backgroundColor: '#ffafc7', // Set pink background color
+                padding: '5px', // Adjust padding as needed
+                cursor: 'pointer',
+              }}
+            >
+              <i className="fa-solid fa-circle-xmark"></i>
+          </button>
 
             <ChatWindow messages={chatMessages} />
             <ChatInput onSendMessage={handleChatSendMessage} />
