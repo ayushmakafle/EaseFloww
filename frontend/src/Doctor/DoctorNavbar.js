@@ -46,24 +46,35 @@ const DoctorNavbar = () => {
       <div className="wrapper">
         <Navbar expand="lg">
           <div className='logo'>
-            <Nav.Link href='/dashboard/doctor'>EASEFLOW</Nav.Link>
+            <Nav.Link href='/dashboard/doctor' className="pb-1 text-white mt-4">
+              EASEFLOW
+            </Nav.Link>
             <Navbar.Toggle aria-controls="navbarNav" />
           </div>
           <Navbar.Collapse id="navbarNav">
             <Nav className="ml-auto">
               <ul>
                 <li>
-                  <Nav.Link href="/dashboard/doctor/update-schedule"> Update Schedule</Nav.Link>
+                  <Nav.Link href="/dashboard/doctor/update-schedule" className="pb-3 text-white"> 
+                    Update Schedule
+                  </Nav.Link>
                 </li>
                 <li>
-                  <Nav.Link href="/dashboard/doctor/doctor-appointments"> Your Appointments</Nav.Link>
+                  <Nav.Link href="/dashboard/doctor/doctor-appointments" className="pb-3 text-white"> 
+                    Your Appointments
+                  </Nav.Link>
                 </li>
                 <li>
-                  <Nav.Link as={Link} to="/dashboard/doctor/doctor-rate-products">Rate Products</Nav.Link>
+                  <Nav.Link as={Link} to="/dashboard/doctor/doctor-rate-products" className="pb-3 text-white">
+                    Rate Products
+                  </Nav.Link>
                 </li>
                 <li>
                   <Nav.Link as={Link} 
-                  onClick={handleLogout}>Logout</Nav.Link>
+                    onClick={handleLogout}
+                    className="pb-3 text-white"
+                  >Logout
+                  </Nav.Link>
                 </li>
 
               </ul>
