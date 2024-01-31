@@ -62,10 +62,10 @@ const CartPage = () => {
       <div>
         <div className="row">
           <div className="col-md-12 animation-cart">
-            <h1 className="text-center bg-light p-2 mb-1" style={{ fontFamily: 'Raleway, sans-serif' }}>
-              {`Hello ${auth?.token && auth?.user?.username}`}
-            </h1>
-            <h4 className="text-center" style={{ fontFamily: 'Raleway, sans-serif' }}>
+            <h2 className="text-center p-2 mb-1 mt-1" style={{ fontFamily: 'sans-serif' , color:'#de5d83'}}>
+              {`Hello ${auth?.token && auth?.user?.username}!`}
+            </h2>
+            <h4 className="text-center" style={{ fontFamily: 'Raleway, sans-serif', color:'#f38dbc' }}>
               {cart?.length
                 ? `You Have ${
                     cart.length
@@ -75,8 +75,8 @@ const CartPage = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-8 animation-cart">
-            <table className="table table-bordered m-3">
+          <div className="animation-cart text-center">
+            <table className="table table-bordered m-3 text-center">
               <thead>
                 <tr>
                   <th scope="col">Image</th>
@@ -131,21 +131,21 @@ const CartPage = () => {
             </table>
           </div>
 
-          <div className="col-md-4 text-center animation-cart">
-            <h2 className="mb-4" style={{fontFamily:'Raleway'}}>Cart Summary</h2>
+          <div className="text-center animation-cart">
+            <h2 className="mb-4" style={{fontFamily:'sans-serif',color:'#de5d83'}}>Cart Summary</h2>
             <hr className="mb-4" />
             <h4 className="mb-2">
-              Total:{" "}
-              <span className="text-info font-weight-bold">{totalPrice()} /-</span>
+              Total : {" "}
+              <span style={{color:'#ef5e99',fontWeight:'bold'}}>{totalPrice()} /-</span>
             </h4>
 
             {auth?.user?.address ? (
               <>
                 <div className="mb-4">
-                  <h4 className="mb-2">Current Address :
-                  <span className="text-info">{auth?.user?.address}</span></h4>
+                  <h4 className="mb-2">Current Address : {" "}
+                  <span style={{color:'#ef5e99',fontWeight:'bold'}}>{auth?.user?.address}</span></h4>
                   <button
-                    className="btn-updateadd"
+                    className="btn-updateadd m-2"
                     onClick={() => navigate("/dashboard/user/profile")}
                     style={{ marginRight: '15px',padding: '10px', textAlign: 'center' }}
                   >
