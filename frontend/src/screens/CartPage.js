@@ -177,6 +177,7 @@ const CartPage = () => {
                         state: "/cart",
                       })
                     }
+                    style={{ marginRight: '15px',padding: '10px', textAlign: 'center' ,backgroundColor:'#ef5e99'}}
                   >
                     Please Login to Checkout
                   </button>
