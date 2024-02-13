@@ -76,7 +76,9 @@ const CartPage = () => {
         </div>
         <div className="row">
           <div className="animation-cart text-center">
-            <table className="table table-bordered m-3 text-center">
+            <div className="mx-auto" style={{ width: '80%' }}>
+
+            <table className="table table-bordered mx-5 text-center">
               <thead>
                 <tr>
                   <th scope="col">Image</th>
@@ -129,6 +131,7 @@ const CartPage = () => {
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
 
           <div className="text-center animation-cart">
