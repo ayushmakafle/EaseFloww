@@ -33,6 +33,18 @@ const AppointmentSchema = new mongoose.Schema({
     endTime: {
         type: String, 
         required: true,
+    },
+    patientName :{
+        type:String,
+        required : true
+    },
+    patientAge :{
+        type:String,
+        required:true
+    },
+    patientContact :{
+        type:String,
+        required:true
     }
 },{timestamps:true})
 

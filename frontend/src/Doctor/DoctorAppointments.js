@@ -32,8 +32,23 @@ const columns = [
     dataIndex: '_id',
     key: '_id',
   },
+    {
+    title: 'Patient Name',
+    dataIndex: 'patientName', // Use 'patientName' as the dataIndex
+    key: 'patientName',
+  },
   {
-    title: 'Patient',
+    title: 'Patient Age',
+    dataIndex: 'patientAge', // Use 'patientAge' as the dataIndex
+    key: 'patientAge',
+  },
+  {
+    title: 'Patient Contact',
+    dataIndex: 'patientContact', // Use 'patientContact' as the dataIndex
+    key: 'patientContact',
+  },
+  {
+    title: 'Booked By',
     dataIndex: 'userInfo',
     render: (text, record) => (
       <span>

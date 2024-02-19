@@ -7,6 +7,7 @@ import moment from 'moment'; //js library to parse,validate,manipulate date obje
 import './BookingPage.css';
 import { useAuth } from '../context/auth';
 import {toast} from 'react-toastify';
+import { Modal, Input } from 'antd';
 
 const BookingPage = () => {
   const params = useParams();
@@ -18,6 +19,10 @@ const BookingPage = () => {
   const [endTime, setEndTime] = useState(null);
   const [isAvailable, setIsAvailable] = useState(false);
   const [time, setTime] = useState(null);
+  const [showModal, setShowModal] = useState(false); // Define showModal state
+  const [patientName, setPatientName] = useState(''); // Define patientName state
+  const [patientAge, setPatientAge] = useState(''); // Define patientAge state
+  const [patientContact, setPatientContact] = useState(''); // Define patientContact state
 
   // New state variable for showing the notification
   const [showNotification, setShowNotification] = useState(false);
@@ -77,34 +82,52 @@ const BookingPage = () => {
     }
   };
 
-  //for booking
-  const handleBooking = async () => {
-  try {
-    console.log("Selected Date:", date);
-    console.log("Selected Time:", time);
-    if (!isAvailable) {
-      toast.error("Appointment slot not available. Please check availability first.");
-      return;
+ const handleBooking = async () => {
+    try {
+      if (!isAvailable) {
+        toast.error("Appointment slot not available. Please check availability first.");
+        return;
+      }
+
+      // Show modal for patient info
+      setShowModal(true);
+    } catch (error) {
+      console.error(error);
     }
-    // Use moment to format the selected time
-    const formattedTime = moment(time, 'HH:mm').format('HH:mm');    
-    const selectedDate = moment(date, 'DD-MM-YYYY').format('DD-MM-YYYY');
-    const res = await axios.post(`/api/v1/appointment/book-appointment`, {
-      doctorID: params.doctorId,
-      userID: auth.user._id,
-      doctorInfo: doctor.name,
-      userInfo: auth.user.username,
-      date: selectedDate, 
-      startTime: formattedTime,
-      endTime: moment(`${selectedDate} ${formattedTime}`, 'DD-MM-YYYY HH:mm').add(1, 'hours').format('HH:mm'),
-    });
-    if (res.data.success) {
-      toast.success(res.data.message);
+  };
+
+  const confirmBooking = async () => {
+    try {
+      if (!patientName || !patientAge || !patientContact) {
+        toast.error("Please fill in all patient information.");
+        return;
+      }
+
+      // Perform booking with patient information
+      const formattedTime = moment(time, 'HH:mm').format('HH:mm');
+      const selectedDate = moment(date, 'DD-MM-YYYY').format('DD-MM-YYYY');
+      const res = await axios.post(`/api/v1/appointment/book-appointment`, {
+        doctorID: params.doctorId,
+        userID: auth.user._id,
+        doctorInfo: doctor.name,
+        userInfo: auth.user.username,
+        date: selectedDate,
+        startTime: formattedTime,
+        endTime: moment(`${selectedDate} ${formattedTime}`, 'DD-MM-YYYY HH:mm').add(1, 'hours').format('HH:mm'),
+        patientName,
+        patientAge,
+        patientContact,
+      });
+      if (res.data.success) {
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setShowModal(false);
     }
-  } catch (error) {
-    console.error(error);
-  }
-};
+  };
+
 
   // Render loading state
   if (!doctor) {
@@ -218,7 +241,7 @@ const disabledTime = (current) => {
       
       {/* Conditionally render the notification */}
       {showNotification && (
-        <div className="notification">
+        <div className="notification" style={{color:'red'}}>
           {notificationMessage}
         </div>
       )}
@@ -234,6 +257,17 @@ const disabledTime = (current) => {
         )}
       </div>
     </div>
+    {/* Modal for patient information */}
+      <Modal
+        title="Enter Patient Information"
+        visible={showModal}
+        onOk={confirmBooking}
+        onCancel={() => setShowModal(false)}
+      >
+        <Input placeholder="Patient Name" value={patientName} onChange={e => setPatientName(e.target.value)} />
+        <Input placeholder="Patient Age" value={patientAge} onChange={e => setPatientAge(e.target.value)} />
+        <Input placeholder="Patient Contact" value={patientContact} onChange={e => setPatientContact(e.target.value)} />
+      </Modal>
   </>
  );
 };
