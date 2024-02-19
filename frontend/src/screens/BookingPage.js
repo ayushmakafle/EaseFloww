@@ -179,10 +179,29 @@ const disabledTime = (current) => {
   );
 };
 
-
+// CSS for custom styling
+const customStyles = `
+.ant-input:focus,
+.ant-input:hover,
+.ant-picker:hover .ant-picker-input,
+.ant-picker-focused .ant-picker-input {
+  border-color: pink;
+  box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2);
+}
+.ant-modal-title {
+  text-align: center;
+  color: pink;
+}
+.ant-picker:hover .ant-picker-input,
+.ant-picker-focused .ant-picker-input {
+  border-color: pink;
+}
+`;
 
   return (
     <>
+          <style>{customStyles}</style>
+
       {/* <MainNavbar /> */}
       <div className="doctor-details mt-2">
       
@@ -262,16 +281,35 @@ const disabledTime = (current) => {
       </div>
     </div>
     {/* Modal for patient information */}
-      <Modal
-        title="Enter Patient Information"
-        visible={showModal}
-        onOk={confirmBooking}
-        onCancel={() => setShowModal(false)}
-      >
-        <Input placeholder="Patient Name" value={patientName} onChange={e => setPatientName(e.target.value)} />
-        <Input placeholder="Patient Age" value={patientAge} onChange={e => setPatientAge(e.target.value)} />
-        <Input placeholder="Patient Contact" value={patientContact} onChange={e => setPatientContact(e.target.value)} />
-      </Modal>
+    <Modal
+      title={<span style={{ color: '#ef5e99' }}>Enter Patient Information</span>}
+      style={{ textAlign: 'center' }}  // Add styles to the title
+      visible={showModal}
+      onOk={confirmBooking}
+      onCancel={() => setShowModal(false)}
+      okButtonProps={{ style: { backgroundColor: '#ef5e99', borderColor: '#ef5e99' } }} // Add inline styles to make the button pink
+      cancelButtonProps={{ className: "cancel-btn" }} // Optionally, you can add styling to the cancel button
+    >
+    <Input
+      style={{ margin: '10px 0' }} // Add margin to the input fields
+      placeholder="Patient Name"
+      value={patientName}
+      onChange={e => setPatientName(e.target.value)}
+    />
+    <Input
+      style={{ margin: '10px 0' }} // Add margin to the input fields
+      placeholder="Patient Age"
+      value={patientAge}
+      onChange={e => setPatientAge(e.target.value)}
+    />  
+    <Input
+      style={{ margin: '10px 0' }} // Add margin to the input fields
+      placeholder="Patient Contact"
+      value={patientContact}
+      onChange={e => setPatientContact(e.target.value)}
+    />
+  </Modal>
+
   </>
  );
 };
