@@ -121,6 +121,9 @@ const BookingPage = () => {
       });
       if (res.data.success) {
         toast.success(res.data.message);
+        setShowNotification(true); // Show the success notification
+        setNotificationMessage("Appointment booked successfully"); // Set notification message
+      setIsAvailable(false); // Hide the "Book Now" button
       }
     } catch (error) {
       console.error(error);
