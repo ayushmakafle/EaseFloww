@@ -69,10 +69,11 @@ const BookingPage = () => {
       console.log("Backend Response:", res.data);
       if (res.data.success) {
         setIsAvailable(true);
+        setShowNotification(false); 
         toast.success(res.data.message);
       } else {
         setIsAvailable(false);
-         setNotificationMessage(res.data.message); // Set notification message
+        setNotificationMessage(res.data.message); // Set notification message
         setShowNotification(true); // Show the notification
         toast.error(res.data.message);
       }
