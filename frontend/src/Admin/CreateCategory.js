@@ -86,7 +86,7 @@ const CreateCategory = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error("Somtihing went wrong");
+      toast.error("Something went wrong");
     }
   };
 

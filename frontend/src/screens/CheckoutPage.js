@@ -4,6 +4,7 @@ import { useCart } from '../context/cart';
 import EcomHeader from '../components/EcomHeader';
 import axios from 'axios';
 import '../styles/CheckoutPage.css';
+import { toast } from 'react-toastify';
 
 const CheckoutPage = () => {
 
@@ -76,7 +77,7 @@ const CheckoutPage = () => {
       })
       .catch(error => {
         console.error('Error sending payment data:', error);
-        // Handle error or show an error message to the user
+        toast.error("Enter all details to proceed with payment");
       });
   };
 
@@ -84,53 +85,16 @@ const CheckoutPage = () => {
     <>
     {/* <MainNavbar /> */}
     <EcomHeader />
-    <div className='text-center border p-4 mt-4 animated-btnn'>
-      <h2 style={{fontFamily:'Raleway'}} className='mb-4'>Please enter your details to proceed with payment</h2>
-      <form >
-   <label style={{ fontFamily:'Poppins'}}>
-    Name:
-   <input
-  type="text"
-  name="name"
-   value={paymentData.customer_info.name}
-            onChange={handleInputChange}
-            style={{ width: '100%', padding: '8px', boxSizing: 'border-box',borderRadius:'12px' }}
-/>
-  </label>
-  <br />
-  <label style={{ fontFamily:'Poppins'}}>
-    Phone:
-    <input
-  type="tel"
-  name="phone"
-  value={paymentData.customer_info.phone}
-  onChange={handleInputChange}
-  style={{ width: '100%', padding: '8px', boxSizing: 'border-box',borderRadius:'12px' }}
-/>
-  </label >
-  <br />
-  <label style={{ fontFamily:'Poppins'}}>
-    Email:
-   <input
-  type="email"
-  name="email"
-  value={paymentData.customer_info.email}
-  onChange={handleInputChange}
-  style={{ width: '100%', padding: '8px', boxSizing: 'border-box',borderRadius:'12px' }}
-/>
-  </label>
-  <br />
-  
-</form>
-
-
-       <table className='table'>
+     <div className="checkout-container">
+        <div className="row">
+          <div className="col-md-9">
+            <table className="table text-center">      
         <thead>
           <tr>
-            <th>Item Name</th>
-            <th>Number of Items</th>
-            <th>Price per Item</th>
-            <th>Item Total</th>
+            <th style={{color:'#de5d83'}}>Item Name</th>
+            <th style={{color:'#de5d83'}}>Number of Items</th>
+            <th style={{color:'#de5d83'}}>Price per Item</th>
+            <th style={{color:'#de5d83'}}>Item Total</th>
           </tr>
         </thead>
         <tbody>
@@ -144,10 +108,47 @@ const CheckoutPage = () => {
           ))}
         </tbody>
       </table>
-      <h3 className='mt-4'>Grand Total: NPR <span className='font-weight-bold'>{calculateTotal()}/-</span></h3>
-      <div className='payment-options mt-4'>
+      </div>
+       <div className="col-md-3">
+        <h3 className='mt-4 mx-4 text-center' style={{fontFamily:'sans-serif',color:'#de5d83'}}> Grand Total: </h3>
+        <h4 className='font-weight-bold text-center' style={{fontFamily:'sans-serif',color:'#ef5e99'}}> NPR <span>{calculateTotal()}/-</span></h4>
+        </div>
+      <h4 style={{fontFamily:'sans-serif',color:'#de5d83'}} className='mb-1 text-center'>
+        Please enter your details to proceed with payment</h4>
+      
+      <form className='text-center' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  
+      <input
+        type="text"
+        name="name"
+        placeholder='Enter your name'
+        value={paymentData.customer_info.name}
+        onChange={handleInputChange}
+        style={{ border:'1px solid pink',width: '40%', padding: '8px', marginBottom: '10px', boxSizing: 'border-box', borderRadius: '12px', boxShadow: '0 0 5px 0 #ff69b4', }} 
+      />
+      <input
+        type="tel"
+        name="phone"
+        placeholder='Enter your contact number'
+        value={paymentData.customer_info.phone}
+        onChange={handleInputChange}
+        style={{ border:'1px solid pink',width: '40%', padding: '8px', marginBottom: '10px', boxSizing: 'border-box', borderRadius: '12px', boxShadow: '0 0 5px 0 #ff69b4', }} 
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder='Enter your email'
+        value={paymentData.customer_info.email}
+        onChange={handleInputChange}
+        style={{ border:'1px solid pink',width: '40%', padding: '8px', marginBottom: '10px', boxSizing: 'border-box', borderRadius: '12px', boxShadow: '0 0 5px 0 #ff69b4', }} 
+      />
+ 
+    </form>
+    
+      <div className='payment-options text-center'>
         <button className='btn-paykhalti'  onClick={handleKhaltiButtonClick}>Pay with Khalti</button>
       </div>
+    </div>
     </div>
 
     </>

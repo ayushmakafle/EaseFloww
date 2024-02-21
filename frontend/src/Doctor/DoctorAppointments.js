@@ -16,6 +16,13 @@ const DoctorAppointments = () => {
       console.log(auth)
       console.log(auth.doctor._id)
       const response = await axios.get(`/api/v1/appointment/doctor-appointments/${auth.doctor._id}`);
+      const sortedAppointments = response.data.data.sort((a, b) => {
+      // Convert dates to moment objects for comparison
+      const dateA = moment(a.date, 'DD-MM-YYYY');
+      const dateB = moment(b.date, 'DD-MM-YYYY');
+      // Sort in descending order
+      return dateB - dateA;
+    });
       setAppointments(response.data.data);
     } catch (error) {
       console.error("Error fetching appointments:", error);

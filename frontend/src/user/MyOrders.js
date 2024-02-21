@@ -41,7 +41,7 @@ const MyOrders = () => {
       key: '_id',
     },
     {
-      title: 'Total Price',
+      title: 'Total Price in NPR',
       dataIndex: 'totalPrice',
       key: 'totalPrice',
     },

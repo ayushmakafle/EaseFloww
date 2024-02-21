@@ -8,6 +8,7 @@ body {
   
   /* Container styling */
   .container {
+    background-color: transparent;
     max-width: 1200px;
     margin: 0 auto;
   }
@@ -16,16 +17,7 @@ body {
   .text-center {
     text-align: center;
   }
-  
-  /* Form styling */
-  form {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 10px;
-  }
+
   
   input {
     width: 100%;
@@ -36,6 +28,7 @@ body {
   
 /* Table styling */
 .table {
+  margin: 20px;
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -49,7 +42,7 @@ body {
   }
   
   th {
-color: #ffc0cb; 
+    color: #ffc0cb; 
     font-family: 'Raleway', sans-serif; 
   }
   td {
@@ -59,7 +52,7 @@ color: #ffc0cb;
   
   /* Grand Total styling */
   .payment-options {
-    margin-top: 20px;
+    margin: 50px;
   }
   
   .btn-primary {
