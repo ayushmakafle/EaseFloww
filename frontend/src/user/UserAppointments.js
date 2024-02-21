@@ -38,6 +38,11 @@ const UserAppointments = () => {
       key: 'doctorInfo',
     },
     {
+      title: 'Patient',
+      dataIndex: 'patientName',
+      key:'patientName'
+    },
+    {
       title: 'Date',
       dataIndex: 'date',
       key: 'date',
