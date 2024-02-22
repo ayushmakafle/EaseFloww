@@ -101,8 +101,7 @@ const DoctorRateProducts = () => {
                   margin: "10px",
                 }}
               >
-                <Link
-                  to={`/dashboard/doctor/product/${p.slug}`}
+                <div
                   className="product-link"
                 >
                   <img
@@ -111,7 +110,7 @@ const DoctorRateProducts = () => {
                     alt={p.name}
                     style={{ height: "200px", objectFit: "cover" }}
                   />
-                </Link>
+                </div>
                 <div className="card-body">
                   <h5
                     className="card-title"
