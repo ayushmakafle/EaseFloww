@@ -81,7 +81,7 @@ const DoctorRateProducts = () => {
           </h2>
           <p
             className="text-center mb-4"
-            style={{ color: "#6c757d", fontSize: "1.2rem", margin: "0 10px" }}
+            style={{ color: "#6c757d", fontSize: "1rem", margin: "0 10px" }}
           >
             At EaseFlow, we prioritize our users' menstrual health. Your
             expertise is invaluable in helping us ensure they receive the best
@@ -99,11 +99,10 @@ const DoctorRateProducts = () => {
                   height: "500px",
                   padding: "20px",
                   margin: "10px",
+                  border: "2px solid #ff99cc",
                 }}
               >
-                <div
-                  className="product-link"
-                >
+                <div className="product-link">
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
@@ -114,7 +113,10 @@ const DoctorRateProducts = () => {
                 <div className="card-body">
                   <h5
                     className="card-title"
-                    style={{ color: "#FF06BF", fontSize: "1.5rem" }}
+                    style={{
+                      color: "#FF06BF",
+                      fontSize: "1.5rem",
+                    }}
                   >
                     {p.name}
                   </h5>
