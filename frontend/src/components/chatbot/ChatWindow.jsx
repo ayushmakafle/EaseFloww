@@ -24,8 +24,10 @@ const ChatWindow = ({ messages }) => {
                             <i className="fa-solid fa-headset" style={{ color: '#d74470' }}></i>
                         </div>
                         <div className="message bot">
-                            <div className="message-content">
-                                Welcome! How can we assist you today?
+                            <div className="message-bubble">
+                                <div className="message-content">
+                                    Welcome! How can we assist you today?
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -35,7 +37,7 @@ const ChatWindow = ({ messages }) => {
             {messages.map((message, index) => (
                 <div key={index} style={{ display: 'flex', alignItems: 'flex-end' }}>
                     {message.sender === 'bot' && (
-                        <div className="icon" style={{ marginRight: '10px' }}>
+                        <div className="icon" style={{ marginRight: '10px' }} title="EaseFlow's chatbot: Will help you with common menstrual health questions">
                             <i className="fa-solid fa-headset" style={{ color: '#d74470' }}></i>
                         </div>
                     )}
@@ -47,10 +49,11 @@ const ChatWindow = ({ messages }) => {
                         </div>
                     </div>
                 </div>
-            ))}
+            ))
+            }
 
 
-        </div>
+        </div >
     );
 };
 
