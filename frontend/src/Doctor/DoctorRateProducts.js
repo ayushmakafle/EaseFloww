@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import DoctorNavbar from "./DoctorNavbar";
 import axios from "axios";
@@ -7,21 +5,25 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { Rate } from "antd";
 import { useAuth } from "../context/auth";
+import Loading from '../components/loadinganimation.svg'; // Import your loading SVG
 
 const DoctorRateProducts = () => {
   const { auth } = useAuth();
   const doctorId = auth?.user?._id;
 
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); // State for loading indicator
 
   // Get all products
   const getAllProducts = async () => {
     try {
       const { data } = await axios.get("/api/v1/product/get-product");
       setProducts(data.products);
+      setLoading(false); // Set loading to false when data is fetched
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
+      setLoading(false); // Set loading to false in case of error
     }
   };
 
@@ -89,61 +91,67 @@ const DoctorRateProducts = () => {
             available on our platform.
           </p>
 
-          <div className="d-flex flex-wrap justify-content-around">
-            {products?.map((p) => (
-              <div
-                key={p._id}
-                className="card m-3"
-                style={{
-                  width: "300px",
-                  height: "500px",
-                  padding: "20px",
-                  margin: "10px",
-                  border: "2px solid #ff99cc",
-                }}
-              >
-                <div className="product-link">
-                  <img
-                    src={`/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top"
-                    alt={p.name}
-                    style={{ height: "200px", objectFit: "cover" }}
-                  />
-                </div>
-                <div className="card-body">
-                  <h5
-                    className="card-title"
-                    style={{
-                      color: "#FF06BF",
-                      fontSize: "1.5rem",
-                    }}
-                  >
-                    {p.name}
-                  </h5>
-                  <p
-                    className="card-text"
-                    style={{
-                      overflow: "hidden",
-                      display: "-webkit-box",
-                      WebkitBoxOrient: "vertical",
-                      WebkitLineClamp: 3,
-                      maxHeight: "3em",
-                      fontSize: "1rem",
-                    }}
-                  >
-                    {p.description}
-                  </p>
-                  <div className="text-center mt-3">
-                    <Rate
-                      allowHalf
-                      defaultValue={p.averageRating}
-                      onChange={(rating) => handleRateProduct(p._id, rating)}
+          {loading ? ( // Render loading SVG if loading is true
+            <div className="text-center">
+              <img src={Loading} alt="Loading" />
+            </div>
+          ) : (
+            <div className="d-flex flex-wrap justify-content-around">
+              {products?.map((p) => (
+                <div
+                  key={p._id}
+                  className="card m-3"
+                  style={{
+                    width: "300px",
+                    height: "500px",
+                    padding: "20px",
+                    margin: "10px",
+                    border: "2px solid #ff99cc",
+                  }}
+                >
+                  <div className="product-link">
+                    <img
+                      src={`/api/v1/product/product-photo/${p._id}`}
+                      className="card-img-top"
+                      alt={p.name}
+                      style={{ height: "200px", objectFit: "cover" }}
                     />
                   </div>
+                  <div className="card-body">
+                    <h5
+                      className="card-title"
+                      style={{
+                        color: "#FF06BF",
+                        fontSize: "1.5rem",
+                      }}
+                    >
+                      {p.name}
+                    </h5>
+                    <p
+                      className="card-text"
+                      style={{
+                        overflow: "hidden",
+                        display: "-webkit-box",
+                        WebkitBoxOrient: "vertical",
+                        WebkitLineClamp: 3,
+                        maxHeight: "3em",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      {p.description}
+                    </p>
+                    <div className="text-center mt-3">
+                      <Rate
+                        allowHalf
+                        defaultValue={p.averageRating}
+                        onChange={(rating) => handleRateProduct(p._id, rating)}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>

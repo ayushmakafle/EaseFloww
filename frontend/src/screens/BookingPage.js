@@ -8,6 +8,8 @@ import './BookingPage.css';
 import { useAuth } from '../context/auth';
 import {toast} from 'react-toastify';
 import { Modal, Input } from 'antd';
+import { ReactComponent as Loading } from '../components/loadinganimation.svg';
+
 
 const BookingPage = () => {
   const params = useParams();
@@ -19,12 +21,11 @@ const BookingPage = () => {
   const [endTime, setEndTime] = useState(null);
   const [isAvailable, setIsAvailable] = useState(false);
   const [time, setTime] = useState(null);
-  const [showModal, setShowModal] = useState(false); // Define showModal state
-  const [patientName, setPatientName] = useState(''); // Define patientName state
-  const [patientAge, setPatientAge] = useState(''); // Define patientAge state
-  const [patientContact, setPatientContact] = useState(''); // Define patientContact state
+  const [showModal, setShowModal] = useState(false); 
+  const [patientName, setPatientName] = useState(''); 
+  const [patientAge, setPatientAge] = useState(''); 
+  const [patientContact, setPatientContact] = useState(''); 
 
-  // New state variable for showing the notification
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
 
@@ -137,8 +138,7 @@ const BookingPage = () => {
   if (!doctor) {
     return (
       <>
-        {/* <MainNavbar /> */}
-        <p className='center'>Loading...</p>
+        <Loading />
       </>
     );
   }

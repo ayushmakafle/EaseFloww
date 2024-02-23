@@ -5,6 +5,7 @@ import DoctorCard from '../components/DoctorCard';
 import { toast } from 'react-toastify';
 import {useAuth} from '../context/auth'
 import { Link } from 'react-router-dom';
+import { ReactComponent as Loading } from '../components/loadinganimation.svg';
 
 const DoctorProfile = () => {
   const [auth, setAuth] = useAuth();
@@ -80,7 +81,7 @@ const DoctorProfile = () => {
             <div style={styles.fees}>{`Fees per Consultation: NRs. ${doctor.feesPerConsultation}/-`}</div>
           </div>
         ) : (
-          <p>Loading...</p>
+          <Loading />
         )}
       </div>
        <div style={{ textAlign: 'center' }}>
