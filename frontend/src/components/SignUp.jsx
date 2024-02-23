@@ -18,21 +18,21 @@ const SignUp = () => {
     e.preventDefault();
 
     // Validation checks
-    /*  const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
-     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-     const phoneRegex = /^\d{10}$/;
- 
-     if (!password.match(passwordRegex)) {
-       return toast.error('Password must be at least 8 characters, including one special character.');
-     }
- 
-     if (!email.match(emailRegex)) {
-       return toast.error('Please enter a valid email address.');
-     }
- 
-     if (!phonenumber.match(phoneRegex)) {
-       return toast.error('Phone number should be 10 digits.');
-     } */
+    const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{10}$/;
+
+    if (!password.match(passwordRegex)) {
+      return toast.error('Password must be at least 8 characters, including one special character.');
+    }
+
+    if (!email.match(emailRegex)) {
+      return toast.error('Please enter a valid email address.');
+    }
+
+    if (!phonenumber.match(phoneRegex)) {
+      return toast.error('Phone number should be 10 digits.');
+    }
 
     try {
       const res = await axios.post(`/api/v1/auth/register`, {
@@ -65,7 +65,7 @@ const SignUp = () => {
           <form className="space-y-1"
             onSubmit={handleSubmit}>
             <div>
-              <label htmlFor='username' className='form-label mt-0'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+              <label htmlFor='username' className='form-label mt-0' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Name
               </label>
               <input
@@ -82,7 +82,7 @@ const SignUp = () => {
             </div>
 
             <div className='form-group'>
-              <label htmlFor='password' className='form-label mt-0'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+              <label htmlFor='password' className='form-label mt-0' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Password
               </label>
               <input
@@ -111,7 +111,7 @@ const SignUp = () => {
               )}
             </div>
             <div>
-              <label htmlFor='email' className='form-label mt-0'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+              <label htmlFor='email' className='form-label mt-0' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Email
               </label>
               <input
@@ -127,7 +127,7 @@ const SignUp = () => {
               />
             </div>
             <div>
-              <label htmlFor='address' className='form-label mt-0'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+              <label htmlFor='address' className='form-label mt-0' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Address
               </label>
               <input
@@ -143,7 +143,7 @@ const SignUp = () => {
               />
             </div>
             <div>
-              <label htmlFor='phonenumber' className='form-label mt-0'style={{color:'#ef5e99',fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+              <label htmlFor='phonenumber' className='form-label mt-0' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Phone Number
               </label>
               <input
@@ -159,35 +159,35 @@ const SignUp = () => {
               />
             </div>
             <div>
-            <button
+              <button
                 type='submit'
-                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
+                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700' style={{ borderRadius: '8px' }}>
                 Signup
               </button>
             </div>
-        <div className='text-center mt-6'>
-          <div className='flex items-center'>
-            <h5 className='inline-block mr-2 px-4'>Already a member?</h5>
-            <Link to='/Login' className='text-pink-600 inline-block'>
-              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
-                Login
-              </button>
-            </Link>
-          </div>
-        </div>
-        <div className='text-center mt-1'>
-          <div className='flex items-center'>
-            <h5 className='inline-block mr-2 px-4'> An EaseFlow Doctor?</h5>
-            <Link to='/doctor-login' className='text-pink-600'>
-              <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700'style={{ borderRadius: '8px' }}>
-                Doctor Login
-              </button>
-            </Link>
+            <div className='text-center mt-6'>
+              <div className='flex items-center'>
+                <h5 className='inline-block mr-2 px-4'>Already a member?</h5>
+                <Link to='/Login' className='text-pink-600 inline-block'>
+                  <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700' style={{ borderRadius: '8px' }}>
+                    Login
+                  </button>
+                </Link>
+              </div>
             </div>
-          </div>
+            <div className='text-center mt-1'>
+              <div className='flex items-center'>
+                <h5 className='inline-block mr-2 px-4'> An EaseFlow Doctor?</h5>
+                <Link to='/doctor-login' className='text-pink-600'>
+                  <button className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700' style={{ borderRadius: '8px' }}>
+                    Doctor Login
+                  </button>
+                </Link>
+              </div>
+            </div>
           </form>
         </div>
-        
+
       </div>
     </div>
   );
