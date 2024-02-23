@@ -30,14 +30,40 @@
     margin-right: 10px; /* Add some space between the icon and the message content */
 }
 
-.user {
-  background-color: #f0abea; /* Light pink for user messages */
+/* ChatWindow.css */
+
+.message {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.message-bubble {
+    background-color: #f3f4f6;
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+.message.user .message-bubble {
+    background-color: #f0abea;
+    color: #000;
+    border-bottom-right-radius: 5px;
+    align-self: flex-end;
+}
+
+.message.bot .message-bubble {
+    background-color: #ffafc7;
+    color: #000;
+    border-bottom-left-radius: 5px;
+}
+
+/* .user {
+ background-color: #f0abea; 
   align-self: flex-end;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .bot {
-  background-color: #ffafc7; /* Darker pink for bot messages */
+  background-color: #ffafc7; 
   align-self:flex-start;
   font-family:Georgia, 'Times New Roman', Times, serif;
-}
+} */

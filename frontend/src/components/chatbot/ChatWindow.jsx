@@ -40,12 +40,15 @@ const ChatWindow = ({ messages }) => {
                         </div>
                     )}
                     <div className={`message ${message.sender === 'user' ? 'user' : 'bot'}`} style={{ marginLeft: message.sender === 'user' ? 'auto' : '0' }}>
-                        <div className="message-content">
-                            {message.content}
+                        <div className="message-bubble">
+                            <div className="message-content">
+                                {message.content}
+                            </div>
                         </div>
                     </div>
                 </div>
             ))}
+
 
         </div>
     );
