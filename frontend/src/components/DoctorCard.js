@@ -1,9 +1,11 @@
-// DoctorCard.js
 import React from 'react';
 import './DoctorCard.css';
+import { useNavigate } from 'react-router-dom';
 
 const DoctorCard = ({ doctor }) => {
+  const navigate = useNavigate()
   const {
+    _id,
     name,
     specialization,
     hospitalOrClinic,
@@ -37,7 +39,12 @@ const DoctorCard = ({ doctor }) => {
         </div>
         <br></br>
         <div className="fees">{`Fees per Consultation: NRs. ${feesPerConsultation}/-`}</div>
-
+        <button className='btn btn-primary ms-1'
+          style={{backgroundColor:'#de5d83'}}
+          onClick={() => navigate(`/book-appointment/${_id}`)}
+        >
+          Book an Appointment
+        </button>
       </div>
     );
   } catch (error) {

@@ -25,7 +25,7 @@ const AllDoctors = () => {
 
   useEffect(() => {
     fetchDoctors();
-  }, []); // Run this effect only once on component mount
+  }, []);
 
   return (
 <>
