@@ -20,7 +20,7 @@ const ChatInput = ({ onSendMessage }) => {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 placeholder="What's up?"
-                style={{ flex: '1', padding: '10px', backgroundColor: 'white' }}
+                style={{ flex: '1', padding: '10px', backgroundColor: 'white', }}
             />
             <button type="submit" style={{ padding: '10px', borderRadius: '5px', color: '#ccc', border: 'none' }}>
                 <i className="fa-solid fa-paper-plane"></i>

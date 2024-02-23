@@ -164,8 +164,8 @@ function App() {
             position: 'fixed',
             bottom: '10px',
             right: '10px',
-            zIndex: 999, // Make sure it's above other elements
-            width: '250px', // Set your desired width
+            zIndex: 999, 
+            width: '250px', 
             height: '250px', 
           }}
         >
@@ -189,6 +189,7 @@ function App() {
               zIndex: 1000, 
               width: '30%',
               maxWidth: '500px', 
+              borderRadius: '20px', // Adjust the value as needed
             }}
           >
             <button
