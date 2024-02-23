@@ -183,27 +183,27 @@ function App() {
             className="chat-window-container"
             style={{
               position: 'fixed',
-              top: '50%',
-              left: '50%',
+              top: '40%',
+              left: '83%',
               transform: 'translate(-50%, -50%)',
-              zIndex: 1000, // Make sure it's above the button
-              width: '75%', // Set the width to 50%
-              maxWidth: '500px', // Set a maximum width if needed
+              zIndex: 1000, 
+              width: '30%',
+              maxWidth: '500px', 
             }}
           >
             <button
               className="close-chat-button"
               onClick={() => {
                 handleChatToggle();
-                clearChatHistory(); // Clear chat history when closing
+                clearChatHistory();
               }}
               style={{
                 position: 'absolute',
                 top: '10px',
                 right: '10px',
-                borderRadius: '50%', // Set border-radius to 50% for a circle
-                backgroundColor: '#ffafc7', // Set pink background color
-                padding: '5px', // Adjust padding as needed
+                borderRadius: '50%', 
+                backgroundColor: '#ffafc7', 
+                padding: '5px', 
                 cursor: 'pointer',
               }}
             >
