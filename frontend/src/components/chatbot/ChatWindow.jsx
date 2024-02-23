@@ -1,11 +1,22 @@
-// ChatWindow.jsx
-
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './ChatWindow.css';
 
 const ChatWindow = ({ messages }) => {
+    const chatWindowRef = useRef(null);
+
+    useEffect(() => {
+        // Scroll to the bottom of the chat window when messages change
+        scrollToBottom();
+    }, [messages]);
+
+    const scrollToBottom = () => {
+        if (chatWindowRef.current) {
+            chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+        }
+    };
+
     return (
-        <div className="chat-window">
+        <div className="chat-window" ref={chatWindowRef} style={{ overflowY: 'auto', maxHeight: '300px' }}>
             {messages.length === 0 && (
                 <div className="message bot">
                     <div className="icon">

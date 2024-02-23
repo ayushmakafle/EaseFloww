@@ -189,10 +189,10 @@ function App() {
               zIndex: 1000, 
               width: '30%',
               maxWidth: '500px', 
-              borderRadius: '20px', // Adjust the value as needed
+              borderRadius: '20px', 
             }}
           >
-            <button
+            {/* <button
               className="close-chat-button"
               onClick={() => {
                 handleChatToggle();
@@ -209,7 +209,7 @@ function App() {
               }}
             >
               <i className="fa-solid fa-circle-xmark"></i>
-          </button>
+          </button> */}
 
             <ChatWindow messages={chatMessages} />
             <ChatInput onSendMessage={handleChatSendMessage} />

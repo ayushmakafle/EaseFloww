@@ -19,7 +19,7 @@ const ChatInput = ({ onSendMessage }) => {
                 type="text"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
-                placeholder="What's up?"
+                placeholder="Type your message..."
                 style={{ flex: '1', padding: '10px', backgroundColor: 'white', }}
             />
             <button type="submit" style={{ padding: '10px', borderRadius: '5px', color: '#ccc', border: 'none' }}>
