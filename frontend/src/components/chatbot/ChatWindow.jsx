@@ -20,7 +20,7 @@ const ChatWindow = ({ messages }) => {
             {messages.length === 0 && (
                 <>
                     <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-                        <div className="icon" style={{ marginRight: '10px' }}>
+                        <div className="icon" style={{ marginRight: '10px' }} title="EaseFlow's chatbot: Will help you with common menstrual health questions">
                             <i className="fa-solid fa-headset" style={{ color: '#d74470' }}></i>
                         </div>
                         <div className="message bot">

@@ -44,7 +44,7 @@ const MainNavbar = () => {
             <Navbar.Toggle aria-controls="navbarNav" />
           </ul>
           <Navbar.Collapse id="navbarNav">
-            <Nav className="ml-auto">
+            <Nav className="mx-3">
               <ul className="navbar-nav">
                 <li className="nav-item mt-0">
                   <LinkContainer to="/appointment-homepage">
@@ -52,54 +52,54 @@ const MainNavbar = () => {
                   </LinkContainer>
                 </li>
 
-                {/*  <li className="nav-item mt-0">
-                  <LinkContainer to="/queries">
-                    <Nav.Link className="pb-3 text-white">Queries!</Nav.Link>
-                  </LinkContainer>
-                </li> */}
                 <li className="nav-item mt-0">
                   <LinkContainer to="/ecommerce">
                     <Nav.Link className="pb-3 text-white"> Products</Nav.Link>
                   </LinkContainer>
                 </li>
-                {auth.user &&
+                {auth.user && (
                   <li className="nav-item mt-0">
                     <LinkContainer to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'
                       }`}>
                       <Nav.Link className="pb-3 text-white">Dashboard</Nav.Link>
                     </LinkContainer>
                   </li>
-                }
-
-                {!auth.user ? (
-                  <li className="nav-item mt-0">
-                    <LinkContainer to="/login" className="active">
-                      <Nav.Link className="pb-3 text-white">
-                        <i className="fa-solid fa-user"></i>
-                      </Nav.Link>
-                    </LinkContainer>
-                  </li>
-                ) : (
-
-                  <NavDropdown title={<i className="fa-solid fa-user mb-3  text-white"></i>} id="navbarDropdown">
-                    <button className='btn btn-transparent' onClick={handleLogout}>
-                      <NavDropdown.Item className="pb-3">Logout</NavDropdown.Item>
-                    </button>
-
-                  </NavDropdown>
                 )}
-                <li className="nav-item mt-0">
-                  <LinkContainer to="/cart" className="p-4 m-4">
-                    <Badge count={cart?.length} showZero>
-                      <Nav.Link as={Link} to="/cart" className="pb-3 text-white">
-                        <i className="fa-solid fa-cart-shopping"></i>
-                      </Nav.Link>
-                    </Badge>
-                  </LinkContainer>
-                </li>
               </ul>
             </Nav>
           </Navbar.Collapse>
+          <Nav className="ml-auto">
+            <ul className="navbar-nav">
+              {!auth.user ? (
+                <Nav className="ml-auto">
+                  <ul className="navbar-nav">
+                    <li className="nav-item mt-0">
+                      <LinkContainer to="/login" className="active">
+                        <Nav.Link className="pb-3 text-white">
+                          <i className="fa-solid fa-user"></i>
+                        </Nav.Link>
+                      </LinkContainer>
+                    </li>
+                  </ul>
+                </Nav>
+              ) : (
+                <NavDropdown title={<i className="fa-solid fa-user mb-3  text-white"></i>} id="navbarDropdown">
+                  <button className='btn btn-transparent' onClick={handleLogout}>
+                    <NavDropdown.Item className="pb-3">Logout</NavDropdown.Item>
+                  </button>
+                </NavDropdown>
+              )}
+              <li className="nav-item mt-0">
+                <LinkContainer to="/cart" className="p-4 m-4">
+                  <Badge count={cart?.length} showZero>
+                    <Nav.Link as={Link} to="/cart" className="pb-3 text-white">
+                      <i className="fa-solid fa-cart-shopping"></i>
+                    </Nav.Link>
+                  </Badge>
+                </LinkContainer>
+              </li>
+            </ul>
+          </Nav>
         </Navbar>
       </div>
     </header>
