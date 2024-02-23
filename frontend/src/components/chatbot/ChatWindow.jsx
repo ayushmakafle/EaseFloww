@@ -16,30 +16,37 @@ const ChatWindow = ({ messages }) => {
     };
 
     return (
-        <div className="chat-window" ref={chatWindowRef} style={{ overflowY: 'auto', maxHeight: '300px' }}>
+        <div className="chat-window" ref={chatWindowRef} style={{ overflowY: 'auto', maxHeight: '300px', scrollbarWidth: 'thin', WebkitOverflowScrolling: 'touch', scrollbarColor: '#d74470' }}>
             {messages.length === 0 && (
-                <div className="message bot">
-                    <div className="icon">
-                        <i className="fa-solid fa-headset" style={{ color: '#d74470' }}></i>
+                <>
+                    <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+                        <div className="icon" style={{ marginRight: '10px' }}>
+                            <i className="fa-solid fa-headset" style={{ color: '#d74470' }}></i>
+                        </div>
+                        <div className="message bot">
+                            <div className="message-content">
+                                Welcome! How can we assist you today?
+                            </div>
+                        </div>
                     </div>
-                    <div className="message-content">
-                        Welcome! How can we assist you today?
-                    </div>
-                </div>
+
+                </>
             )}
             {messages.map((message, index) => (
-                <div
-                    key={index}
-                    className={`message ${message.sender === 'user' ? 'user' : 'bot'}`}
-                >
+                <div key={index} style={{ display: 'flex', alignItems: 'flex-end' }}>
                     {message.sender === 'bot' && (
-                        <div className="icon">
+                        <div className="icon" style={{ marginRight: '10px' }}>
                             <i className="fa-solid fa-headset" style={{ color: '#d74470' }}></i>
                         </div>
                     )}
-                    {message.content}
+                    <div className={`message ${message.sender === 'user' ? 'user' : 'bot'}`} style={{ marginLeft: message.sender === 'user' ? 'auto' : '0' }}>
+                        <div className="message-content">
+                            {message.content}
+                        </div>
+                    </div>
                 </div>
             ))}
+
         </div>
     );
 };

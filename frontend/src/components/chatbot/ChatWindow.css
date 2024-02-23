@@ -10,12 +10,12 @@
   border-radius: 10px;
   box-shadow: '0px 0px 10px rgba(0, 0, 0, 0.1)';
 }
-.chat-window h4{
 
-color:#d74470;
-font-weight: bold;
-margin-bottom: 4px;
-font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.chat-window h4{
+  color:#d74470;
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .message {
@@ -23,6 +23,11 @@ font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans
   padding: 10px;
   border-radius: 8px;
   max-width: 70%;
+}
+
+.icon {
+    float: left; /* Position the icon to the left */
+    margin-right: 10px; /* Add some space between the icon and the message content */
 }
 
 .user {
