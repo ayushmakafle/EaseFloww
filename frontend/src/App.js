@@ -70,6 +70,10 @@ import WithLayout from './components/hoc/hoc';
 import { useAuth } from './context/auth';
 import { useChatbot } from './hooks/useChatbot';
 import { useChat } from './context/chat';
+import Forget from './screens/Auth/Forget';
+import ResetPassword from './screens/Auth/ResetPassword';
+import InvalidToken from './screens/Auth/invalid';
+import ForgetPasswordPage from './screens/Auth/ResetPassword';
 
 
 function App() {
@@ -102,7 +106,10 @@ function App() {
           <Route path='/verified-email' element={<EmailVerified/>}/>
           {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
           <Route path="/signup" element={<SignUpPage />} />          
-          
+          <Route path = "/forget" element={<Forget />}/>
+          <Route path = "/forget-password" element={<ForgetPasswordPage />}/>
+          <Route path = "/invalid-token" element={<InvalidToken />} />
+
           <Route path ='/dashboard' element={<PrivateRoute />}>
             <Route path ='user' element={WithLayout(UserDashboard)}/>
             {/* <Route path ='user/orders' element={<Orders/>}/> */}

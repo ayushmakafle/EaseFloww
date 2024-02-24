@@ -2,9 +2,9 @@ import userModel from "../models/UserModel.js";
 import DoctorModel from "../models/DoctorModel.js";
 import { comparePassword, hashPassword } from "../helpers/authHelpers.js";
 import JWT from "jsonwebtoken";
-import UserModel from "../models/UserModel.js";
 import fs from "fs"
-import nodemailer from 'nodemailer'
+import nodemailer from 'nodemailer';
+import randomstring from 'randomstring';
 
 //user email verification
 const sendUserVerifyEmail = async(username,email,user_id) => {
@@ -168,43 +168,101 @@ export const loginController = async (req, res) => {
   }
 }
 
-// //forgot password
-// export const forgotPasswordController = async (req, res) => {
-//   try {
-//     const { email, answer, newPassword } = req.body;
-//     if (!email) {
-//       return res.status(400).send({ message: "email is required" });
-//     }
-//     if (!answer) {
-//       return res.status(400).send({ message: "answer is required" });
-//     }
-//     if (!newPassword) {
-//       return res.status(400).send({ message: "new password is required" });
-//     }
-//     //check
-//     const user = await UserModel.findOne({ email, answer });
-//     //validation
-//     if (!user) {
-//      return res.status(404).send({
-//         success: false,
-//         message: 'wrong email or answer'
-//       });
-//     }
-//     const hashed = await hashPassword(newPassword);
-//     await userModel.findByIdAndUpdate(user._id, { password: hashed });
-//     return res.status(200).send({
-//       success: true,
-//       message: 'password reset successful'
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(400).send({
-//       success: false,
-//       message: 'something went wrong',
-//       error
-//     });
-//   }
-// };
+// reset password verify mail
+const sendRestPasswordMail = async (email, token) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: 'easeflow2023@gmail.com',
+        pass: `${process.env.SMTP_PASSWORD}`,
+      },
+    });
+
+    const mailOptions = {
+      from: 'easeflow2023@gmail.com',
+      to: email, 
+      subject: "Reset your password",
+      html: `<p> Hi, This is your token to change password: <br> <h1> ${token} </h1> <br> <h3> DO NOT SHARE YOUR TOKEN </h3> </p>`
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email has been sent for reset password', info.response);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// forget password
+export const forgetLoad = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Generate a random token
+    const randomString = randomstring.generate();
+
+    // Update the user's token in the database
+    await userModel.findOneAndUpdate({ email: email }, { token: randomString });
+
+    // Send the token to the user's email
+    await sendRestPasswordMail(email, randomString);
+
+    // Redirect the user to the forget password page with a success message
+    return res.status(201).json({
+      success: true,
+      message: "Reset email sent successfully",
+    });
+  } catch (error) {
+    console.log(error.message);
+    // Handle errors
+    return res.status(500).json({
+      success: false,
+      message: "Error processing request",
+      error: error.message,
+    });
+  }
+};
+
+
+export const resetPassword = async (req, res) => {
+  try {
+    const { email, token, newPassword } = req.body;
+
+    // Check if the provided token matches the token stored in the database
+    const user = await userModel.findOne({ email, token });
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Invalid token or email",
+      });
+    }
+
+    // Update the user's password
+    user.password = await hashPassword(newPassword);
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Password reset successful",
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Error resetting password",
+      error: error.message,
+    });
+  }
+};
+
 
 //update profile
 export const updateProfileController = async (req, res) => {
@@ -669,7 +727,7 @@ export const getDoctorData = async (req, res) => {
 };
 
 
-export default { registerController, loginController,updateProfileController,
+export default { registerController, loginController,updateProfileController, forgetLoad, resetPassword,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
 denyDoctorController,doctorLoginController, userVerifyMail , getDoctorsController,getUsersController
  ,updateDoctorProfileController,getSingleDoctorController,getDoctorData};
