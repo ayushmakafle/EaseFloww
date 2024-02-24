@@ -1,4 +1,4 @@
-// SearchInput.js
+
 import React from 'react';
 import { useSearch } from '../../context/search';
 import axios from 'axios';
@@ -33,9 +33,9 @@ const SearchInput = () => {
           className="btn btn-primary"
           type="submit"
           style={{
-            padding: '0 10px',
+            padding: '10px 17px',
             backgroundColor: '#ef5e99',
-            fontSize: '18px', // Adjust the font size as needed
+            fontSize: '18px', 
           }}
         >
           Search
