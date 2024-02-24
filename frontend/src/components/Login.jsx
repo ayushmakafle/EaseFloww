@@ -96,16 +96,16 @@ const Login = () => {
                 />
               )}
             </div>
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button
                 type='submit'
-                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700' style={{ borderRadius: '8px' }}
+                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700' style={{ borderRadius: '8px', minWidth: '120px' }}
               >
                 Login
               </button>
               <button
                 type='submit'
-                className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-center text-sm font-medium rounded-md text-blackauthc bg-pink-600 hover:bg-pink-700'
+                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700' style={{ borderRadius: '8px', minWidth: '80px' }}
                 onClick={() => navigate('/forget')}
               >
                 Forgot Password?
