@@ -27,6 +27,20 @@ router.get('/user-auth',requireSignIn, (req,res) => {
     res.status(200).send({ok:true})
 })
 
+//forget password
+/* router.get('/forget',authController.forgetLoad);
+
+router.post('/forget',authController.forgetVerify);
+
+router.get('/forget-password',authController.forgetPasswordLoad); */
+
+// Forget password route to generate token and send email
+router.post('/forget', authController.forgetLoad);
+
+// Reset password route to verify token and update password
+router.post('/reset-password', authController.resetPassword);
+
+
 //protected route admin auth
 router.get('/admin-auth',requireSignIn,isAdmin, (req,res) => {
     res.status(200).send({ok:true})
