@@ -57,9 +57,9 @@ const LandingPage = () => {
             <div className="course-cards">
               <div className="course-card">
                 <img src="images/female-reproductive-system-concept/gradient-menopause-infographic/6984044.jpg" alt="" />
+                {/* <h4>Click on our chatbot for common menstruation health problems.</h4> */}
               </div>
             </div>
-            
           </div>
         </section>
         <div >
