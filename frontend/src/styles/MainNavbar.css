@@ -40,7 +40,7 @@ body{
   margin-top: 0;
   margin-bottom: 19px;
   animation: fadeIn 2s ;
-  background: var(--pink-color);
+  /* background: var(--pink-color); */
 }
 
 /* header */

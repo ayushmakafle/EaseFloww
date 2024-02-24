@@ -15,7 +15,7 @@ const LandingPage = () => {
         <div className="hero-section">
           <div className="left">
             <h2 style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "600" ,fontSize:"60px", color:"white" , animation: "fadeIn 1s "}}>Embrace <br /> Learn and Flourish</h2>
-            <Nav.Link as={Link} to="/homepage" className="btn light">Learn more about your cycle</Nav.Link>
+            <Nav.Link as={Link} to="/homepage" className="btn light"style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px", color:"white",backgroundColor:"#e73d90" }}>Learn more about your cycle</Nav.Link>
           </div>
           <div className="right">
             <img src="images/calenderbg.jpg" alt="" />
