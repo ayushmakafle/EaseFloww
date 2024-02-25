@@ -35,74 +35,74 @@ const DoctorAppointments = () => {
 
 const columns = [
   {
-    title: 'Appointment Id',
-    dataIndex: '_id',
-    key: '_id',
+    title: "Serial Number",
+    dataIndex: "serialNumber",
+    key: "serialNumber",
+    render: (text, record, index) => index + 1,
   },
-    {
-    title: 'Patient Name',
-    dataIndex: 'patientName', // Use 'patientName' as the dataIndex
-    key: 'patientName',
+
+  {
+    title: "Patient Name",
+    dataIndex: "patientName", // Use 'patientName' as the dataIndex
+    key: "patientName",
   },
   {
-    title: 'Patient Age',
-    dataIndex: 'patientAge', // Use 'patientAge' as the dataIndex
-    key: 'patientAge',
+    title: "Patient Age",
+    dataIndex: "patientAge", // Use 'patientAge' as the dataIndex
+    key: "patientAge",
   },
   {
-    title: 'Patient Contact',
-    dataIndex: 'patientContact', // Use 'patientContact' as the dataIndex
-    key: 'patientContact',
+    title: "Patient Contact",
+    dataIndex: "patientContact", // Use 'patientContact' as the dataIndex
+    key: "patientContact",
   },
   {
-    title: 'Booked By',
-    dataIndex: 'userInfo',
+    title: "Booked By",
+    dataIndex: "userInfo",
     render: (text, record) => (
-      <span>
-        {record.userInfo ? JSON.parse(record.userInfo) : ''}
-      </span>
+      <span>{record.userInfo ? JSON.parse(record.userInfo) : ""}</span>
     ),
-    key: 'userInfo',
+    key: "userInfo",
   },
-{
-  title: 'Date',
-  dataIndex: 'date',
-  key: 'date',
-  render: (text, record) => {
-    const date = moment(record.date, 'DD-MM-YYYY');
-    console.log("Raw Date Value:", record.date);
-    console.log("Parsed Date Object:", date.toDate());
-    return date.isValid() ? date.format('DD-MM-YYYY') : 'N/A';
-  },
-},
   {
-    title: 'Time',
-    dataIndex: 'time',
-    key: 'time',
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
+    render: (text, record) => {
+      const date = moment(record.date, "DD-MM-YYYY");
+      console.log("Raw Date Value:", record.date);
+      console.log("Parsed Date Object:", date.toDate());
+      return date.isValid() ? date.format("DD-MM-YYYY") : "N/A";
+    },
+  },
+  {
+    title: "Time",
+    dataIndex: "time",
+    key: "time",
     render: (text, record) => {
       if (record && record.startTime && record.endTime) {
         const startTime = moment(record.startTime);
         const endTime = moment(record.endTime);
         if (startTime.isValid() && endTime.isValid()) {
-          return `${startTime.format('h:mm A')} - ${endTime.format('h:mm A')}`;
+          return `${startTime.format("h:mm A")} - ${endTime.format("h:mm A")}`;
         }
       }
-      return 'N/A';
+      return "N/A";
     },
   },
   {
-    title: 'Status',
-    dataIndex: 'status',
-    key: 'status',
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
   },
   {
-    title: 'Actions',
-    key: 'actions',
+    title: "Actions",
+    key: "actions",
     render: (text, record) => (
       <div>
-        {record.status === 'pending' && (
+        {record.status === "pending" && (
           <>
-            <button onClick={() => handleAccept(record._id)} className='m-1'>
+            <button onClick={() => handleAccept(record._id)} className="m-1">
               Accept
             </button>
             <button onClick={() => handleReject(record._id)}>Reject</button>
