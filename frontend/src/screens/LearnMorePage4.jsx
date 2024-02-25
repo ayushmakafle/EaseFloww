@@ -4,12 +4,20 @@ import React from 'react';
 // import MainNavbar from '../components/Navbar';
 import '../styles/LearnMorePage0.css'; // Use the same CSS file for consistency
 import Footer from '../components/footer';
+import { useNavigate } from 'react-router-dom';
 
 const LearnMorePage4 = () => {
+  const navigate=useNavigate();
+  const goBack=()=>{
+    navigate(-1);
+  };
   return (
     <>
       {/* <MainNavbar /> */}
       <div className="page-container">
+                <button className="back-button" onClick={goBack}>
+<span role="img" aria-label="Back Arrow" className="pink-arrow">❮❮</span> 
+        </button>
         <h1 className="page-heading">Nutrition Tips for Menstruating Women</h1>
 
         <div className="paragraph-container">
