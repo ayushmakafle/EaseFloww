@@ -87,16 +87,6 @@ const Profile = () => {
                 </div>
                 <div className="mb-3">
                   <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="form-control"
-                    id="password"
-                    placeholder="Enter Your Password"
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
                     type="text"
                     value={phonenumber}
                     onChange={(e) => setPhone(e.target.value)}

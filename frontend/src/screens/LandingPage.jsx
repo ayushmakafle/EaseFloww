@@ -15,53 +15,25 @@ const LandingPage = () => {
         <div className="hero-section">
           <div className="left">
             <h2 style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "600" ,fontSize:"60px", color:"white" , animation: "fadeIn 1s "}}>Embrace <br /> Learn and Flourish</h2>
-            <Nav.Link as={Link} to="/homepage" className="btn light">Learn more about your cycle</Nav.Link>
+            <Nav.Link as={Link} to="/homepage" className="btn light"style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px", color:"white",backgroundColor:"#e73d90" }}>Learn more about your cycle</Nav.Link>
           </div>
           <div className="right">
             <img src="images/calenderbg.jpg" alt="" />
           </div>
         </div>
-        {/* <div className="wrapper">
-          <section className="testimonials-section">
-            <div className="left">
-              <div className="testimonial-card">
-                <div className="content">
-                  “Leaders bleed, period.”
-                </div>
-                <div className="info">
-                  <h4>Silvia Young</h4>
-                  <p className="company">Developer, Sony</p>
-                </div>
-              </div>
-              <div className="testimonial-card">
-                <div className="content">
-                  “I bleed twelve weeks a year, so I know a thing or two about bloodstains.”
-                </div>
-                <div className="info">
-                  <h4>Amanda Lovelace</h4>
-                  <p className="company">The Witch Doesn't Burn in this One</p>
-                </div>
-              </div>
-            </div>
-            <div className="right">
-              <h1>Lets go touring menstruation</h1>
-              <div className="features">
-                <p> "Welcome to our space where we openly discuss the beauty and significance of menstruation, a natural and essential aspect of women's health."
-                </p>
-              </div>
-            </div>
-          </section>
-        </div> */}
-        <section className="courses-section">
-          <div className="wrapper">
-            <div className="course-cards">
-              <div className="course-card">
-                <img src="images/female-reproductive-system-concept/gradient-menopause-infographic/6984044.jpg" alt="" />
-              </div>
-            </div>
-            
-          </div>
-        </section>
+<section className="courses-section">
+  <div className="wrapper">
+    <div className="course-cards">
+      <div className="course-card">
+        <img src="images/female-reproductive-system-concept/gradient-menopause-infographic/6984044.jpg" alt="" />
+      </div>
+      <div className="course-card">
+        <p>Click on our chatbot for common menstruation health problems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
         <div >
           <section className="app-section">
             <h2>CHERISH YOUR CYCLE</h2>

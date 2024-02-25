@@ -6,19 +6,13 @@ import './HomepageScreen.css';
 
 const HomepageScreen = () => {
   const contentData = [
-
     {
-      title: 'Understanding Menstruation Pain',
+      title: 'Menstruation Myths in Nepal',
       description:
-        'Welcome to our sweet and informative space where we discuss the natural process of menstruation and the common companion, menstrual pain.',
-      imagePath: 'https://img.freepik.com/free-vector/female-reproductive-system-concept_52683-45564.jpg?w=740&t=st=1701969976~exp=1701970576~hmac=63551c4682d11d54dd7daa93f17ffc75b4fb038ab4b7065a37c1e9302d63efec',
-    },
-    // {
-    //   title: 'Menstruation Myths in Nepal',
-    //   description:
-    //     'Breaking the silence on menstruation in Nepal is essential to challenge deep-rooted taboos and foster a culture of openness and understanding.',
-    //     imagePath: 'https://english.onlinekhabar.com/wp-content/uploads/2020/10/Menstruation.jpg',
-    //   },
+        'Breaking the silence on menstruation in Nepal is essential to challenge deep-rooted taboos and foster a culture of openness and understanding.',
+        imagePath: 'https://english.onlinekhabar.com/wp-content/uploads/2020/10/Menstruation.jpg',
+      },
+
     {
       title: 'Embracing Your Menstrual Cycle',
       description:

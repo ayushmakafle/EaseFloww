@@ -40,7 +40,7 @@ body{
   margin-top: 0;
   margin-bottom: 19px;
   animation: fadeIn 2s ;
-  background: var(--pink-color);
+  /* background: var(--pink-color); */
 }
 
 /* header */
@@ -352,54 +352,39 @@ section p{
   margin-bottom: 30px;
 }
 
-
-
 /* courses section */
-.courses-section{
-  background: linear-gradient(109.6deg,#f38dbc 100.2%, #ef5e99 11.2%);
-  padding: 70px 0;
+.courses-section {
+  background: linear-gradient(109.6deg, #f38dbc 100.2%, #ef5e99 11.2%);
+  padding: 60px 0;
   padding-bottom: 120px;
 }
-
-.courses-section h2{
-  text-align: center;
-}
-.courses-section .course-cards{
+.courses-section .course-cards {
+  width: 100%;
   display: flex;
-  gap: 50px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
-.courses-section .course-cards img{
-  width:100%;
-  filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.25));
-  border-radius: 24px;
+.courses-section .course-card {
+  width: 48%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px; 
 }
-
-.courses-section .course-card{
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 0px 32px;
-  margin: 40px 0;
-  position: relative;
-
+.courses-section .course-card img {
+  width: 564px;
+  filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
+  border-radius: 20px;
 }
-
-.courses-section .course-card h3{
+.courses-section .course-card p {
+  margin-top: 10px;
+  font-size: 44px; 
   font-family: "Raleway", sans-serif;
-  font-weight: 900;
-  font-size: 30px;
-  line-height: 150%;
-  color: var(--dark-color);
+  font-style: italic;
+  font-weight: 500;
 }
-
-.courses-section .wrapper{
-  position: relative;
-}
-.courses-section .wrapper .btn{
-  position: absolute;
-  right: 0;
-}
-
-
 /* app section */
 .app-section{
   height: 500px;

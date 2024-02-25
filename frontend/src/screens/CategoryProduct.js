@@ -82,7 +82,7 @@ const CategoryProduct = () => {
                   <button 
                     className='btn btn-primary ms-1'
                     onClick={() => navigate(`/product/${p.slug}`)}
-                    style={{backgroundColor:'#FF06BF'}}
+                    style={{backgroundColor:'#d90166'}}
                   >More Details</button>
                {/*  <button className='btn btn-secondary' onClick={() => { setCart([...cart, p]); toast.success('Item added to cart'); }}>
                 <i className="fas fa-cart-shopping"></i>
