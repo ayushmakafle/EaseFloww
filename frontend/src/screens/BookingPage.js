@@ -100,14 +100,28 @@ const BookingPage = () => {
 
   const confirmBooking = async () => {
     try {
-      if (!patientName || !patientAge || !patientContact) {
-        toast.error("Please fill in all patient information.");
+      // Validation checks
+      if (!/^[a-zA-Z]{3,}$/.test(patientName)) {
+        toast.error(
+          "Please enter a valid patient name with at least 3 characters, starting with a letter."
+        );
+        return;
+      }
+
+      const ageNumber = parseInt(patientAge, 10);
+      if (isNaN(ageNumber) || ageNumber < 8 || ageNumber > 60) {
+        toast.error("Please enter a valid age between 8 and 60.");
+        return;
+      }
+
+      if (!/^\d{10}$/.test(patientContact)) {
+        toast.error("Please enter a valid 10-digit phone number.");
         return;
       }
 
       // Perform booking with patient information
-      const formattedTime = moment(time, 'HH:mm').format('HH:mm');
-      const selectedDate = moment(date, 'DD-MM-YYYY').format('DD-MM-YYYY');
+      const formattedTime = moment(time, "HH:mm").format("HH:mm");
+      const selectedDate = moment(date, "DD-MM-YYYY").format("DD-MM-YYYY");
       const res = await axios.post(`/api/v1/appointment/book-appointment`, {
         doctorID: params.doctorId,
         userID: auth.user._id,
@@ -115,7 +129,9 @@ const BookingPage = () => {
         userInfo: auth.user.username,
         date: selectedDate,
         startTime: formattedTime,
-        endTime: moment(`${selectedDate} ${formattedTime}`, 'DD-MM-YYYY HH:mm').add(1, 'hours').format('HH:mm'),
+        endTime: moment(`${selectedDate} ${formattedTime}`, "DD-MM-YYYY HH:mm")
+          .add(1, "hours")
+          .format("HH:mm"),
         patientName,
         patientAge,
         patientContact,
@@ -124,7 +140,7 @@ const BookingPage = () => {
         toast.success(res.data.message);
         setShowNotification(true); // Show the success notification
         setNotificationMessage("Appointment booked successfully"); // Set notification message
-      setIsAvailable(false); // Hide the "Book Now" button
+        setIsAvailable(false); // Hide the "Book Now" button
       }
     } catch (error) {
       console.error(error);
