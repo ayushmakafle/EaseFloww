@@ -72,3 +72,9 @@
   border-radius: 8px;
   cursor: pointer;
 }
+/* Add this style to your CSS file or in a style tag if using inline styles */
+.error-message {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+}

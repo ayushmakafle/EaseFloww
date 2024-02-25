@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 // import MainNavbar from '../components/Navbar';
 import axios from 'axios';
+import { toast } from "react-toastify";
+
 import { useParams } from 'react-router-dom';
 import { DatePicker, TimePicker } from 'antd';
 import moment from 'moment'; //js library to parse,validate,manipulate date object
 import './BookingPage.css';
 import { useAuth } from '../context/auth';
-import {toast} from 'react-toastify';
 import { Modal, Input } from 'antd';
 import { ReactComponent as Loading } from '../components/loadinganimation.svg';
 
@@ -25,9 +26,13 @@ const BookingPage = () => {
   const [patientName, setPatientName] = useState(''); 
   const [patientAge, setPatientAge] = useState(''); 
   const [patientContact, setPatientContact] = useState(''); 
-
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
+  const [nameError, setNameError] = useState("");
+  const [ageError, setAgeError] = useState("");
+  const [contactError, setContactError] = useState("");
+    const [showErrors, setShowErrors] = useState(false);
+
 
   //for getting doctor information
   useEffect(() => {
@@ -100,22 +105,36 @@ const BookingPage = () => {
 
   const confirmBooking = async () => {
     try {
-      // Validation checks
+      // Validation checks for patient information
+      let nameValidationError = "";
+      let ageValidationError = "";
+      let contactValidationError = "";
+
       if (!/^[a-zA-Z]{3,}$/.test(patientName)) {
-        toast.error(
-          "Please enter a valid patient name."
-        );
-        return;
+        nameValidationError = "Please enter a valid patient name.";
       }
 
       const ageNumber = parseInt(patientAge, 10);
       if (isNaN(ageNumber) || ageNumber < 8 || ageNumber > 60) {
-        toast.error("Please enter a valid age");
-        return;
+        ageValidationError = "Please enter a valid age.";
       }
 
       if (!/^\d{10}$/.test(patientContact)) {
-        toast.error("Please enter a valid 10-digit phone number.");
+        contactValidationError = "Please enter a valid 10-digit phone number.";
+      }
+
+      // Check if any validation errors exist
+      if (nameValidationError || ageValidationError || contactValidationError) {
+        // Update error state variables
+        setNameError(nameValidationError);
+        setAgeError(ageValidationError);
+        setContactError(contactValidationError);
+
+        // Display all error messages
+        setShowErrors(true);
+
+        // Show toast message for validation error
+        toast.error("Please enter valid information.");
         return;
       }
 
@@ -144,12 +163,13 @@ const BookingPage = () => {
       }
     } catch (error) {
       console.error(error);
+
+      // Show toast message for general error
+      toast.error("An error occurred. Please try again later.");
     } finally {
       setShowModal(false);
     }
   };
-
-
   // Render loading state
   if (!doctor) {
     return (
@@ -216,118 +236,140 @@ const customStyles = `
 
   return (
     <>
-          <style>{customStyles}</style>
+      <style>{customStyles}</style>
 
       {/* <MainNavbar /> */}
       <div className="doctor-details mt-2">
-      
         <h1>{doctor.name}</h1>
         <div className="doctor-specialization">{doctor.specialization}</div>
         <div className="hospital-info">
           <div>{doctor.hospitalOrClinic}</div>
           <div>{doctor.address}</div>
         </div>
-        <div className="office-info" style={{fontStyle:'normal'}}>
+        <div className="office-info" style={{ fontStyle: "normal" }}>
           <div className="office-hours">
             Office Hours: {doctor.officeHoursStart} - {doctor.officeHoursEnd}
           </div>
           <div className="office-days">
-            Office Days: {extractedOfficeDays.length > 0 ? extractedOfficeDays.join(', ') : 'No Office Days'}
+            Office Days:{" "}
+            {extractedOfficeDays.length > 0
+              ? extractedOfficeDays.join(", ")
+              : "No Office Days"}
           </div>
         </div>
         <div className="fees">{`Fees per Consultation: NRs. ${doctor.feesPerConsultation}/-`}</div>
-        <div className='des'>
-          Your appointment will scheduled for a one-hour duration. Please select the desired start time.
+        <div className="des">
+          Your appointment will scheduled for a one-hour duration. Please select
+          the desired start time.
         </div>
         <div className="date-time-picker">
-        
-        <DatePicker
-          className="date-picker"
-          format="DD-MM-YYYY"
-          onChange={(value) => {
-            // Update state with the selected date in the required format
-            setDate(value.format('DD-MM-YYYY'));
-          }}
-          // Use the disabledDate prop to disable dates not in the available days
-          disabledDate={(current) => {
-            const dayOfWeek = current.format('dddd');
-            return (
-              current &&
-              current < moment().startOf('day') || // Disable past dates
-              !parsedOfficeDays.some(day => day.value === dayOfWeek) // Disable days not in the available days
-            );
+          <DatePicker
+            className="date-picker"
+            format="DD-MM-YYYY"
+            onChange={(value) => {
+              // Update state with the selected date in the required format
+              setDate(value.format("DD-MM-YYYY"));
+            }}
+            // Use the disabledDate prop to disable dates not in the available days
+            disabledDate={(current) => {
+              const dayOfWeek = current.format("dddd");
+              return (
+                (current && current < moment().startOf("day")) || // Disable past dates
+                !parsedOfficeDays.some((day) => day.value === dayOfWeek) // Disable days not in the available days
+              );
+            }}
+          />
+
+          <TimePicker
+            className="time-picker"
+            format="HH:mm"
+            onChange={(value) => {
+              // Update state with the selected time in the required format
+              setTime(value.format("HH:mm"));
+            }}
+            // Use disabledHours and disabledMinutes props to disable times outside office hours
+            disabledHours={() =>
+              Array.from({ length: 24 }, (_, i) => i).filter(
+                (hour) =>
+                  hour < officeHoursStart.hour() ||
+                  hour >= officeHoursEnd.hour()
+              )
+            }
+            disabledMinutes={() => []} // Allow all minutes
+          />
+
+          <button
+            className="check-availability-btn m-1"
+            onClick={handleAvailability}
+          >
+            Check Availability
+          </button>
+
+          {/* Conditionally render the notification */}
+          {showNotification && (
+            <div className="notification" style={{ color: "red" }}>
+              {notificationMessage}
+            </div>
+          )}
+
+          {/* Conditionally render the "Book Now" button */}
+          {isAvailable && (
+            <button className="check-availability-btn" onClick={handleBooking}>
+              Book Now
+            </button>
+          )}
+        </div>
+      </div>
+      {/* Modal for patient information */}
+      <Modal
+        title={<span style={{ color: '#ef5e99' }}>Enter Patient Information</span>}
+        style={{ textAlign: 'center' }}  // Add styles to the title
+        visible={showModal}
+        onOk={confirmBooking}
+        onCancel={() => {
+          setShowModal(false);
+          // Reset error messages and hide errors when canceling the modal
+          setNameError('');
+          setAgeError('');
+          setContactError('');
+          setShowErrors(false);
+        }}
+        okButtonProps={{ style: { backgroundColor: '#ef5e99', borderColor: '#ef5e99' } }} // Add inline styles to make the button pink
+        cancelButtonProps={{ className: "cancel-btn" }} // Optionally, you can add styling to the cancel button
+      >
+        <Input
+          style={{ margin: '10px 0' }}
+          placeholder="Patient Name"
+          value={patientName}
+          onChange={(e) => {
+            setPatientName(e.target.value);
+            setNameError(''); // Clear the error when the input changes
           }}
         />
-      
-      <TimePicker
-        className="time-picker"
-        format="HH:mm"
-        onChange={(value) => {
-        // Update state with the selected time in the required format
-        setTime(value.format('HH:mm'));
-        }}
-        // Use disabledHours and disabledMinutes props to disable times outside office hours
-        disabledHours={() => Array.from({ length: 24 }, (_, i) => i).filter(hour => hour < officeHoursStart.hour() || hour >= officeHoursEnd.hour())}
-        disabledMinutes={() => []} // Allow all minutes
-      />
-
-      <button
-        className="check-availability-btn m-1"
-        onClick={handleAvailability}
-      >
-        Check Availability
-      </button>
-      
-      {/* Conditionally render the notification */}
-      {showNotification && (
-        <div className="notification" style={{color:'red'}}>
-          {notificationMessage}
-        </div>
-      )}
-
-      {/* Conditionally render the "Book Now" button */}
-        {isAvailable && (
-          <button
-            className="check-availability-btn"
-            onClick={handleBooking}
-          >
-            Book Now
-          </button>
-        )}
-      </div>
-    </div>
-    {/* Modal for patient information */}
-    <Modal
-      title={<span style={{ color: '#ef5e99' }}>Enter Patient Information</span>}
-      style={{ textAlign: 'center' }}  // Add styles to the title
-      visible={showModal}
-      onOk={confirmBooking}
-      onCancel={() => setShowModal(false)}
-      okButtonProps={{ style: { backgroundColor: '#ef5e99', borderColor: '#ef5e99' } }} // Add inline styles to make the button pink
-      cancelButtonProps={{ className: "cancel-btn" }} // Optionally, you can add styling to the cancel button
-    >
-    <Input
-      style={{ margin: '10px 0' }} // Add margin to the input fields
-      placeholder="Patient Name"
-      value={patientName}
-      onChange={e => setPatientName(e.target.value)}
-    />
-    <Input
-      style={{ margin: '10px 0' }} // Add margin to the input fields
-      placeholder="Patient Age"
-      value={patientAge}
-      onChange={e => setPatientAge(e.target.value)}
-    />  
-    <Input
-      style={{ margin: '10px 0' }} // Add margin to the input fields
-      placeholder="Patient Contact"
-      value={patientContact}
-      onChange={e => setPatientContact(e.target.value)}
-    />
-  </Modal>
-
-  </>
- );
+        {showErrors && <div className="error-message">{nameError}</div>} {/* Display the error message */}
+        <Input
+          style={{ margin: '10px 0' }}
+          placeholder="Patient Age"
+          value={patientAge}
+          onChange={(e) => {
+            setPatientAge(e.target.value);
+            setAgeError(''); // Clear the error when the input changes
+          }}
+        />
+        {showErrors && <div className="error-message">{ageError}</div>} {/* Display the error message */}
+        <Input
+          style={{ margin: '10px 0' }}
+          placeholder="Patient Contact"
+          value={patientContact}
+          onChange={(e) => {
+            setPatientContact(e.target.value);
+            setContactError(''); // Clear the error when the input changes
+          }}
+        />
+        {showErrors && <div className="error-message">{contactError}</div>} {/* Display the error message */}
+      </Modal>
+    </>
+  );
 };
 
 export default BookingPage;
