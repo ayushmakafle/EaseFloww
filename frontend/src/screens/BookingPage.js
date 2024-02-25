@@ -103,14 +103,14 @@ const BookingPage = () => {
       // Validation checks
       if (!/^[a-zA-Z]{3,}$/.test(patientName)) {
         toast.error(
-          "Please enter a valid patient name with at least 3 characters, starting with a letter."
+          "Please enter a valid patient name."
         );
         return;
       }
 
       const ageNumber = parseInt(patientAge, 10);
       if (isNaN(ageNumber) || ageNumber < 8 || ageNumber > 60) {
-        toast.error("Please enter a valid age between 8 and 60.");
+        toast.error("Please enter a valid age");
         return;
       }
 
