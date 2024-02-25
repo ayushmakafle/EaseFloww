@@ -110,9 +110,9 @@ const BookingPage = () => {
       let ageValidationError = "";
       let contactValidationError = "";
 
-      if (!/^[a-zA-Z]{3,}$/.test(patientName)) {
-        nameValidationError = "Please enter a valid patient name.";
-      }
+if (!/^[a-zA-Z\s]{1,15}$/.test(patientName)) {
+  nameValidationError = "Please enter a valid patient name.";
+}
 
       const ageNumber = parseInt(patientAge, 10);
       if (isNaN(ageNumber) || ageNumber < 8 || ageNumber > 60) {
