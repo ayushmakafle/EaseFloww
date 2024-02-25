@@ -67,3 +67,24 @@
 .learn-more-button:hover {
   background-color: #ffe5ea;
 }
+.back-button {
+  background: none;
+  /* background-color: yellow; */
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  /* Adjust the font size as needed */
+}
+.back-button:hover {
+  background: none;
+  /* Set background to none on hover */
+}
+
+.pink-arrow {
+  color: rgb(221, 98, 119);
+  /* Set the color of the arrow */
+  margin-right: 5px;
+  /* Adjust the margin as needed for spacing */
+}

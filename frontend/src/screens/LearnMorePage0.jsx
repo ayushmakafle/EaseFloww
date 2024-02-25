@@ -1,15 +1,29 @@
 // LearnMorePage0.js
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 // import MainNavbar from '../components/Navbar';
 import '../styles/LearnMorePage0.css';
 import Footer from '../components/footer';
 
 const LearnMorePage0 = () => {
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1); // Navigate back
+  };
+
+
   return (
     <>
       {/* <MainNavbar /> */}
       <div className="page-container">
+<button className="back-button" onClick={goBack}>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow">❮❮</span> 
+        </button>
+
+
         <h1 className="page-heading">Chhaupadi and menstruation taboos</h1>
 
         <div className="paragraph-container">
