@@ -207,7 +207,7 @@ export const forgetLoad = async (req, res) => {
     const { email } = req.body;
 
     // Generate a random token
-    const randomString = randomstring.generate();
+    const randomString = randomstring.generate(7);
 
     // Update the user's token in the database
     await userModel.findOneAndUpdate({ email: email }, { token: randomString });

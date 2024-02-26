@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,49 @@ const CartPage = () => {
   const [auth] = useAuth();
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
+  const [productQuantities, setProductQuantities] = useState({});
+
+  // Fetch product quantities from backend
+  useEffect(() => {
+    // Assuming you have an API endpoint to fetch product quantities by ID
+    const fetchProductQuantities = async () => {
+      try {
+        const quantities = {}; // Object to store quantities by product ID
+        for (const item of cart) {
+          // Fetch quantity for each product
+          const response = await fetch(`/api/v1/product/quantity/${item._id}`);
+          const data = await response.json();
+          quantities[item._id] = data.quantity;
+        }
+        setProductQuantities(quantities);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProductQuantities();
+  }, [cart]);
+
+  // Update quantity
+  const updateQuantity = async (productId, action) => {
+    try {
+      const updatedCart = cart.map((item) => {
+        if (item._id === productId) {
+          if (action === 'increment') {
+            return { ...item, numberOfItems: item.numberOfItems + 1 };
+          } else if (action === 'decrement' && item.numberOfItems > 1) {
+            return { ...item, numberOfItems: item.numberOfItems - 1 };
+          }
+        }
+        return item;
+      });
+      setCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
     // Total price
   const totalPrice = () => {
@@ -38,21 +81,6 @@ const CartPage = () => {
     }
   };
 
-// Update quantity
-  const updateQuantity = (productId, action) => {
-    const updatedCart = cart.map((item) => {
-      if (item._id === productId) {
-        if (action === 'increment') {
-          return { ...item, numberOfItems: item.numberOfItems + 1 };
-        } else if (action === 'decrement' && item.numberOfItems > 1) {
-          return { ...item, numberOfItems: item.numberOfItems - 1 };
-        }
-      }
-      return item;
-    });
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
 
   return (
     <>
@@ -85,6 +113,7 @@ const CartPage = () => {
                   <th scope="col">Product</th>
                   <th scope="col">Price</th>
                   <th scope="col">Quantity</th>
+                  <th scope = "col">Available in stock</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -119,6 +148,8 @@ const CartPage = () => {
                         </button>
                       </div>
                     </td>
+                        <td>{p.quantity}</td> {/* Show available quantity */}
+
                     <td>
                       <button
                         className="btn-remove"

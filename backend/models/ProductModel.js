@@ -31,8 +31,8 @@ const productSchema = Schema({
         contentType: String,
     },
     category: {
-        type: mongoose.Schema.Types.ObjectId, // Corrected the type
-        ref: 'category', // Assuming the category model is named 'Category'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category',
         required: true,
     },
     description: {
