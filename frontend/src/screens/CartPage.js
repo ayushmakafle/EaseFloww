@@ -117,6 +117,7 @@ const updateQuantity = (productId, action) => {
     <button
       className="btn btn-outline-secondary"
       onClick={() => updateQuantity(p._id, "increment")}
+      disabled={p.quantity - p.numberOfItems === 0}
     >
       +
     </button>
