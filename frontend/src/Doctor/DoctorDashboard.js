@@ -4,7 +4,6 @@ import DoctorNavbar from './DoctorNavbar';
 import '../styles/MainNavbar.css';
 import Lottie from 'lottie-react';
 import animation from './doctordash.json';
-
 const DoctorDashboard = () => {
   return (
     <>

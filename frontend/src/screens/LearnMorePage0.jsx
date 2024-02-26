@@ -18,14 +18,11 @@ const LearnMorePage0 = () => {
   return (
     <>
       {/* <MainNavbar /> */}
+      <button className="back-button" onClick={goBack}>
+    <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span> 
+</button>
       <div className="page-container">
-<button className="back-button" onClick={goBack}>
-          <span role="img" aria-label="Back Arrow" className="pink-arrow">❮❮</span> 
-        </button>
-
-
         <h1 className="page-heading">Chhaupadi and menstruation taboos</h1>
-
         <div className="paragraph-container">
           <div className="text-box">
             <p className="page-paragraph">
