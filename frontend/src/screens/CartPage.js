@@ -39,20 +39,22 @@ const CartPage = () => {
   };
 
 // Update quantity
-  const updateQuantity = (productId, action) => {
-    const updatedCart = cart.map((item) => {
-      if (item._id === productId) {
-        if (action === 'increment') {
-          return { ...item, numberOfItems: item.numberOfItems + 1 };
-        } else if (action === 'decrement' && item.numberOfItems > 1) {
-          return { ...item, numberOfItems: item.numberOfItems - 1 };
-        }
+const updateQuantity = (productId, action) => {
+  const updatedCart = cart.map((item) => {
+    if (item._id === productId) {
+      if (action === 'increment') {
+        return { ...item, numberOfItems: item.numberOfItems + 1 };
+      } else if (action === 'decrement' && item.numberOfItems > 1) {
+        return { ...item, numberOfItems: item.numberOfItems - 1 };
       }
-      return item;
-    });
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
+    }
+    return item;
+  });
+
+  setCart(updatedCart);
+  localStorage.setItem('cart', JSON.stringify(updatedCart));
+};
+
 
   return (
     <>
@@ -105,22 +107,25 @@ const CartPage = () => {
                     <td>NPR {p.price} /-</td>
                     <td>
                       <div className="d-flex align-items-center">
-                        <button
-                          className="btn btn-outline-secondary"
-                          onClick={() => updateQuantity(p._id, "decrement")}
-                        >
-                          -
-                        </button>
-                        <span className="mx-2">{p.numberOfItems}</span>
-                        <button
-                          className="btn btn-outline-secondary"
-                          onClick={() => updateQuantity(p._id, "increment")}
-                        >
-                          +
-                        </button>
-                      </div>
-                    </td>
-                    <td>{p.quantity}</td> {/* Show available quantity */} 
+                      <button
+      className="btn btn-outline-secondary"
+      onClick={() => updateQuantity(p._id, "decrement")}
+    >
+      -
+    </button>
+    <span className="mx-2">{p.numberOfItems}</span>
+    <button
+      className="btn btn-outline-secondary"
+      onClick={() => updateQuantity(p._id, "increment")}
+    >
+      +
+    </button>
+  </div>
+  <div>
+    <span>Available in stock: {p.quantity -  p.numberOfItems}</span>
+  </div>
+</td>
+
                     <td>
                       <button
                         className="btn-remove"
