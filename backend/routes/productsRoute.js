@@ -6,12 +6,12 @@ import express from 'express';
 
 import { isAdmin, requireSignIn,isDoctor } from '../middleware/authMiddleware.js';
 import { createProductController, 
-  deleteProductController, getProductController, getSingleProductController, 
+  deleteProductController, getProductController, getProductQuantities, getSingleProductController, 
   productCategoryController, 
   productCountController, 
   productFiltersController, 
   productListController, 
-  productPhotoController, relatedProductController, searchProductController, updateProductController,updateProductRating } from '../controllers/productController.js';
+  productPhotoController, productStockUpdate, relatedProductController, searchProductController, updateProductController,updateProductRating } from '../controllers/productController.js';
 import formidable from 'express-formidable';
 import route from 'color-convert/route.js';
 
@@ -55,5 +55,10 @@ router.get('/product-category/:slug',productCategoryController)
 
 // Route to update product rating
 router.post('/rate/:productId', requireSignIn,isDoctor,updateProductRating);
+
+router.post('/getQuantities', getProductQuantities);
+
+//update quantity when users buys
+router.post('/updateStock',productStockUpdate);
 
 export default router;

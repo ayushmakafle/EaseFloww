@@ -74,16 +74,25 @@ export const getProductController = async (req, res) => {
   }
 };
 // get single product
+// get single product
 export const getSingleProductController = async (req, res) => {
   try {
     const product = await productModel
       .findOne({ slug: req.params.slug })
       .select("-photo")
       .populate("category");
+
+    // Fetch additional information like available quantity
+    const availableQuantity = product.quantity; // Assuming available quantity is stored in the product document
+
+    // Include available quantity in the response
     res.status(200).send({
       success: true,
       message: "Single Product Fetched",
-      product,
+      product: {
+        ...product.toObject(),
+        availableQuantity: availableQuantity
+      },
     });
   } catch (error) {
     console.log(error);
@@ -357,5 +366,52 @@ export const updateProductRating = async (req, res) => {
   } catch (error) {
     console.error('Error updating product rating:', error);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const productStockUpdate = async (req, res) => {
+  try {
+    const { productId, quantityToBuy } = req.body;
+
+    // Find the product by its ID
+    const product = await productModel.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ success: false, message: 'Product not found' });
+    }
+
+    // Check if the available quantity is sufficient for the purchase
+    if (product.quantity < quantityToBuy) {
+      return res.status(400).json({ success: false, message: 'Insufficient quantity in stock' });
+    }
+
+    // Update the quantity by subtracting the quantity being purchased
+    product.quantity -= quantityToBuy;
+
+    // Save the updated product
+    await product.save();
+
+    res.json({ success: true, message: 'Quantity updated successfully', product });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+}
+
+export const getProductQuantities = async (req, res) => {
+  try {
+    const { productIds } = req.body;
+
+    // Find products by IDs and retrieve their quantities
+    const products = await productModel.find({ _id: { $in: productIds } });
+    const quantities = {};
+    products.forEach((product) => {
+      quantities[product._id] = product.quantity;
+    });
+
+    res.json({ quantities });
+  } catch (error) {
+    console.error('Error fetching product quantities:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };

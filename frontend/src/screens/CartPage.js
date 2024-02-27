@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
 // import MainNavbar from "../components/Navbar";
 import EcomHeader from "../components/EcomHeader";
 import './CartPage.css'; 
+import axios from "axios";
 
 const CartPage = () => {
   const [auth] = useAuth();
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
+  const [productQuantities, setProductQuantities] = useState({});
+
 
     // Total price
   const totalPrice = () => {
@@ -26,6 +29,25 @@ const CartPage = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    // Fetch product quantities from the database
+    const fetchProductQuantities = async () => {
+      try {
+        const productIds = cart.map((item) => item._id);
+        const response = await axios.post(
+          "/api/v1/product/getQuantities",
+          { productIds }
+        );
+        const quantities = response.data.quantities;
+        setProductQuantities(quantities);
+      } catch (error) {
+        console.error("Error fetching product quantities:", error);
+      }
+    };
+
+    fetchProductQuantities();
+  }, [cart]);
 
 // Delete item
   const removeCartItem = (productId) => {
@@ -87,7 +109,6 @@ const updateQuantity = (productId, action) => {
                   <th scope="col">Product</th>
                   <th scope="col">Price</th>
                   <th scope="col">Quantity</th>
-                  <th scope = "col">Available in stock</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -117,14 +138,16 @@ const updateQuantity = (productId, action) => {
     <button
       className="btn btn-outline-secondary"
       onClick={() => updateQuantity(p._id, "increment")}
-      disabled={p.quantity - p.numberOfItems === 0}
+      disabled={productQuantities[p._id] - p.numberOfItems === 0}
     >
       +
     </button>
   </div>
   <div>
-    <span>Available in stock: {p.quantity -  p.numberOfItems}</span>
-  </div>
+<span>
+                            Available in stock:
+                            {productQuantities[p._id] -p.numberOfItems}
+                          </span>  </div>
 </td>
 
                     <td>

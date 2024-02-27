@@ -74,12 +74,32 @@ const CheckoutPage = () => {
         const paymentUrl = response.data.payment_url;
         // Redirect the user to the payment URL
         window.location.href = paymentUrl;
+
+        // Update product quantities after successful payment
+        updateProductQuantities();
       })
       .catch(error => {
         console.error('Error sending payment data:', error);
-        toast.error("Enter all details to proceed with payment");
+        toast.error(error);
       });
   };
+
+  const updateProductQuantities = async () => {
+  try {
+    // For each item in the cart, send a request to update the product quantity
+    await Promise.all(cart.map(async (item) => {
+      await axios.post('/api/v1/product/updateStock', {
+        productId: item._id,
+        newQuantity: item.quantity - item.numberOfItems,
+      });
+    }));
+    console.log('Product quantities updated successfully');
+    // Optionally, you can perform additional actions after successful update
+  } catch (error) {
+    console.error('Error updating product quantities:', error);
+    // Handle error case if the update fails
+  }
+};
 
   return (
     <>
