@@ -13,8 +13,8 @@ router.post('/register', authController.registerController);
 //verify user mail
 router.get('/verify',authController.userVerifyMail)
 
-/* //verify doctor mail
-router.get('/verify-doctor-email',authController.doctorVerifyMail) */
+ //verify doctor mail
+router.get('/verify-doctor-email',authController.doctorVerifyMail) 
 
 //LOGIN
 router.post("/login", authController.loginController);

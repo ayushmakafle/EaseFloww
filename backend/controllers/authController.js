@@ -51,6 +51,23 @@ const userVerifyMail = async(req,res) => {
     console.error(error.message)
   }
 }
+const doctorVerifyMail = async (req, res) => {
+  try {
+    console.log(req.query);
+    const updateVerifiedUser = await DoctorModel.updateOne(
+      { _id: req.query.id },
+      {
+        $set: {
+          emailverified: 1,
+        },
+      }
+    );
+    console.log(updateVerifiedUser);
+    res.redirect(`${process.env.FRONTEND_URL}/verified-email`);
+  } catch (error) {
+    console.error(error.message);
+  }
+};
 
 //user register
 const registerController = async (req, res) => {
@@ -347,18 +364,18 @@ const doctorVerifyMail = async(req,res) => {
 export const registerDoctorController = async (req, res) => {
   try {
     console.log(req.fields);
-    const { name, email, password, phonenumber, specialization, 
+    const { username, email, password, phonenumber, specialization, 
       address, hospitalOrClinic } = req.fields
     const { certificatePhoto } = req.files 
     // Validations
-    if (!name || !email || !password || !phonenumber || !specialization || !address || !hospitalOrClinic) {
-      return res.status(400).json({ success: false, message: 'All fields are required' });
+    if (!username || !email || !password || !phonenumber || !specialization || !address || !hospitalOrClinic) {
+      return res.status(403).json({ success: false, message: 'All fields are required' });
     }
     if (!certificatePhoto) {
-      return res.status(400).json({ success: false, message: 'Certificate photo is required' });
+      return res.status(401).json({ success: false, message: 'Certificate photo is required' });
     }
     if (certificatePhoto.size > 1000000) {
-      return res.status(400).json({ success: false, message: 'Certificate photo size should be less than 1MB' });
+      return res.status(402).json({ success: false, message: 'Certificate photo size should be less than 1MB' });
     }
     // Hash the password before saving
     const hashedPassword = await hashPassword(password);
@@ -372,10 +389,12 @@ export const registerDoctorController = async (req, res) => {
     }
     await newDoctor.save();
     //await sendDoctorVerifyEmail(name, email, newDoctor._id);
+        await sendUserVerifyEmail(username, email, newDoctor._id); 
+
 
     res.status(201).json({
       success: true,
-      message: 'Doctor registration pending approval',
+      message: 'Doctor registration pending approval and check your email',
       doctor: newDoctor,
     });
   } catch (error) {
@@ -729,6 +748,6 @@ export const getDoctorData = async (req, res) => {
 
 export default { registerController, loginController,updateProfileController, forgetLoad, resetPassword,
   registerDoctorController,getUnapprovedDoctorsController,certificatePhotoController,approveDoctorController,
-denyDoctorController,doctorLoginController, userVerifyMail , getDoctorsController,getUsersController
+denyDoctorController,doctorLoginController, userVerifyMail ,doctorVerifyMail, getDoctorsController,getUsersController
  ,updateDoctorProfileController,getSingleDoctorController,getDoctorData};
   
