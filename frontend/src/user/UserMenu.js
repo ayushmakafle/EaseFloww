@@ -11,13 +11,13 @@ const UserMenu = () => {
     <div className='text-center'>
       <h4 style={{color:'#de5d83',fontWeight:'bold'}}>User Dashboard</h4>
       <div className="list-group">
-        <NavLink to="/dashboard/user/profile" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99'}}>
+        <NavLink to="/dashboard/user/profile" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99', border: '1px solid #FFC0CB'}}>
           My Profile
         </NavLink>
-        <NavLink to="/dashboard/user/order" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99'}}>
+        <NavLink to="/dashboard/user/order" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99', border: '1px solid #FFC0CB'}}>
           My Orders
         </NavLink>
-        <NavLink to="/dashboard/user/appointment" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99'}}>
+        <NavLink to="/dashboard/user/appointment" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99', border: '1px solid #FFC0CB'}}>
           My Appointments
         </NavLink>
          <div>

@@ -105,10 +105,10 @@ const Profile = () => {
                     placeholder="Enter Your Address"
                   />
                 </div>
-
-                <button type="submit" className="btn btn-primary">
-                  UPDATE
+                <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#ef5e99', color: 'white', border: '1px solid #FFC0CB' }}>
+                   UPDATE
                 </button>
+
               </form>
             </div>
         </div>

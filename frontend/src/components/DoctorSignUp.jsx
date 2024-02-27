@@ -7,7 +7,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import './Gyno.css';
 const DoctorSignUp = () => {
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [visible, setVisible] = useState('');
@@ -50,7 +50,7 @@ const DoctorSignUp = () => {
 
     // Create a FormData object
     const formData = new FormData();
-    formData.append('name', name);
+    formData.append('username', username);
     formData.append('email', email);
     formData.append('password', password);
     formData.append('phonenumber', phonenumber);
@@ -107,17 +107,17 @@ const DoctorSignUp = () => {
         <div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-18'>
           <form className='space-y-6' onSubmit={handleSubmit}>
             <div>
-              <label htmlFor='name' className='form-label mt-1' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
+              <label htmlFor='username' className='form-label mt-1' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Name
               </label>
               <input
                 type='text'
-                name='name'
+                name='username'
                 className='form-control focus:border-pink-500 bg-pink-100'
-                id='name'
+                id='username'
                 placeholder='Enter name'
                 required
-                value={name}
+                value={username}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>

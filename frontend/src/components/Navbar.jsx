@@ -85,7 +85,7 @@ const MainNavbar = () => {
               ) : (
                 <NavDropdown title={<i className="fa-solid fa-user mb-3  text-white"></i>} id="navbarDropdown">
                   <button className='btn btn-transparent' onClick={handleLogout}>
-                    <NavDropdown.Item className="pb-3">Logout</NavDropdown.Item>
+                    Logout
                   </button>
                 </NavDropdown>
               )}

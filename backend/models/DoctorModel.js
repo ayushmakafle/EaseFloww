@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const doctorSchema = new mongoose.Schema(
   {
-    name: {
+    username: {
       type: String,
       required: true,
       trim: true,
@@ -60,6 +60,11 @@ const doctorSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    emailverified:{
+      type: Boolean,
+      default:false,
+    },
+    
     role: {
       type: Number,
       default: 2,
