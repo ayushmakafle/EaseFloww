@@ -24,7 +24,7 @@ const sendUserVerifyEmail = async(username,email,user_id) => {
       from:'easeflow2023@gmail.com',
       to:email,
       subject:"Verify your EaseFlow account",
-      html:`<p> Hi ${username},Please click here to <a href="${process.env.REACT_APP_API}/api/v1/auth/verify?id=${user_id}">Verify</a>Your mail.</p>` 
+      html:`<p> Hi ${username},Please click here to <a href="${process.env.REACT_APP_API}/api/v1/auth/verify?id=${user_id}">verify</a>your email.</p>` 
     }
     transporter.sendMail(mailOptions, function(error,info){
       if(error){
@@ -70,7 +70,7 @@ const sendDoctorVerifyEmail = async(username,email,user_id) => {
       from:'easeflow2023@gmail.com',
       to:email,
       subject:"Verify your EaseFlow account",
-      html:`<p> Hi ${username},Please click here to <a href="${process.env.REACT_APP_API}/api/v1/auth/verify-doctor-email?id=${user_id}">Verify</a>Your dcotor mail.</p>` 
+      html:`<p> Hi Dr.${username},Please click here to <a href="${process.env.REACT_APP_API}/api/v1/auth/verify-doctor-email?id=${user_id}">verify</a>your email.</p>` 
     }
     transporter.sendMail(mailOptions, function(error,info){
       if(error){
@@ -619,7 +619,12 @@ export const doctorLoginController = async (req, res) => {
         hospitalOrClinic: doctor.hospitalOrClinic,
         role: doctor.role,
       }
-
+      if (doctor.emailverified !== 1) {
+      return res.status(200).send({
+        success: false,
+        message: "Your email isn't verified",
+      });
+    }
       if (isPasswordMatch) {
         const token = await JWT.sign(userData,process.env.JWT_SECRET, {
           expiresIn: "7d",
