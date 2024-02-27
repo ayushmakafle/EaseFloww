@@ -5,10 +5,13 @@ import axios from 'axios';
 import EcomHeader from './EcomHeader';
 import MainFooter from './footer';
 import {useNavigate} from 'react-router-dom'
+import { useCart } from '../context/cart'; // Import useCart hook
 
 const PaymentComponent = () => {
 
   const navigate= useNavigate();
+  const [cart] = useCart(); // Use useCart hook to access cart items
+
 
   const [paymentData, setPaymentData] = useState({
     amount: 0,
@@ -16,6 +19,30 @@ const PaymentComponent = () => {
     transactionId: '',
     pidx: '',
   });
+
+const updateProductQuantities = async () => {
+  try {
+    console.log('Updating product quantities...');
+    console.log('Cart items:', cart);
+
+    // For each item in the cart, send a request to update the product quantity
+    await Promise.all(cart.map(async (item) => {
+      console.log('Updating quantity for item:', item);
+      await axios.post('/api/v1/product/updateStock', {
+        productId: item._id,
+        newQuantity: item.quantity - item.numberOfItems,
+      });
+      console.log('Product quantity updated successfully for item:', item);
+    }));
+
+    console.log('Product quantities updated successfully');
+    // Optionally, you can perform additional actions after successful update
+  } catch (error) {
+    console.error('Error updating product quantities:', error);
+    // Handle error case if the update fails
+  }
+};
+
 
   useEffect(() => {
     // Function to extract query parameters from the URL
@@ -99,6 +126,7 @@ const PaymentComponent = () => {
             // Automatically send order details when status is 'Completed'
             sendOrderDetails();
             navigate('/paysuccess')
+            updateProductQuantities()
           }
 
           // Handle the Khalti API response here
