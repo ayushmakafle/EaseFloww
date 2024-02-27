@@ -74,6 +74,7 @@ import Forget from './screens/Auth/Forget';
 import ResetPassword from './screens/Auth/ResetPassword';
 import InvalidToken from './screens/Auth/invalid';
 import ForgetPasswordPage from './screens/Auth/ResetPassword';
+import DoctorEmailVerified from './Doctor/DoctorEmailVerified';
 
 
 function App() {
@@ -104,6 +105,7 @@ function App() {
 
           <Route path="/login" element={<LoginPage />} />
           <Route path='/verified-email' element={<EmailVerified/>}/>
+          <Route path='verify-doctor-email' element={<DoctorEmailVerified/>}/>
           {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
           <Route path="/signup" element={<SignUpPage />} />          
           <Route path = "/forget" element={<Forget />}/>

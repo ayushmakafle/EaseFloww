@@ -61,8 +61,8 @@ const doctorSchema = new mongoose.Schema(
       default: false,
     },
     emailverified:{
-      type: Boolean,
-      default:false,
+      type: Number,
+      default: 0, 
     },
     
     role: {

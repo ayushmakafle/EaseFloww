@@ -51,18 +51,47 @@ const userVerifyMail = async(req,res) => {
     console.error(error.message)
   }
 }
+
+//user email verification
+const sendDoctorVerifyEmail = async(username,email,user_id) => {
+  try{
+    const transporter = nodemailer.createTransport({
+      host:'smtp.gmail.com',
+      port:587,
+      secure:false,
+      requireTLS:true,
+      auth:{
+        user:'easeflow2023@gmail.com',
+        pass:`${process.env.SMTP_PASSWORD}`
+      }
+    })
+    
+    const mailOptions = {
+      from:'easeflow2023@gmail.com',
+      to:email,
+      subject:"Verify your EaseFlow account",
+      html:`<p> Hi ${username},Please click here to <a href="${process.env.REACT_APP_API}/api/v1/auth/verify-doctor-email?id=${user_id}">Verify</a>Your dcotor mail.</p>` 
+    }
+    transporter.sendMail(mailOptions, function(error,info){
+      if(error){
+        console.log(error)
+      }
+      else{
+        console.log('email has been sent ',info.response)
+      }
+    })
+  }catch(error){
+    console.log(error)
+  }
+}
+
 const doctorVerifyMail = async (req, res) => {
   try {
     console.log(req.query);
-    const updateVerifiedUser = await DoctorModel.updateOne(
-      { _id: req.query.id },
-      {
-        $set: {
-          emailverified: 1,
-        },
-      }
-    );
-    console.log(updateVerifiedUser);
+    const updateVerifiedDoctor = await DoctorModel.updateOne({_id:req.query.id},{$set:{
+      emailverified:1
+    }})
+    console.log(updateVerifiedDoctor);
     res.redirect(`${process.env.FRONTEND_URL}/verified-email`);
   } catch (error) {
     console.error(error.message);
@@ -389,7 +418,7 @@ export const registerDoctorController = async (req, res) => {
     }
     await newDoctor.save();
     //await sendDoctorVerifyEmail(name, email, newDoctor._id);
-        await sendUserVerifyEmail(username, email, newDoctor._id); 
+        await sendDoctorVerifyEmail(username, email, newDoctor._id); 
 
 
     res.status(201).json({
