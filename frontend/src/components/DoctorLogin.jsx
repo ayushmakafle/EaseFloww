@@ -87,11 +87,19 @@ const DoctorLogin = () => {
                 </a>
               </div> */}
             </div>
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button
-                type="submit"
-                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700' style={{ borderRadius: '8px' }}
-              >Login
+                type='submit'
+                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700' style={{ borderRadius: '8px', minWidth: '120px' }}
+              >
+                Login
+              </button>
+              <button
+                type='submit'
+                className='py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700' style={{ borderRadius: '8px', minWidth: '80px' }}
+                onClick={() => navigate('/forget')}
+              >
+                Forgot Password?
               </button>
             </div>
             <div className='flex items-center'>

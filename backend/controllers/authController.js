@@ -257,6 +257,8 @@ export const forgetLoad = async (req, res) => {
 
     // Update the user's token in the database
     await userModel.findOneAndUpdate({ email: email }, { token: randomString });
+    await DoctorModel.findOneAndUpdate({ email: email }, { token: randomString });
+
 
     // Send the token to the user's email
     await sendRestPasswordMail(email, randomString);
@@ -282,16 +284,20 @@ export const resetPassword = async (req, res) => {
   try {
     const { email, token, newPassword } = req.body;
 
-    // Check if the provided token matches the token stored in the database
-    const user = await userModel.findOne({ email, token });
+    // Check if the provided token matches the token stored in the database for a user
+    let user = await userModel.findOne({ email, token });
     if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "Invalid token or email",
-      });
+      // If not found in the user model, check in the doctor model
+      user = await DoctorModel.findOne({ email, token });
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: "Invalid token or email",
+        });
+      }
     }
 
-    // Update the user's password
+    // Update the password
     user.password = await hashPassword(newPassword);
     await user.save();
 
