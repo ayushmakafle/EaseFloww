@@ -429,7 +429,7 @@ export const registerDoctorController = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: 'Doctor registration pending approval and check your email',
+      message: 'Your doctor account has been sent to admin for approval. Please check your to verify your email.',
       doctor: newDoctor,
     });
   } catch (error) {

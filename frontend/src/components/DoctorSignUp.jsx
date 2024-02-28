@@ -45,9 +45,42 @@ const DoctorSignUp = () => {
     setOfficeDays(selectedOptions);
   };
 
+  // Validation functions
+  const isNameValid = (username) => username.length >= 5;
+  const isEmailValid = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isPasswordValid = (password) => /^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password);
+  const isPhoneNumberValid = (phoneNumber) => /^\d{10}$/.test(phoneNumber);
+  const isSpecializationValid = (specialization) => { return specialization.length >= 5 && /^[a-zA-Z]+$/.test(specialization); };
+  const isHospitalValid = (hospitalOrClinic) => { return hospitalOrClinic.length >= 5 && /^[a-zA-Z]+$/.test(hospitalOrClinic); };
+  const isAddressValid = (address) => address.length >= 5;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isNameValid(username)) {
+      return toast.error('Name should be at least 5 characters long');
+    }
 
+    if (!isEmailValid(email)) {
+      return toast.error('Invalid email format');
+    }
+
+    if (!isPasswordValid(password)) {
+      return toast.error('Password must be at least 8 characters, including one special character.');
+    }
+
+    if (!isPhoneNumberValid(phonenumber)) {
+      return toast.error('Phone number should be 10 digits');
+    }
+
+    if (!isSpecializationValid(specialization)) {
+      return toast.error('Specialization should be at least 5 characters long and must have letters only');
+    }
+    if (!isHospitalValid(hospitalOrClinic)) {
+      return toast.error('Hospital name should be at least 5 characters long and must have letters only');
+    }
+    if (!isAddressValid(address)) {
+      return toast.error('Address should be at least 5 characters long');
+    }
     // Create a FormData object
     const formData = new FormData();
     formData.append('username', username);
@@ -130,6 +163,7 @@ const DoctorSignUp = () => {
                 type='email'
                 name='email'
                 className='form-control focus:border-pink-500 bg-pink-100'
+                placeholder='Enter email'
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -144,6 +178,7 @@ const DoctorSignUp = () => {
                 type='password'
                 name='password'
                 className='form-control focus:border-pink-500 bg-pink-100'
+                placeholder='Enter password'
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -158,6 +193,7 @@ const DoctorSignUp = () => {
                 type='tel'
                 name='phonenumber'
                 className='form-control focus:border-pink-500 bg-pink-100'
+                placeholder='Enter your phone number'
                 required
                 value={phonenumber}
                 onChange={(e) => setPhonenumber(e.target.value)}
@@ -172,6 +208,7 @@ const DoctorSignUp = () => {
                 type='text'
                 name='specialization'
                 className='form-control focus:border-pink-500 bg-pink-100'
+                placeholder='Enter your field of specialization'
                 required
                 value={specialization}
                 onChange={(e) => setSpecialization(e.target.value)}
@@ -208,12 +245,13 @@ const DoctorSignUp = () => {
 
             <div>
               <label htmlFor='address' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-                Address
+                Address of Hospital/Clinic
               </label>
               <input
                 type='text'
                 name='address'
                 className='form-control'
+                placeholder='Enter your hospital/clinic address'
                 required
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -222,12 +260,13 @@ const DoctorSignUp = () => {
 
             <div>
               <label htmlFor='hospitalOrClinic' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
-                Hospital or Clinic
+                Name Hospital or Clinic
               </label>
               <input
                 type='text'
                 name='hospitalOrClinic'
                 className='form-control'
+                placeholder='Enter your hospital/clinic name'
                 required
                 value={hospitalOrClinic}
                 onChange={(e) => setHospitalOrClinic(e.target.value)}
@@ -242,6 +281,7 @@ const DoctorSignUp = () => {
                 type='number'
                 name='experience'
                 className='form-control'
+                placeholder='Enter your no. of years of experience in the field of specialization'
                 required
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
@@ -297,6 +337,7 @@ const DoctorSignUp = () => {
                 type='number'
                 name='feesPerConsultation'
                 className='form-control'
+                placeholder='Enter your fee per consultation'
                 required
                 value={feesPerConsultation}
                 onChange={(e) => setFeesPerConsultation(e.target.value)}
