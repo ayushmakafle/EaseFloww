@@ -170,19 +170,34 @@ const DoctorSignUp = () => {
               />
             </div>
 
-            <div>
+            <div className='form-group'>
               <label htmlFor='password' className='form-label' style={{ color: '#ef5e99', fontWeight: 'bold', fontFamily: 'Raleway, sans-serif' }}>
                 Password
               </label>
               <input
-                type='password'
-                name='password'
                 className='form-control focus:border-pink-500 bg-pink-100'
-                placeholder='Enter password'
+                id='password'
+                placeholder='Password'
+                type={visible ? 'text' : 'password'}
+                name='password'
+                autoComplete='current-password'
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {visible ? (
+                <AiOutlineEye
+                  className='absolute right-2 top-2 cursor-pointer'
+                  size={25}
+                  onClick={() => setVisible(false)}
+                />
+              ) : (
+                <AiOutlineEyeInvisible
+                  className='absolute right-2 top-2 cursor-pointer'
+                  size={25}
+                  onClick={() => setVisible(true)}
+                />
+              )}
             </div>
 
             <div>
