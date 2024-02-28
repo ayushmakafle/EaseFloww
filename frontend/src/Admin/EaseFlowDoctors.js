@@ -9,8 +9,8 @@ const EaseFlowDoctors = () => {
   const columns = [
     {
       title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'username',
+      key: 'username',
     },
     {
       title: 'Email',
