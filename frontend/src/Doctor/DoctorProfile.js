@@ -9,7 +9,7 @@ import { ReactComponent as Loading } from '../components/loadinganimation.svg';
 
 const DoctorProfile = () => {
   const [auth, setAuth] = useAuth();
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
   const [address, setAddress] = useState('');
@@ -27,8 +27,8 @@ const DoctorProfile = () => {
         if (response.data.success) {
           console.log(response.data);
           const doctorData = response.data.data;
-          const { name, email, phonenumber, address, officeHoursStart, officeHoursEnd, feesPerConsultation, officeDays } = doctorData;
-          setName(name);
+          const { username, email, phonenumber, address, officeHoursStart, officeHoursEnd, feesPerConsultation, officeDays } = doctorData;
+          setName(username);
           setEmail(email);
           setPhonenumber(phonenumber);
           setAddress(address);
@@ -64,7 +64,7 @@ const DoctorProfile = () => {
 
         {doctor ? (
           <div style={styles.doctorDetails}>
-            <h1 style={styles.doctorName}>{doctor.name}</h1>
+            <h1 style={styles.doctorName}>{doctor.username}</h1>
             <div style={styles.doctorSpecialization}>{doctor.specialization}</div>
             <div style={styles.hospitalInfo}>
               <div>{doctor.hospitalOrClinic}</div>
