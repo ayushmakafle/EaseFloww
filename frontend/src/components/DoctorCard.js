@@ -6,7 +6,7 @@ const DoctorCard = ({ doctor }) => {
   const navigate = useNavigate()
   const {
     _id,
-    name,
+    username,
     specialization,
     hospitalOrClinic,
     address,
@@ -25,7 +25,7 @@ const DoctorCard = ({ doctor }) => {
 
     return (
       <div className="doctor-card">
-        <div className="doctor-name">{name}</div>
+        <div className="doctor-name">{username}</div>
         <div className="doctor-specialization">{specialization}</div>
         <div className="hospital-info">
           <div>{hospitalOrClinic}</div>
