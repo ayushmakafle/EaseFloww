@@ -95,7 +95,7 @@
     "patterns": [
       "Luteal phase"
     ],
-    "Response": "Luteal happens 10 to 14 days after ovulation and before your bleed. A few changes occur in your body during luteal phase. Estrogen levels continue to rise, your uterine lining continues to thicken and your progesterone levels start to rise. Toward the end of the luteal phase, estrogen, testosterone, and progesterone peak and then begin to drop, hitting their lowest levels just before your period. Pre Menstrual Syndrome during this phase is caused by too much estrogen in the body relative to progesterone, or estrogen dominance and metabolism speeds up."
+    "Response": "Luteal happens 10 to 14 days after ovulation and before you menstruate. A few changes occur in your body during luteal phase. Estrogen levels continue to rise, your uterine lining continues to thicken and your progesterone levels start to rise. Toward the end of the luteal phase, estrogen, testosterone, and progesterone peak and then begin to drop, hitting their lowest levels just before your period. Pre Menstrual Syndrome during this phase is caused by too much estrogen in the body relative to progesterone, or estrogen dominance and metabolism speeds up."
   },
   {
     "Tag": "thank",
@@ -475,7 +475,7 @@
         "i am bleeding",
         "i am menstruating"
       ],
-      "Response":"A period is the part of the menstrual cycle when a woman bleeds from her vagina for a few days. If you have periods you should eat well and use hygienic products. You can easily order products from EaseFlow"
+      "Response":"A period is the part of the menstrual cycle when a woman menstruate from her vagina for a few days. If you have periods you should eat well and use hygienic products. You can easily order products from EaseFlow"
     },
     {
       "Tag": "first period",
