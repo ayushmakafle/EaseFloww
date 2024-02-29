@@ -5,6 +5,8 @@ import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 import './Gyno.css';
 const DoctorSignUp = () => {
   const [username, setName] = useState('');
@@ -29,6 +31,8 @@ const DoctorSignUp = () => {
   const handleOfficeHoursEndChange = (e) => {
     setOfficeHoursEnd(e.target.value);
   };
+  const navigate = useNavigate();
+
 
   const daysOfWeek = [
     { value: 'Sunday', label: 'Sunday' },
@@ -108,6 +112,7 @@ const DoctorSignUp = () => {
 
       if (res.data.success) {
         toast.success(res.data.message);
+      navigate('/doctor-login');
         // Redirect or handle success as needed
       } else {
         toast.error(res.data.message);
