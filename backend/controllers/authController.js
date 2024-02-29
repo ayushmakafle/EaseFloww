@@ -528,7 +528,7 @@ export const approveDoctorController = async (req, res) => {
     );
 
      // Send approval email to the doctor
-    await sendDoctorApprovalEmail(updatedDoctor.name, updatedDoctor.email, updatedDoctor._id, true);
+    await sendDoctorApprovalEmail(updatedDoctor.username, updatedDoctor.email, updatedDoctor._id, true);
 
     res.status(200).json({
       success: true,
@@ -559,7 +559,7 @@ export const denyDoctorController = async (req, res) => {
       });
     }
     // Send denial email to the doctor
-    await sendDoctorApprovalEmail(removedDoctor.name, removedDoctor.email, removedDoctor._id, false);
+    await sendDoctorApprovalEmail(removedDoctor.username, removedDoctor.email, removedDoctor._id, false);
 
     console.log('Doctor denied and removed successfully');
     res.status(200).json({

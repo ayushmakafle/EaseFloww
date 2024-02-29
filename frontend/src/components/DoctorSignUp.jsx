@@ -5,6 +5,8 @@ import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 import './Gyno.css';
 const DoctorSignUp = () => {
   const [username, setName] = useState('');
@@ -29,6 +31,8 @@ const DoctorSignUp = () => {
   const handleOfficeHoursEndChange = (e) => {
     setOfficeHoursEnd(e.target.value);
   };
+  const navigate = useNavigate();
+
 
   const daysOfWeek = [
     { value: 'Sunday', label: 'Sunday' },
@@ -50,8 +54,8 @@ const DoctorSignUp = () => {
   const isEmailValid = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isPasswordValid = (password) => /^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password);
   const isPhoneNumberValid = (phoneNumber) => /^\d{10}$/.test(phoneNumber);
-  const isSpecializationValid = (specialization) => { return specialization.length >= 5 && /^[a-zA-Z]+$/.test(specialization); };
-  const isHospitalValid = (hospitalOrClinic) => { return hospitalOrClinic.length >= 5 && /^[a-zA-Z]+$/.test(hospitalOrClinic); };
+  // const isSpecializationValid = (specialization) => { return specialization.length >= 5 && /^[a-zA-Z]+$/.test(specialization); };
+  // const isHospitalValid = (hospitalOrClinic) => { return hospitalOrClinic.length >= 5 && /^[a-zA-Z]+$/.test(hospitalOrClinic); };
   const isAddressValid = (address) => address.length >= 5;
 
   const handleSubmit = async (e) => {
@@ -72,12 +76,12 @@ const DoctorSignUp = () => {
       return toast.error('Phone number should be 10 digits');
     }
 
-    if (!isSpecializationValid(specialization)) {
-      return toast.error('Specialization should be at least 5 characters long and must have letters only');
-    }
-    if (!isHospitalValid(hospitalOrClinic)) {
-      return toast.error('Hospital name should be at least 5 characters long and must have letters only');
-    }
+    // if (!isSpecializationValid(specialization)) {
+    //   return toast.error('Specialization should be at least 5 characters long and must have letters only');
+    // }
+    // if (!isHospitalValid(hospitalOrClinic)) {
+    //   return toast.error('Hospital name should be at least 5 characters long and must have letters only');
+    // }
     if (!isAddressValid(address)) {
       return toast.error('Address should be at least 5 characters long');
     }
@@ -108,6 +112,7 @@ const DoctorSignUp = () => {
 
       if (res.data.success) {
         toast.success(res.data.message);
+      navigate('/doctor-login');
         // Redirect or handle success as needed
       } else {
         toast.error(res.data.message);
