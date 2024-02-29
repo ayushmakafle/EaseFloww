@@ -144,7 +144,7 @@ if (!/^[a-zA-Z\s]{1,15}$/.test(patientName)) {
       const res = await axios.post(`/api/v1/appointment/book-appointment`, {
         doctorID: params.doctorId,
         userID: auth.user._id,
-        doctorInfo: doctor.name,
+        doctorInfo: doctor.username,
         userInfo: auth.user.username,
         date: selectedDate,
         startTime: formattedTime,
@@ -240,7 +240,7 @@ const customStyles = `
 
       {/* <MainNavbar /> */}
       <div className="doctor-details mt-2">
-        <h1>{doctor.name}</h1>
+        <h1>{doctor.username}</h1>
         <div className="doctor-specialization">{doctor.specialization}</div>
         <div className="hospital-info">
           <div>{doctor.hospitalOrClinic}</div>
