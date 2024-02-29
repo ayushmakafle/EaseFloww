@@ -22,51 +22,57 @@ const UserAppointments = () => {
   }, []);
 
   const columns = [
+    // {
+    //   title: "Appointment ID",
+    //   dataIndex: "_id",
+    //   key: "_id",
+    // },
     {
-      title: 'Appointment ID',
-      dataIndex: '_id',
-      key: '_id',
+      title: "SN.",
+      dataIndex: "serialNo",
+      render: (text, record, index) => index + 1,
+      key: "serialNo",
     },
     {
-      title: 'Doctor',
-      dataIndex: 'doctorInfo',
+      title: "Doctor",
+      dataIndex: "doctorInfo",
       render: (text, record) => (
-        <span>
-          {record.doctorInfo ? JSON.parse(record.doctorInfo) : ''}
-        </span>
+        <span>{record.doctorInfo ? JSON.parse(record.doctorInfo) : ""}</span>
       ),
-      key: 'doctorInfo',
+      key: "doctorInfo",
     },
     {
-      title: 'Patient',
-      dataIndex: 'patientName',
-      key:'patientName'
+      title: "Patient",
+      dataIndex: "patientName",
+      key: "patientName",
     },
     {
-      title: 'Date',
-      dataIndex: 'date',
-      key: 'date',
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
     },
- {
-  title: 'Time',
-  dataIndex: 'time',
-  key: 'time',
-  render: (text, record) => {
-    if (record && record.startTime && record.endTime) {
-      const startTime = moment(record.startTime);
-      const endTime = moment(record.endTime);
-      if (startTime.isValid() && endTime.isValid()) {
-        return `${startTime.format('h:mm A')} - ${endTime.format('h:mm A')}`;
-      }
-    }
-    return 'N/A';
-  },
-},
+    {
+      title: "Time",
+      dataIndex: "time",
+      key: "time",
+      render: (text, record) => {
+        if (record && record.startTime && record.endTime) {
+          const startTime = moment(record.startTime);
+          const endTime = moment(record.endTime);
+          if (startTime.isValid() && endTime.isValid()) {
+            return `${startTime.format("h:mm A")} - ${endTime.format(
+              "h:mm A"
+            )}`;
+          }
+        }
+        return "N/A";
+      },
+    },
 
     {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
     },
   ];
 
