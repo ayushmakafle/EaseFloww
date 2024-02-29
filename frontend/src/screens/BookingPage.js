@@ -116,7 +116,7 @@ if (!/^[a-zA-Z\s]{1,15}$/.test(patientName)) {
 
       const ageNumber = parseInt(patientAge, 10);
       if (isNaN(ageNumber) || ageNumber < 8 || ageNumber > 60) {
-        ageValidationError = "Please enter a valid age.";
+        ageValidationError = "Please enter a valid age between 8 and 60.";
       }
 
       if (!/^\d{10}$/.test(patientContact)) {
