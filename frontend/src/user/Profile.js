@@ -4,6 +4,7 @@ import UserMenu from './UserMenu'
 import { useAuth } from "../context/auth";
 import {toast} from 'react-toastify'
 import axios from 'axios';
+import MainFooter from '../components/footer';
 
 const Profile = () => {
   //context
@@ -114,6 +115,8 @@ const Profile = () => {
         </div>
       </div>
       </div>
+    <MainFooter />
+
     </>
   )
 }

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import UserMenu from './UserMenu';
 import axios from 'axios';
 import { Table, Spin } from 'antd';
+import MainFooter from '../components/footer';
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -121,6 +122,7 @@ const MyOrders = () => {
           </div>
         </div>
       </div>
+      <MainFooter />
     </>
   );
 };

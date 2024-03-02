@@ -5,6 +5,7 @@ import axios from 'axios';
 import moment from 'moment'; 
 import { Table, Spin, Button} from 'antd';
 import { toast } from 'react-toastify'
+import MainFooter from '../components/footer';
 
 
 const UserAppointments = () => {
@@ -137,6 +138,7 @@ const UserAppointments = () => {
           </div>
         </div>
       </div>
+      <MainFooter />
     </>
   );
 };
