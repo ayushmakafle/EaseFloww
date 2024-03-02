@@ -45,6 +45,10 @@ const AppointmentSchema = new mongoose.Schema({
     patientContact :{
         type:String,
         required:true
+    },
+    isCancelled:{
+        type:Boolean,
+        default: false
     }
 },{timestamps:true})
 

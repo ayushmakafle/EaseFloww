@@ -339,6 +339,57 @@ const doctorAppointmentsById = async (req, res) => {
   }
 };
 
+const cancelAppointment = async(req,res) => {
+  try{
+    const { appointmentId } = req.body;
+    
+    // Check if appointmentId is provided
+    if (!appointmentId) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide appointmentId",
+      });
+    }
+
+    // Find the appointment by ID
+    const appointment = await AppointmentModel.findById(appointmentId);
+
+    // Check if the appointment exists
+    if (!appointment) {
+      return res.status(404).json({
+        success: false,
+        message: "Appointment not found",
+      });
+    }
+
+    // Check if the appointment is already cancelled
+    if (appointment.isCancelled) {
+      return res.status(400).json({
+        success: false,
+        message: "Appointment is already cancelled",
+      });
+    }
+
+    // Update the appointment status to cancelled
+    appointment.isCancelled = true;
+
+    // Save the updated appointment
+    await appointment.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Appointment cancelled successfully",
+      appointment: appointment,
+    });
+  }catch(error){
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      error: error.message,
+      message: "Error in cancelling appointment",
+    });
+  }
+}
 
 export default {bookAppointmentController,
     checkAvailabilityController,
@@ -347,6 +398,6 @@ export default {bookAppointmentController,
     acceptAppointment,
     adminAppointments,
     rejectAppointment,
-    doctorAppointmentsById
-    
+    doctorAppointmentsById,
+    cancelAppointment    
 }

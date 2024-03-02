@@ -26,6 +26,6 @@ router.get('/doctor-appointments', requireSignIn, appointmentController.adminApp
 
 router.get('/doctor-appointments/:id', requireSignIn, appointmentController.doctorAppointmentsById);
 
-
+router.put('/cancel-appointment', requireSignIn, appointmentController.cancelAppointment)
 
 export default router;
