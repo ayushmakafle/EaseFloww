@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import UserMenu from './UserMenu';
 // import MainNavbar from '../components/Navbar';
 import axios from 'axios';
-import moment from 'moment'; // Import the moment library
-import { Table, Spin, Button,message } from 'antd';
+import moment from 'moment'; 
+import { Table, Spin, Button} from 'antd';
+import { toast } from 'react-toastify'
+
 
 const UserAppointments = () => {
   const [appointments, setAppointments] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingMap, setLoadingMap] = useState({});
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -22,22 +24,28 @@ const UserAppointments = () => {
     fetchAppointments();
   }, []);
 
-  const handleCancelAppointment = async (appointmentId) => {
+   const handleCancelAppointment = async (appointmentId) => {
     try {
-      setLoading(true);
+      setLoadingMap(prevLoadingMap => ({
+        ...prevLoadingMap,
+        [appointmentId]: true
+      }));
       const response = await axios.put('/api/v1/appointment/cancel-appointment', { appointmentId });
-      setLoading(false);
       if (response.data.success) {
-        message.success('Appointment cancelled successfully');
+        toast.success('Appointment cancelled successfully');
         // Remove the cancelled appointment from the state
         setAppointments(appointments.filter(appointment => appointment._id !== appointmentId));
       } else {
-        message.error('Failed to cancel appointment');
+        toast.error('Failed to cancel appointment');
       }
     } catch (error) {
       console.error("Error cancelling appointment:", error);
-      setLoading(false);
-      message.error('Failed to cancel appointment');
+      toast.error('Failed to cancel appointment');
+    } finally {
+      setLoadingMap(prevLoadingMap => ({
+        ...prevLoadingMap,
+        [appointmentId]: false
+      }));
     }
   };
 
@@ -95,19 +103,20 @@ const UserAppointments = () => {
       key: "status",
     },
     {
-      title: "Action",
-      key: "action",
-      render: (text, record) => (
+    title: "Action",
+    key: "action",
+    render: (text, record) => (
+      record.status === 'accepted' && (
         <Button
           type="danger"
           onClick={() => handleCancelAppointment(record._id)}
-          disabled={record.status !== 'pending'} 
-          loading={loading}
+          loading={loadingMap[record._id]}
         >
           Cancel
         </Button>
-      ),
-    },
+      )
+    ),
+  },
   ];
 
   return (
