@@ -108,27 +108,20 @@ const checkAvailabilityController = async (req, res) => {
       ]
     });
 
-    if (overlappingAppointments.length > 0) {
-      // Check if any overlapping appointment is cancelled
-      const cancelledAppointment = overlappingAppointments.find(appointment => appointment.isCancelled === true);
-      if (cancelledAppointment) {
-        // A cancelled appointment exists within the specified range
-        res.status(200).send({
-          success: true,
-          message: 'Appointment slot available',
-        });
-      } else {
-        // No cancelled appointment found, slot is not available
-        res.status(200).send({
-          success: false,
-          message: 'Appointment slot not available',
-        });
-      }
-    } else {
-      // No overlapping appointments, slot is available
+    // Check if any overlapping appointment is cancelled or rejected
+    const cancelledOrRejectedAppointment = overlappingAppointments.find(appointment => appointment.isCancelled || appointment.status === 'rejected');
+
+    if (!overlappingAppointments.length || cancelledOrRejectedAppointment) {
+      // Slot is available if there are no overlapping appointments or if any overlapping appointment is cancelled or rejected
       res.status(200).send({
         success: true,
         message: 'Appointment slot available',
+      });
+    } else {
+      // Slot is not available if there are overlapping appointments and none of them are cancelled or rejected
+      res.status(200).send({
+        success: false,
+        message: 'Appointment slot not available',
       });
     }
   } catch (error) {
@@ -140,6 +133,8 @@ const checkAvailabilityController = async (req, res) => {
     });
   }
 };
+
+
 
 
 const userAppointments = async (req, res) => {
