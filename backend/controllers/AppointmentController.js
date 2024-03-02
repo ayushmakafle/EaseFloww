@@ -82,54 +82,65 @@ const { email } = doctor;
 };
 
 const checkAvailabilityController = async (req, res) => {
-    try {
-        const inputDate = req.body.date;
-        const inputStartTime = req.body.startTime;
-        const inputEndTime = req.body.endTime;
+  try {
+    const inputDate = req.body.date;
+    const inputStartTime = req.body.startTime;
+    const inputEndTime = req.body.endTime;
 
-        const formattedStartDate = moment(`${inputDate} ${inputStartTime}`, 'DD-MM-YYYY HH:mm');
-        const formattedEndDate = moment(`${inputDate} ${inputEndTime}`, 'DD-MM-YYYY HH:mm');
+    const formattedStartDate = moment(`${inputDate} ${inputStartTime}`, 'DD-MM-YYYY HH:mm');
+    const formattedEndDate = moment(`${inputDate} ${inputEndTime}`, 'DD-MM-YYYY HH:mm');
 
-        // Check if there are any overlapping appointments
-        const overlappingAppointments = await AppointmentModel.find({
-            doctorID: req.body.doctorID,
-            date: inputDate,
-            $or: [
-                {
-                    startTime: { $lt: formattedEndDate },
-                    endTime: { $gt: formattedStartDate }
-                },
-                {
-                    startTime: { $gte: formattedStartDate, $lt: formattedEndDate },
-                },
-                {
-                    endTime: { $gt: formattedStartDate, $lte: formattedEndDate },
-                }
-            ]
-        });
-
-        if (overlappingAppointments.length > 0) {
-            // Appointments exist within the specified range
-            res.status(200).send({
-                success: false,
-                message: 'Appointment slot not available',
-            });
-        } else {
-            // No overlapping appointments, slot is available
-            res.status(200).send({
-                success: true,
-                message: 'Appointment slot available',
-            });
+    // Check if there are any overlapping appointments
+    const overlappingAppointments = await AppointmentModel.find({
+      doctorID: req.body.doctorID,
+      date: inputDate,
+      $or: [
+        {
+          startTime: { $lt: formattedEndDate },
+          endTime: { $gt: formattedStartDate }
+        },
+        {
+          startTime: { $gte: formattedStartDate, $lt: formattedEndDate },
+        },
+        {
+          endTime: { $gt: formattedStartDate, $lte: formattedEndDate },
         }
-    } catch (error) {
-        console.error("Error while checking availability:", error);
-        res.status(500).send({
-            success: false,
-            error,
-            message: "Error while checking availability",
+      ]
+    });
+
+    if (overlappingAppointments.length > 0) {
+      // Check if any overlapping appointment is cancelled
+      const cancelledAppointment = overlappingAppointments.find(appointment => appointment.isCancelled === true);
+      if (cancelledAppointment) {
+        // A cancelled appointment exists within the specified range
+        res.status(200).send({
+          success: true,
+          message: 'Appointment slot available',
         });
+      } else {
+        // No cancelled appointment found, slot is not available
+        res.status(200).send({
+          success: false,
+          message: 'Appointment slot not available',
+        });
+      }
+    } else {
+      // No overlapping appointments, slot is available
+      res.status(200).send({
+        success: true,
+        message: 'Appointment slot available',
+      });
     }
+  } catch (error) {
+    console.error("Error while checking availability:", error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error while checking availability",
+    });
+  }
 };
+
 
 const userAppointments = async (req, res) => {
   try {
