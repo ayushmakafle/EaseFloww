@@ -3,7 +3,7 @@ import UserMenu from './UserMenu';
 // import MainNavbar from '../components/Navbar';
 import axios from 'axios';
 import moment from 'moment'; 
-import { Table, Spin, Button} from 'antd';
+import { Table, Spin, Button, Modal } from 'antd';
 import { toast } from 'react-toastify'
 import MainFooter from '../components/footer';
 
@@ -11,6 +11,8 @@ import MainFooter from '../components/footer';
 const UserAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [loadingMap, setLoadingMap] = useState({});
+  const [cancelModalVisible, setCancelModalVisible] = useState(false);
+  const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -25,17 +27,17 @@ const UserAppointments = () => {
     fetchAppointments();
   }, []);
 
-   const handleCancelAppointment = async (appointmentId) => {
+  const handleCancelAppointment = async () => {
     try {
       setLoadingMap(prevLoadingMap => ({
         ...prevLoadingMap,
-        [appointmentId]: true
+        [selectedAppointmentId]: true
       }));
-      const response = await axios.put('/api/v1/appointment/cancel-appointment', { appointmentId });
+      const response = await axios.put('/api/v1/appointment/cancel-appointment', { appointmentId: selectedAppointmentId });
       if (response.data.success) {
         toast.success('Appointment cancelled successfully');
         // Remove the cancelled appointment from the state
-        setAppointments(appointments.filter(appointment => appointment._id !== appointmentId));
+        setAppointments(appointments.filter(appointment => appointment._id !== selectedAppointmentId));
       } else {
         toast.error('Failed to cancel appointment');
       }
@@ -45,9 +47,19 @@ const UserAppointments = () => {
     } finally {
       setLoadingMap(prevLoadingMap => ({
         ...prevLoadingMap,
-        [appointmentId]: false
+        [selectedAppointmentId]: false
       }));
+      setCancelModalVisible(false);
     }
+  };
+
+  const handleCancelModalCancel = () => {
+    setCancelModalVisible(false);
+  };
+
+  const showCancelModal = (appointmentId) => {
+    setSelectedAppointmentId(appointmentId);
+    setCancelModalVisible(true);
   };
 
   const columns = [
@@ -103,21 +115,22 @@ const UserAppointments = () => {
       dataIndex: "status",
       key: "status",
     },
-    {
-    title: "Action",
-    key: "action",
-    render: (text, record) => (
-      record.status === 'accepted' && (
-        <Button
-          type="danger"
-          onClick={() => handleCancelAppointment(record._id)}
-          loading={loadingMap[record._id]}
-        >
-          Cancel
-        </Button>
-      )
-    ),
-  },
+     {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        record.status === 'Accepted' && (
+          <Button
+            type="danger"
+            onClick={() => showCancelModal(record._id)}
+            loading={loadingMap[record._id]}
+            style={{backgroundColor:'#FA8072'}}
+          >
+            Cancel
+          </Button>
+        )
+      ),
+    },
   ];
 
   return (
@@ -138,6 +151,21 @@ const UserAppointments = () => {
           </div>
         </div>
       </div>
+      <Modal
+        title="Cancel Appointment"
+        visible={cancelModalVisible}
+        onCancel={handleCancelModalCancel}
+        footer={[
+          <Button key="cancel" onClick={handleCancelModalCancel}>
+            No
+          </Button>,
+          <Button key="submit" type="primary" loading={loadingMap[selectedAppointmentId]} onClick={handleCancelAppointment}>
+            Yes
+          </Button>,
+        ]}
+      >
+        <p>Are you sure you want to cancel the appointment?</p>
+      </Modal>
       <MainFooter />
     </>
   );
