@@ -192,7 +192,7 @@ const doctorAppointments = async (req, res) => {
 const acceptAppointment = async (req, res) => {
   try {
     const appointment = await AppointmentModel.findById(req.params.id);
-    await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'accepted' });
+    await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'Accepted' });
        console.log("Appointment ID:", req.params.id);
     console.log("Appointment User ID:", appointment.userID);
 
@@ -287,7 +287,7 @@ const rejectAppointment = async (req, res) => {
       }
     });
 
-    await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'rejected' });
+    await AppointmentModel.findByIdAndUpdate(req.params.id, { status: 'Rejected' });
 
     res.status(200).send({
       success: true,
@@ -378,6 +378,7 @@ const cancelAppointment = async(req,res) => {
 
     // Update the appointment status to cancelled
     appointment.isCancelled = true;
+    appointment.status="Cancelled";
 
     // Save the updated appointment
     await appointment.save();
