@@ -33,13 +33,13 @@ const bookAppointmentController = async (req, res) => {
         await newAppointment.save();
         
        const doctorID = req.body.doctorID;
-const doctor = await DoctorModel.findById(doctorID);
+       const doctor = await DoctorModel.findById(doctorID);
 
-if (!doctor) {
-    throw new Error('Doctor not found');
-}
+        if (!doctor) {
+          throw new Error('Doctor not found');
+        }
 
-const { email } = doctor;
+        const { email } = doctor;
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port:587,
@@ -381,6 +381,34 @@ const cancelAppointment = async(req,res) => {
 
     // Save the updated appointment
     await appointment.save();
+
+    const doctor = await DoctorModel.findById(appointment.doctorID);
+    const user = await userModel.findById(appointment.userID);
+
+    // Compose email message
+    const emailMessage = `Hi ${doctor.username}, appointment on ${appointment.startTime} has been cancelled by user ${user.username}.`;
+
+    // Send email to doctor
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port:587,
+      secure:false,
+      requireTLS:true, 
+      auth: {
+        user: 'easeflow2023@gmail.com', 
+        pass: `${process.env.SMTP_PASSWORD}`
+      }
+    });
+
+    const mailOptions = {
+      from:'easeflow2023@gmail.com',
+      to: doctor.email,
+      subject: "Appointment Cancelled",
+      text: emailMessage
+    }
+
+    await transporter.sendMail(mailOptions);
+
 
     return res.status(200).json({
       success: true,
