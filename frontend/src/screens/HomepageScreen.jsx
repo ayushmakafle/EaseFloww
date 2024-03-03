@@ -10,8 +10,8 @@ const HomepageScreen = () => {
       title: 'Menstruation Myths in Nepal',
       description:
         'Breaking the silence on menstruation in Nepal is essential to challenge deep-rooted taboos and foster a culture of openness and understanding.',
-        imagePath: 'https://english.onlinekhabar.com/wp-content/uploads/2020/10/Menstruation.jpg',
-      },
+      imagePath: 'https://english.onlinekhabar.com/wp-content/uploads/2020/10/Menstruation.jpg',
+    },
 
     {
       title: 'Embracing Your Menstrual Cycle',
@@ -43,18 +43,18 @@ const HomepageScreen = () => {
         'Learn the importance of connecting with your body and listening to its needs during the menstrual cycle.',
       imagePath: 'https://img.freepik.com/free-photo/top-view-period-related-things_23-2148162967.jpg?w=996&t=st=1701969965~exp=1701970565~hmac=3502ffd7c3a5efc2afa6e0744dd7223af0d41c0f5b5f361f514474e2e5778aa7',
     },
-    {
-      title: 'Menstruation Myths Busted',
-      description:
-        'Unravel common myths surrounding menstruation and gain insights into the facts about this natural process.',
-      imagePath: 'https://img.freepik.com/free-vector/stages-menstrual-cycle_1308-133708.jpg?w=740&t=st=1701969827~exp=1701970427~hmac=e3a84c6ebb3ed9257f4c710d9de98c18dcbde937afefb797ca51888fa10c2a78',
-    },
-    {
-      title: 'Celebrating Femininity',
-      description:
-        'Celebrate the essence of femininity and the unique strength that comes with being a woman during menstruation.',
-      imagePath: 'https://img.freepik.com/free-vector/women-climacteric-concept-with-clock_23-2148654454.jpg?w=740&t=st=1701969836~exp=1701970436~hmac=ce86e133c305a24f91393544f18b7ca82349aef4726cbb7fd6fd35141a71cbb2',
-    }
+    /*  {
+       title: 'Menstruation Myths Busted',
+       description:
+         'Unravel common myths surrounding menstruation and gain insights into the facts about this natural process.',
+       imagePath: 'https://img.freepik.com/free-vector/stages-menstrual-cycle_1308-133708.jpg?w=740&t=st=1701969827~exp=1701970427~hmac=e3a84c6ebb3ed9257f4c710d9de98c18dcbde937afefb797ca51888fa10c2a78',
+     },
+     {
+       title: 'Celebrating Femininity',
+       description:
+         'Celebrate the essence of femininity and the unique strength that comes with being a woman during menstruation.',
+       imagePath: 'https://img.freepik.com/free-vector/women-climacteric-concept-with-clock_23-2148654454.jpg?w=740&t=st=1701969836~exp=1701970436~hmac=ce86e133c305a24f91393544f18b7ca82349aef4726cbb7fd6fd35141a71cbb2',
+     } */
   ];
   return (
     <>
