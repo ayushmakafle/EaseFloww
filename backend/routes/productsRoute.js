@@ -59,6 +59,6 @@ router.post('/rate/:productId', requireSignIn,isDoctor,updateProductRating);
 router.post('/getQuantities', getProductQuantities);
 
 //update quantity when users buys
-router.post('/updateStock',productStockUpdate);
+router.put('/updateStock',productStockUpdate);
 
 export default router;

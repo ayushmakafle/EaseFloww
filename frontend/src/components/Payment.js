@@ -20,30 +20,6 @@ const PaymentComponent = () => {
     pidx: '',
   });
 
-const updateProductQuantities = async () => {
-  try {
-    console.log('Updating product quantities...');
-    console.log('Cart items:', cart);
-
-    // For each item in the cart, send a request to update the product quantity
-    await Promise.all(cart.map(async (item) => {
-      console.log('Updating quantity for item:', item);
-      await axios.post('/api/v1/product/updateStock', {
-        productId: item._id,
-        newQuantity: item.quantity - item.numberOfItems,
-      });
-      console.log('Product quantity updated successfully for item:', item);
-    }));
-
-    console.log('Product quantities updated successfully');
-    // Optionally, you can perform additional actions after successful update
-  } catch (error) {
-    console.error('Error updating product quantities:', error);
-    // Handle error case if the update fails
-  }
-};
-
-
   useEffect(() => {
     // Function to extract query parameters from the URL
     const getUrlParameter = (name) => {
@@ -106,6 +82,26 @@ const updateProductQuantities = async () => {
         // Handle error if needed
       });
   };
+
+  const updateProductQuantities = async () => {
+    try {
+      await Promise.all(
+        cart.map(async (item) => {
+          console.log('Updating quantity for item:', item);
+          await axios.put('/api/v1/product/updateStock', {
+            slug: item.slug, // Send the slug instead of productId
+            quantityToBuy: item.quantity - item.numberOfItems,
+          });
+          console.log('Product quantity updated successfully for item:', item);
+        })
+      );
+
+      console.log('Product quantities updated successfully');
+    } catch (error) {
+      console.error('Error updating product quantities:', error);
+    }
+  };
+
 
   useEffect(() => {
     // Make a POST request to Khalti API using pidx

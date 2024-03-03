@@ -371,22 +371,25 @@ export const updateProductRating = async (req, res) => {
 
 export const productStockUpdate = async (req, res) => {
   try {
-    const { productId, quantityToBuy } = req.body;
+    const { slug, quantityToBuy } = req.body;
 
-    // Find the product by its ID
-    const product = await productModel.findById(productId);
+    // Parse quantityToBuy as a number
+    const quantityToBuyNumber = parseInt(quantityToBuy);
+
+    // Find the product by its slug
+    const product = await productModel.findOne({ slug: slug });
 
     if (!product) {
       return res.status(404).json({ success: false, message: 'Product not found' });
     }
 
     // Check if the available quantity is sufficient for the purchase
-    if (product.quantity < quantityToBuy) {
+    if (product.quantity < quantityToBuyNumber) {
       return res.status(400).json({ success: false, message: 'Insufficient quantity in stock' });
     }
 
     // Update the quantity by subtracting the quantity being purchased
-    product.quantity -= quantityToBuy;
+    product.quantity -= quantityToBuyNumber;
 
     // Save the updated product
     await product.save();
@@ -396,7 +399,8 @@ export const productStockUpdate = async (req, res) => {
     console.error(error);
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
-}
+};
+
 
 export const getProductQuantities = async (req, res) => {
   try {
