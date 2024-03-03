@@ -50,6 +50,9 @@ const MainNavbar = () => {
 
   };
 
+  const userName = auth.user ? auth.user.username.split(' ')[0] : '';
+
+
   return (
     <header>
       <div className="wrapper">
@@ -104,7 +107,7 @@ const MainNavbar = () => {
                   <NavDropdown
                     title={
                       <span style={{ color: 'white', fontFamily: 'Poppins', marginTop: '0' }}>
-                        {greeting}, {auth.user.username}
+                        {greeting}, {userName}
                       </span>
                     }
                     id="navbarDropdown"
