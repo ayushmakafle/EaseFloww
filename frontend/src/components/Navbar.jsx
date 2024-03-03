@@ -107,19 +107,25 @@ const MainNavbar = () => {
                         {greeting}, {auth.user.username}
                       </span>
                     }
+                    id="navbarDropdown"
+                    className='text-right'
                   >
                     {auth.user && (
-                      <button className="btn btn-transparent">
-                        <LinkContainer to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'
-                          }`}>
-                          <Nav.Link>Dashboard</Nav.Link>
+                      <Nav.Link>
+                        <LinkContainer
+                          to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'
+                            }`}
+                        >
+                          <span className="nav-link-text">Dashboard</span>
                         </LinkContainer>
-                      </button>
+                      </Nav.Link>
                     )}
 
-                    <button className='btn btn-transparent' onClick={handleLogout}>
-                      Logout
-                    </button>
+                    <Nav.Link>
+                      <button className="btn btn-transparent" onClick={handleLogout}>
+                        Logout
+                      </button>
+                    </Nav.Link>
                   </NavDropdown>
                 </>
               )}
