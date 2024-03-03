@@ -84,7 +84,10 @@ const MainNavbar = () => {
                 </Nav>
               ) : (
                 <>
-                  <NavDropdown title={`Hello, ${auth.user.username}`} id="navbarDropdown" className='text-white'>
+                  <NavDropdown
+                    title={<span style={{ color: 'white' }}>Hello, {auth.user.username}</span>}
+                    id="navbarDropdown"
+                  >
                     {auth.user && (
                       <button className="btn btn-transparent">
                         <LinkContainer to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'
