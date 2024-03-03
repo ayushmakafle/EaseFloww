@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import MainNavbar from '../components/Navbar';
-import '../styles/LearnMorePage0.css'; // Use the same CSS file for consistency
+import '../styles/LearnMorePage0.css';
 import Footer from '../components/footer';
 import { useNavigate } from 'react-router-dom';
 

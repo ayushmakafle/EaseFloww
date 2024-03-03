@@ -1,30 +1,41 @@
-// LearnMorePage5.js
-
-import React from 'react';
+import React, { useState } from 'react';
 // import MainNavbar from '../components/Navbar';
-import '../styles/LearnMorePage0.css'; // Use the same CSS file for consistency
+import '../styles/LearnMorePage0.css';
 import Footer from '../components/footer';
 import { useNavigate } from 'react-router-dom';
 
 const LearnMorePage5 = () => {
-  const navigate=useNavigate();
-      const goBack=()=>{
+  const navigate = useNavigate();
+  const [language, setLanguage] = useState('english');
 
+  const goBack = () => {
     navigate(-1);
   };
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'english' ? 'nepali' : 'english');
+  };
+
   return (
     <>
       {/* <MainNavbar /> */}
       <div className="page-container">
-        <button className='back-button' onClick={goBack}>
-          <span role='img'aria-label='Back Arrow' className='pink-arrow'>❮❮</span>
+        <button className="back-button" onClick={goBack}>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow">❮❮</span>
         </button>
-        <h1 className="page-heading">Connecting with Your Body</h1>
+        <button className="language-button" onClick={toggleLanguage}>
+          {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
+        </button>
+        <h1 className="page-heading">
+          {language === 'english' ? 'Connecting with Your Body' : 'तपाईंको शरीरसँग जडान गर्नुहोस्'}
+        </h1>
 
         <div className="paragraph-container">
           <div className="text-box">
             <p className="page-paragraph">
-              Connecting with one's body during menstruation is a holistic approach that involves tuning into the body's signals, embracing its natural rhythms, and fostering a positive relationship with oneself. This connection extends beyond physical awareness to encompass emotional and spiritual well-being, creating a harmonious and empowering relationship with the self.
+              {language === 'english' ?
+                "Connecting with one's body during menstruation is a holistic approach that involves tuning into the body's signals, embracing its natural rhythms, and fostering a positive relationship with oneself. This connection extends beyond physical awareness to encompass emotional and spiritual well-being, creating a harmonious and empowering relationship with the self." :
+                "मासिक धर्मको दौरान आफ्नो शरीरसँग जडान गर्नु एक पूर्णतात्मक दृष्टिकोण हो जसमा शरीरको संकेतहरूमा समान्तर हुने, तत्वज्ञानमा जोडिने, त्यसको प्राकृतिक रिदमा आनन्दित हुने, र आफ्नो साथीसँग सकारात्मक सम्बन्ध बढाउने समावेश गरिएको छ। यो जडान शारीरिक जागरूकताभन्दा प्राचीन र मानसिक तथा आध्यात्मिक कल्याणसम्म फैलिन्छ, जसले आत्मसँग सम्मोहनात्मक र शक्तिशाली सम्बन्ध सिर्जना गर्दछ।"}
             </p>
           </div>
           <img
@@ -42,7 +53,9 @@ const LearnMorePage5 = () => {
           />
           <div className="text-box">
             <p className="page-paragraph">
-              Building awareness of the body's signals throughout the menstrual cycle involves menstrual tracking. Observing changes in mood, energy levels, and physical sensations provides valuable insights into the cyclical nature of menstruation. Utilizing tracking methods facilitates a deeper understanding of individual patterns.
+              {language === 'english' ?
+                "Building awareness of the body's signals throughout the menstrual cycle involves menstrual tracking. Observing changes in mood, energy levels, and physical sensations provides valuable insights into the cyclical nature of menstruation. Utilizing tracking methods facilitates a deeper understanding of individual patterns." :
+                "मासिक धर्मको चक्रबाट शारीरिक संकेतहरूको जागरूकता तयार गर्न मासिक ट्र्याकिंग शामिल हुन्छ। मनसिक स्थिति, ऊर्जा स्तर, र शारीरिक अनुभूतिहरूमा परिवर्तनहरू देख्दा मासिक धर्मको चक्रिक प्रकृति बारेमा मौलिक अंदाजा लिन्छ। ट्र्याकिंग विधिहरूको प्रयोगले व्यक्तिगत नमुनाहरूको गहिरो समझ प्रस्तुत गर्दछ।"}
             </p>
           </div>
         </div>
@@ -50,7 +63,9 @@ const LearnMorePage5 = () => {
         <div className="paragraph-container">
           <div className="text-box">
             <p className="page-paragraph">
-              Engaging in mind-body practices enhances self-awareness and emotional well-being. Practices such as meditation, yoga, or tai chi create opportunities for introspection, grounding, and centering. These practices contribute to a mindful and holistic connection with the body.
+              {language === 'english' ?
+                "Engaging in mind-body practices enhances self-awareness and emotional well-being. Practices such as meditation, yoga, or tai chi create opportunities for introspection, grounding, and centering. These practices contribute to a mindful and holistic connection with the body." :
+                "मानसिक-शारीरिक अभ्यासमा सम्पलित हुनु आत्म-जागरूकता र भावनात्मक कल्याणलाई बढाउँछ। ध्यान, योग, वा ताई ची जस्ता अभ्यासहरूले आत्म-अवलोकन, आधारिता, र केन्द्रित गर्ने अवसर सिर्जना गर्दछ। यी अभ्यासहरूले शारीरिक साथिको मानसिक र पूर्णात्मक जडानमा सहयोग प्रदान गर्दछ।"}
             </p>
           </div>
           <img
@@ -68,7 +83,9 @@ const LearnMorePage5 = () => {
           />
           <div className="text-box">
             <p className="page-paragraph">
-              Connecting with the body during menstruation includes actively listening to its needs. This may involve adjusting daily activities, dietary choices, and self-care practices based on the changing requirements of each menstrual phase. Responding with sensitivity fosters a compassionate relationship with oneself.
+              {language === 'english' ?
+                "Connecting with the body during menstruation includes actively listening to its needs. This may involve adjusting daily activities, dietary choices, and self-care practices based on the changing requirements of each menstrual phase. Responding with sensitivity fosters a compassionate relationship with oneself." :
+                "मासिक धर्मको दौरान शारीरिक जडानमा आफ्नो आवश्यकताहरू सक्रिय रुपमा सुन्नु समावेश गर्छ। यो दैनिक कार्यहरू, आहारको छनोट, र प्रत्येक मासिक चरणको परिवर्तनशील आवश्यकताहरूका आधारमा आफ्नो कार्यहरूलाई समायोजन गर्न सक्छ। संवेदनशीलतासहितको प्रतिक्रिया दिनु आफ्नोसँग दयालु सम्बन्ध बढाउँछ।"}
             </p>
           </div>
         </div>
@@ -76,7 +93,9 @@ const LearnMorePage5 = () => {
         <div className="paragraph-container">
           <div className="text-box">
             <p className="page-paragraph">
-              Embracing the unique aspects of femininity associated with the menstrual cycle is a powerful aspect of connecting with the body. Celebrating the strengths, resilience, and intuition that come with being a woman during menstruation contributes to a positive self-image and fosters a sense of empowerment.
+              {language === 'english' ?
+                "Embracing the unique aspects of femininity associated with the menstrual cycle is a powerful aspect of connecting with the body. Celebrating the strengths, resilience, and intuition that come with being a woman during menstruation contributes to a positive self-image and fosters a sense of empowerment." :
+                "मासिक धर्म सम्बन्धित महिलावादी अनौपचारिक पक्षहरू समावेश गर्नु शरीरसँग जडान गर्नको एक शक्तिशाली पक्ष हो। महिला हुनुमा आउने शक्ति, सहनशीलता, र अवधारणामा समावेश गर्ने खासै खासै गुणहरू यात्रिको सकारात्मक आत्म-चित्र र शक्तिशाली भावनालाई बढाउँछ।"}
             </p>
           </div>
           <img
