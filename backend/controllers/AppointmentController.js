@@ -55,7 +55,8 @@ const bookAppointmentController = async (req, res) => {
             to:email,
             subject:"New appointment request",
             html:`<p> Hi ${req.body.doctorInfo},
-                you have a new appointment request from ${req.body.userInfo}. 
+                you have a new appointment request from ${req.body.userInfo} scheduled for ${req.body.date} at ${req.body.startTime}
+                with ${req.body.patientName} aged ${req.body.patientAge} with contact ${req.body.patientContact}. 
                 Visit your dashboard to process it.` 
         }
         transporter.sendMail(mailOptions, function(error,info){
@@ -383,7 +384,7 @@ const cancelAppointment = async(req,res) => {
     const user = await userModel.findById(appointment.userID);
 
     // Compose email message
-    const emailMessage = `Hi ${doctor.username}, appointment on ${appointment.startTime} has been cancelled by user ${user.username}.`;
+    const emailMessage = `Dear ${doctor.username}, We regret to inform you that the appointment scheduled for ${appointment.startTime} with ${appointment.patientName}, age ${appointment.patientAge}, and contact number ${appointment.patientContact} has been cancelled by ${user.username}.`;
 
     // Send email to doctor
     const transporter = nodemailer.createTransport({
