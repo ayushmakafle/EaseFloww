@@ -217,7 +217,7 @@ const UpdateProduct = () => {
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
-              <div className="mb-3">
+{/*               <div className="mb-3">
                 <Select
                   bordered={false}
                   placeholder="Select Shipping "
@@ -232,16 +232,18 @@ const UpdateProduct = () => {
                   <Option value="0">No</Option>
                   <Option value="1">Yes</Option>
                 </Select>
-              </div>
-              <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleUpdate}>
-                  UPDATE PRODUCT
-                </button>
-              </div>
-              <div className="mb-3">
-              <button className="btn btn-danger" onClick={showDeleteModal}>
-                  DELETE PRODUCT
-                </button>
+              </div> */}
+              <div className="d-flex mb-3">
+                <div style={{margin:'5px'}}>
+                  <button className="btn btn-primary" onClick={handleUpdate}>
+                    UPDATE PRODUCT
+                  </button>
+                </div>
+                <div style={{margin:'5px'}}>
+                  <button className="btn btn-danger" onClick={showDeleteModal}>
+                    DELETE PRODUCT
+                  </button>
+                </div>
               </div>
             </div>
           </div>
