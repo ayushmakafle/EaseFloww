@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,8 +13,25 @@ import { useChat } from '../context/chat';
 const MainNavbar = () => {
   const { clearChatHistory, setChatVisible } = useChat()
   const [auth, setAuth] = useAuth();
+  const [greeting, setGreeting] = useState('');
   const [cart] = useCart();
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const determineGreeting = () => {
+      const hour = new Date().getHours();
+      if (hour >= 5 && hour < 12) {
+        setGreeting('Good Morning');
+      } else if (hour >= 12 && hour < 18) {
+        setGreeting('Good Afternoon');
+      } else {
+        setGreeting('Good Evening');
+      }
+    };
+
+    determineGreeting();
+  }, []);
+
   const handleLogout = (e) => {
     e.preventDefault();
 
@@ -85,7 +102,7 @@ const MainNavbar = () => {
               ) : (
                 <>
                   <NavDropdown
-                    title={<span style={{ color: 'white' }}>Hello, {auth.user.username}</span>}
+                    title={<span style={{ color: 'white' }}>{greeting}, {auth.user.username}</span>}
                     id="navbarDropdown"
                   >
                     {auth.user && (
