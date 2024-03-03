@@ -124,7 +124,7 @@ const UserAppointments = () => {
             type="danger"
             onClick={() => showCancelModal(record._id)}
             loading={loadingMap[record._id]}
-            style={{backgroundColor:'#FA8072'}}
+            style={{backgroundColor:'#B80F4A',color:'white'}}
           >
             Cancel
           </Button>

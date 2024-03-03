@@ -100,7 +100,7 @@ const columns = [
     key: "actions",
     render: (text, record) => (
       <div>
-        {record.status === "pending" && (
+        {record.status === "Pending" && (
           <>
             <button onClick={() => handleAccept(record._id)} className="m-1">
               Accept

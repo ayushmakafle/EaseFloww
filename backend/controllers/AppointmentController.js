@@ -22,7 +22,7 @@ const bookAppointmentController = async (req, res) => {
             ...req.body,
             startTime: formattedStartDate,
             endTime: formattedEndDate,
-            status: "pending",
+            status: "Pending",
             doctorInfo: JSON.stringify(req.body.doctorInfo), // Convert object to string
             userInfo: JSON.stringify(req.body.userInfo),
             patientName : req.body.patientName,
@@ -86,7 +86,6 @@ const checkAvailabilityController = async (req, res) => {
     const inputDate = req.body.date;
     const inputStartTime = req.body.startTime;
     const inputEndTime = req.body.endTime;
-
     const formattedStartDate = moment(`${inputDate} ${inputStartTime}`, 'DD-MM-YYYY HH:mm');
     const formattedEndDate = moment(`${inputDate} ${inputEndTime}`, 'DD-MM-YYYY HH:mm');
 
@@ -109,7 +108,7 @@ const checkAvailabilityController = async (req, res) => {
     });
 
     // Check if any overlapping appointment is cancelled or rejected
-    const cancelledOrRejectedAppointment = overlappingAppointments.find(appointment => appointment.isCancelled || appointment.status === 'rejected');
+    const cancelledOrRejectedAppointment = overlappingAppointments.find(appointment => appointment.isCancelled || appointment.status === 'Rejected');
 
     if (!overlappingAppointments.length || cancelledOrRejectedAppointment) {
       // Slot is available if there are no overlapping appointments or if any overlapping appointment is cancelled or rejected
@@ -133,9 +132,6 @@ const checkAvailabilityController = async (req, res) => {
     });
   }
 };
-
-
-
 
 const userAppointments = async (req, res) => {
   try {
