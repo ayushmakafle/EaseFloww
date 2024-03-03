@@ -24,7 +24,7 @@ const LearnMorePage0 = () => {
         <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
       </button>
       <button className="language-button" onClick={toggleLanguage}>
-        {language === 'english' ? 'Read in Nepali' : 'Read in English'}
+        {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
       </button>
       <div className="page-container">
         <h1 className="page-heading">{language === 'english' ? 'Chhaupadi and menstruation taboos' : 'छाउपडी र मासिक धर्मको ताबू'}</h1>
