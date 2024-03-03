@@ -57,14 +57,14 @@ const MainNavbar = () => {
                     <Nav.Link className="pb-3 text-white"> Products</Nav.Link>
                   </LinkContainer>
                 </li>
-                {auth.user && (
+                {/* {auth.user && (
                   <li className="nav-item mt-0">
                     <LinkContainer to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'
                       }`}>
                       <Nav.Link className="pb-3 text-white">Dashboard</Nav.Link>
                     </LinkContainer>
                   </li>
-                )}
+                )} */}
               </ul>
             </Nav>
           </Navbar.Collapse>
@@ -83,11 +83,22 @@ const MainNavbar = () => {
                   </ul>
                 </Nav>
               ) : (
-                <NavDropdown title={<i className="fa-solid fa-user mb-3  text-white"></i>} id="navbarDropdown">
-                  <button className='btn btn-transparent' onClick={handleLogout}>
-                    Logout
-                  </button>
-                </NavDropdown>
+                <>
+                  <NavDropdown title={`Hello, ${auth.user.username}`} id="navbarDropdown" className='text-white'>
+                    {auth.user && (
+                      <button className="btn btn-transparent">
+                        <LinkContainer to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'
+                          }`}>
+                          <Nav.Link>Dashboard</Nav.Link>
+                        </LinkContainer>
+                      </button>
+                    )}
+
+                    <button className='btn btn-transparent' onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </NavDropdown>
+                </>
               )}
               <li className="nav-item mt-0">
                 <LinkContainer to="/cart" className="p-4 m-4">
