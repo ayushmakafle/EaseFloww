@@ -1,6 +1,4 @@
-// LearnMorePage0.js
-
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // import MainNavbar from '../components/Navbar';
@@ -9,27 +7,33 @@ import Footer from '../components/footer';
 
 const LearnMorePage0 = () => {
   const navigate = useNavigate();
+  const [language, setLanguage] = useState('english'); // default language is English
 
   const goBack = () => {
     navigate(-1); // Navigate back
   };
 
+  const toggleLanguage = () => {
+    setLanguage(language === 'english' ? 'nepali' : 'english'); // toggle between English and Nepali
+  };
 
   return (
     <>
       {/* <MainNavbar /> */}
-      <button className="back-button" onClick={goBack}>
-    <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span> 
-</button>
+      <button className="back-button" onClick={goBack} style={{ alignItems: 'center' }}>
+        <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+      </button>
+      <button className="language-button" onClick={toggleLanguage}>
+        {language === 'english' ? 'Read in Nepali' : 'Read in English'}
+      </button>
       <div className="page-container">
-        <h1 className="page-heading">Chhaupadi and menstruation taboos</h1>
+        <h1 className="page-heading">{language === 'english' ? 'Chhaupadi and menstruation taboos' : 'छाउपडी र मासिक धर्मको ताबू'}</h1>
         <div className="paragraph-container">
           <div className="text-box">
             <p className="page-paragraph">
-            Chhaupadi is an ancient tradition practised in some rural parts of Nepal. It involves banishing people, often young girls, to mud huts or sheds for the duration of their period, or even longer. It is believed they will otherwise bring their family bad luck, or ill health. 
-
-Women, girls and people who menstruate are often left with little or no supplies, and no menstrual protection or washing facilities during their time away from home. This can cause a range of health issues, along with physical and psychological hardship.
-
+              {language === 'english' ?
+                "Chhaupadi is an ancient tradition practised in some rural parts of Nepal. It involves banishing people, often young girls, to mud huts or sheds for the duration of their period, or even longer. It is believed they will otherwise bring their family bad luck, or ill health." :
+                "छाउपडी नेपालका केही गाउँ तथा गाउँपालिकामा अम्लीन संस्कृति हो। यसमा व्यक्तिहरूलाई, बिशेष गरी केही नौवा, उनीहरूलाई तह दिनेहरू, ठूला वा बढी समयका लागि काठको झुवारमा वा गोठमा बहाल गरिन्छ। यसको अर्थ के हो, यसमा विश्वास छ कि अन्यथा उनीहरूले आफ्नो परिवारलाई कुर्प्या वा केहि खराब स्वास्थ्य ल्याउन सक्छन्।"}
             </p>
           </div>
           <img
@@ -47,8 +51,9 @@ Women, girls and people who menstruate are often left with little or no supplies
           />
           <div className="text-box">
             <p className="page-paragraph">
-            They might also be placed in considerable danger: there have been multiple reports of deaths in chhaupadi huts due to suffocation, fire, pneumonia and animal attacks.
-Although chhaupadi has been illegal in Nepal since 2005, it is still practised in many communities. Such myths have been brought into discourse time and again through various media platforms. However, there are some more misconceptions, especially regarding menstrual health and hygiene, which are barely talked about.
+              {language === 'english' ?
+                "They might also be placed in considerable danger: there have been multiple reports of deaths in chhaupadi huts due to suffocation, fire, pneumonia and animal attacks. Although chhaupadi has been illegal in Nepal since 2005, it is still practised in many communities. Such myths have been brought into discourse time and again through various media platforms. However, there are some more misconceptions, especially regarding menstrual health and hygiene, which are barely talked about." :
+                "तिनीहरूलाई धेरै खतरामा राखिन्छ: छाउपडी झुवारहरूमा अस्फालन, आग, फोक्सा, न्युमोनिया र पशु हमलाहरूका कारण मृत्युको कई प्रतिवेदन आएका छन्। यसको बावजूद, २००५ देखि छाउपडी नेपालमा गैरकानुनी भएको छ, तर यसलाई धेरै समुदायमा लागू गरिएको छ। यस्ता गलतफहमीहरू समय समयमा विभिन्न मिडिया प्लेटफर्महरूबाट चर्चा गर्नु आएका छन्। तथापि, मासिक धर्म र स्वच्छता सम्बन्धी विभिन्न गलतफहमीहरू जसलाई बारम्बार छलफल गरिएको छ, जसलाई छानबिन कम गरिएको छ।"}
             </p>
           </div>
         </div>
@@ -56,9 +61,9 @@ Although chhaupadi has been illegal in Nepal since 2005, it is still practised i
         <div className="paragraph-container">
           <div className="text-box">
             <p className="page-paragraph">
-            Many people consider period blood dirty and impure. They are conditioned that all the dirty and impure fluids from the body come out in the form of period blood, therefore, the one who is bleeding is also tagged impure in Nepali society.
-
-But, there is no such thing as pure blood and impure blood. Period blood is not a way of throwing out toxins. It is a vaginal secretion that contains endometrium (mucus lining), uterine tissues, and very few amounts of blood.
+              {language === 'english' ?
+                "Many people consider period blood dirty and impure. They are conditioned that all the dirty and impure fluids from the body come out in the form of period blood, therefore, the one who is bleeding is also tagged impure in Nepali society. But, there is no such thing as pure blood and impure blood. Period blood is not a way of throwing out toxins. It is a vaginal secretion that contains endometrium (mucus lining), uterine tissues, and very few amounts of blood." :
+                "धेरै मानिसहरूले मासिक धर्मको रातो र अशुद्ध मान्छेको रातो र अशुद्ध मानिन्छन्। तिनीहरूले आफ्नो शरीरबाट सबै अशुद्ध र अशुद्ध तरलहरू मासिक धर्मको रूपमा निस्कन्छन्, यसकारण जो सिरन्धन गरिरहेको छ, उहाँ पनि नेपाली समाजमा अशुद्ध मानिन्छ। तर, पावित्र्य र अशुद्ध रक्तको कुनै पनि कुरा छैन। मासिक धर्म विषैले रसाइरहेको तरल हो। यसमा इन्डोमेट्रियम (म्युकस सामग्री), जरायको कोशिकाहरू, र धेरै थप रक्त मात्रामा समावेश छ।"}
             </p>
           </div>
           <img
@@ -76,13 +81,12 @@ But, there is no such thing as pure blood and impure blood. Period blood is not 
           />
           <div className="text-box">
             <p className="page-paragraph">
-              Understanding menstruation and its pain is crucial for promoting empathy and support
-              for women. By acknowledging the naturalness of this process, we can foster a more
-              compassionate and informed perspective on women's health.
+              {language === 'english' ?
+                "Understanding menstruation and its pain is crucial for promoting empathy and support for women. By acknowledging the naturalness of this process, we can foster a more compassionate and informed perspective on women's health." :
+                "मासिक धर्म र तत्सम दुख अम्लीन महिलाहरूको लागि सहानुभूति र समर्थन बढाउनको लागि अत्यन्त आवश्यक छ। यस प्रक्रियाको प्राकृतिकतालाई स्वीकार्दै, हामी महिलाहरूको स्वास्थ्यमा एकदमी दयालु र सूचित दृष्टिकोण बिकास गर्न सक्छौं।"}
             </p>
           </div>
         </div>
-
       </div>
       <Footer />
     </>
