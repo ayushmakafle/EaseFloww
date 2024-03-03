@@ -102,8 +102,11 @@ const MainNavbar = () => {
               ) : (
                 <>
                   <NavDropdown
-                    title={<span style={{ color: 'white' }}>{greeting}, {auth.user.username}</span>}
-                    id="navbarDropdown"
+                    title={
+                      <span style={{ color: 'white', fontFamily: 'Poppins', marginTop: '0' }}>
+                        {greeting}, {auth.user.username}
+                      </span>
+                    }
                   >
                     {auth.user && (
                       <button className="btn btn-transparent">
