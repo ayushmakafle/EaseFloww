@@ -1,19 +1,48 @@
 {
-  "intents": [
+  "intents":[
     {
       "Tag": "greeting",
-      "patterns": ["Hi there", "Hey", "Greetings"],
-      "Response": "Testing Greeting Intent"
+      "patterns": ["how are you"],
+      "Response": "Hello, nice to meet you. I am doing well. How are you?"
     },
     {
       "Tag": "Ovary",
-      "patterns": ["Tell me about ovaries", "Ovaries function"],
-      "Response": "Testing Ovary Intent"
+      "patterns": [
+        "ovary",
+        "what is an ovary"
+      ],
+      "Response": "The ovaries are the female reproductive organs. One of the pair of ovaries is located on each side of the uterus in the pelvis."
     },
     {
-      "Tag": "vagina",
-      "patterns": ["Vagina details", "Explain the vagina"],
-      "Response": "Testing Vagina Intent"
+      "Tag": "Uterus",
+      "patterns":[
+        "uterus",
+        "what is uterus"
+      ],
+      "Response": "The uterus is a hollow muscular organ located in the female pelvis between the bladder and rectum. The ovaries produce the eggs that travel through the fallopian tubes. Once the egg has left the ovary it can be fertilized and implant itself in the lining of the uterus."
+    },
+    {
+      "Tag": "cramps",
+      "patterns": [
+        "I have horrible cramps",
+        "I have period cramps"
+      ],
+      "Response": "To reduce period cramps you can try the following things: placing a heating pad on your belly or lower back, or having a hot bath. If your period pain is so painful that you cannot take part in everyday life, please consult a doctor. Book an appointment with EaseFlow!"
+    },
+    {
+      "Tag": "period miss",
+      "patterns": ["Missed period"],
+      "Response": "Missing periods can be due to various reasons. Pregnancy, breastfeeding, and menopause can stop periods. If none of these apply to you, there are other factors like extreme exercise and being underweight. If you have discontinued taking hormonal birth controls, it may take time for periods to return. Finally, a condition called polycystic ovary syndrome PCOS, in which cysts grow on your ovaries, can stop ovulation in young women. You should talk to a doctor if you think you have PCOS. Book an appointment through EaseFlow today!"
+    },
+    {
+      "Tag": "goodbye",
+      "patterns": ["You were helpful"],
+      "Response": "Take care, goodbye!"
+    },
+    {
+      "Tag": "recommendation",
+      "patterns": ["Do you have any recommendations for a good gynecologist?"],
+      "Response": "I recommend visiting EaseFlow site, where you can find a list of experienced gynecologists. You can also schedule an appointment directly through the platform."
     }
   ]
 }

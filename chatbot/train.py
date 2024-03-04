@@ -13,8 +13,6 @@ from model import NeuralNet
 
 import matplotlib.pyplot as plt  # Import the matplotlib library
 
-
-
 with open('./datas/flo.json','r') as f:
     intents = json.load(f)
     
@@ -59,25 +57,23 @@ output_size = len(tags)
 print(input_size, output_size)
 
 class ChatDataset(Dataset):
+    def __init__(self, x_data=None, y_data=None):
+        self.n_samples = len(x_data) if x_data is not None else 0
+        self.x_data = x_data
+        self.y_data = y_data
 
-    def __init__(self):
-        self.n_samples = len(X_train)
-        self.x_data = X_train
-        self.y_data = y_train
-
-    # support indexing such that dataset[i] can be used to get i-th sample
     def __getitem__(self, index):
         return self.x_data[index], self.y_data[index]
 
-    # we can call len(dataset) to return the size
     def __len__(self):
         return self.n_samples
 
-dataset = ChatDataset()
+dataset = ChatDataset(X_train, y_train)  # Pass training data to ChatDataset constructor
 train_loader = DataLoader(dataset=dataset,
                           batch_size=batch_size,
                           shuffle=True,
                           num_workers=0)
+
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -168,36 +164,54 @@ loaded_model = NeuralNet(loaded_data["input_size"], loaded_data["hidden_size"], 
 loaded_model.load_state_dict(loaded_data["model_state"])
 loaded_model.eval()
 
-# ... (Your existing code)
+# Test the model
+# Load test data from testdata.json
+with open('./datas/testdata.json', 'r') as file:
+    test_data = json.load(file)
+
+# Preprocess the test data
+test_X = []
+test_y = []
+
+for intent in test_data['intents']:
+    tag = intent['Tag']
+    for pattern in intent['patterns']:
+        tokenized_pattern = tokenizer(pattern)
+        stemmed_pattern = [porter_stemmer(word) for word in tokenized_pattern if word not in ignore_words]
+        bag = bag_of_words(stemmed_pattern, all_words)
+        test_X.append(bag)
+        test_y.append(tags.index(tag))
+
+test_X = np.array(test_X)
+test_y = np.array(test_y)
 
 # Test the model
-test_dataset = ChatDataset()
+test_dataset = ChatDataset(test_X, test_y)
 test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False, num_workers=0)
 
 correct_predictions_test = 0
 total_predictions_test = 0
-test_accuracy_values = []  # List to store test accuracy values
 
+# Initialize a list to store test accuracy values
+test_accuracy_values = []
+
+# Test the model
 with torch.no_grad():
     for (test_words, test_labels) in test_loader:
         test_words = test_words.to(device)
         test_labels = test_labels.to(dtype=torch.long).to(device)
 
         # Forward pass
-        test_outputs = loaded_model(test_words)
+        test_outputs = model(test_words)
 
         # Calculate accuracy
         _, test_predicted = torch.max(test_outputs.data, 1)
-        total_predictions_test += test_labels.size(0)
         correct_predictions_test += (test_predicted == test_labels).sum().item()
+        total_predictions_test += test_labels.size(0)
+        test_accuracy = correct_predictions_test / total_predictions_test
 
-        # Store test accuracy for each batch
-        batch_accuracy = (test_predicted == test_labels).sum().item() / test_labels.size(0)
-        test_accuracy_values.append(batch_accuracy)
-
-# Calculate overall accuracy on test data
-overall_accuracy_test = correct_predictions_test / total_predictions_test
-print(f'Overall Accuracy on Test Data: {overall_accuracy_test:.4f}')
+        # Store the accuracy value
+        test_accuracy_values.append(test_accuracy)
 
 # Plotting the test accuracy values
 plt.figure()
@@ -207,3 +221,7 @@ plt.ylabel('Accuracy')
 plt.title('Test Accuracy Over Batches')
 plt.legend()
 plt.show()
+
+# Calculate overall accuracy on test data
+overall_accuracy_test = correct_predictions_test / total_predictions_test
+print(f'Overall Accuracy on Test Data: {overall_accuracy_test:.4f}')
