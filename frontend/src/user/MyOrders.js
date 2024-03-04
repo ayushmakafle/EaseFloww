@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserMenu from "./UserMenu";
 import axios from "axios";
-import { Table, Spin, Button, Modal } from "antd";
+import { Table, Spin, Button, Modal, Descriptions } from "antd";
 import MainFooter from "../components/footer";
 
 const MyOrders = () => {
@@ -56,12 +56,6 @@ const MyOrders = () => {
         </p>
       ),
     },
-    // {
-    //   title: 'Paid At',
-    //   dataIndex: 'paidAt',
-    //   key: 'paidAt',
-    // },
-
     {
       title: "Shipping",
       dataIndex: "isDelivered",
@@ -128,23 +122,31 @@ const MyOrders = () => {
                   style={{ margin: "20px" }}
                 />
                 <Modal
-                  title={`Order Details - ${
-                    selectedOrder && selectedOrder._id
-                  }`}
                   visible={visible}
                   onCancel={handleModalCancel}
                   footer={null}
                 >
                   {selectedOrder && (
                     <div>
-                      <h3>Product List:</h3>
-                      <ul>
-                        {selectedOrder.orderItems.map((item) => (
-                          <li key={item.Product._id}>
-                            <strong>{item.name}</strong> - Quantity: {item.qyt}
-                          </li>
-                        ))}
-                      </ul>
+                      <h3 style={{ color: "#ef5e99", marginBottom: "10px" }}>
+                        Product List:
+                      </h3>
+                      <table style={{ width: "100%" }}>
+                        <thead>
+                          <tr>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {selectedOrder.orderItems.map((item) => (
+                            <tr key={item.Product._id}>
+                              <td>{item.name}</td>
+                              <td>{item.qyt}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
                   )}
                 </Modal>
