@@ -389,7 +389,7 @@ export const productStockUpdate = async (req, res) => {
     }
 
     // Update the quantity by subtracting the quantity being purchased
-    product.quantity -= quantityToBuyNumber;
+    product.quantity = quantityToBuyNumber;
 
     // Save the updated product
     await product.save();
