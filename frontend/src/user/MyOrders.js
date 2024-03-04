@@ -80,7 +80,7 @@ const MyOrders = () => {
       dataIndex: "_id",
       key: "actions",
       render: (orderId) => (
-        <Button type="primary" onClick={() => handleViewMore(orderId)}>
+        <Button type="primary" onClick={() => handleViewMore(orderId)} style={{ backgroundColor: "#ef5e99", marginBottom: "10px" }}>
           View more
         </Button>
       ),
