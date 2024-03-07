@@ -11,7 +11,7 @@ const AllDoctors = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true); 
   const goBack = () => {
-    navigate(-1); // Navigate back
+    navigate(-1); 
   };
   // Fetch doctors
   const fetchDoctors = async () => {
@@ -50,7 +50,7 @@ const AllDoctors = () => {
         </div>
 
         <div style={{ flex: '1' }}>
-          <h1 style={{ textAlign: 'center', color: '#ef5e99', marginTop: '20px', fontWeight: 'bold' }}>
+          <h1 style={{ fontFamily:'Raleway', textAlign: 'center', color: '#ef5e99', marginTop: '20px', fontWeight: 'bold' , textShadow: '1px 1px 1px #000'}}>
             Find the perfect doctor for you today!
           </h1>
 
