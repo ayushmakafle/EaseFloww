@@ -1,12 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 // import MainNavbar from '../components/Navbar';
 import Footer from '../components/footer';
 import './HomepageScreen.css';
 
 const HomepageScreen = () => {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1); // Navigate back
+  };
   const contentData = [
     {
+      
       title: 'Menstruation Myths in Nepal',
       description:
         'Breaking the silence on menstruation in Nepal is essential to challenge deep-rooted taboos and foster a culture of openness and understanding.',
@@ -59,6 +65,9 @@ const HomepageScreen = () => {
   return (
     <>
       {/* <MainNavbar /> */}
+      <button className="back-button" onClick={goBack} style={{ alignItems: 'center' }}>
+        <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+      </button>
       <div className="home-page">
         <div className="content-container">
           {contentData.map((content, index) => (

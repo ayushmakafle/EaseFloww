@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import DoctorCard from '../components/DoctorCard';
 import axios from 'axios';
 import animation from '../components/finddoctor.json';
@@ -7,9 +7,12 @@ import Lottie from 'lottie-react';
 import Loading from '../components/loadinganimation.svg'; 
 
 const AllDoctors = () => {
+  const navigate = useNavigate();
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true); 
-
+  const goBack = () => {
+    navigate(-1); // Navigate back
+  };
   // Fetch doctors
   const fetchDoctors = async () => {
     try {
@@ -33,6 +36,9 @@ const AllDoctors = () => {
 
   return (
     <>
+          <button className="back-button" onClick={goBack} style={{ alignItems: 'center' }}>
+        <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+      </button>
       <div style={{ display: 'flex' }}>
         <div style={{ flex: '1', maxWidth: '25%', marginTop: '60px' }}>
           <Lottie
