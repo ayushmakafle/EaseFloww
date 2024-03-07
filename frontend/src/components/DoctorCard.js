@@ -31,10 +31,10 @@ const DoctorCard = ({ doctor }) => {
           <div>{hospitalOrClinic}</div>
           <div>{address}</div>
         </div>
-        <div className="office-hours"style={{fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px" }}>
+        <div className="office-hours"style={{fontFamily: 'Raleway, sans-serif',fontSize:"16px" }}>
           Office Hours: {officeHoursStart} - {officeHoursEnd}
         </div>
-        <div className="office-days"style={{fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px" }}>
+        <div className="office-days"style={{fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"16px" }}>
           {extractedOfficeDays.length > 0 ? `Office Days: ${extractedOfficeDays.join(', ')}` : 'No Office Days'}
         </div>
         <br></br>
