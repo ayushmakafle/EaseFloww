@@ -20,12 +20,14 @@ const LearnMorePage0 = () => {
   return (
     <>
       {/* <MainNavbar /> */}
-      <button className="back-button" onClick={goBack} style={{ alignItems: 'center' }}>
-        <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
-      </button>
-      <button className="language-button btn light"style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px", color:"white",backgroundColor:"#e73d90" }} onClick={toggleLanguage}>
-        {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
-      </button>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+  <button className="back-button" onClick={goBack} style={{ alignItems: 'center' }}>
+    <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+  </button>
+  <button className="language-button btn light" style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "45", fontSize: "20px", color: "white", backgroundColor: "#e73d90", marginLeft: "1250px",marginTop: "10px" }} onClick={toggleLanguage}>
+    {language === 'english' ? 'नेपालीमा पढनुहोस्' : 'Read in English'}
+  </button>
+</div>
       <div className="page-container">
         <h1 className="page-heading">{language === 'english' ? 'Chhaupadi and menstruation taboos' : 'छाउपडी र मासिक धर्मको वर्जित'}</h1>
         <div className="paragraph-container">
