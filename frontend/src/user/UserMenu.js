@@ -9,15 +9,15 @@ import animation from './userdashboard.json';
 const UserMenu = () => {
   return (
     <div className='text-center'>
-      <h4 style={{color:'#de5d83',fontWeight:'bold'}}>User Dashboard</h4>
+      <h4 style={{fontFamily: 'Poppins, sans-serif',color:'#ef5e99',fontWeight:'600'}}>User Dashboard</h4>
       <div className="list-group">
-        <NavLink to="/dashboard/user/profile" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99', border: '1px solid #FFC0CB'}}>
+        <NavLink to="/dashboard/user/profile" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99', border: '1px solid #FFC0CB',color:'white'}}>
           My Profile
         </NavLink>
-        <NavLink to="/dashboard/user/order" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99', border: '1px solid #FFC0CB'}}>
+        <NavLink to="/dashboard/user/order" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99', border: '1px solid #FFC0CB',color:'white'}}>
           My Orders
         </NavLink>
-        <NavLink to="/dashboard/user/appointment" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99', border: '1px solid #FFC0CB'}}>
+        <NavLink to="/dashboard/user/appointment" className="list-group-item list-group-item-action"  style={{backgroundColor:'#ef5e99', border: '1px solid #FFC0CB',color:'white'}}>
           My Appointments
         </NavLink>
          <div>

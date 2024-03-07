@@ -31,16 +31,16 @@ const DoctorCard = ({ doctor }) => {
           <div>{hospitalOrClinic}</div>
           <div>{address}</div>
         </div>
-        <div className="office-hours">
+        <div className="office-hours"style={{fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px" }}>
           Office Hours: {officeHoursStart} - {officeHoursEnd}
         </div>
-        <div className="office-days">
+        <div className="office-days"style={{fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px" }}>
           {extractedOfficeDays.length > 0 ? `Office Days: ${extractedOfficeDays.join(', ')}` : 'No Office Days'}
         </div>
         <br></br>
         <div className="fees"style={{ textAlign: 'center',color:'#ef5e99'}}>{`Fees per Consultation: NRs. ${feesPerConsultation}/-`}</div>
         <button className='btn btn-primary ms-1'
-          style={{backgroundColor:'#de5d83', fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px", color:"white",backgroundColor:"#e73d90" }}
+          style={{fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px", color:"white",backgroundColor:"#e73d90" }}
           onClick={() => navigate(`/book-appointment/${_id}`)}
         >
           Book an Appointment
