@@ -23,7 +23,7 @@ const LearnMorePage0 = () => {
       <button className="back-button" onClick={goBack} style={{ alignItems: 'center' }}>
         <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
       </button>
-      <button className="language-button" onClick={toggleLanguage}>
+      <button className="language-button btn light"style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px", color:"white",backgroundColor:"#e73d90" }} onClick={toggleLanguage}>
         {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
       </button>
       <div className="page-container">

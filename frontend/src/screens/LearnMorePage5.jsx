@@ -19,15 +19,16 @@ const LearnMorePage5 = () => {
   return (
     <>
       {/* <MainNavbar /> */}
-      <div className="page-container">
-        <button className="back-button" onClick={goBack}>
+      <button className="back-button" onClick={goBack}>
           <span role="img" aria-label="Back Arrow" className="pink-arrow">❮❮</span>
         </button>
-        <button className="language-button" onClick={toggleLanguage}>
+        
+        <button className="language-button btn light" style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px", color:"white",backgroundColor:"#e73d90" }} onClick={toggleLanguage}>
           {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
         </button>
+      <div className="page-container">
         <h1 className="page-heading">
-          {language === 'english' ? 'Connecting with Your Body' : 'तपाईंको शरीरसँग जडान गर्नुहोस्'}
+          {language === 'english' ? 'Connecting with Your Body' : 'आफ्नो शरीरलाइ बुझ्नुहोस्'}
         </h1>
 
         <div className="paragraph-container">
@@ -35,7 +36,7 @@ const LearnMorePage5 = () => {
             <p className="page-paragraph">
               {language === 'english' ?
                 "Connecting with one's body during menstruation is a holistic approach that involves tuning into the body's signals, embracing its natural rhythms, and fostering a positive relationship with oneself. This connection extends beyond physical awareness to encompass emotional and spiritual well-being, creating a harmonious and empowering relationship with the self." :
-                "मासिक धर्मको दौरान आफ्नो शरीरसँग जडान गर्नु एक पूर्णतात्मक दृष्टिकोण हो जसमा शरीरको संकेतहरूमा समान्तर हुने, तत्वज्ञानमा जोडिने, त्यसको प्राकृतिक रिदमा आनन्दित हुने, र आफ्नो साथीसँग सकारात्मक सम्बन्ध बढाउने समावेश गरिएको छ। यो जडान शारीरिक जागरूकताभन्दा प्राचीन र मानसिक तथा आध्यात्मिक कल्याणसम्म फैलिन्छ, जसले आत्मसँग सम्मोहनात्मक र शक्तिशाली सम्बन्ध सिर्जना गर्दछ।"}
+                "मासिक धर्मको दौरान आफ्नो शरीरलाइ बुझ्नु एक पूर्णतात्मक दृष्टिकोण हो जसमा शरीरको संकेतहरूमा समान्तर हुने, तत्वज्ञानमा जोडिने, त्यसको प्राकृतिक रिदमा आनन्दित हुने, र आफ्नो साथीसँग सकारात्मक सम्बन्ध बढाउने समावेश गरिएको छ। यो जडान शारीरिक जागरूकताभन्दा प्राचीन र मानसिक तथा आध्यात्मिक कल्याणसम्म फैलिन्छ, जसले आत्मसँग सम्मोहनात्मक र शक्तिशाली सम्बन्ध सिर्जना गर्दछ।"}
             </p>
           </div>
           <img

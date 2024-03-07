@@ -17,13 +17,14 @@ const LearnMorePage4 = () => {
   return (
     <>
       {/* <MainNavbar /> */}
-      <div className="page-container">
-        <button className="back-button" onClick={goBack}>
+      <button className="back-button" onClick={goBack}>
           <span role="img" aria-label="Back Arrow" className="pink-arrow">❮❮</span>
         </button>
-        <button className="language-button" onClick={toggleLanguage}>
+        
+        <button className="language-button btn light" style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px", color:"white",backgroundColor:"#e73d90" }} onClick={toggleLanguage}>
           {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
         </button>
+      <div className="page-container">
         <h1 className="page-heading">
           {language === 'english' ? 'Nutrition Tips for Menstruating Women' : 'महिलावारी हुने महिलाका लागि पोषण युक्तिहरू'}
         </h1>

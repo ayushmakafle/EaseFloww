@@ -19,15 +19,17 @@ const LearnMorePage1 = () => {
   return (
     <>
       {/* <MainNavbar /> */}
-      <div className="page-container">
-        <button className="back-button" onClick={goBack}>
+            <button className="back-button" onClick={goBack}>
           <span role="img" aria-label="Back Arrow" className="pink-arrow">❮❮</span>
         </button>
-        <button className="language-button" onClick={toggleLanguage}>
+        
+        <button className="language-button btn light" style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "45" ,fontSize:"20px", color:"white",backgroundColor:"#e73d90" }}onClick={toggleLanguage}>
           {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
         </button>
+    
+      <div className="page-container">
         <h1 className="page-heading">
-          {language === 'english' ? 'Embracing Your Menstrual Cycle' : 'तपाईंको मासिक चक्रलाई गल्ती गर्नुहोस्'}
+          {language === 'english' ? 'Embracing Your Menstrual Cycle' : 'तपाईंको मासिक चक्रलाई अँगाल्नुहोस्'}
         </h1>
 
         <div className="paragraph-container">
@@ -35,7 +37,7 @@ const LearnMorePage1 = () => {
             <p className="page-paragraph">
               {language === 'english' ?
                 "Discovering the beauty of your menstrual cycle is an empowering journey that allows women to connect with their bodies on a profound level. Embracing the different phases of the menstrual cycle involves understanding the natural ebb and flow of hormonal changes throughout the month." :
-                "तपाईंको मासिक चक्रको सुन्दरताको खोजी एक शक्तिशाली यात्रा हो जो महिलाहरूलाई आफ्नो शरीरसँग एक गहिरो स्तरमा जडान गर्न अनुमति दिन्छ। मासिक चक्रको विभिन्न चरणहरूलाई गल्ती गर्न गर्ने महिलाहरूले महिनाको अवस्थानिक हार्मोनियल परिवर्तनको प्राकृतिक अप्रिय र बहाल गर्ने रहँमा गलती गर्दछ।"}
+                "तपाईंको मासिक धर्म चक्रको सुन्दरता पत्ता लगाउनु भनेको महिलाहरूलाई आफ्नो शरीरसँग गहिरो स्तरमा जडान गर्न अनुमति दिने सशक्तिकरण यात्रा हो। महिनावारी चक्रका विभिन्न चरणहरू अँगाल्नाले महिनाभरि हुने हर्मोनल परिवर्तनहरूको प्राकृतिक बहाव र प्रवाहलाई बुझ्नु समावेश छ।"}
             </p>
           </div>
           <img
@@ -65,7 +67,7 @@ const LearnMorePage1 = () => {
             <p className="page-paragraph">
               {language === 'english' ?
                 "Embracing your menstrual cycle is not just about acceptance; it's about celebrating the innate wisdom of the female body. By recognizing the cyclical nature of menstruation, women can navigate life with a deeper understanding of themselves and their inherent strength." :
-                "तपाईंको मासिक चक्रलाई गल्ती गर्नुहोस् मात्र होइन; यसले महिला शरीरको प्राकृतिक ज्ञानलाई मनाउने क्रियाकलाप हो। मासिक धर्मको चक्राकार प्राकृतिकतालाई मान्यता दिनेर, महिलाहरू आफ्नो राम्रो र मौलिक शक्ति को गहिरो अवबोध सहित जीवन समारोह गर्न सक्छन्।"}
+                "तपाईंको मासिक चक्रलाई गल्ती गर्नुहोस् मात्र होइनस यसले महिला शरीरको प्राकृतिक ज्ञानलाई मनाउने क्रियाकलाप हो। मासिक धर्मको चक्राकार प्राकृतिकतालाई मान्यता दिनेर, महिलाहरू आफ्नो राम्रो र मौलिक शक्ति को गहिरो अवबोध सहित जीवन समारोह गर्न सक्छन्।"}
             </p>
           </div>
           <img
