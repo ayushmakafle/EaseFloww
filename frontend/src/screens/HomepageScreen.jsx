@@ -23,7 +23,7 @@ const HomepageScreen = () => {
       title: 'Embracing Your Menstrual Cycle',
       description:
         'Discover the beauty of your menstrual cycle and learn how to embrace its different phases with love and care.',
-      imagePath: 'https://img.freepik.com/free-vector/flat-design-menopause-illustration_23-2149375317.jpg?w=740&t=st=1701969958~exp=1701970558~hmac=678a8516d68228eb1181e2e0fc60078cfc86e322c89d4529d8f783b4dc6ec622',
+      imagePath: 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/newscms/2020_50/1640991/cycles-jc-202411.png',
     },
     {
       title: 'Self-Care During Menstruation',

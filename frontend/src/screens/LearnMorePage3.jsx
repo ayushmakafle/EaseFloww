@@ -40,15 +40,15 @@ const LearnMorePage3 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/portrait-cheerful-positive-curly-haired-woman-standing-isolated-pink_176532-7432.jpg?w=996&t=st=1702127856~exp=1702128456~hmac=32f89c6f24923eb75dff73f846d465ad3fec80bfba041c796ee77ebc4ab657c8"
-            alt="Image 1"
+          src="https://mpowerminds.com/assetOLD/images/menstruation-min.jpg"
+             alt="Image 1"
             className="paragraph-image2"
           />
         </div>
 
         <div className="paragraph-container reverse">
           <img
-            src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669"
+            src="https://flo.health/uploads/media/sulu-750x-inset/00/5330-A%20woman%20having%20period%20symptoms%20but%20no%20period.jpg?v=1-0"
             alt="Image 2"
             className="paragraph-image"
           />
@@ -70,7 +70,7 @@ const LearnMorePage3 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/young-brunette-woman-jeans-sweater_273609-41333.jpg?w=996&t=st=1702127737~exp=1702128337~hmac=2af47989e152cab933fe54278471149c5f4738fc7d8cf913b6fb86f124fac459"
+            src="https://menstrupedia.com/blog/wp-content/uploads/2015/02/All-we-have-is-a-happy-period.jpg"
             alt="Image 3"
             className="paragraph-image"
           />
@@ -78,7 +78,7 @@ const LearnMorePage3 = () => {
 
         <div className="paragraph-container reverse">
           <img
-            src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669"
+            src="https://femina.wwmindia.com/content/2022/sep/periods-thumb1663313045.jpg"
             alt="Image 4"
             className="paragraph-image"
           />
@@ -100,7 +100,7 @@ const LearnMorePage3 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/good-looking-feminine-girl-holds-clean-sanitary-napkin_176532-12421.jpg?w=996&t=st=1702127917~exp=1702128517~hmac=26dc44ba573cc8c9910b5735c9176506ba36eba97ee942ab01e55d40e86130b5"
+            src="https://femina.wwmindia.com/content/2022/sep/periods-31663313142.jpg"
             alt="Image 5"
             className="paragraph-image2"
           />

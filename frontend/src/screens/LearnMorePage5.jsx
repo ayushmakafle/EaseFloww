@@ -40,7 +40,7 @@ const LearnMorePage5 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/portrait-cheerful-positive-curly-haired-woman-standing-isolated-pink_176532-7432.jpg?w=996&t=st=1702127856~exp=1702128456~hmac=32f89c6f24923eb75dff73f846d465ad3fec80bfba041c796ee77ebc4ab657c8"
+            src="https://femina.wwmindia.com/content/2022/sep/periods-41663313160.jpg"
             alt="Image 1"
             className="paragraph-image2"
           />
@@ -48,7 +48,7 @@ const LearnMorePage5 = () => {
 
         <div className="paragraph-container reverse">
           <img
-            src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669"
+            src="https://resize.indiatvnews.com/en/centered/newbucket/1200_675/2023/01/adsescdddcdddddddddddq-1675001455.jpg"
             alt="Image 2"
             className="paragraph-image"
           />
@@ -70,7 +70,7 @@ const LearnMorePage5 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/gloomy-caucasian-woman-cares-about-personal-hygiene_176532-7404.jpg?w=1060&t=st=1702376468~exp=1702377068~hmac=bb80de94afc000d4744860b4ec7ef58393504841343414c5c46128cdb1995bd2"
+            src="https://femina.wwmindia.com/content/2022/sep/periods-31663313142.jpg"
             alt="Image 3"
             className="paragraph-image"
           />
@@ -78,7 +78,7 @@ const LearnMorePage5 = () => {
 
         <div className="paragraph-container reverse">
           <img
-            src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669"
+            src="https://static.india.com/wp-content/uploads/2023/06/Menstruation-1.jpg?impolicy=Medium_Widthonly&w=700"
             alt="Image 4"
             className="paragraph-image"
           />
@@ -100,7 +100,7 @@ const LearnMorePage5 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/good-looking-feminine-girl-holds-clean-sanitary-napkin_176532-12421.jpg?w=996&t=st=1702127917~exp=1702128517~hmac=26dc44ba573cc8c9910b5735c9176506ba36eba97ee942ab01e55d40e86130b5"
+            src="https://images.herzindagi.info/image/2023/Feb/how-to-deal-with-seasons-affecting-menstrual-cycle.jpg"
             alt="Image 5"
             className="paragraph-image2"
           />
