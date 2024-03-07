@@ -80,7 +80,7 @@ const MyOrders = () => {
       dataIndex: "_id",
       key: "actions",
       render: (orderId) => (
-        <Button type="primary" onClick={() => handleViewMore(orderId)}>
+        <Button onClick={() => handleViewMore(orderId)} style={{backgroundColor:'#B80F4A',color:'white'}}>
           View more
         </Button>
       ),
@@ -128,8 +128,8 @@ const MyOrders = () => {
                 >
                   {selectedOrder && (
                     <div>
-                      <h3 style={{ color: "#ef5e99", marginBottom: "10px" }}>
-                        Product List:
+                      <h3 style={{ color: "#ef5e99", marginBottom: "10px" , fontWeight:'bold'}}>
+                        Product List
                       </h3>
                       <table style={{ width: "100%" }}>
                         <thead>
