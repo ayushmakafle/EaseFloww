@@ -41,8 +41,43 @@
     },
     {
       "Tag": "recommendation",
-      "patterns": ["Do you have any recommendations for a good gynecologist?"],
+      "patterns": ["can you recommend a good gynecologist?"],
       "Response": "I recommend visiting EaseFlow site, where you can find a list of experienced gynecologists. You can also schedule an appointment directly through the platform."
+    },
+    {
+      "Tag": "mood swings",
+      "patterns": [
+        "i get moody during my period?"
+      ],
+      "Response": "Mood swings are a common symptom of menstruation due to hormonal changes. Engaging in activities you enjoy, practicing relaxation techniques, and getting enough sleep can help manage mood swings. If it becomes overwhelming, consulting a healthcare professional is a good idea. Ypu can easily book an appointment with EaseFlow"
+    },
+    {
+      "Tag": "mood swings",
+      "patterns": [
+        "how to deal with depression during menstruation"
+      ],
+      "Response": "Bad moods or mood swings before your periods can be part of PMS. If you're experiencing depression, consider consulting a healthcare provider. Easily book an appointment with EaseFlow."
+    },
+    {
+      "Tag": "period stains",
+      "patterns":[ 
+        "how to get rid of blood stains"
+      ],
+      "Response": "If you notice period stains on your clothing, act promptly by prewashing them with cold water and soap to enhance the chances of complete stain removal. Blood can be challenging to clean once it dries, so swift action is key. Don't stress about it."
+    },
+     {
+      "Tag": "menstruation",
+      "patterns": [
+        "When do periods start in girls?"
+      ],
+      "Response": "Most girls start their periods when they're about 12, but they can start as early as 8. It's important to talk to girls from an early age to ensure they're prepared."
+    },
+     {
+      "Tag": "menopause",
+      "patterns":[ 
+        "what age do we stop period"
+      ],
+      "Response": "Menopause is the time that marks the end of menstrual cycles. It's diagnosed after someone has gone 12 months without a menstrual period. Most people reach it anywhere between ages 45 to 55"
     }
   ]
 }

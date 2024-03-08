@@ -52,7 +52,12 @@ def send_message():
 
     sentence = tokenizer(user_message)
     print(f"Tokenized sentence: {sentence}")  
-
+    stemmed_sentence = []
+    for word in sentence:
+        stemmed_word = porter_stemmer(word)
+        stemmed_sentence.append((word, stemmed_word))
+    print(f"Stemmed into: {stemmed_sentence}")  
+    
     X = bag_of_words(sentence, all_words)
     X = X.reshape(1, X.shape[0])
     X = torch.from_numpy(X).to(device)
