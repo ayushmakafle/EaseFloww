@@ -55,9 +55,13 @@ const EaseFlowOrders = () => {
 };
 
   const columns = [
-    
     {
-      title: 'Email',
+      title:'Order Id',
+      dataIndex:'orderId',
+      key:'orderId'
+    },
+    {
+      title: 'User Email',
       dataIndex: 'user',
       key: 'email',
       render: user => (
@@ -121,6 +125,7 @@ const EaseFlowOrders = () => {
       if (response.data.success) {
         const ordersWithUsers = response.data.orders.map(order => ({
           key: order._id,
+          orderId: order._id,
           user: {
             email: order.paymentResult.email_address,
           },
