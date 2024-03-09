@@ -19,15 +19,14 @@ const LearnMorePage1 = () => {
   return (
     <>
       {/* <MainNavbar /> */}
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-  <button className="back-button" onClick={goBack} style={{ alignItems: 'center' }}>
-    <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
-  </button>
-  <button className="language-button btn light" style={{ fontFamily: 'Raleway, sans-serif', fontWeight: "45", fontSize: "20px", color: "white", backgroundColor: "#e73d90", marginLeft: "1250px",marginTop: "10px" }} onClick={toggleLanguage}>
-    {language === 'english' ? 'नेपालीमा पढनुहोस्' : 'Read in English'}
-  </button>
-</div>
-    
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <button className="back-button" onClick={goBack}>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+        </button>
+        <button className="language-button btn light" onClick={toggleLanguage} style={{ margin: '10px', fontFamily: 'Raleway, sans-serif', fontWeight: '45', fontSize: '20px', color: 'white', backgroundColor: '#e73d90' }}>
+          {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
+        </button>
+      </div>
       <div className="page-container">
         <h1 className="page-heading">
           {language === 'english' ? 'Embracing Your Menstrual Cycle' : 'तपाईंको मासिक चक्रलाई अँगाल्नुहोस्'}
@@ -72,8 +71,8 @@ const LearnMorePage1 = () => {
             </p>
           </div>
           <img
-          src="https://www.brparents.com/wp-content/uploads/2022/11/BRPM_DEC22_WelcomeWomanhood.jpg"
-            
+            src="https://www.brparents.com/wp-content/uploads/2022/11/BRPM_DEC22_WelcomeWomanhood.jpg"
+
             alt="Image 1"
             className="paragraph-image"
           />
