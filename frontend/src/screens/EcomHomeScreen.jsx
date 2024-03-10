@@ -15,7 +15,7 @@ import '../styles/EcomHomeScreen.css';
 const EcomHomeScreen = () => {
 
   const [cart, setCart] = useCart()
-
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([])
   const [checked, setChecked] = useState([])
@@ -24,7 +24,7 @@ const EcomHomeScreen = () => {
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
 
-  const navigate = useNavigate()
+
 
 
   //get all categories
@@ -111,7 +111,9 @@ const EcomHomeScreen = () => {
     };
     fetchProducts();
   }, []); */
-
+  const goBack = () => {
+    navigate(-1); // Navigate back
+  };
   //get filtered product
   const filterProduct = async () => {
     try {
@@ -127,7 +129,9 @@ const EcomHomeScreen = () => {
     <>
       {/* <MainNavbar /> */}
       <EcomHeader />
-
+      <button className="back-button" onClick={goBack}>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+        </button>
       <div className="container-fluid row mt-2">
         <div className="col-md-2">
           <h6 className="text-center-box animate-allpro" style={{ color: '#d90166', margin: '10px', fontWeight: 'bold' }}>Filter by Category</h6>

@@ -1,13 +1,21 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 // import MainNavbar from '../components/Navbar'
 import UserMenu from './UserMenu'
 import {useAuth} from '../context/auth'
 
 const UserDashboard = () => {
+  const navigate = useNavigate()
   const [auth] = useAuth()
+  const goBack = () => {
+    navigate(-1); // Navigate back
+  };
   return (
 <>
   {/* <MainNavbar /> */}
+  <button className="back-button" onClick={goBack}>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+        </button>
   <div className='container-fluid mt-3 mb-3'>
     <div className='row'>
       <div className='col-md-3'>
