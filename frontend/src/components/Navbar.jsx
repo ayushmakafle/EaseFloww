@@ -104,33 +104,33 @@ const MainNavbar = () => {
                 </Nav>
               ) : (
                 <>
-                  <NavDropdown
-                    title={
-                      <span style={{ color: 'white', fontFamily: 'Poppins', marginTop: '0' }}>
-                        {greeting}, {userName}
-                      </span>
-                    }
-                    id="navbarDropdown"
-                    className='text-right'
-                  >
-                    {auth.user && (
-                      <Nav.Link>
-                        <LinkContainer
-                          to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'
-                            }`}
-                        >
-                          <span className="nav-link-text">Dashboard</span>
-                        </LinkContainer>
-                      </Nav.Link>
-                    )}
-
-                    <Nav.Link>
-                      <button className="btn btn-transparent" onClick={handleLogout}>
-                        Logout
-                      </button>
+                <NavDropdown
+                  title={
+                    <span style={{ color: 'white', fontFamily: 'Poppins', marginTop: '0' }}>
+                      {greeting}, {userName}
+                    </span>
+                  }
+                  id="navbarDropdown"
+                  className='text-right'
+                >
+                  {auth.user && (
+                    <Nav.Link style={{ fontFamily: 'Raleway', fontSize: '15px', fontWeight: 'light', color:'black'}}>
+                      <LinkContainer
+                        to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : auth?.user?.role === 2 ? 'doctor' : 'user'}`}
+                      >
+                        <span className="nav-link-text">Dashboard</span>
+                      </LinkContainer>
                     </Nav.Link>
-                  </NavDropdown>
-                </>
+                  )}
+              
+                  <Nav.Link>
+                    <button className="btn btn-transparent" style={{ fontFamily: 'Raleway', fontSize: '15px', fontWeight: 'light' , padding: '0'}} onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </Nav.Link>
+                </NavDropdown>
+              </>
+              
               )}
               <li className="nav-item mt-0">
                 <LinkContainer to="/cart" className="p-4 m-4">

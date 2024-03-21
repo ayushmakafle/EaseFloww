@@ -19,15 +19,17 @@ const LearnMorePage5 = () => {
   return (
     <>
       {/* <MainNavbar /> */}
-      <div className="page-container">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button className="back-button" onClick={goBack}>
-          <span role="img" aria-label="Back Arrow" className="pink-arrow">❮❮</span>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
         </button>
-        <button className="language-button" onClick={toggleLanguage}>
+        <button className="language-button btn light" onClick={toggleLanguage} style={{ fontFamily: 'Raleway, sans-serif', fontWeight: '45', fontSize: '20px', color: 'white', margin: '10px', backgroundColor: '#e73d90' }}>
           {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
         </button>
+      </div>
+      <div className="page-container">
         <h1 className="page-heading">
-          {language === 'english' ? 'Connecting with Your Body' : 'तपाईंको शरीरसँग जडान गर्नुहोस्'}
+          {language === 'english' ? 'Connecting with Your Body' : 'आफ्नो शरीरलाइ बुझ्नुहोस्'}
         </h1>
 
         <div className="paragraph-container">
@@ -35,11 +37,11 @@ const LearnMorePage5 = () => {
             <p className="page-paragraph">
               {language === 'english' ?
                 "Connecting with one's body during menstruation is a holistic approach that involves tuning into the body's signals, embracing its natural rhythms, and fostering a positive relationship with oneself. This connection extends beyond physical awareness to encompass emotional and spiritual well-being, creating a harmonious and empowering relationship with the self." :
-                "मासिक धर्मको दौरान आफ्नो शरीरसँग जडान गर्नु एक पूर्णतात्मक दृष्टिकोण हो जसमा शरीरको संकेतहरूमा समान्तर हुने, तत्वज्ञानमा जोडिने, त्यसको प्राकृतिक रिदमा आनन्दित हुने, र आफ्नो साथीसँग सकारात्मक सम्बन्ध बढाउने समावेश गरिएको छ। यो जडान शारीरिक जागरूकताभन्दा प्राचीन र मानसिक तथा आध्यात्मिक कल्याणसम्म फैलिन्छ, जसले आत्मसँग सम्मोहनात्मक र शक्तिशाली सम्बन्ध सिर्जना गर्दछ।"}
+                "मासिक धर्मको दौरान आफ्नो शरीरलाइ बुझ्नु एक पूर्णतात्मक दृष्टिकोण हो जसमा शरीरको संकेतहरूमा समान्तर हुने, तत्वज्ञानमा जोडिने, त्यसको प्राकृतिक रिदमा आनन्दित हुने, र आफ्नो साथीसँग सकारात्मक सम्बन्ध बढाउने समावेश गरिएको छ। यो जडान शारीरिक जागरूकताभन्दा प्राचीन र मानसिक तथा आध्यात्मिक कल्याणसम्म फैलिन्छ, जसले आत्मसँग सम्मोहनात्मक र शक्तिशाली सम्बन्ध सिर्जना गर्दछ।"}
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/portrait-cheerful-positive-curly-haired-woman-standing-isolated-pink_176532-7432.jpg?w=996&t=st=1702127856~exp=1702128456~hmac=32f89c6f24923eb75dff73f846d465ad3fec80bfba041c796ee77ebc4ab657c8"
+            src="https://femina.wwmindia.com/content/2022/sep/periods-41663313160.jpg"
             alt="Image 1"
             className="paragraph-image2"
           />
@@ -47,7 +49,7 @@ const LearnMorePage5 = () => {
 
         <div className="paragraph-container reverse">
           <img
-            src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669"
+            src="https://resize.indiatvnews.com/en/centered/newbucket/1200_675/2023/01/adsescdddcdddddddddddq-1675001455.jpg"
             alt="Image 2"
             className="paragraph-image"
           />
@@ -69,7 +71,7 @@ const LearnMorePage5 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/gloomy-caucasian-woman-cares-about-personal-hygiene_176532-7404.jpg?w=1060&t=st=1702376468~exp=1702377068~hmac=bb80de94afc000d4744860b4ec7ef58393504841343414c5c46128cdb1995bd2"
+            src="https://femina.wwmindia.com/content/2022/sep/periods-31663313142.jpg"
             alt="Image 3"
             className="paragraph-image"
           />
@@ -77,7 +79,7 @@ const LearnMorePage5 = () => {
 
         <div className="paragraph-container reverse">
           <img
-            src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669"
+            src="https://static.india.com/wp-content/uploads/2023/06/Menstruation-1.jpg?impolicy=Medium_Widthonly&w=700"
             alt="Image 4"
             className="paragraph-image"
           />
@@ -99,7 +101,7 @@ const LearnMorePage5 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/good-looking-feminine-girl-holds-clean-sanitary-napkin_176532-12421.jpg?w=996&t=st=1702127917~exp=1702128517~hmac=26dc44ba573cc8c9910b5735c9176506ba36eba97ee942ab01e55d40e86130b5"
+            src="https://images.herzindagi.info/image/2023/Feb/how-to-deal-with-seasons-affecting-menstrual-cycle.jpg"
             alt="Image 5"
             className="paragraph-image2"
           />

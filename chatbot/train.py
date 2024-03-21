@@ -119,7 +119,7 @@ for epoch in range(num_epochs):
     epoch_accuracy = correct_predictions / total_predictions
     accuracy_values.append(epoch_accuracy)
 
-    if (epoch+1) % 100 == 0:
+    if (epoch+1) % 10 == 0:
         print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {mean_epoch_loss:.4f}, Accuracy: {epoch_accuracy:.4f}')
 
 # Plotting the loss values
@@ -141,7 +141,8 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-
+final_accuracy = accuracy_values[-1]
+print(f'Final Accuracy on Training Data: {final_accuracy:.4f}')
 print(f'final loss: {loss.item():.4f}')
 
 data = {

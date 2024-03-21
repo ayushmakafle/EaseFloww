@@ -19,7 +19,7 @@ def process_json_dataset(file_path):
     tokenized_data = []
 
     for entry in data:
-        text = entry.get('Intent', '')  # Update 'text' to 'Intent' if that's the key in your JSON
+        text = entry.get('Intent', '')  
         tokens = tokenizer(text)
         tokenized_data.append(tokens)
 

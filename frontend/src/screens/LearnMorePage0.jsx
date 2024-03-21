@@ -20,14 +20,17 @@ const LearnMorePage0 = () => {
   return (
     <>
       {/* <MainNavbar /> */}
-      <button className="back-button" onClick={goBack} style={{ alignItems: 'center' }}>
-        <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
-      </button>
-      <button className="language-button" onClick={toggleLanguage}>
-        {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
-      </button>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <button className="back-button" onClick={goBack}>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+        </button>
+        <button className="language-button btn light" onClick={toggleLanguage} style={{ margin: '10px', fontFamily: 'Raleway, sans-serif', fontWeight: '45', fontSize: '20px', color: 'white', backgroundColor: '#e73d90' }}>
+          {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
+        </button>
+      </div>
+
       <div className="page-container">
-        <h1 className="page-heading">{language === 'english' ? 'Chhaupadi and menstruation taboos' : 'छाउपडी र मासिक धर्मको ताबू'}</h1>
+        <h1 className="page-heading">{language === 'english' ? 'Chhaupadi and menstruation taboos' : 'छाउपडी र मासिक धर्मको वर्जित'}</h1>
         <div className="paragraph-container">
           <div className="text-box">
             <p className="page-paragraph">
@@ -53,7 +56,7 @@ const LearnMorePage0 = () => {
             <p className="page-paragraph">
               {language === 'english' ?
                 "They might also be placed in considerable danger: there have been multiple reports of deaths in chhaupadi huts due to suffocation, fire, pneumonia and animal attacks. Although chhaupadi has been illegal in Nepal since 2005, it is still practised in many communities. Such myths have been brought into discourse time and again through various media platforms. However, there are some more misconceptions, especially regarding menstrual health and hygiene, which are barely talked about." :
-                "तिनीहरूलाई धेरै खतरामा राखिन्छ: छाउपडी झुवारहरूमा अस्फालन, आग, फोक्सा, न्युमोनिया र पशु हमलाहरूका कारण मृत्युको कई प्रतिवेदन आएका छन्। यसको बावजूद, २००५ देखि छाउपडी नेपालमा गैरकानुनी भएको छ, तर यसलाई धेरै समुदायमा लागू गरिएको छ। यस्ता गलतफहमीहरू समय समयमा विभिन्न मिडिया प्लेटफर्महरूबाट चर्चा गर्नु आएका छन्। तथापि, मासिक धर्म र स्वच्छता सम्बन्धी विभिन्न गलतफहमीहरू जसलाई बारम्बार छलफल गरिएको छ, जसलाई छानबिन कम गरिएको छ।"}
+                "तिनीहरूलाई धेरै खतरामा राखिन्छस् छाउपडी झुवारहरूमा अस्फालन, आग, फोक्सा, न्युमोनिया र पशु हमलाहरूका कारण मृत्युको कई प्रतिवेदन आएका छन्। यसको बावजूद, २००५ देखि छाउपडी नेपालमा गैरकानुनी भएको छ, तर यसलाई धेरै समुदायमा लागू गरिएको छ। यस्ता गलतफहमीहरू समय समयमा विभिन्न मिडिया प्लेटफर्महरूबाट चर्चा गर्नु आएका छन्। तथापि, मासिक धर्म र स्वच्छता सम्बन्धी विभिन्न गलतफहमीहरू जसलाई बारम्बार छलफल गरिएको छ, जसलाई छानबिन कम गरिएको छ।"}
             </p>
           </div>
         </div>
@@ -63,7 +66,7 @@ const LearnMorePage0 = () => {
             <p className="page-paragraph">
               {language === 'english' ?
                 "Many people consider period blood dirty and impure. They are conditioned that all the dirty and impure fluids from the body come out in the form of period blood, therefore, the one who is bleeding is also tagged impure in Nepali society. But, there is no such thing as pure blood and impure blood. Period blood is not a way of throwing out toxins. It is a vaginal secretion that contains endometrium (mucus lining), uterine tissues, and very few amounts of blood." :
-                "धेरै मानिसहरूले मासिक धर्मको रातो र अशुद्ध मान्छेको रातो र अशुद्ध मानिन्छन्। तिनीहरूले आफ्नो शरीरबाट सबै अशुद्ध र अशुद्ध तरलहरू मासिक धर्मको रूपमा निस्कन्छन्, यसकारण जो सिरन्धन गरिरहेको छ, उहाँ पनि नेपाली समाजमा अशुद्ध मानिन्छ। तर, पावित्र्य र अशुद्ध रक्तको कुनै पनि कुरा छैन। मासिक धर्म विषैले रसाइरहेको तरल हो। यसमा इन्डोमेट्रियम (म्युकस सामग्री), जरायको कोशिकाहरू, र धेरै थप रक्त मात्रामा समावेश छ।"}
+                "धेरै मानिसहरूले मासिक धर्मको रातो र अशुद्ध मान्छेको रातो र अशुद्ध मानिन्छन्। तिनीहरूले आफ्नो शरीरबाट सबै अशुद्ध र अशुद्ध तरलहरू मासिक धर्मको रूपमा निस्कन्छन्, यसकारण जो सिरन्धन गरिरहेको छ, उहाँ पनि नेपाली समाजमा अशुद्ध मानिन्छ। तर, पावित्र्य र अशुद्ध रक्तको कुनै पनि कुरा छैन। मासिक धर्म विषैले रसाइरहेको तरल हो। यसमा इन्डोमेट्रियम ९म्युकस सामग्री०, जरायको कोशिकाहरू, र धेरै थप रक्त मात्रामा समावेश छ।"}
             </p>
           </div>
           <img

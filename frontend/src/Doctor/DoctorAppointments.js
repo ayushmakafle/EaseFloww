@@ -102,10 +102,10 @@ const columns = [
       <div>
         {record.status === "Pending" && (
           <>
-            <button onClick={() => handleAccept(record._id)} className="m-1">
+            <button onClick={() => handleAccept(record._id)} className="m-1" style={{color:'white'}}>
               Accept
             </button>
-            <button onClick={() => handleReject(record._id)}>Reject</button>
+            <button onClick={() => handleReject(record._id)} style={{color:'white'}}>Reject</button>
           </>
         )}
       </div>

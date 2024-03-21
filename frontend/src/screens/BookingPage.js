@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 // import MainNavbar from '../components/Navbar';
 import axios from 'axios';
 import { toast } from "react-toastify";
@@ -13,6 +14,7 @@ import { ReactComponent as Loading } from '../components/loadinganimation.svg';
 
 
 const BookingPage = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const [auth] = useAuth();
   const [doctor, setDoctor] = useState(null);
@@ -233,9 +235,14 @@ const customStyles = `
   border-color: pink;
 }
 `;
-
+const goBack = () => {
+  navigate(-1); 
+};
   return (
     <>
+              <button className="back-button" onClick={goBack} style={{ alignItems: 'center' }}>
+        <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+      </button>
       <style>{customStyles}</style>
 
       {/* <MainNavbar /> */}

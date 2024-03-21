@@ -38,17 +38,16 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
-
+  const goBack = () => {
+    navigate(-1); // Navigate back
+  };
   return (
     <>
       {/* <MainNavbar /> */}
       <EcomHeader />
-
-      <Link to='/ecommerce' className='btn-light' style={{ fontWeight: 'bold', textDecoration: 'none', margin: '20px', color: "#FF06BF" }}>
-        <i className="fa-solid fa-arrow-left" style={{ fontSize: '1em' }}></i>
-        &nbsp;GO BACK
-      </Link>
-
+      <button className="back-button" onClick={goBack}>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+        </button>
       <div className="container mt-4">
         <div className="row">
           <div className="col-md-6">

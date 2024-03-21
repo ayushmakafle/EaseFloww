@@ -76,13 +76,17 @@ const updateQuantity = (productId, action) => {
   setCart(updatedCart);
   localStorage.setItem('cart', JSON.stringify(updatedCart));
 };
-
+const goBack = () => {
+  navigate(-1); // Navigate back
+};
 
   return (
     <>
       {/* <MainNavbar /> */}
       <EcomHeader />
-
+      <button className="back-button" onClick={goBack}>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+        </button>
       <div>
         <div className="row">
           <div className="col-md-12 animation-cart">

@@ -19,13 +19,15 @@ const LearnMorePage2 = () => {
   return (
     <>
       {/* <MainNavbar /> */}
-      <div className="page-container">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button className="back-button" onClick={goBack}>
-          <span role="img" aria-label="Back Arrow" className="pink-arrow">❮❮</span>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
         </button>
-        <button className="language-button" onClick={toggleLanguage}>
+        <button className="language-button btn light" onClick={toggleLanguage} style={{ margin: '10px', fontFamily: 'Raleway, sans-serif', fontWeight: '45', fontSize: '20px', color: 'white', backgroundColor: '#e73d90' }}>
           {language === 'english' ? 'नेपालीमा पढ्नुहोस्' : 'Read in English'}
         </button>
+      </div>
+      <div className="page-container">
         <h1 className="page-heading">
           {language === 'english' ? 'Self-Care During Menstruation' : 'मासिक धर्मको दौरान स्वास्थ्य सेवा'}
         </h1>
@@ -39,7 +41,7 @@ const LearnMorePage2 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/portrait-cheerful-attractive-young-lady-holding-tampon-sanitary-napkin_176532-7402.jpg?w=1060&t=st=1702377083~exp=1702377683~hmac=c764da42c1ad94a8c4139693adf5a07036526c2a3c581561141461e3346c5e7d"
+            src="https://cdn.dribbble.com/users/1374484/screenshots/18391931/media/f8a3ecd8450ca39f91e733a56efbb116.jpg"
             alt="Image 1"
             className="paragraph-image2"
           />
@@ -47,7 +49,7 @@ const LearnMorePage2 = () => {
 
         <div className="paragraph-container reverse">
           <img
-            src="https://img.freepik.com/free-photo/portrait-cute-cheerful-pretty-young-woman-pajamas-with-curly-brunette-hair-having-fun-bed-stretching-hands-with-pink-tinsels-expressinf-happiness_197531-2287.jpg?w=996&t=st=1702127956~exp=1702128556~hmac=6d55e9c97b20adb66a638332e316cad69394bb9f2cd6ffa8941e8b7ef0aa4669"
+            src="https://leadership.ng/wp-content/uploads/2024/02/Menstrual-Health.jpg"
             alt="Image 2"
             className="paragraph-image"
           />
@@ -69,7 +71,7 @@ const LearnMorePage2 = () => {
             </p>
           </div>
           <img
-            src="https://img.freepik.com/free-photo/young-brunette-woman-jeans-sweater_273609-41333.jpg?w=996&t=st=1702127737~exp=1702128337~hmac=2af47989e152cab933fe54278471149c5f4738fc7d8cf913b6fb86f124fac459"
+            src="https://static.india.com/wp-content/uploads/2023/06/Menstruation-1.jpg?impolicy=Medium_Widthonly&w=700"
             alt="Image 3"
             className="paragraph-image"
           />

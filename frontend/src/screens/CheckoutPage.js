@@ -1,4 +1,5 @@
 import React ,{useState} from 'react';
+import { useNavigate } from "react-router-dom";
 import { useCart } from '../context/cart';
 // import MainNavbar from '../components/Navbar';
 import EcomHeader from '../components/EcomHeader';
@@ -7,7 +8,7 @@ import '../styles/CheckoutPage.css';
 import { toast } from 'react-toastify';
 
 const CheckoutPage = () => {
-
+  const navigate = useNavigate()
   const [cart] = useCart();
 
   // Calculate total bill
@@ -83,11 +84,16 @@ const CheckoutPage = () => {
         toast.error(error);
       });
   };
-
+  const goBack = () => {
+    navigate(-1); // Navigate back
+  };
   return (
     <>
     {/* <MainNavbar /> */}
     <EcomHeader />
+    <button className="back-button" onClick={goBack}>
+          <span role="img" aria-label="Back Arrow" className="pink-arrow" style={{ color: '#f38dbc' }}>❮❮</span>
+        </button>
      <div className="checkout-container">
         <div className="row">
           <div className="col-md-9">
